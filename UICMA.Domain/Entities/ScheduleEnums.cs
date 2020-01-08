@@ -8,6 +8,7 @@ namespace UICMA.Domain.Entities
     {
         RecurringDaily = 1,
         OnlyOnce = 2,
+        Work=3
         
     }
 

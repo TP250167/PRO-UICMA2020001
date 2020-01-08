@@ -16,7 +16,7 @@ namespace UICMA.API.ViewModels.Mappings
                 .ForMember(vm => vm.Creator,
                     map => map.MapFrom(s => s.Creator.Name))
                 .ForMember(vm => vm.Attendees, map =>
-                    map.MapFrom(s => s.Attendees.Select(a => a.UserId)));
+                    map.MapFrom(s => s.Attendees.Select(a => a.UserId))).ReverseMap();
 
             CreateMap<Schedule, ScheduleDetailsViewModel>()
                 .ForMember(vm => vm.Creator,
@@ -30,11 +30,11 @@ namespace UICMA.API.ViewModels.Mappings
                 .ForMember(vm => vm.Statuses, map =>
                     map.MapFrom(src=>Enum.GetNames(typeof(ScheduleStatus)).ToArray()))
                 .ForMember(vm => vm.Types, map =>
-                    map.MapFrom(src=>Enum.GetNames(typeof(ScheduleType)).ToArray()));
+                    map.MapFrom(src=>Enum.GetNames(typeof(ScheduleType)).ToArray())).ReverseMap();
 
             CreateMap<User, UserViewModel>()
                 .ForMember(vm => vm.SchedulesCreated,
-                    map => map.MapFrom(u => u.SchedulesCreated.Count()));
+                    map => map.MapFrom(u => u.SchedulesCreated.Count())).ReverseMap();
         }
     }
 }

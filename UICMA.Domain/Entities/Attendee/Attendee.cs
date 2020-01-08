@@ -8,8 +8,8 @@ namespace UICMA.Domain.Entities
     {
 
         public Int64 Id { get; set; }
-        public int UserId { get; set; }    
-        public int ScheduleId { get; set; }
+        public Int64 UserId { get; set; }    
+        public Int64 ScheduleId { get; set; }
         public User User { get; set; }
         public Schedule Schedule { get; set; }
     }
