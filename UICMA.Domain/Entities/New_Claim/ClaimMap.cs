@@ -23,8 +23,16 @@ namespace UICMA.Domain.Entities.New_ClaimMap
             builder.Property(s => s.Gender).HasColumnName("GENDER");
             builder.Property(s => s.EmployeeNumber).HasColumnName("EMPLOYEE_NUMBER");
             builder.Property(s => s.SocialSecurityNumber).HasColumnName("SOCIAL_SECURITY_NUMBER");
-            builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY"); ;
+            builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY");
+            builder.Property(s => s.ReasonForSeparation).HasColumnName("REASON_FOR_SEPARATION");
+            builder.Property(s => s.NewClaim).HasColumnName("NEW_CLAIM");
+            builder.Property(s => s.AdditionalClaim).HasColumnName("ADDITIONAL_CLAIM");
+            builder.Property(s => s.BenefitYearBeginning).HasColumnName("BENEFIT_YEAR_BEGINNING");
+            builder.Property(s => s.DateMailedToEDD).HasColumnName("DATE_MAILED_TO_EDD");
+            builder.Property(s => s.MailDate).HasColumnName("MAIL_DATE");
+            builder.Property(s => s.EffectiveDateOfClaim).HasColumnName("EFFECTIVE_DATE_OF_CLAIM");
+            builder.Property(s => s.LastDateWorked).HasColumnName("LAST_DATE_WORKED");
         }
     }
 }

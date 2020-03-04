@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UICMA.Repository;
 
 namespace UICMA.API.Migrations
 {
     [DbContext(typeof(UICMAContext))]
-    partial class UICMAContextModelSnapshot : ModelSnapshot
+    [Migration("20200304083306_alter_claimtbl")]
+    partial class alter_claimtbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

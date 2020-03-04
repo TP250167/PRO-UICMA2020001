@@ -19,5 +19,13 @@ namespace UICMA.Domain.Entities.New_Claim
         public string SocialSecurityNumber { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
+        public string ReasonForSeparation { get; set; }
+        public string NewClaim { get; set; }
+        public string AdditionalClaim { get; set; }
+        public int BenefitYearBeginning { get; set; }
+        public DateTime? DateMailedToEDD { get; set; }
+        public DateTime? MailDate { get; set; }
+        public DateTime? EffectiveDateOfClaim { get; set; }
+        public DateTime? LastDateWorked { get; set; }
     }
 }
