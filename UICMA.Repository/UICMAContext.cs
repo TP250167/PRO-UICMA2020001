@@ -13,6 +13,8 @@ using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_InterviewMap;
 using UICMA.Domain.Entities.Claim_Response;
 using UICMA.Domain.Entities.Claim_ResponseMap;
+using UICMA.Domain.Entities.Issues_List;
+using UICMA.Domain.Entities.Issues_ListMap;
 using UICMA.Domain.Entities.MD_Document;
 using UICMA.Domain.Entities.MD_DocumentMap;
 using UICMA.Domain.Entities.MD_Form;
@@ -41,6 +43,7 @@ namespace UICMA.Repository
         public DbSet<ClaimDetermination> ClaimDeterminations { get; set; }
         public DbSet<ResponseToEmployer> ResponseToEmployers { get; set; }
         public DbSet<ClaimAppeal> ClaimAppeals { get; set; }
+        public DbSet<IssuesList> IssuesLists { get; set; }
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
@@ -78,6 +81,7 @@ namespace UICMA.Repository
 
             new ResponseToEmployerMap(modelBuilder.Entity<ResponseToEmployer>());
             new ClaimAppealMap(modelBuilder.Entity<ClaimAppeal>());
+            new IssuesListMap(modelBuilder.Entity<IssuesList>());
         }
     }
 }
