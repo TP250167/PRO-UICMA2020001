@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.Associated_Documents;
+using UICMA.Domain.Entities.MD_Document;
 
 namespace UICMA.Domain.Entities.MD_Form
 {
@@ -14,5 +16,7 @@ namespace UICMA.Domain.Entities.MD_Form
         public string ModifiedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
+
+        public List<AssociatedDocuments> AssociatedDocuments { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.Claim_Response;
 
 namespace UICMA.Domain.Entities.New_Claim
 {
@@ -27,5 +28,7 @@ namespace UICMA.Domain.Entities.New_Claim
         public DateTime? MailDate { get; set; }
         public DateTime? EffectiveDateOfClaim { get; set; }
         public DateTime? LastDateWorked { get; set; }
+
+        public ClaimResponse claimResponse { get; set; }
     }
 }
