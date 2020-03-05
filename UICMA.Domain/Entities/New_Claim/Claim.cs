@@ -4,6 +4,7 @@ using System.Text;
 using UICMA.Domain.Entities.Claim_Determination;
 using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_Response;
+using UICMA.Domain.Entities.Response_to_Employer;
 
 namespace UICMA.Domain.Entities.New_Claim
 {
@@ -34,5 +35,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public ClaimResponse claimResponse { get; set; }
         public ClaimInterview claimInterview { get; set; }
         public ClaimDetermination claimDetermination { get; set; }
+        public ResponseToEmployer responsetoEmployer { get; set; }
     }
 }

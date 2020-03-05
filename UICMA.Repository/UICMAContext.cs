@@ -19,6 +19,8 @@ using UICMA.Domain.Entities.New_Claim;
 using UICMA.Domain.Entities.New_ClaimMap;
 using UICMA.Domain.Entities.Questions;
 using UICMA.Domain.Entities.QuestionsMap;
+using UICMA.Domain.Entities.Response_to_Employer;
+using UICMA.Domain.Entities.Response_to_EmployerMap;
 
 namespace UICMA.Repository
 {
@@ -35,7 +37,7 @@ namespace UICMA.Repository
         public DbSet<ClaimInterview> ClaimInterviews { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<ClaimDetermination> ClaimDeterminations { get; set; }
-
+        public DbSet<ResponseToEmployer> ResponseToEmployers { get; set; }
 
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
@@ -71,6 +73,8 @@ namespace UICMA.Repository
                 .HasOne(pt => pt.MDDocument)
                 .WithMany(t => t.AssociatedDocuments)
                 .HasForeignKey(pt => pt.DocumentId);
+
+            new ResponseToEmployerMap(modelBuilder.Entity<ResponseToEmployer>());
         }
     }
 }
