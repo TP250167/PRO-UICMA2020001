@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using UICMA.Domain.Entities;
 using UICMA.Domain.Entities.Associated_Documents;
+using UICMA.Domain.Entities.Claim_Determination;
+using UICMA.Domain.Entities.Claim_DeterminationMap;
+using UICMA.Domain.Entities.Claim_Interview;
+using UICMA.Domain.Entities.Claim_InterviewMap;
 using UICMA.Domain.Entities.Claim_Response;
 using UICMA.Domain.Entities.Claim_ResponseMap;
 using UICMA.Domain.Entities.MD_Document;
@@ -13,6 +17,8 @@ using UICMA.Domain.Entities.MD_Form;
 using UICMA.Domain.Entities.MD_FormMap;
 using UICMA.Domain.Entities.New_Claim;
 using UICMA.Domain.Entities.New_ClaimMap;
+using UICMA.Domain.Entities.Questions;
+using UICMA.Domain.Entities.QuestionsMap;
 
 namespace UICMA.Repository
 {
@@ -26,6 +32,12 @@ namespace UICMA.Repository
         public DbSet<MDForm> MDForms { get; set; }
         public DbSet<ClaimResponse> ClaimResponses { get; set; }
         public DbSet<AssociatedDocuments> associatedDocuments { get; set; }
+        public DbSet<ClaimInterview> ClaimInterviews { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<ClaimDetermination> ClaimDeterminations { get; set; }
+
+
+
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
         }
@@ -43,20 +55,9 @@ namespace UICMA.Repository
             new MDFormMap(modelBuilder.Entity<MDForm>());
             new MDDocumentMap(modelBuilder.Entity<MDDocument>());
             new ClaimResponseMap(modelBuilder.Entity<ClaimResponse>());
-
-            //modelBuilder.Entity<UserSubscription>()
-            // .HasKey(t => new { t.UserId, t.SubscriptionId });
-
-            //modelBuilder.Entity<UserSubscription>()
-            //    .HasOne(pt => pt.User)
-            //    .WithMany(p => p.UserSubscription)
-            //    .HasForeignKey(pt => pt.UserId);
-
-            //modelBuilder.Entity<UserSubscription>()
-            //    .HasOne(pt => pt.Subscription)
-            //    .WithMany(t => t.UserSubscription)
-            //    .HasForeignKey(pt => pt.SubscriptionId);
-
+            new ClaimInterviewMap(modelBuilder.Entity<ClaimInterview>());
+            new QuestionsMap(modelBuilder.Entity<Question>());
+            new ClaimDeterminationMap(modelBuilder.Entity<ClaimDetermination>());
 
             modelBuilder.Entity<AssociatedDocuments>().ToTable("ASSOCIATED_DOCUMENTS_TBL")
              .HasKey(t => new { t.FormId, t.DocumentId });

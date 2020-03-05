@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.Claim_Determination;
+using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_Response;
 
 namespace UICMA.Domain.Entities.New_Claim
@@ -30,5 +32,7 @@ namespace UICMA.Domain.Entities.New_Claim
         public DateTime? LastDateWorked { get; set; }
 
         public ClaimResponse claimResponse { get; set; }
+        public ClaimInterview claimInterview { get; set; }
+        public ClaimDetermination claimDetermination { get; set; }
     }
 }
