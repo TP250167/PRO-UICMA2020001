@@ -18,7 +18,7 @@ namespace UICMA.Domain.Entities.MD_DocumentMap
             builder.Property(s => s.DocumentName).HasColumnName("DOCUMENT_NAME"); 
             builder.Property(s => s.DocumentStatus).HasColumnName("DOCUMENT_STATUS"); 
             builder.Property(s => s.DocumentDescription).HasColumnName("DOCUMENT_DESCRIPTION");
-            builder.Property(s => s.IsMandatory).HasColumnName("IS_MANDATORY");
+            builder.Property(s => s.IsMandatory).HasColumnName("IS_MANDATORY").HasDefaultValue(false);
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY"); 
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY"); 
         }
