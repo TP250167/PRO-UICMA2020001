@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_Determination;
 using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_Response;
@@ -36,5 +37,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public ClaimInterview claimInterview { get; set; }
         public ClaimDetermination claimDetermination { get; set; }
         public ResponseToEmployer responsetoEmployer { get; set; }
+        public ClaimAppeal claimAppeal { get; set; }
     }
 }
