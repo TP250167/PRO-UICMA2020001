@@ -7,7 +7,7 @@ import { Injectable , ViewChild } from '@angular/core';
 
 export class ClaimsService {
 
-  public formStepPosition : string = 'step1' ;
+  public formStepPosition : string = 'claim' ;
 
   public tabIncDec   : number = 0;
   public tabincLimit : number = 0;

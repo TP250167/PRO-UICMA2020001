@@ -13,6 +13,10 @@ import { ClaimInitComponent } from '../components/claims-list/steps/claim-init/c
 import { InterviewComponent } from '../components/claims-list/steps/interview/interview.component'
 import { AljDecisionComponent } from '../components/claims-list/steps/alj-decision/alj-decision.component'
 import { AcknowledgementComponent } from '../components/claims-list/steps/acknowledgement/acknowledgement.component'
+import { NoticeOfDeterminationComponent } from '../components/claims-list/steps/notice-of-determination/notice-of-determination.component';
+import { ResponseToEmployerComponent } from '../components/claims-list/steps/response-to-employer/response-to-employer.component';
+import { NoticeOfWagesComponent } from '../components/claims-list/steps/notice-of-wages/notice-of-wages.component';
+import { AppealFormComponent } from '../components/claims-list/steps/appeal-form/appeal-form.component';
 
 
 const routes: Routes = [
@@ -26,7 +30,11 @@ const routes: Routes = [
     ClaimInitComponent,
     InterviewComponent,
     AljDecisionComponent,
-    AcknowledgementComponent
+    AcknowledgementComponent,
+    NoticeOfDeterminationComponent,
+    ResponseToEmployerComponent,
+    NoticeOfWagesComponent,
+    AppealFormComponent
   ],
   imports: [
     NgxModule,
@@ -39,7 +47,11 @@ const routes: Routes = [
     ClaimInitComponent,
     InterviewComponent,
     AljDecisionComponent,
-    AcknowledgementComponent
+    AcknowledgementComponent,
+    NoticeOfDeterminationComponent,
+    ResponseToEmployerComponent,
+    NoticeOfWagesComponent,
+    AppealFormComponent
   ]
 })
 export class ClaimModule { }

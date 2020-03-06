@@ -1,29 +1,26 @@
 <div [ngSwitch]="cs.formStepPosition">
-    <div *ngSwitchCase="'step1'">
+    <div *ngSwitchCase="'claim'">
         <app-claim-init></app-claim-init>
     </div>
-    <div *ngSwitchCase="'step2'">
+    <div *ngSwitchCase="'interview'">
         <app-interview></app-interview>
     </div>
-    <div *ngSwitchCase="'step3'">
-        <div>
-            <h3>step3</h3>
-        </div>
+    <div *ngSwitchCase="'nod'">
+        <app-notice-of-determination></app-notice-of-determination>
     </div>
-    <div *ngSwitchCase="'step4'">
-        <div>
-            <h3>step4</h3>
-        </div>
+    <div *ngSwitchCase="'rec'">
+        <app-response-to-employer></app-response-to-employer>
     </div>
-    <div *ngSwitchCase="'step5'">
-        <div>
-            <h3>step5</h3>
-        </div>
+    <div *ngSwitchCase="'now'">
+        <app-notice-of-wages></app-notice-of-wages>
     </div>
-    <div *ngSwitchCase="'step6'">
+    <div *ngSwitchCase="'appealForm'">
+        <app-appeal-form></app-appeal-form>
+    </div>
+    <div *ngSwitchCase="'aljDecision'">
        <app-alj-decision></app-alj-decision>
     </div>
-    <div *ngSwitchCase="'step7'">
+    <div *ngSwitchCase="'aljAcknowledgement'">
         <app-acknowledgement></app-acknowledgement>
     </div>
     <h1 *ngSwitchDefault>default</h1>
