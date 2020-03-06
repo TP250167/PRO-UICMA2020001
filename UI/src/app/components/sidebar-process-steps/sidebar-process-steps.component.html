@@ -1,1 +1,34 @@
-<p>sidebar-process-steps works!</p>
+<div class="cc-process-step">
+    <div class="cc-step-time" (click)="cs.gotoStep('step1')">
+        <div class="cc-step-round cc-finished">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>Requested received by email on 24 Nov,2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('step2')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>Interview call from EDD on 2 Dec, 2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('step6')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>ALJ Decision on 2 Dec, 2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('step7')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>ALJ Acknowledgement on 2 Dec, 2019</h4>
+        </div>
+    </div>
+</div>

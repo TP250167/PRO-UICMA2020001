@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule , APP_INITIALIZER} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
 
 import { AdalService, AdalGuard, AdalInterceptor } from 'adal-angular4';
@@ -31,7 +30,6 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     AppRoutingModule,
     SidebarModule,
     HttpClientModule
@@ -48,6 +46,7 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
 
 

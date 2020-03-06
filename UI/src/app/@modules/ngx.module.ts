@@ -12,8 +12,20 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
+
+import { FormInputFocusDirective } from '../@directives/form-input-focus.directive';
+import { CustomUploadDirective } from '../@directives/custom-upload.directive';
+
+
 @NgModule({
-  declarations: [],
+  declarations: [
+    FormInputFocusDirective,
+    CustomUploadDirective
+  ],
   imports: [
     CommonModule,
     AccordionModule.forRoot(),
@@ -26,7 +38,10 @@ import { SortableModule } from 'ngx-bootstrap/sortable';
     TabsModule.forRoot(),
     TimepickerModule.forRoot(),
     SortableModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
   ],
+  providers: [DatePipe],
   exports: [
     AccordionModule,
     AlertModule,
@@ -38,7 +53,11 @@ import { SortableModule } from 'ngx-bootstrap/sortable';
     TabsModule,
     TimepickerModule,
     SortableModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormInputFocusDirective,
+    CustomUploadDirective
   ]
 })
 export class NgxModule { }
