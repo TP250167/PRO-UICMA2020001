@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.Additional_Information;
+using UICMA.Domain.Entities.ALJ_Decision;
 using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_Determination;
 using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_Response;
+using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.Response_to_Employer;
+using UICMA.Domain.Entities.Wages_After_Appeal;
 
 namespace UICMA.Domain.Entities.New_Claim
 {
-   public class Claim
+    public class Claim
     {
         public Int64 Id { get; set; }
         public string RequestNumber { get; set; }
@@ -38,5 +42,9 @@ namespace UICMA.Domain.Entities.New_Claim
         public ClaimDetermination claimDetermination { get; set; }
         public ResponseToEmployer responsetoEmployer { get; set; }
         public ClaimAppeal claimAppeal { get; set; }
+        public ALJDecision ALJdecision { get; set; }
+        public CUIABAcknowledgement acknowledgement { get; set; }
+        public WagesAfterAppeal  wagesAfterAppeal {get;set;}
+        public AdditionalInformation additionalInformation { get; set; }
     }
 }
