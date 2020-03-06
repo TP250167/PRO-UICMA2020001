@@ -1,37 +1,81 @@
 <div class="container-fluid cc-dashboard-section">
     <div class="row">
-        <div class="col-lg-6 col-md-12 cc-col-full">
+        <div class="col-lg-7 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-3">Card title</h3>
-                    <p class="card-text mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Facilis non dolore est fuga nobis ipsum illum eligendi nemo iure repellat, soluta,
-                        optio minus ut reiciendis voluptates enim impedit veritatis officiis.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h3 class="card-title mb-3">
+                        <span class="badge badge-primary">Task List</span>
+                    </h3>
+
+                    <div class="cc-task-list">
+                        <accordion [isAnimated]="true" [closeOthers]="true">
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-number"> <span>10</span> </div>
+                                    <div class="cc-tla-heading">Notice of Unemployment Insurance Claim Review</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-check"></i> 1900321- Awaiting for call from 16Dec, 2018</li>
+                                        <li><i class="fa fa-warning"></i>1900330- Awaiting for call from 24Dec, 2018</li>
+                                        <li><i class="fa fa-times"></i>1900321- Response Pending for call from 16Dec, 2018</li>
+                                        <li><i class="fa fa-info"></i>1900321- Response Pending for call from 16Dec, 2018</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-number"> <span>8</span> </div>
+                                    <div class="cc-tla-heading">Awaiting for State call & Response to received call</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-check"></i> 1900321- Awaiting for call from 16Dec, 2018</li>
+                                        <li><i class="fa fa-info"></i>1900321- Response Pending for call from 16Dec, 2018</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-number"> <span>6</span> </div>
+                                    <div class="cc-tla-heading">Request for Additional Information</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-check"></i> 1900321- Awaiting for call from 16Dec, 2018</li>
+                                        <li><i class="fa fa-warning"></i>1900330- Awaiting for call from 24Dec, 2018</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-number"> <span>8</span> </div>
+                                    <div class="cc-tla-heading">Notice of Hearing</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-warning"></i>1900330- Awaiting for call from 24Dec, 2018</li>
+                                        <li><i class="fa fa-info"></i>1900321- Response Pending for call from 16Dec, 2018</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+                        
+                        </accordion>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-md-12 cc-col-full">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title mb-3">
-                                <h3 class="card-title mb-3">
-                                    <span class="badge badge-primary">Line Chart</span>
-                                </h3>
-                                <app-line-chart></app-line-chart>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title mb-3"><span class="badge badge-primary">Bar Chart</span></h3>
-                            <app-bar-chart></app-bar-chart>
-                        </div>
-                    </div>
+        <div class="col-lg-5 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-3">
+                        <span class="badge badge-primary">Claims by Job</span>
+                    </h3>
+                    <app-line-chart></app-line-chart>
                 </div>
             </div>
         </div>

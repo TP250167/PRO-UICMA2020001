@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-claims-list',
   templateUrl: './claims-list.component.html',
@@ -14,7 +15,7 @@ export class ClaimsListComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) {
 
   }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
+
+import { ClaimsService } from '../../services/claims.service'
 
 @Component({
   selector: 'app-sidebar-process-steps',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarProcessStepsComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(public cs:ClaimsService) { }
 
   ngOnInit() {
+    
   }
 
 }

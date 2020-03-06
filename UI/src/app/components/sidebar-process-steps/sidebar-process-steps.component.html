@@ -1,1 +1,58 @@
-<p>sidebar-process-steps works!</p>
+<div class="cc-process-step">
+    <div class="cc-step-time" (click)="cs.gotoStep('claim')">
+        <div class="cc-step-round cc-finished">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>Requested received by email on 24 Nov,2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('nod')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>Notice of Determination from EDD on 2 Dec, 2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('rec')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>Response to Employer Communication from EDD on 2 Dec, 2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('now')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>Notice of Wages from EDD on 2 Dec, 2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('appealForm')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>appeal form from EDD on 2 Dec, 2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('aljDecision')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>ALJ Decision on 2 Dec, 2019</h4>
+        </div>
+    </div>
+    <div class="cc-step-time" (click)="cs.gotoStep('aljAcknowledgement')">
+        <div class="cc-step-round cc-progress">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="cc-step-content">
+            <h4>ALJ Acknowledgement on 2 Dec, 2019</h4>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,389 @@
+<div class="cc-page-title">
+    <h2>Claims Management</h2>
+</div>
+
+<div class="cc-page-info">
+    <div class="container-fluid">
+        <div class="row cc-wbg">
+            <div class="col-md-4">
+                <div class="cc-page-info-box">
+                    <h3>Request Number</h3>
+                    <h5>1900014</h5>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cc-page-info-box">
+                    <h3>Request Title</h3>
+                    <h5>Ui claim from Alex Decosta</h5>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cc-page-info-box">
+                    <h3>Initiated On</h3>
+                    <h5>2/25/2020</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cc-claim-page">
+    <div class="container-fluid">
+        <div class="row cc-wbg-row">
+            <div class="col-md-6 cc-pdr">
+                <div class="cc-wbg">
+                    <div class="cc-appform-wrapper">
+                        <div class="cc-appform">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="cc-form-title">
+                                            <h3 class="card-title mb-3">
+                                                <span class="badge badge-primary">Ui claims details</span>
+                                            </h3>
+                                        </div>
+                                        <div class="cc-form-section">
+                                            <form appFormInputFocus [formGroup]="cliamInitiateForm"
+                                                (ngSubmit)="submitCliamInitiateForm()">
+
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputEmail4">Claiment Name</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="claimName" name="claimName"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.claimName.errors }">
+                                                        <div *ngIf="cfi.claimName.touched && cfi.claimName.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.claimName.errors || cifSubmitted">This field
+                                                                is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="address">Address</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="address" name="address"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.address.errors }">
+                                                        <div *ngIf="cfi.address.touched && cfi.address.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.address.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="city">City</label>
+                                                        <input type="text" class="form-control" formControlName="city"
+                                                            name="city"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.city.errors }">
+                                                        <div *ngIf="cfi.city.touched && cfi.city.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.city.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="state">State</label>
+                                                        <input type="text" class="form-control" formControlName="state"
+                                                            name="state"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.state.errors }">
+                                                        <div *ngIf="cfi.state.touched && cfi.state.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.state.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="zip">Zip</label>
+                                                        <input type="text" class="form-control" formControlName="zip"
+                                                            name="zip"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.zip.errors }">
+                                                        <div *ngIf="cfi.zip.touched && cfi.zip.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.zip.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="mailDate">Mail Date</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="mailDate" name="mailDate"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.mailDate.errors }">
+                                                        <div *ngIf="cfi.mailDate.touched && cfi.mailDate.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.mailDate.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="additionalClaim">Additional Claim</label>
+                                                        <select id="inputState" class="form-control"
+                                                            formControlName="additionalClaim" name="additionalClaim"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.additionalClaim.errors }">
+                                                            <option selected>Choose...</option>
+                                                            <option>...</option>
+                                                        </select>
+                                                        <div *ngIf="cfi.additionalClaim.touched && cfi.additionalClaim.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.additionalClaim.errors">This field is
+                                                                required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="receiveDate">Receive Date</label>
+                                                        <input type="text" class="form-control cc-datepicker"
+                                                            bsDatepicker formControlName="receiveDate"
+                                                            name="receiveDate"
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.receiveDate.errors }">
+                                                        <div *ngIf="cfi.receiveDate.touched && cfi.receiveDate.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.receiveDate.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="ssn">Social Security Number</label>
+                                                        <input type="text" class="form-control" formControlName="ssn"
+                                                            name="ssn"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.ssn.errors }">
+                                                        <div *ngIf="cfi.ssn.touched && cfi.ssn.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.ssn.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="EffectiveDate">Effective Date of Claim</label>
+                                                        <input type="text" class="form-control cc-datepicker"
+                                                            bsDatepicker formControlName="EffectiveDate"
+                                                            name="EffectiveDate"
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.EffectiveDate.errors }">
+                                                        <div *ngIf="cfi.EffectiveDate.touched && cfi.EffectiveDate.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.EffectiveDate.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="lastDateWorked">Last Date Worked</label>
+                                                        <input type="text" class="form-control cc-datepicker"
+                                                            bsDatepicker formControlName="lastDateWorked"
+                                                            name="lastDateWorked"
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.lastDateWorked.errors }">
+                                                        <div *ngIf="cfi.lastDateWorked.touched && cfi.lastDateWorked.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.lastDateWorked.errors">This field is
+                                                                required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="separation">Reason for
+                                                            Separation</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="separation" name="separation"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.separation.errors }">
+                                                        <div *ngIf="cfi.separation.touched && cfi.separation.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.separation.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="byb">Benefit Year Begining</label>
+                                                        <input type="text" class="form-control" formControlName="byb"
+                                                            name="byb"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.byb.errors }">
+                                                        <div *ngIf="cfi.byb.touched && cfi.byb.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.byb.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="mailDateEDD">Date Mailed to EDD</label>
+                                                        <input type="text" class="form-control cc-datepicker"
+                                                            bsDatepicker formControlName="mailDateEDD"
+                                                            name="mailDateEDD"
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.mailDateEDD.errors }">
+                                                        <div *ngIf="cfi.mailDateEDD.touched && cfi.mailDateEDD.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.mailDateEDD.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="empNo">Emp No.</label>
+                                                        <div>
+                                                            <span>0000452134</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="gender">Gender</label>
+                                                        <div>
+                                                            <span>Male</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="text-right">
+                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cc-appform-attachment">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 cc-at-title">
+                                        <h3 class="card-title mb-3">
+                                            <span class="badge badge-primary">List Of Documents</span>
+                                            <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
+                                                Document</button>
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-12 cc-at-doc">
+                                        <table class="table table-striped cc-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Doc#</th>
+                                                    <th>Document Name</th>
+                                                    <th>Doc Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>DE-1011c2</th>
+                                                    <td>testdocument.pdf</td>
+                                                    <td>2/27/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>DE-1011c2</th>
+                                                    <td>testdocument.pdf</td>
+                                                    <td>2/27/2020</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>DE-1011c2</th>
+                                                    <td>testdocument.pdf</td>
+                                                    <td>2/27/2020</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="cc-wbg">
+                    <div class="cc-docview">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="card-title mb-3">
+                                        <span class="badge badge-primary">Associated Documents</span>
+                                    </h3>
+
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+
+                                    <div class="cc-doc-view-wrapper">
+                                        <div class="doc-view">
+                                            <div class="cc-slider-wrapper">
+                                                <div class="cc-slider-cont">
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
+                                                            aria-hidden="true"></i>
+                                                    </div>
+                                                    <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
+                                                        <span>{{cs.tabincLimit}}</span> </div>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
+                                                            aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="cc-dov-view-tabs">
+                                                    <tabset #staticTabs>
+                                                        <tab class="active">
+                                                            <img
+                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                        </tab>
+                                                        <tab>
+                                                            <img
+                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                        </tab>
+                                                    </tabset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #uploadAttachment>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Documents</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="cc-form-section">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Document Type</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12 cc-file-upload">
+                        <input type="file" appCustomUpload class="form-control">
+                        <div class="cc-fu-wrapper">
+                            <div class="cc-file-upload-filed">
+                                <span class="cc-fuf-text"></span>
+                            </div>
+                            <div class="cc-file-upload-button">Choose File</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="aps.decline()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="aps.confirm()">Ok</button>
+    </div>
+
+
+</ng-template>
