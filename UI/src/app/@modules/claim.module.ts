@@ -18,6 +18,13 @@ import { ResponseToEmployerComponent } from '../components/claims-list/steps/res
 import { NoticeOfWagesComponent } from '../components/claims-list/steps/notice-of-wages/notice-of-wages.component';
 import { AppealFormComponent } from '../components/claims-list/steps/appeal-form/appeal-form.component';
 
+import { NoticeOfHearingComponent } from '../components/claims-list/steps/notice-of-hearing/notice-of-hearing.component'
+import { AdditionalInfoComponent } from '../components/claims-list/steps/additional-info/additional-info.component'
+import { EmployeeDataComponent } from '../components/claims-list/steps/employee-data/employee-data.component'
+import { RequestForWagesComponent } from '../components/claims-list/steps/request-for-wages/request-for-wages.component';
+import { BenefitAuditComponent } from '../components/claims-list/steps/benefit-audit/benefit-audit.component';
+import { BenefitChargeComponent } from '../components/claims-list/steps/benefit-charge/benefit-charge.component';
+
 
 const routes: Routes = [
   { path: "", component: ClaimComponent},
@@ -34,7 +41,13 @@ const routes: Routes = [
     NoticeOfDeterminationComponent,
     ResponseToEmployerComponent,
     NoticeOfWagesComponent,
-    AppealFormComponent
+    AppealFormComponent,
+    NoticeOfHearingComponent,
+    AdditionalInfoComponent,
+    EmployeeDataComponent,
+    RequestForWagesComponent,
+    BenefitAuditComponent,
+    BenefitChargeComponent 
   ],
   imports: [
     NgxModule,
@@ -51,7 +64,13 @@ const routes: Routes = [
     NoticeOfDeterminationComponent,
     ResponseToEmployerComponent,
     NoticeOfWagesComponent,
-    AppealFormComponent
+    AppealFormComponent,
+    NoticeOfHearingComponent,
+    AdditionalInfoComponent,
+    EmployeeDataComponent,
+    RequestForWagesComponent,
+    BenefitAuditComponent,
+    BenefitChargeComponent 
   ]
 })
 export class ClaimModule { }

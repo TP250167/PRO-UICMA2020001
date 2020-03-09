@@ -1,5 +1,5 @@
 <div class="cc-page-title">
-    <h2>Response to Employer Communication</h2>
+    <h2>Request for Employee Data</h2>
 </div>
 
 <div class="cc-page-info">
@@ -43,60 +43,103 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="responseInitiateForm"
-                                                (ngSubmit)="submitResponseInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="employeeInitiateForm"
+                                                (ngSubmit)="submitEmployeeInitiateForm()">
 
                                                 <div class="form-row">
-
                                                     <div class="form-group col-md-6">
-                                                        <label for="claimantName">Claimant's Name</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="claimantName" name="claimantName"
-                                                            [ngClass]="{ 'is-invalid': rifSubmitted  && rfi.claimantName.errors }">
-                                                        <div *ngIf="rfi.claimantName.touched && rfi.claimantName.errors || rifSubmitted "
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="rfi.claimantName.errors || rifSubmitted ">This field
-                                                                is required </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col-md-6">
-                                                        <label for="ssn">SSN</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="ssn" name="ssn"
-                                                            [ngClass]="{ 'is-invalid': rifSubmitted  && rfi.ssn.errors }">
-                                                        <div *ngIf="rfi.ssn.touched && rfi.ssn.errors || rifSubmitted "
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="rfi.ssn.errors">This field is required
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col-md-6">
-                                                        <label for="dateMailed">Date Mailed</label>
+                                                        <label for="date">Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="dateMailed"
-                                                            name="dateMailed"
+                                                            bsDatepicker formControlName="date"
+                                                            name="date"
                                                             [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
-                                                            [ngClass]="{ 'is-invalid': rifSubmitted  && rfi.dateMailed.errors }">
-                                                        <div *ngIf="rfi.dateMailed.touched && rfi.dateMailed.errors || rifSubmitted "
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.date.errors }">
+                                                        <div *ngIf="efi.date.touched && efi.date.errors || eifSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="rfi.dateMailed.errors">This field is
+                                                            <div *ngIf="efi.date.errors">This field is
                                                                 required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="byb">Benefit Year Began</label>
+                                                        <label for="byb">BYB</label>
                                                         <input type="text" class="form-control cc-datepicker"
                                                             bsDatepicker formControlName="byb"
                                                             name="byb"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
-                                                            [ngClass]="{ 'is-invalid': rifSubmitted  && rfi.byb.errors }">
-                                                        <div *ngIf="rfi.byb.touched && rfi.byb.errors || rifSubmitted "
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.byb.errors }">
+                                                        <div *ngIf="efi.byb.touched && efi.byb.errors || eifSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="rfi.byb.errors">This field is required
+                                                            <div *ngIf="efi.byb.errors || eifSubmitted">This field
+                                                                is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="claimantName">Claimant Name</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="claimantName" name="claimantName"
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.claimantName.errors }">
+                                                        <div *ngIf="efi.claimantName.touched && efi.claimantName.errors || eifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="efi.claimantName.errors">This field is required
                                                             </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="claimantSSN">Claimant SSN</label>
+                                                        <input type="text" class="form-control" formControlName="claimantSSN"
+                                                            name="claimantSSN"
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.claimantSSN.errors }">
+                                                        <div *ngIf="efi.claimantSSN.touched && efi.claimantSSN.errors || eifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="efi.claimantSSN.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="completedBy">CompletedBy</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="completedBy" name="completedBy"
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.completedBy.errors }">
+                                                        <div *ngIf="efi.completedBy.touched && efi.completedBy.errors || eifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="efi.completedBy.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="form-group col-md-6">
+                                                        <label for="dateCompleted">DateCompleted</label>
+                                                        <input type="text" class="form-control" formControlName="dateCompleted"
+                                                            name="dateCompleted"
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.dateCompleted.errors }">
+                                                        <div *ngIf="efi.dateCompleted.touched && efi.dateCompleted.errors || eifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="efi.dateCompleted.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="title">Title</label>
+                                                        <input type="text" class="form-control" formControlName="title"
+                                                            name="title"
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.title.errors }">
+                                                        <div *ngIf="efi.title.touched && efi.title.errors || eifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="efi.title.errors">This field is required </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="telephoneNo">Telephone No</label>
+                                                        <input type="text" class="form-control" formControlName="telephoneNo"
+                                                            name="telephoneNo"
+                                                            [ngClass]="{ 'is-invalid': eifSubmitted && efi.telephoneNo.errors }">
+                                                        <div *ngIf="efi.telephoneNo.touched && efi.telephoneNo.errors || eifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="efi.telephoneNo.errors">This field is required </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -229,7 +272,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-12 cc-file-upload">
-                        <input appCustomUpload type="file" class="form-control">
+                        <input type="file" appCustomUpload class="form-control">
                         <div class="cc-fu-wrapper">
                             <div class="cc-file-upload-filed">
                                 <span class="cc-fuf-text"></span>
@@ -249,3 +292,4 @@
 
 
 </ng-template>
+

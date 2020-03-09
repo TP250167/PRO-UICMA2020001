@@ -462,6 +462,7 @@ app-sidebar-process-steps {
 
 .cc-process-step{
     position: relative;
+    margin-bottom: 50%;
     &::after {
         content: "";
         height: 100%;
