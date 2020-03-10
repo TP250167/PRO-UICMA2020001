@@ -29,10 +29,14 @@ using UICMA.Domain.Entities.MD_Form;
 using UICMA.Domain.Entities.MD_FormMap;
 using UICMA.Domain.Entities.New_Claim;
 using UICMA.Domain.Entities.New_ClaimMap;
+using UICMA.Domain.Entities.NotificationMap;
+using UICMA.Domain.Entities.Notifications;
 using UICMA.Domain.Entities.Questions;
 using UICMA.Domain.Entities.QuestionsMap;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Response_to_EmployerMap;
+using UICMA.Domain.Entities.TemplateMap;
+using UICMA.Domain.Entities.Templates;
 using UICMA.Domain.Entities.Wages_After_Appeal;
 using UICMA.Domain.Entities.Wages_After_AppealMap;
 
@@ -58,6 +62,8 @@ namespace UICMA.Repository
         public DbSet<CUIABAcknowledgement> CUIABAcknowledgements { get; set; }
         public DbSet<WagesAfterAppeal> WagesAfterAppeals { get; set; }
         public DbSet<AdditionalInformation> AdditionalInformations { get; set; }
+        public DbSet<Template> Templates { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
@@ -101,6 +107,8 @@ namespace UICMA.Repository
             new CUIABAcknowledgementMap(modelBuilder.Entity<CUIABAcknowledgement>());
             new WagesAfterAppealMap(modelBuilder.Entity<WagesAfterAppeal>());
             new AdditionalInformationMap(modelBuilder.Entity<AdditionalInformation>());
+            new NotificationMap(modelBuilder.Entity<Notification>());
+            new TemplateMap(modelBuilder.Entity<Template>());
         }
     }
 }
