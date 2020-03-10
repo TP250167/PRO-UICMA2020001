@@ -21,6 +21,8 @@ namespace UICMA.Repository
             void Delete(T entity);
             void DeleteWhere(Expression<Func<T, bool>> predicate);
             void SaveChanges();
+            T AddData(T entity);
+            T UpdateData(T entity);
         }
     
 }

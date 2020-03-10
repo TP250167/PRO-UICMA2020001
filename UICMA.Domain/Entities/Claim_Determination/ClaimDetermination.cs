@@ -5,7 +5,7 @@ using UICMA.Domain.Entities.New_Claim;
 
 namespace UICMA.Domain.Entities.Claim_Determination
 {
-   public class ClaimDetermination
+   public class ClaimDetermination:IBaseEntity
     {
         public Int64 Id { get; set; }
         public string Decision { get; set; }

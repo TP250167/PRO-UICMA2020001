@@ -13,8 +13,10 @@ using UICMA.Domain.Entities.Wages_After_Appeal;
 
 namespace UICMA.Domain.Entities.New_Claim
 {
-    public class Claim
+    public class Claim:IBaseEntity
     {
+        //internal object additionalInformation;
+
         public Int64 Id { get; set; }
         public string RequestNumber { get; set; }
         public string Type { get; set; }

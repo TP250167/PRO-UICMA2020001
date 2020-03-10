@@ -95,6 +95,40 @@ namespace UICMA.API
             var builder = new ContainerBuilder();
             builder.RegisterType<ScheduleRepository>().As<IScheduleRepository>();
             builder.RegisterType<ScheduleService>().As<IScheduleService>();
+            
+
+
+                
+            //Claim  Repository and Service 
+            builder.RegisterType<ClaimAppealService>().As<IClaimAppealService>();
+            builder.RegisterType<ClaimAppealRepository>().As<IClaimAppealRepository>();
+
+
+            builder.RegisterType<ClaimInterviewService>().As<IClaimInterviewService>();
+            builder.RegisterType<ClaimInterviewRepository>().As<IClaimInterviewRepository>();
+
+            builder.RegisterType<ClaimResponseService>().As<IClaimResponseService>();
+            builder.RegisterType<ClaimResponseRepository>().As<IClaimResponseRepository>();
+
+            builder.RegisterType<ClaimDeterminationService>().As<IClaimDeterminationService>();
+            builder.RegisterType<ClaimDeterminationRepository>().As<IClaimDeterminationRepository>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ////////////////
+
             builder.Populate(services);
             var container = builder.Build();
             //Create the IServiceProvider based on the container.

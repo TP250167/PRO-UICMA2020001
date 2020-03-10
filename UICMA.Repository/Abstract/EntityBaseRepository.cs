@@ -78,6 +78,44 @@ namespace UICMA.Repository
             dbEntityEntry.State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+
+        public  T AddData (T entity)
+        {
+            EntityEntry dbEntityEntry = _context.Entry(entity);
+            _context.Set<T>().Add(entity);
+            _context.SaveChanges();
+            return entity;
+        }
+
+
+        public  T UpdateData(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            _context.Entry(entity).Property("ModifiedOn").CurrentValue= DateTime.Now;
+            _context.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.Entry(entity).Property("CreatedOn").IsModified = false;
+            _context.SaveChanges();
+
+
+
+            //EntityEntry dbEntityEntry = _context.Entry(entity);
+
+            //dbEntityEntry.State = EntityState.Modified;
+
+            //_context.SaveChanges();
+            return entity;
+
+
+           
+        }
+
+
+
         public virtual void Delete(T entity)
         {
             EntityEntry dbEntityEntry = _context.Entry(entity);
