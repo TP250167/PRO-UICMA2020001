@@ -1,0 +1,85 @@
+<div class="cc-page-title">
+    <h2>Reasonable Assurance Notification Management</h2>
+  </div>
+  
+  <div class="cc-page-info">
+    <div class="container-fluid">
+        <div class="row cc-wbg">
+            <div class="col-md-3">
+                <div class="cc-page-info-box">
+                    <h3>Batch Name</h3>
+                    <h5>Summer Break</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="cc-page-info-box">
+                    <h3>Date of Notification</h3>
+                    <h5>10/3/2020</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="cc-page-info-box">
+                    <h3>Total Recipient</h3>
+                    <h5>43,244</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="cc-page-info-box">
+                    <h3>Successful Delivery</h3>
+                    <h5>43,233</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="cc-page-info-box">
+                    <h3>Retry Success</h3>
+                    <h5>28</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="cc-page-info-box">
+                    <h3>Failed Delivery</h3>
+                    <h5>98</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="cc-claims-main-page">
+    <div class="cc-claims-table cc-data-tables">
+      <div class="cc-dbtable-wrapper">
+        <div class="cc-table-heading">
+          <h3>List of Notification Items</h3>
+        </div>
+        <div class="cc-table-wrapper">
+          <table datatable [dtOptions]="dtOptions" class="row-border hover">
+            <thead>
+              <tr>
+                <th>Date & Time</th>
+                <th>Recipient Name(Emp #)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="loglist?.length != 0">
+              <tr *ngFor="let item of loglist">
+                <td>{{ item.DateTime}}</td>
+                <td>{{ item.RecipientName}}</td>
+                <td class="cc-dbt-action">
+                  <div class="cc-dbt-wrapper">
+                    <i class="fa fa-envelope"></i>
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="loglist?.length == 0">
+              <tr>
+                <td colspan="3" class="no-data-available">No data!</td>
+              </tr>
+            <tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+

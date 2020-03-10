@@ -257,6 +257,10 @@ select.form-control , .cc-datepicker , .dataTables_length select {
 }
 .cc-page-info {
     margin-bottom: 20px;
+
+    [class*="col-md"] {
+        margin: 10px 0;
+    }
 }
 
 .cc-page-title h2{
@@ -297,7 +301,7 @@ select.form-control , .cc-datepicker , .dataTables_length select {
         border: 1px solid #edeff8;
     }
 
-    .cc-list-number {
+    .cc-list-number , .cc-list-icon {
         min-height: 25px;
         min-width: 25px;
         border-radius: 50%;
@@ -346,6 +350,7 @@ select.form-control , .cc-datepicker , .dataTables_length select {
                 font-size: 16px;
                 background-color: rgba(236, 238, 247, 0.65);
                 box-shadow: 0px 5px 10px #d3d3d35c;
+                cursor: pointer;
 
                 &:last-child {
                     margin-bottom: 0;
@@ -574,6 +579,7 @@ app-sidebar-process-steps {
 
 //common style start 
 .card { border: 0; box-shadow: $bscolor; height: 100%; }
+.cc-pad-zero { padding: 0; }
 .badge-primary { background-color: $secondary; font-size: 15px; font-weight: normal; padding: 8px 22px; box-shadow: $bscolor; }
 .cc-pdr{ padding-right: 0; }
 .cc-page-info {
@@ -1045,3 +1051,13 @@ tr:first-child>td>.fc-day-grid-event{margin-top:2px;}
 }
 
 // media query style end
+
+.cc-page-title{
+    .Notification-button{
+       margin-bottom: 20px;
+    }
+}
+
+bs-datepicker-container, bs-daterangepicker-container {
+    z-index: 333333333333;
+}

@@ -1,1 +1,151 @@
-<p>Ra is works!</p>
+<div class="cc-page-title">
+    <h2>Reasonable Assurance Notification Management</h2>
+    <div class="text-right Notification-button">
+    <button class="btn btn-primary" (click)="aps.openModal(checkAttachment)">Save Claim Info</button>
+    </div>
+</div>
+<div class="container-fluid cc-pad-zero">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <h3 class="card-title mb-3">
+                        <span class="badge badge-primary">Notification Schedules</span>
+                    </h3>
+
+                    <div class="cc-task-list">
+                        <accordion [isAnimated]="true" [closeOthers]="true">
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-icon"> <span><i class="fa fa-check"></i></span> </div>
+                                    <div class="cc-tla-heading">Summer Break RA Notification Batch</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-envelope"></i>1900321- Awaiting for call from 16Dec, 2018</li>
+                                        <li><i class="fa fa-envelope"></i>1900330- Awaiting for call from 24Dec, 2018</li>
+                                        <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
+                                        <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-icon"><span><i class="fa fa-repeat"></i></span></div>
+                                    <div class="cc-tla-heading">BiWeekly RA Notification Batch</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-envelope"></i>1st Dec 2019 batch</li>
+                                        <li><i class="fa fa-envelope"></i>15th Nov 2019 batch</li>
+                                        <li><i class="fa fa-envelope"></i>1st  Nov 2019 batch</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-icon"> <span><i class="fa fa-cog"></i></span> </div>
+                                    <div class="cc-tla-heading">Thanks Giving Break RA Notification Batch</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-envelope"></i> 1900321- Awaiting for call from 16Dec, 2018</li>
+                                        <li><i class="fa fa-envelope"></i>1900330- Awaiting for call from 24Dec, 2018</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+
+                            <accordion-group>
+                                <button class="btn btn-link" accordion-heading type="button">
+                                    <div class="cc-list-icon"> <span><i class="fa fa-cog"></i></span> </div>
+                                    <div class="cc-tla-heading">Other RA Notification Batch</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li><i class="fa fa-envelope"></i>1900330- Awaiting for call from 24Dec, 2018</li>
+                                        <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
+                                    </ul>
+                                </div>
+                            </accordion-group>
+                        
+                        </accordion>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-3">
+                        <span class="badge badge-primary">Notification Logs</span>
+                    </h3>
+                    <div class="card-content">
+                        <h3 class="card-content-title">Batch Name</h3>
+                        <a (click)="gotoNotificationLogs()">Summer Break RA Notification Batch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #checkAttachment>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">NA Batch Detail Update</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form appFormInputFocus [formGroup]="batchInitiateForm"
+    (ngSubmit)="submitBatchInitiateForm()">
+    <div class="modal-body">
+        <div class="cc-form-section">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="batchName">Batch Name</label>
+                        <input type="text" class="form-control"
+                          formControlName="batchName" name="batchName"
+                          [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchName.errors }">
+                    <div *ngIf="bfi.batchName.touched && bfi.batchName.errors ||bifSubmitted" 
+                         class="invalid-feedback">
+                         <div *ngIf="bfi.batchName.errors">This field is required
+                         </div>
+                    </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="recipientSet">Recipient Set</label>
+                        <input type="text" class="form-control"
+                          formControlName="recipientSet" name="recipientSet"
+                          [ngClass]="{ 'is-invalid':bifSubmitted && bfi.recipientSet.errors }">
+                    <div *ngIf="bfi.recipientSet.touched && bfi.recipientSet.errors ||bifSubmitted" 
+                        class="invalid-feedback">
+                        <div *ngIf="bfi.recipientSet.errors">This field is required
+                        </div>
+                   </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="scheduleDate">Schedule Date</label>
+                        <input type="text" class="form-control cc-datepicker"
+                            bsDatepicker formControlName="scheduleDate"
+                            name="scheduleDate"
+                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                            [ngClass]="{ 'is-invalid':bifSubmitted && bfi.scheduleDate.errors }">
+                        <div *ngIf="bfi.scheduleDate.touched && bfi.scheduleDate.errors ||bifSubmitted"
+                            class="invalid-feedback">
+                            <div *ngIf="bfi.scheduleDate.errors">This field is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="aps.decline()">Cancel</button>
+        <button class="btn btn-primary" (click)="check()">Ok</button>
+    </div>
+    </form>
+
+</ng-template>
