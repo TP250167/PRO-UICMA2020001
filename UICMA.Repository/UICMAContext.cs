@@ -33,6 +33,24 @@ using UICMA.Domain.Entities.NotificationMap;
 using UICMA.Domain.Entities.Notifications;
 using UICMA.Domain.Entities.Questions;
 using UICMA.Domain.Entities.QuestionsMap;
+using UICMA.Domain.Entities.RAAssociatedDocumentMap;
+using UICMA.Domain.Entities.RAAssociatedDocuments;
+using UICMA.Domain.Entities.RABatchMap;
+using UICMA.Domain.Entities.RABatchRecipientMap;
+using UICMA.Domain.Entities.RABatchRecipientRuleMap;
+using UICMA.Domain.Entities.RABatchRecipientRules;
+using UICMA.Domain.Entities.RABatchRecipients;
+using UICMA.Domain.Entities.RABatchs;
+using UICMA.Domain.Entities.RABatchScheduleMap;
+using UICMA.Domain.Entities.RABatchSchedules;
+using UICMA.Domain.Entities.RABatchTemplateMap;
+using UICMA.Domain.Entities.RABatchTemplates;
+using UICMA.Domain.Entities.RARecipientMap;
+using UICMA.Domain.Entities.RARecipientRuleMap;
+using UICMA.Domain.Entities.RARecipientRules;
+using UICMA.Domain.Entities.RARecipients;
+using UICMA.Domain.Entities.RAScheduleMap;
+using UICMA.Domain.Entities.RASchedules;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Response_to_EmployerMap;
 using UICMA.Domain.Entities.TemplateMap;
@@ -64,6 +82,9 @@ namespace UICMA.Repository
         public DbSet<AdditionalInformation> AdditionalInformations { get; set; }
         public DbSet<Template> Templates { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<RABatchRecipientRule> RABatchRecipientRules { get; set; }
+
+
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
@@ -109,6 +130,16 @@ namespace UICMA.Repository
             new AdditionalInformationMap(modelBuilder.Entity<AdditionalInformation>());
             new NotificationMap(modelBuilder.Entity<Notification>());
             new TemplateMap(modelBuilder.Entity<Template>());
+            new RABatchRecipientRuleMap(modelBuilder.Entity<RABatchRecipientRule>());
+            new RAAssociatedDocumentMap(modelBuilder.Entity<RAAssociatedDocument>());
+            new RABatchRecipientMap(modelBuilder.Entity<RABatchRecipient>());
+            new RABatchScheduleMap(modelBuilder.Entity<RABatchSchedule>());
+            new RABatchTemplateMap(modelBuilder.Entity<RABatchTemplate>());
+
+            new RABatchMap(modelBuilder.Entity<RABatch>());
+            new RARecipientMap(modelBuilder.Entity<RARecipient>());
+            new RARecipientRuleMap(modelBuilder.Entity<RARecipientRule>());
+            new RAScheduleMap(modelBuilder.Entity<RASchedule>());
         }
     }
 }

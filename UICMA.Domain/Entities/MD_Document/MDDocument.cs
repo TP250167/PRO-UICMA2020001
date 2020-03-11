@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UICMA.Domain.Entities.Associated_Documents;
+using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.MD_Form;
 
 namespace UICMA.Domain.Entities.MD_Document
@@ -19,5 +20,6 @@ namespace UICMA.Domain.Entities.MD_Document
         public bool IsMandatory { get; set; }
 
         public List<AssociatedDocuments> AssociatedDocuments { get; set; }
+        public List<FormDocument> FormDocuments { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.RAAssociatedDocuments;
+using UICMA.Domain.Entities.RABatchSchedules;
 
 namespace UICMA.Domain.Entities
 {
@@ -26,5 +28,7 @@ namespace UICMA.Domain.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public ICollection<Attendee> Attendees { get; set; }
+        public ICollection<RAAssociatedDocument> RAassociatedDocument { get; set; }
+        public ICollection<RABatchSchedule> RAbatchSchedule { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.RABatchTemplates;
 
 namespace UICMA.Domain.Entities.Templates
 {
@@ -19,6 +20,7 @@ namespace UICMA.Domain.Entities.Templates
         public string TemplateDescription { get; set; }
         public string TemplateAttachmentContent { get; set; }
         public string LetterType { get; set; }
+        public ICollection<RABatchTemplate> RAbatchTemplate { get; set; }
     }
 }
 

@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200306131142_add_aljdecision_cuiab_wages.cs" />
     <Compile Remove="Migrations\20200306131142_add_aljdecision_cuiab_wages.Designer.cs" />
+    <Compile Remove="Migrations\20200311041720_add-RA-tables.cs" />
+    <Compile Remove="Migrations\20200311041720_add-RA-tables.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
