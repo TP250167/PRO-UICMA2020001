@@ -26,6 +26,7 @@ namespace UICMA.Domain.Entities.NotificationMap
             builder.Property(s => s.NotifySubject).HasColumnName("NOTIFY_SUBJECT");
             builder.Property(s => s.NotifyStatus).HasColumnName("NOTIFY_STATUS");
             builder.Property(s => s.RequestType).HasColumnName("REQUEST_TYPE");
+            builder.Property(s => s.EmployeeNumber).HasColumnName("EMPLOYEE_NUMBER");
         }
     }
 }

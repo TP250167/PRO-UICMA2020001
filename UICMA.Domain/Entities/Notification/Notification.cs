@@ -20,5 +20,6 @@ namespace UICMA.Domain.Entities.Notifications
         public DateTime? ModifiedOn { get; set; }
         public string NotifyStatus { get; set; }
         public string RequestType { get; set; }
+        public string EmployeeNumber { get; set; }
     }
 }

@@ -28,6 +28,7 @@ namespace UICMA.Domain.Entities.RARecipients
         public bool IsSucessfullyDeliver { get; set; }
         public bool IsDeliveryMailCaptured { get; set; }
         public bool IsSentMailCaptured { get; set; }
+        public string RequestType { get; set; }
         public ICollection<RAAssociatedDocument> RAassociatedDocument { get; set; }
         public ICollection<RABatchRecipient> RAbatchRecipient { get; set; }
     }
