@@ -20,7 +20,9 @@ using NLog;
 using UICMA.API.Extensions;
 using UICMA.API.ViewModels.Mappings;
 using UICMA.Repository;
+using UICMA.Repository.ClaimRepository;
 using UICMA.Service;
+using UICMA.Service.ClaimServices;
 
 namespace UICMA.API
 {
@@ -112,21 +114,37 @@ namespace UICMA.API
 
             builder.RegisterType<ClaimDeterminationService>().As<IClaimDeterminationService>();
             builder.RegisterType<ClaimDeterminationRepository>().As<IClaimDeterminationRepository>();
+                       
+            builder.RegisterType<AdditionalInfoService>().As<IAdditionalInfoService>();
+            builder.RegisterType<AdditionalInfoRepository>().As<IAdditionalInfoRepository>();
+            
+            builder.RegisterType<ALJDecisionService>().As<IALJDecisionService>();
+            builder.RegisterType<ALJDecisionRepository>().As<IALJDecisionRepository>();
+            
+            builder.RegisterType<CUIABAcknowService>().As<ICUIABAcknowService>();
+            builder.RegisterType<CUIABAcknowRepository>().As<ICUIABAcknowRepository>();
 
 
+            builder.RegisterType<FormDocumentMapService>().As<IFormDocumentMapService>();
+            builder.RegisterType<FormDocumentMapRepository>().As<IFormDocumentMapRepository>();
+
+            builder.RegisterType<IssuesListService>().As<IIssuesListService>();
+            builder.RegisterType<IssuesListRepository>().As<IIssuesListRepository>();
+            
+            builder.RegisterType<NewClaimService>().As<INewClaimService>();
+            builder.RegisterType<NewClaimRepository>().As<INewClaimRepository>();
+
+            builder.RegisterType<ResponsetoEmployerService>().As<IResponsetoEmployerService>();
+            builder.RegisterType<ResponsetoEmployerRepository>().As<IResponsetoEmployerRepository>();
 
 
+            builder.RegisterType<WagesAfterAppealService>().As<IWagesAfterAppealService>();
+            builder.RegisterType<WagesAfterAppealRepository>().As<IWagesAfterAppealRepository>();
 
+            builder.RegisterType<NotificationService>().As<INotificationService>();
+            builder.RegisterType<NotificationRepository>().As<INotificationRepository>();
 
-
-
-
-
-
-
-
-
-
+                                                                        
             ////////////////
 
             builder.Populate(services);

@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 
 namespace UICMA.Service.ClaimServices
 {
-    interface ICUIABAcknowService
+   public interface ICUIABAcknowService
     {
+        CUIABAcknowledgement AddandUpdateCUIABAcknow(CUIABAcknowledgement cuiaAck);
+        IEnumerable<CUIABAcknowledgement> GetCUIABAcknowAll();
+        CUIABAcknowledgement GetCUIABAcknowbyID(int Id);
+
     }
 }

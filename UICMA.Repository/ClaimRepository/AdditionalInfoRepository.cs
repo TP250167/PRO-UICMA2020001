@@ -4,8 +4,7 @@ using System.Text;
 using UICMA.Domain.Entities.Additional_Information;
 
 namespace UICMA.Repository.ClaimRepository
-{
-   
+{   
     public class AdditionalInfoRepository : EntityBaseRepository<AdditionalInformation>, IAdditionalInfoRepository
     {
         private readonly UICMAContext context;

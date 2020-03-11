@@ -85,6 +85,9 @@ namespace UICMA.Repository
         public DbSet<Template> Templates { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<RABatchRecipientRule> RABatchRecipientRules { get; set; }
+        public DbSet<FormDocument> FormDocument { get; set; }
+
+
 
 
 
@@ -142,6 +145,7 @@ namespace UICMA.Repository
             new RARecipientMap(modelBuilder.Entity<RARecipient>());
             new RARecipientRuleMap(modelBuilder.Entity<RARecipientRule>());
             new RAScheduleMap(modelBuilder.Entity<RASchedule>());
+            new FormDocumentMap(modelBuilder.Entity<FormDocument>());
         }
     }
 }
