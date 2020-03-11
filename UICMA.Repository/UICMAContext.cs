@@ -19,6 +19,8 @@ using UICMA.Domain.Entities.Claim_Response;
 using UICMA.Domain.Entities.Claim_ResponseMap;
 using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.CUIAB_AcknowledgementMap;
+using UICMA.Domain.Entities.EmployeeMap;
+using UICMA.Domain.Entities.Employees;
 using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.Form_Document_Map;
 using UICMA.Domain.Entities.Issues_List;
@@ -135,7 +137,7 @@ namespace UICMA.Repository
             new RABatchRecipientMap(modelBuilder.Entity<RABatchRecipient>());
             new RABatchScheduleMap(modelBuilder.Entity<RABatchSchedule>());
             new RABatchTemplateMap(modelBuilder.Entity<RABatchTemplate>());
-
+            new EmployeeMap(modelBuilder.Entity<Employee>());
             new RABatchMap(modelBuilder.Entity<RABatch>());
             new RARecipientMap(modelBuilder.Entity<RARecipient>());
             new RARecipientRuleMap(modelBuilder.Entity<RARecipientRule>());
