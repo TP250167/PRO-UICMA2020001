@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog;
 using UICMA.API.Extensions;
@@ -43,7 +50,7 @@ namespace UICMA.API
             var builder = new ConfigurationBuilder()
                 .SetBasePath(_contentRootPath)
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: false);
 
             if (env.IsDevelopment())
             {
@@ -56,11 +63,67 @@ namespace UICMA.API
             Configuration = builder.Build();
         }
 
-       
+        private static IHttpContextAccessor HttpContextAccessor;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
+            var Audiance = Configuration.GetValue<string>("Audiance");
+            var Authority = Configuration.GetValue<string>("Authority");
+
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy",
+                    Configuration => Configuration.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
+            services.AddAuthentication("Bearer")
+               .AddJwtBearer(options =>
+               {
+                   options.Authority = $"https://login.microsoftonline.com/" + Authority;
+                   options.Audience = Audiance;
+                   options.RequireHttpsMetadata = false;
+                   options.TokenValidationParameters = new TokenValidationParameters()
+                   {
+                       //ValidAudience = "microsoft:identityserver:e7e9d0c2-cb98-4974-b532-2c6776d5e379",
+                       //ValidIssuer = "http://DC02.kosoft.co/adfs/services/trust"
+
+                       ValidateIssuer = true,
+                       ValidIssuer = Authority,
+
+                       ValidateAudience = true,
+                       ValidAudience = Audiance,
+                   };
+                   options.Events = new JwtBearerEvents
+                   {
+                       OnTokenValidated = async ctx =>
+                       {
+                           var claims = new List<Claim>
+                           {
+                                new Claim("BasicClaim", "UserInfo")
+                           };
+
+                           ctx.Principal.AddIdentity(new ClaimsIdentity(claims));
+                       }
+                   };
+               });
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                   .AddAuthenticationSchemes("Bearer")
+                   .RequireAuthenticatedUser()
+                   .Build();
+
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("UICMA Policy", policy => policy.RequireClaim("BasicClaim", "UserInfo"));
+            });
+
             services.AddDbContext<UICMAContext>(options =>
                options.UseSqlServer(Configuration["Data:UICMAConnection:ConnectionString"],
                b => b.MigrationsAssembly("UICMA.API")));
@@ -93,7 +156,16 @@ namespace UICMA.API
                 {
                     // Force Camel Case to JSON
                     opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    opts.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             var builder = new ContainerBuilder();
             builder.RegisterType<ScheduleRepository>().As<IScheduleRepository>();
             builder.RegisterType<ScheduleService>().As<IScheduleService>();
