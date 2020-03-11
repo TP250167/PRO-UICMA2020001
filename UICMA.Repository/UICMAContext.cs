@@ -125,7 +125,7 @@ namespace UICMA.Repository
                 .WithMany(t => t.AssociatedDocuments)
                 .HasForeignKey(pt => pt.DocumentId);
 
-
+            new FormDocumentMap(modelBuilder.Entity<FormDocument>());
             new ALJDecisionMap(modelBuilder.Entity<ALJDecision>());
             new CUIABAcknowledgementMap(modelBuilder.Entity<CUIABAcknowledgement>());
             new WagesAfterAppealMap(modelBuilder.Entity<WagesAfterAppeal>());

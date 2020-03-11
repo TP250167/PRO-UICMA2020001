@@ -10,8 +10,8 @@ using UICMA.Repository;
 namespace UICMA.API.Migrations
 {
     [DbContext(typeof(UICMAContext))]
-    [Migration("20200310100539_add_template_notification_tbl")]
-    partial class add_template_notification_tbl
+    [Migration("20200311090756_add-form-document-map-tbl")]
+    partial class addformdocumentmaptbl
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,7 +75,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 212, DateTimeKind.Local).AddTicks(3619));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 420, DateTimeKind.Local).AddTicks(1954));
 
                     b.Property<string>("PartiesAppearing")
                         .HasColumnName("PARTIES_APPEARING");
@@ -137,7 +137,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 226, DateTimeKind.Local).AddTicks(3334));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 432, DateTimeKind.Local).AddTicks(9803));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -240,7 +240,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 217, DateTimeKind.Local).AddTicks(5257));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 424, DateTimeKind.Local).AddTicks(5365));
 
                     b.HasKey("Id")
                         .HasName("CUIAB_ACKNOWLEDGEMENT_ID");
@@ -302,7 +302,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 202, DateTimeKind.Local).AddTicks(6095));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 405, DateTimeKind.Local).AddTicks(6041));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -373,7 +373,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 193, DateTimeKind.Local).AddTicks(5614));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 396, DateTimeKind.Local).AddTicks(6637));
 
                     b.Property<string>("SocialSecurityNumber")
                         .HasColumnName("SOCIAL_SECURITY_NUMBER");
@@ -441,7 +441,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 185, DateTimeKind.Local).AddTicks(538));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 388, DateTimeKind.Local).AddTicks(4129));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -541,7 +541,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 177, DateTimeKind.Local).AddTicks(2466));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 380, DateTimeKind.Local).AddTicks(4197));
 
                     b.Property<bool>("OfferLetter")
                         .ValueGeneratedOnAdd()
@@ -613,43 +613,171 @@ namespace UICMA.API.Migrations
                     b.ToTable("CLAIM_RESPONSE_TBL");
                 });
 
+            modelBuilder.Entity("UICMA.Domain.Entities.Employees.Employee", b =>
+                {
+                    b.Property<string>("EmployeeNumberCode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("EMP_NUM_CODE");
+
+                    b.Property<string>("ActiveEmployeeIndicator")
+                        .HasColumnName("ACTIVE_EMPLOYEE_INDICATOR");
+
+                    b.Property<string>("BirthDate")
+                        .HasColumnName("BIRTH_DATE");
+
+                    b.Property<DateTime?>("BirthDay")
+                        .HasColumnName("BIRTH_DAY");
+
+                    b.Property<string>("BirthMonth")
+                        .HasColumnName("BIRTH_MONTH");
+
+                    b.Property<string>("BirthYear")
+                        .HasColumnName("BIRTH_YEAR");
+
+                    b.Property<string>("CityName")
+                        .HasColumnName("CITY_NAME");
+
+                    b.Property<string>("CountryISOCode")
+                        .HasColumnName("COUNTRY_ISO_CODE");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnName("CREATE_DATE");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("EmpTypeCode")
+                        .HasColumnName("EMP_TYPE_CODE");
+
+                    b.Property<string>("EthnicityCode")
+                        .HasColumnName("ETHNICITY_CODE");
+
+                    b.Property<string>("EthnicityDescription")
+                        .HasColumnName("ETHNICITY_DESCR");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnName("FIRST_NAME");
+
+                    b.Property<string>("GenderInd")
+                        .HasColumnName("GENDER_IND");
+
+                    b.Property<string>("HighestDegreeCode")
+                        .HasColumnName("HIGHEST_DEGREE_CODE");
+
+                    b.Property<string>("HighestDegreeName")
+                        .HasColumnName("HIGHEST_DEGREE_NAME");
+
+                    b.Property<string>("HouseNumberStreetAddress")
+                        .HasColumnName("HOUSE_NUM_STREET_ADDR");
+
+                    b.Property<string>("InitialName")
+                        .HasColumnName("INITIAL_NAME,");
+
+                    b.Property<string>("LanguageInd")
+                        .HasColumnName("LANGUAGE_IND");
+
+                    b.Property<string>("LastName")
+                        .HasColumnName("LAST_NAME");
+
+                    b.Property<string>("LastUpdateBy")
+                        .HasColumnName("LAST_UPDATED_BY");
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnName("LAST_UPDATE_DATE");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnName("MIDDLE_NAME");
+
+                    b.Property<string>("OIDEmailAddress")
+                        .HasColumnName("OID_EMAIL_ADDRESS");
+
+                    b.Property<string>("OtherTitleName")
+                        .HasColumnName("OTHER_TITLE_NAME");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnName("POSTAL_CODE");
+
+                    b.Property<string>("RegionCode")
+                        .HasColumnName("REGION_CODE");
+
+                    b.Property<string>("SAPEmailAddress")
+                        .HasColumnName("SAP_EMAIL_ADDRESS");
+
+                    b.Property<string>("SAPUserIdCode")
+                        .HasColumnName("SAP_USER_ID_CODE");
+
+                    b.Property<string>("SEIDCode")
+                        .HasColumnName("SEID_CODE");
+
+                    b.Property<string>("SecondName")
+                        .HasColumnName("SECOND_NAME");
+
+                    b.Property<string>("SecondTitleName")
+                        .HasColumnName("SECOND_TITLE_NAME");
+
+                    b.Property<string>("SocialSecurityNumber")
+                        .HasColumnName("SOCIAL_SECURITY_NUMBER");
+
+                    b.Property<string>("TelephoneNumber")
+                        .HasColumnName("TELEPHONE_NUMBER");
+
+                    b.Property<string>("TieBreaker")
+                        .HasColumnName("TIE_BREAKER");
+
+                    b.Property<string>("TitleName")
+                        .HasColumnName("TITLE_NAME");
+
+                    b.HasKey("EmployeeNumberCode");
+
+                    b.ToTable("EMPLOYEE_TBL");
+                });
+
             modelBuilder.Entity("UICMA.Domain.Entities.Form_Document.FormDocument", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Channel");
+                    b.Property<string>("Channel")
+                        .HasColumnName("CHANNEL");
 
-                    b.Property<long>("ClaimId");
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
 
-                    b.Property<DateTime?>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
 
-                    b.Property<long>("DocumentId");
+                    b.Property<long>("DocumentId")
+                        .HasColumnName("DOCUMENT_ID");
 
-                    b.Property<long>("FormId");
+                    b.Property<long>("FormId")
+                        .HasColumnName("FORM_ID");
 
-                    b.Property<long?>("MDDocumentId");
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
 
-                    b.Property<long?>("MDFormId");
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 413, DateTimeKind.Local).AddTicks(9137));
 
-                    b.Property<string>("ModifiedBy");
+                    b.Property<DateTime?>("ReceivedDate")
+                        .HasColumnName("RECEIVED_DATE");
 
-                    b.Property<DateTime?>("ModifiedOn");
+                    b.Property<string>("UploadFileName")
+                        .HasColumnName("UPLOAD_FILE_NAME");
 
-                    b.Property<DateTime?>("ReceivedDate");
+                    b.HasKey("Id")
+                        .HasName("FORM_DOCUMENT_MAP_ID");
 
-                    b.Property<string>("UploadFileName");
+                    b.HasIndex("DocumentId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("FormId");
 
-                    b.HasIndex("MDDocumentId");
-
-                    b.HasIndex("MDFormId");
-
-                    b.ToTable("FormDocument");
+                    b.ToTable("FORM_DOCUMENT_MAP_TBL");
                 });
 
             modelBuilder.Entity("UICMA.Domain.Entities.Issues_List.IssuesList", b =>
@@ -676,7 +804,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 205, DateTimeKind.Local).AddTicks(2535));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 408, DateTimeKind.Local).AddTicks(2251));
 
                     b.HasKey("Id")
                         .HasName("ISSUES_LIST_ID");
@@ -716,7 +844,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 169, DateTimeKind.Local).AddTicks(9643));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 373, DateTimeKind.Local).AddTicks(2248));
 
                     b.HasKey("Id")
                         .HasName("MD_DOCUMENT_ID");
@@ -751,7 +879,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 167, DateTimeKind.Local).AddTicks(5167));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 370, DateTimeKind.Local).AddTicks(8249));
 
                     b.HasKey("Id")
                         .HasName("MD_FORM_ID");
@@ -807,7 +935,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 164, DateTimeKind.Local).AddTicks(5057));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 367, DateTimeKind.Local).AddTicks(6291));
 
                     b.Property<string>("NewClaim")
                         .HasColumnName("NEW_CLAIM");
@@ -851,7 +979,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 229, DateTimeKind.Local).AddTicks(9296));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 436, DateTimeKind.Local).AddTicks(6846));
 
                     b.Property<string>("NotifyAttachment")
                         .HasColumnName("NOTIFY_ATTACHMENT")
@@ -918,7 +1046,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 188, DateTimeKind.Local).AddTicks(6613));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 391, DateTimeKind.Local).AddTicks(9171));
 
                     b.HasKey("Id")
                         .HasName("QUESTIONS_ID");
@@ -926,6 +1054,328 @@ namespace UICMA.API.Migrations
                     b.HasIndex("FormId");
 
                     b.ToTable("QUESTIONS_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RAAssociatedDocuments.RAAssociatedDocument", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DocumentationPath")
+                        .HasColumnName("DOCUMENTATION_PATH");
+
+                    b.Property<long>("RecipientId")
+                        .HasColumnName("RECIPIENT_ID");
+
+                    b.Property<long>("ScheduleId")
+                        .HasColumnName("SCHEDULE_ID");
+
+                    b.Property<string>("Type")
+                        .HasColumnName("TYPE");
+
+                    b.HasKey("Id")
+                        .HasName("RA_ASSOCIATED_DOCUMENT_ID");
+
+                    b.HasIndex("RecipientId");
+
+                    b.HasIndex("ScheduleId");
+
+                    b.ToTable("RA_ASSOCIATED_DOCUMENT_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchRecipientRules.RABatchRecipientRule", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("BatchId")
+                        .HasColumnName("BATCH_ID");
+
+                    b.Property<long>("RecipientRuleId")
+                        .HasColumnName("RECIPIENT_RULE_ID");
+
+                    b.HasKey("Id")
+                        .HasName("RA_BATCH_RECIP_RULE_MAP_ID");
+
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("RecipientRuleId");
+
+                    b.ToTable("RA_BATCH_RECIP_RULE_MAP_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchRecipients.RABatchRecipient", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("BatchId")
+                        .HasColumnName("BATCH_ID");
+
+                    b.Property<long>("RecipientId")
+                        .HasColumnName("RECIPIENT_ID");
+
+                    b.HasKey("Id")
+                        .HasName("RA_BATCH_RECIPIENT_MAP_ID");
+
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("RecipientId");
+
+                    b.ToTable("RA_BATCH_RECIPIENT_MAP_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchSchedules.RABatchSchedule", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("BatchId")
+                        .HasColumnName("BATCH_ID");
+
+                    b.Property<long>("ScheduleId")
+                        .HasColumnName("SCHEDULE_ID");
+
+                    b.HasKey("Id")
+                        .HasName("RA_BATCH_SCHEDULE_MAP_ID");
+
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("ScheduleId");
+
+                    b.ToTable("RA_BATCH_SCHEDULE_MAP_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchTemplates.RABatchTemplate", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("BatchId")
+                        .HasColumnName("BATCH_ID");
+
+                    b.Property<long>("TemplateId")
+                        .HasColumnName("TEMPLATE_ID");
+
+                    b.HasKey("Id")
+                        .HasName("RA_BATCH_TEMPLATE_MAP_ID");
+
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("TemplateId");
+
+                    b.ToTable("RA_BATCH_TEMPLATE_MAP_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchs.RABatch", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BatchDescription")
+                        .HasColumnName("BATCH_DESCRIPTION");
+
+                    b.Property<string>("BatchName")
+                        .HasColumnName("BATCH_NAME");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<string>("Frequency")
+                        .HasColumnName("FREQUENCY");
+
+                    b.Property<bool>("IsRecuring")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IS_RECURING")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 471, DateTimeKind.Local).AddTicks(6747));
+
+                    b.Property<DateTime?>("NextOccurrance")
+                        .HasColumnName("NEXT_OCCURRANCE");
+
+                    b.Property<string>("Occurrance")
+                        .HasColumnName("OCCURRANCE");
+
+                    b.Property<string>("Status")
+                        .HasColumnName("STATUS");
+
+                    b.Property<string>("Time")
+                        .HasColumnName("TIME");
+
+                    b.HasKey("Id")
+                        .HasName("RA_BATCH_ID");
+
+                    b.ToTable("RA_BATCH_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RARecipientRules.RARecipientRule", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 477, DateTimeKind.Local).AddTicks(9258));
+
+                    b.Property<string>("RecipientRuleName")
+                        .HasColumnName("RECIPIENT_RULE_NAME");
+
+                    b.Property<string>("RecipientRuleStatus")
+                        .HasColumnName("RECIPIENT_RULE_STATUS");
+
+                    b.Property<string>("RecipientRuleType")
+                        .HasColumnName("RECIPIENT_RULE_TYPE");
+
+                    b.HasKey("Id")
+                        .HasName("RA_RECIPIENT_RULE_ID");
+
+                    b.ToTable("RA_RECIPIENT_RULE_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RARecipients.RARecipient", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<DateTime?>("DeliveredOn")
+                        .HasColumnName("DELIVERED_ON");
+
+                    b.Property<string>("DeliveryNotice")
+                        .HasColumnName("DELIVERY_NOTICE")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("EmailReferenceNumber")
+                        .HasColumnName("EMAIL_REFERENCE_NUMBER");
+
+                    b.Property<string>("EmployeeEmail")
+                        .HasColumnName("EMPLOYEE_EMAIL");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnName("EMPLOYEE_NAME");
+
+                    b.Property<string>("EmployeeNumber")
+                        .HasColumnName("EMPLOYEE_NUMBER");
+
+                    b.Property<DateTime?>("FailedOn")
+                        .HasColumnName("FAILED_ON");
+
+                    b.Property<bool>("IsDeliveryMailCaptured")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IS_DELIVERY_MAIL_CAPTURED")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsRetry")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IS_RETRY")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsSentMailCaptured")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IS_SENT_MAIL_CAPTURED")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsSucessfullyDeliver")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IS_SUCESSFULLY_DELIVER")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 475, DateTimeKind.Local).AddTicks(3901));
+
+                    b.Property<DateTime?>("NotifiedSentOn")
+                        .HasColumnName("NOTIFIED_SENT_ON");
+
+                    b.Property<int?>("RetryFail");
+
+                    b.Property<int?>("RetrySucess");
+
+                    b.Property<string>("Status")
+                        .HasColumnName("STATUS");
+
+                    b.HasKey("Id")
+                        .HasName("RA_RECIPIENT_ID");
+
+                    b.ToTable("RA_RECIPIENT_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RASchedules.RASchedule", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<int?>("FailedDelivery")
+                        .HasColumnName("FAILED_DELIVERY");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 481, DateTimeKind.Local).AddTicks(9101));
+
+                    b.Property<DateTime?>("ScheduleDate")
+                        .HasColumnName("SCHEDULE_DATE");
+
+                    b.Property<string>("Status")
+                        .HasColumnName("STATUS");
+
+                    b.Property<int?>("SucessfulDelivery")
+                        .HasColumnName("SUCESSFUL_DELIVERY");
+
+                    b.Property<int?>("TotalRecipient")
+                        .HasColumnName("TOTAL_RECIPIENT");
+
+                    b.HasKey("Id")
+                        .HasName("RA_SCHEDULE_ID");
+
+                    b.ToTable("RA_SCHEDULE_TBL");
                 });
 
             modelBuilder.Entity("UICMA.Domain.Entities.Response_to_Employer.ResponseToEmployer", b =>
@@ -964,7 +1414,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 197, DateTimeKind.Local).AddTicks(2628));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 400, DateTimeKind.Local).AddTicks(3041));
 
                     b.Property<string>("SocialSecurityNumber")
                         .HasColumnName("SOCIAL_SECURITY_NUMBER");
@@ -988,7 +1438,7 @@ namespace UICMA.API.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 151, DateTimeKind.Local).AddTicks(6106));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 355, DateTimeKind.Local).AddTicks(5375));
 
                     b.Property<long?>("CreatorId");
 
@@ -1000,7 +1450,7 @@ namespace UICMA.API.Migrations
 
                     b.Property<DateTime>("ModifiedOn")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 153, DateTimeKind.Local).AddTicks(3594));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 356, DateTimeKind.Local).AddTicks(3742));
 
                     b.Property<long?>("ModifierId");
 
@@ -1048,7 +1498,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 232, DateTimeKind.Local).AddTicks(8994));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 439, DateTimeKind.Local).AddTicks(4684));
 
                     b.Property<string>("TemplateAttachmentContent")
                         .HasColumnName("TEMPLATE_ATTACHMENT_CONTENT")
@@ -1140,7 +1590,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 10, 15, 35, 39, 221, DateTimeKind.Local).AddTicks(9871));
+                        .HasDefaultValue(new DateTime(2020, 3, 11, 14, 37, 56, 428, DateTimeKind.Local).AddTicks(8070));
 
                     b.Property<string>("PreparerName")
                         .HasColumnName("PREPARER_NAME");
@@ -1246,12 +1696,12 @@ namespace UICMA.API.Migrations
                 {
                     b.HasOne("UICMA.Domain.Entities.MD_Document.MDDocument", "MDDocument")
                         .WithMany("FormDocuments")
-                        .HasForeignKey("MDDocumentId")
+                        .HasForeignKey("DocumentId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("UICMA.Domain.Entities.MD_Form.MDForm", "MDForm")
                         .WithMany("FormDocuments")
-                        .HasForeignKey("MDFormId")
+                        .HasForeignKey("FormId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -1260,6 +1710,71 @@ namespace UICMA.API.Migrations
                     b.HasOne("UICMA.Domain.Entities.Claim_Interview.ClaimInterview", "claimInterview")
                         .WithMany("questions")
                         .HasForeignKey("FormId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RAAssociatedDocuments.RAAssociatedDocument", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.RARecipients.RARecipient", "RArecipient")
+                        .WithMany("RAassociatedDocument")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("UICMA.Domain.Entities.Schedule", "schedule")
+                        .WithMany("RAassociatedDocument")
+                        .HasForeignKey("ScheduleId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchRecipientRules.RABatchRecipientRule", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.RABatchs.RABatch", "RAbatch")
+                        .WithMany("RAbatchRecipientRule")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("UICMA.Domain.Entities.RARecipientRules.RARecipientRule", "RArecipientRule")
+                        .WithMany("RAbatchRecipientRule")
+                        .HasForeignKey("RecipientRuleId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchRecipients.RABatchRecipient", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.RABatchs.RABatch", "RAbatch")
+                        .WithMany("RAbatchRecipient")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("UICMA.Domain.Entities.RARecipients.RARecipient", "RArecipient")
+                        .WithMany("RAbatchRecipient")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchSchedules.RABatchSchedule", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.RABatchs.RABatch", "RAbatch")
+                        .WithMany("RAbatchSchedule")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("UICMA.Domain.Entities.Schedule", "schedule")
+                        .WithMany("RAbatchSchedule")
+                        .HasForeignKey("ScheduleId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.RABatchTemplates.RABatchTemplate", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.RABatchs.RABatch", "RAbatch")
+                        .WithMany("RAbatchTemplate")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("UICMA.Domain.Entities.Templates.Template", "template")
+                        .WithMany("RAbatchTemplate")
+                        .HasForeignKey("TemplateId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

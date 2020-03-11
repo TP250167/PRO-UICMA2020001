@@ -10,6 +10,8 @@
     <Compile Remove="Migrations\20200306131142_add_aljdecision_cuiab_wages.Designer.cs" />
     <Compile Remove="Migrations\20200311041720_add-RA-tables.cs" />
     <Compile Remove="Migrations\20200311041720_add-RA-tables.Designer.cs" />
+    <Compile Remove="Migrations\20200311090509_add-form-document-map.cs" />
+    <Compile Remove="Migrations\20200311090509_add-form-document-map.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
