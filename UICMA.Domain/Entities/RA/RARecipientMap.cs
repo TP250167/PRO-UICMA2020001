@@ -25,6 +25,9 @@ namespace UICMA.Domain.Entities.RARecipientMap
             builder.Property(s => s.FailedOn).HasColumnName("FAILED_ON");
             builder.Property(s => s.Status).HasColumnName("STATUS");
             builder.Property(s => s.DeliveredOn).HasColumnName("DELIVERED_ON");
+            builder.Property(s => s.RetryFail).HasColumnName("RETRY_FAIL");
+            builder.Property(s => s.RetrySucess).HasColumnName("RETRY_SUCESS");
+            builder.Property(s => s.RequestType).HasColumnName("REQUEST_TYPE");
             builder.Property(s => s.IsSucessfullyDeliver).HasColumnName("IS_SUCESSFULLY_DELIVER").HasDefaultValue(false);
             builder.Property(s => s.IsSentMailCaptured).HasColumnName("IS_SENT_MAIL_CAPTURED").HasDefaultValue(false);
             builder.Property(s => s.IsDeliveryMailCaptured).HasColumnName("IS_DELIVERY_MAIL_CAPTURED").HasDefaultValue(false);
