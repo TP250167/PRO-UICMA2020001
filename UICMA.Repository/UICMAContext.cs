@@ -9,6 +9,8 @@ using UICMA.Domain.Entities.Additional_InformationMap;
 using UICMA.Domain.Entities.ALJ_Decision;
 using UICMA.Domain.Entities.ALJ_DecisionMap;
 using UICMA.Domain.Entities.Associated_Documents;
+using UICMA.Domain.Entities.Benefit_Audit;
+using UICMA.Domain.Entities.Benefit_AuditMap;
 using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_AppealMap;
 using UICMA.Domain.Entities.Claim_Determination;
@@ -92,7 +94,7 @@ namespace UICMA.Repository
         public DbSet<FormDocument> FormDocument { get; set; }
         public DbSet<ClaimException> ClaimExceptions { get; set; }
         public DbSet<Hearing> Hearings { get; set; }
-
+        public DbSet<BenefitAudit> BenefitAudits { get; set; }
 
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
@@ -152,6 +154,7 @@ namespace UICMA.Repository
             new FormDocumentMap(modelBuilder.Entity<FormDocument>());
             new ClaimExceptionMap(modelBuilder.Entity<ClaimException>());
             new HearingMap(modelBuilder.Entity<Hearing>());
+            new BenefitAuditMap(modelBuilder.Entity<BenefitAudit>());
         }
     }
 }
