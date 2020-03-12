@@ -13,6 +13,7 @@ using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.Determination_Appeal;
 using UICMA.Domain.Entities.Hearings;
 using UICMA.Domain.Entities.NoticeOfWages;
+using UICMA.Domain.Entities.Request_For_EmployeeData;
 using UICMA.Domain.Entities.Request_To_Reopen;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Wages_After_Appeal;
@@ -64,5 +65,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public DeterminationAppeal determinationAppeal { get; set; }
         public Wages wages { get; set; } 
         public WagesAppeal wagesAppeal { get; set; }
+        public RequestForEmployeeData requestForEmployeeData { get; set; }
     }
 }

@@ -66,6 +66,8 @@ using UICMA.Domain.Entities.RARecipientRules;
 using UICMA.Domain.Entities.RARecipients;
 using UICMA.Domain.Entities.RAScheduleMap;
 using UICMA.Domain.Entities.RASchedules;
+using UICMA.Domain.Entities.Request_For_EmployeeData;
+using UICMA.Domain.Entities.Request_For_EmployeeDataMap;
 using UICMA.Domain.Entities.Request_To_Reopen;
 using UICMA.Domain.Entities.Request_To_ReopenMap;
 using UICMA.Domain.Entities.Response_to_Employer;
@@ -177,6 +179,7 @@ namespace UICMA.Repository
             new DeterminationAppealMap(modelBuilder.Entity<DeterminationAppeal>());
             new WagesMap(modelBuilder.Entity<Wages>());
             new WagesAppealMap(modelBuilder.Entity<WagesAppeal>());
+            new RequestForEmployeeDataMap(modelBuilder.Entity<RequestForEmployeeData>());
         }
     }
 }
