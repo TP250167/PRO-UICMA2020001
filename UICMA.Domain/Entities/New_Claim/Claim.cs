@@ -4,6 +4,7 @@ using System.Text;
 using UICMA.Domain.Entities.Additional_Information;
 using UICMA.Domain.Entities.ALJ_Decision;
 using UICMA.Domain.Entities.Benefit_Audit;
+using UICMA.Domain.Entities.Benefit_Charge;
 using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_Determination;
 using UICMA.Domain.Entities.Claim_Interview;
@@ -56,5 +57,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public BenefitAudit benefitAudit { get; set; }
         public Writ writ { get; set; }
         public RequestToReopen requestToReopen { get; set; }
+        public BenefitCharge benefitCharge { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UICMA.Repository;
 
 namespace UICMA.API.Migrations
 {
     [DbContext(typeof(UICMAContext))]
-    partial class UICMAContextModelSnapshot : ModelSnapshot
+    [Migration("20200312091527_add-benefitchargetbl")]
+    partial class addbenefitchargetbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 959, DateTimeKind.Local).AddTicks(4474));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 713, DateTimeKind.Local).AddTicks(7428));
 
                     b.Property<string>("PartiesAppearing")
                         .HasColumnName("PARTIES_APPEARING");
@@ -135,7 +137,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 987, DateTimeKind.Local).AddTicks(3066));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 726, DateTimeKind.Local).AddTicks(8269));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -214,7 +216,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 118, DateTimeKind.Local).AddTicks(7531));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 795, DateTimeKind.Local).AddTicks(8874));
 
                     b.Property<string>("Notes")
                         .HasColumnName("NOTES");
@@ -276,7 +278,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 145, DateTimeKind.Local).AddTicks(782));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 809, DateTimeKind.Local).AddTicks(5452));
 
                     b.Property<string>("Notes")
                         .HasColumnName("NOTES");
@@ -323,10 +325,8 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnName("CREATED_ON");
 
-                    b.Property<decimal?>("EmployerCharge")
-                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
-                        .HasColumnName("EMPLOYER_CHARGE")
-                        .HasColumnType("decimal(16,2)");
+                    b.Property<float?>("EmployerCharge")
+                        .HasColumnName("EMPLOYER_CHARGE");
 
                     b.Property<long>("FormId")
                         .HasColumnName("FORM_ID");
@@ -337,7 +337,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 153, DateTimeKind.Local).AddTicks(3625));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 814, DateTimeKind.Local).AddTicks(4350));
 
                     b.Property<string>("PCMCode")
                         .HasColumnName("PCM_CODE");
@@ -404,7 +404,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 968, DateTimeKind.Local).AddTicks(1647));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 718, DateTimeKind.Local).AddTicks(3613));
 
                     b.HasKey("Id")
                         .HasName("CUIAB_ACKNOWLEDGEMENT_ID");
@@ -448,7 +448,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 98, DateTimeKind.Local).AddTicks(2141));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 784, DateTimeKind.Local).AddTicks(4571));
 
                     b.HasKey("Id")
                         .HasName("CLAIM_EXCEPTION_ID");
@@ -511,7 +511,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 928, DateTimeKind.Local).AddTicks(7057));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 698, DateTimeKind.Local).AddTicks(8333));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -582,7 +582,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 917, DateTimeKind.Local).AddTicks(4578));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 690, DateTimeKind.Local).AddTicks(1580));
 
                     b.Property<string>("SocialSecurityNumber")
                         .HasColumnName("SOCIAL_SECURITY_NUMBER");
@@ -650,7 +650,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 906, DateTimeKind.Local).AddTicks(1915));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 681, DateTimeKind.Local).AddTicks(3297));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -750,7 +750,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 895, DateTimeKind.Local).AddTicks(9386));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 673, DateTimeKind.Local).AddTicks(4329));
 
                     b.Property<bool>("OfferLetter")
                         .ValueGeneratedOnAdd()
@@ -971,7 +971,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 92, DateTimeKind.Local).AddTicks(1413));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 780, DateTimeKind.Local).AddTicks(9870));
 
                     b.Property<DateTime?>("ReceivedDate")
                         .HasColumnName("RECEIVED_DATE");
@@ -1048,7 +1048,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 111, DateTimeKind.Local).AddTicks(719));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 791, DateTimeKind.Local).AddTicks(4194));
 
                     b.Property<string>("Notes")
                         .HasColumnName("NOTES");
@@ -1089,7 +1089,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 931, DateTimeKind.Local).AddTicks(7955));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 701, DateTimeKind.Local).AddTicks(5121));
 
                     b.HasKey("Id")
                         .HasName("ISSUES_LIST_ID");
@@ -1129,7 +1129,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 887, DateTimeKind.Local).AddTicks(7883));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 665, DateTimeKind.Local).AddTicks(9191));
 
                     b.HasKey("Id")
                         .HasName("MD_DOCUMENT_ID");
@@ -1164,7 +1164,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 884, DateTimeKind.Local).AddTicks(873));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 663, DateTimeKind.Local).AddTicks(5476));
 
                     b.HasKey("Id")
                         .HasName("MD_FORM_ID");
@@ -1220,7 +1220,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 878, DateTimeKind.Local).AddTicks(8843));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 660, DateTimeKind.Local).AddTicks(4621));
 
                     b.Property<string>("NewClaim")
                         .HasColumnName("NEW_CLAIM");
@@ -1267,7 +1267,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 995, DateTimeKind.Local).AddTicks(2927));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 730, DateTimeKind.Local).AddTicks(4829));
 
                     b.Property<string>("NotifyAttachment")
                         .HasColumnName("NOTIFY_ATTACHMENT")
@@ -1334,7 +1334,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 910, DateTimeKind.Local).AddTicks(8331));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 684, DateTimeKind.Local).AddTicks(9971));
 
                     b.HasKey("Id")
                         .HasName("QUESTIONS_ID");
@@ -1492,7 +1492,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 67, DateTimeKind.Local).AddTicks(4134));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 767, DateTimeKind.Local).AddTicks(8172));
 
                     b.Property<DateTime?>("NextOccurrance")
                         .HasColumnName("NEXT_OCCURRANCE");
@@ -1530,7 +1530,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 86, DateTimeKind.Local).AddTicks(621));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 777, DateTimeKind.Local).AddTicks(8999));
 
                     b.Property<string>("RecipientRuleName")
                         .HasColumnName("RECIPIENT_RULE_NAME");
@@ -1607,7 +1607,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 78, DateTimeKind.Local).AddTicks(4717));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 772, DateTimeKind.Local).AddTicks(4756));
 
                     b.Property<DateTime?>("NotifiedSentOn")
                         .HasColumnName("NOTIFIED_SENT_ON");
@@ -1651,7 +1651,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 90, DateTimeKind.Local).AddTicks(9836));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 780, DateTimeKind.Local).AddTicks(4252));
 
                     b.Property<DateTime?>("ScheduleDate")
                         .HasColumnName("SCHEDULE_DATE");
@@ -1725,7 +1725,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 135, DateTimeKind.Local).AddTicks(4144));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 804, DateTimeKind.Local).AddTicks(8219));
 
                     b.Property<string>("Signature")
                         .HasColumnName("SIGNATURE");
@@ -1781,7 +1781,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 922, DateTimeKind.Local).AddTicks(118));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 693, DateTimeKind.Local).AddTicks(8203));
 
                     b.Property<string>("SocialSecurityNumber")
                         .HasColumnName("SOCIAL_SECURITY_NUMBER");
@@ -1805,7 +1805,7 @@ namespace UICMA.API.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 859, DateTimeKind.Local).AddTicks(138));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 648, DateTimeKind.Local).AddTicks(1476));
 
                     b.Property<long?>("CreatorId");
 
@@ -1817,7 +1817,7 @@ namespace UICMA.API.Migrations
 
                     b.Property<DateTime>("ModifiedOn")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 860, DateTimeKind.Local).AddTicks(4822));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 649, DateTimeKind.Local).AddTicks(130));
 
                     b.Property<long?>("ModifierId");
 
@@ -1865,7 +1865,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 1, DateTimeKind.Local).AddTicks(3971));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 733, DateTimeKind.Local).AddTicks(3036));
 
                     b.Property<string>("TemplateAttachmentContent")
                         .HasColumnName("TEMPLATE_ATTACHMENT_CONTENT")
@@ -1957,7 +1957,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 977, DateTimeKind.Local).AddTicks(1364));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 722, DateTimeKind.Local).AddTicks(5884));
 
                     b.Property<string>("PreparerName")
                         .HasColumnName("PREPARER_NAME");
@@ -2007,7 +2007,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 126, DateTimeKind.Local).AddTicks(1670));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 45, 26, 799, DateTimeKind.Local).AddTicks(6534));
 
                     b.Property<string>("Notes")
                         .HasColumnName("NOTES");

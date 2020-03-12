@@ -11,6 +11,10 @@ using UICMA.Domain.Entities.ALJ_DecisionMap;
 using UICMA.Domain.Entities.Associated_Documents;
 using UICMA.Domain.Entities.Benefit_Audit;
 using UICMA.Domain.Entities.Benefit_AuditMap;
+using UICMA.Domain.Entities.Benefit_Charge;
+using UICMA.Domain.Entities.Benefit_Charge_Claimant_DetailMap;
+using UICMA.Domain.Entities.Benefit_Charge_ClaimantDetail;
+using UICMA.Domain.Entities.Benefit_ChargeMap;
 using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_AppealMap;
 using UICMA.Domain.Entities.Claim_Determination;
@@ -162,6 +166,8 @@ namespace UICMA.Repository
             new BenefitAuditMap(modelBuilder.Entity<BenefitAudit>());
             new WritMap(modelBuilder.Entity<Writ>());
             new RequestToReopenMap(modelBuilder.Entity<RequestToReopen>());
+            new BenefitChargeMap(modelBuilder.Entity<BenefitCharge>());
+            new BenefitChargeClaimantDetailMap(modelBuilder.Entity<BenefitChargeClaimantDetail>());
         }
     }
 }
