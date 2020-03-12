@@ -16,6 +16,8 @@
     <Compile Remove="Migrations\20200312042106_change-scheduletbl-to-raschedule.Designer.cs" />
     <Compile Remove="Migrations\20200312045035_add-exception-tbl.cs" />
     <Compile Remove="Migrations\20200312045035_add-exception-tbl.Designer.cs" />
+    <Compile Remove="Migrations\20200312061710_add-writ-tbl.cs" />
+    <Compile Remove="Migrations\20200312061710_add-writ-tbl.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

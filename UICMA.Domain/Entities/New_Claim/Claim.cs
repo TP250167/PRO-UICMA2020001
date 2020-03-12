@@ -12,6 +12,7 @@ using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.Hearings;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Wages_After_Appeal;
+using UICMA.Domain.Entities.Writs;
 
 namespace UICMA.Domain.Entities.New_Claim
 {
@@ -52,5 +53,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public AdditionalInformation additionalInformation { get; set; }
         public Hearing hearing { get; set; }
         public BenefitAudit benefitAudit { get; set; }
+        public Writ writ { get; set; }
     }
 }

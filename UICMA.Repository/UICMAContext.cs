@@ -65,6 +65,8 @@ using UICMA.Domain.Entities.TemplateMap;
 using UICMA.Domain.Entities.Templates;
 using UICMA.Domain.Entities.Wages_After_Appeal;
 using UICMA.Domain.Entities.Wages_After_AppealMap;
+using UICMA.Domain.Entities.WritMap;
+using UICMA.Domain.Entities.Writs;
 
 namespace UICMA.Repository
 {
@@ -95,7 +97,7 @@ namespace UICMA.Repository
         public DbSet<ClaimException> ClaimExceptions { get; set; }
         public DbSet<Hearing> Hearings { get; set; }
         public DbSet<BenefitAudit> BenefitAudits { get; set; }
-
+        public DbSet<Writ> Writs { get; set; }
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
@@ -155,6 +157,7 @@ namespace UICMA.Repository
             new ClaimExceptionMap(modelBuilder.Entity<ClaimException>());
             new HearingMap(modelBuilder.Entity<Hearing>());
             new BenefitAuditMap(modelBuilder.Entity<BenefitAudit>());
+            new WritMap(modelBuilder.Entity<Writ>());
         }
     }
 }
