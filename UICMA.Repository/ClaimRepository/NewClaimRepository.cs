@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UICMA.Domain.Entities.New_Claim;
 
@@ -14,5 +15,22 @@ namespace UICMA.Repository.ClaimRepository
         {
             this.context = context;
         }
+
+
+        public IEnumerable<Claim> GetActiveClaims(int Year)
+        {
+            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == "Active" && s.BenefitYearBeginning == Year).ToList();
+
+            return ActiveClaims;
+        }
+
+        public IEnumerable<Claim> GetExceptionClaims(int Year)
+        {
+            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == "Exception" && s.BenefitYearBeginning == Year).ToList();
+
+            return ActiveClaims;
+        }
+
+
     }
 }

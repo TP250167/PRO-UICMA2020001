@@ -57,5 +57,23 @@ namespace UICMA.Service.ClaimServices
             return _newClaim.GetSingle(Id);
 
         }
+
+
+
+        public IEnumerable<Claim> GetActiveClaims(int Year)
+        {
+
+            return _newClaim.GetActiveClaims(Year);
+
+        }
+
+        public IEnumerable<Claim> GetExceptionClaims(int Year)
+        {
+
+            return _newClaim.GetExceptionClaims(Year);
+
+        }
+
+
     }
 }

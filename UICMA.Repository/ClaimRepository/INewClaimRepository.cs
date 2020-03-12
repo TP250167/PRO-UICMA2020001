@@ -7,5 +7,7 @@ namespace UICMA.Repository.ClaimRepository
 {
   public interface INewClaimRepository : IEntityBaseRepository<Claim>
     {
+        IEnumerable<Claim> GetActiveClaims(int Year);
+        IEnumerable<Claim> GetExceptionClaims(int Year);
     }
 }

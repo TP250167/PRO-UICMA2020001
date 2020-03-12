@@ -10,5 +10,7 @@ namespace UICMA.Service.ClaimServices
         Claim AddandUpdateNewClaim(Claim newClaim);
         IEnumerable<Claim> GetNewClaimAll();
         Claim GetNewclaimbyID(int Id);
+        IEnumerable<Claim> GetActiveClaims(int Year);
+        IEnumerable<Claim> GetExceptionClaims(int Year);
     }
 }

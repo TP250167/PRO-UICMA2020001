@@ -48,5 +48,31 @@ namespace UICMA.API.Areas.Claims.Controllers
             return results;
         }
 
+
+
+        [HttpGet("GetActiveClaims/{Year}")]
+        public ActionResult<IEnumerable<Claim>> GetActiveClaims(int Year)
+
+        {
+            var result = _NewClaimService.GetActiveClaims(Year).ToList();
+            return result;
+        }
+
+
+        [HttpGet("GetExceptionClaims/{Year}")]
+        public ActionResult<IEnumerable<Claim>> GetExceptionClaims(int Year)
+
+        {
+            var result = _NewClaimService.GetExceptionClaims(Year).ToList();
+            return result;
+        }
+
+
+
+
+
+
+
+
     }
 }
