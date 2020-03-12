@@ -200,6 +200,7 @@ select.form-control , .cc-datepicker , .dataTables_length select {
                     display: inline-flex;
                     justify-content: center;
                     align-items: center;
+                    position: relative;
 
                     i {
                         font-size: 15px;
@@ -207,7 +208,35 @@ select.form-control , .cc-datepicker , .dataTables_length select {
                         margin-top: 1px;
                     }
                 }
+
+                .cc-submenu {
+                    position: absolute;
+                    padding: 10px 0;
+                    background-color: #fff;
+                    border-radius: 4px;
+                    display: none;
+                    transform: translateY(15px);
+                    opacity: 0;
+                    box-shadow: $bscolor;
+
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+
+                        li {
+                            a{
+                                color: #212529 !important;
+                            }
+                        }
+                    }
+                }
+
+                &:hover .cc-submenu {
+                    display: block;
+                    animation: menuup 0.25s  ease-out forwards;
+                }
             }
+
         }
     }
 }
@@ -996,6 +1025,54 @@ tr:first-child>td>.fc-day-grid-event{margin-top:2px;}
 
 // calendar style end
 
+// form template management 
+
+.app-ftm {
+
+    padding: 15px 25px;
+
+    .angular-editor-textarea {
+        margin: 0 !important;
+        border-top: 0 !important;
+        border-bottom: 0 !important;
+        padding: 15px !important;
+    }
+
+    .angular-editor-toolbar  {
+        background-color: #fff !important;
+        border: 1px solid #eceef7 !important;
+        padding: 10px 6px !important;
+    }
+    
+    ae-select {
+        margin-right: 4px;
+    }
+
+    .angular-editor-button {
+        border: 0 !important;
+        background-color: $bgcolor !important;
+        &.active { 
+            background: #5d78ff !important;
+            .fa {
+                color: #fff !important;
+            }
+         }
+    }
+
+    .angular-editor-toolbar-set { margin-right: 0px !important; }
+    .ae-select .ae-picker-label {
+        border: 1px solid $bgcolor !important;
+    }
+
+    .angular-editor-button , ae-select .ae-picker-label {
+        margin: 4px;
+        border-radius: 4px;
+        .fa { font-size: 14px; color: #48465b; }
+        .color-label.background { background-color: unset !important; }
+    }
+}
+
+
 // media query style start
 @media only screen and (min-width:1480px) {
     .cc-upcomimg-event-list .cc-uel-listing {
@@ -1060,4 +1137,23 @@ tr:first-child>td>.fc-day-grid-event{margin-top:2px;}
 
 bs-datepicker-container, bs-daterangepicker-container {
     z-index: 333333333333;
+}
+
+
+
+
+// animations 
+
+@keyframes menuup{
+	from{
+		transform: translateY(15px);
+		opacity: 0;
+	}
+	50%{
+		opacity: 0.5;
+	}
+	to{
+		 transform: translateY(0px);
+		 opacity: 1;
+	}
 }
