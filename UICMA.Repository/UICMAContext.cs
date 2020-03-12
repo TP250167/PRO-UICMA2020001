@@ -27,6 +27,8 @@ using UICMA.Domain.Entities.ClaimExceptionMap;
 using UICMA.Domain.Entities.ClaimExceptions;
 using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.CUIAB_AcknowledgementMap;
+using UICMA.Domain.Entities.Determination_Appeal;
+using UICMA.Domain.Entities.Determination_AppealMap;
 using UICMA.Domain.Entities.EmployeeMap;
 using UICMA.Domain.Entities.Employees;
 using UICMA.Domain.Entities.Form_Document;
@@ -168,6 +170,7 @@ namespace UICMA.Repository
             new RequestToReopenMap(modelBuilder.Entity<RequestToReopen>());
             new BenefitChargeMap(modelBuilder.Entity<BenefitCharge>());
             new BenefitChargeClaimantDetailMap(modelBuilder.Entity<BenefitChargeClaimantDetail>());
+            new DeterminationAppealMap(modelBuilder.Entity<DeterminationAppeal>());
         }
     }
 }
