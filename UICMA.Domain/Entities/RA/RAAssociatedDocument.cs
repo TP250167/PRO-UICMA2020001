@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UICMA.Domain.Entities.RARecipients;
+using UICMA.Domain.Entities.RASchedules;
 
 namespace UICMA.Domain.Entities.RAAssociatedDocuments
 {
@@ -10,10 +11,10 @@ namespace UICMA.Domain.Entities.RAAssociatedDocuments
         public Int64 Id { get; set; }
         public string Type { get; set; }
         public string DocumentationPath { get; set; }
-        public Int64 ScheduleId { get; set; }
+        public Int64 RAScheduleId { get; set; }
         public Int64 RecipientId { get; set; }
 
-        public Schedule schedule { get; set; }
+        public RASchedule RAschedule { get; set; }
         public RARecipient RArecipient { get; set; }
     }
 }

@@ -15,10 +15,10 @@ namespace UICMA.Domain.Entities.RAAssociatedDocumentMap
             builder.HasKey(s => s.Id).HasName("RA_ASSOCIATED_DOCUMENT_ID");
             builder.Property(s => s.Type).HasColumnName("TYPE");
             builder.Property(s => s.DocumentationPath).HasColumnName("DOCUMENTATION_PATH");
-            builder.Property(s => s.ScheduleId).HasColumnName("SCHEDULE_ID");
+            builder.Property(s => s.RAScheduleId).HasColumnName("RA_SCHEDULE_ID");
             builder.Property(s => s.RecipientId).HasColumnName("RECIPIENT_ID");
 
-            builder.HasOne(t => t.schedule).WithMany(s => s.RAassociatedDocument).HasForeignKey(t => t.ScheduleId);
+            builder.HasOne(t => t.RAschedule).WithMany(s => s.RAassociatedDocument).HasForeignKey(t => t.RAScheduleId).HasConstraintName("ASS_DOC_SCHEDULE_ID");
             builder.HasOne(t => t.RArecipient).WithMany(s => s.RAassociatedDocument).HasForeignKey(t => t.RecipientId);
 
         }
