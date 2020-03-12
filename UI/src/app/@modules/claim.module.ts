@@ -25,6 +25,14 @@ import { RequestForWagesComponent } from '../components/claims-list/steps/reques
 import { BenefitAuditComponent } from '../components/claims-list/steps/benefit-audit/benefit-audit.component';
 import { BenefitChargeComponent } from '../components/claims-list/steps/benefit-charge/benefit-charge.component';
 
+import { RequestToReopenComponent } from '../components/claims-list/steps/request-to-reopen/request-to-reopen.component';
+import { CuiabBoardAppealComponent } from '../components/claims-list/steps/cuiab-board-appeal/cuiab-board-appeal.component';
+import { DE1545AppealFormComponent } from '../components/claims-list/steps/de1545-appeal-form/de1545-appeal-form.component';
+import { De4614AppealFormComponent } from '../components/claims-list/steps/de4614-appeal-form/de4614-appeal-form.component';
+import { De1101InterviewComponent } from '../components/claims-list/steps/de1101-interview/de1101-interview.component';
+import { De1101ResponseFormComponent } from '../components/claims-list/steps/de1101-response-form/de1101-response-form.component';
+
+
 
 const routes: Routes = [
   { path: "", component: ClaimComponent},
@@ -47,7 +55,13 @@ const routes: Routes = [
     EmployeeDataComponent,
     RequestForWagesComponent,
     BenefitAuditComponent,
-    BenefitChargeComponent 
+    BenefitChargeComponent,
+    RequestToReopenComponent,
+    CuiabBoardAppealComponent,
+    DE1545AppealFormComponent,
+    De4614AppealFormComponent,
+    De1101InterviewComponent,
+    De1101ResponseFormComponent
   ],
   imports: [
     NgxModule,
@@ -70,7 +84,13 @@ const routes: Routes = [
     EmployeeDataComponent,
     RequestForWagesComponent,
     BenefitAuditComponent,
-    BenefitChargeComponent 
+    BenefitChargeComponent,
+    RequestToReopenComponent,
+    CuiabBoardAppealComponent,
+    DE1545AppealFormComponent,
+    De4614AppealFormComponent,
+    De1101InterviewComponent,
+    De1101ResponseFormComponent,
   ]
 })
 export class ClaimModule { }

@@ -1148,6 +1148,7 @@ bs-datepicker-container, bs-daterangepicker-container {
 
 
 
+
 // animations 
 
 @keyframes menuup{
@@ -1161,5 +1162,12 @@ bs-datepicker-container, bs-daterangepicker-container {
 	to{
 		 transform: translateY(0px);
 		 opacity: 1;
-	}
+    }
+
+}
+
+.invalid-checkbox {
+    color: #fd397a !important;
+    font-size: 80%;
+
 }
