@@ -16,6 +16,7 @@ using UICMA.Domain.Entities.NoticeOfWages;
 using UICMA.Domain.Entities.Request_To_Reopen;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Wages_After_Appeal;
+using UICMA.Domain.Entities.Wages_Appeal;
 using UICMA.Domain.Entities.Writs;
 
 namespace UICMA.Domain.Entities.New_Claim
@@ -62,5 +63,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public BenefitCharge benefitCharge { get; set; }
         public DeterminationAppeal determinationAppeal { get; set; }
         public Wages wages { get; set; } 
+        public WagesAppeal wagesAppeal { get; set; }
     }
 }

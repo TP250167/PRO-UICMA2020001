@@ -74,6 +74,8 @@ using UICMA.Domain.Entities.TemplateMap;
 using UICMA.Domain.Entities.Templates;
 using UICMA.Domain.Entities.Wages_After_Appeal;
 using UICMA.Domain.Entities.Wages_After_AppealMap;
+using UICMA.Domain.Entities.Wages_Appeal;
+using UICMA.Domain.Entities.Wages_AppealMap;
 using UICMA.Domain.Entities.WagesMap;
 using UICMA.Domain.Entities.WritMap;
 using UICMA.Domain.Entities.Writs;
@@ -174,6 +176,7 @@ namespace UICMA.Repository
             new BenefitChargeClaimantDetailMap(modelBuilder.Entity<BenefitChargeClaimantDetail>());
             new DeterminationAppealMap(modelBuilder.Entity<DeterminationAppeal>());
             new WagesMap(modelBuilder.Entity<Wages>());
+            new WagesAppealMap(modelBuilder.Entity<WagesAppeal>());
         }
     }
 }
