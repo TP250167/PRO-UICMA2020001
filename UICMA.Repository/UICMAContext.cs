@@ -59,6 +59,8 @@ using UICMA.Domain.Entities.RARecipientRules;
 using UICMA.Domain.Entities.RARecipients;
 using UICMA.Domain.Entities.RAScheduleMap;
 using UICMA.Domain.Entities.RASchedules;
+using UICMA.Domain.Entities.Request_To_Reopen;
+using UICMA.Domain.Entities.Request_To_ReopenMap;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Response_to_EmployerMap;
 using UICMA.Domain.Entities.TemplateMap;
@@ -98,6 +100,7 @@ namespace UICMA.Repository
         public DbSet<Hearing> Hearings { get; set; }
         public DbSet<BenefitAudit> BenefitAudits { get; set; }
         public DbSet<Writ> Writs { get; set; }
+        public DbSet<RequestToReopen> RequestToReopens { get; set; }
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
@@ -158,6 +161,7 @@ namespace UICMA.Repository
             new HearingMap(modelBuilder.Entity<Hearing>());
             new BenefitAuditMap(modelBuilder.Entity<BenefitAudit>());
             new WritMap(modelBuilder.Entity<Writ>());
+            new RequestToReopenMap(modelBuilder.Entity<RequestToReopen>());
         }
     }
 }
