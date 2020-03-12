@@ -11,6 +11,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { SortableModule } from 'ngx-bootstrap/sortable';
+import { ToastrModule } from 'ngx-toastr';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +39,7 @@ import { CustomUploadDirective } from '../@directives/custom-upload.directive';
     TabsModule.forRoot(),
     TimepickerModule.forRoot(),
     SortableModule.forRoot(),
+    ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -53,6 +55,7 @@ import { CustomUploadDirective } from '../@directives/custom-upload.directive';
     TabsModule,
     TimepickerModule,
     SortableModule,
+    ToastrModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

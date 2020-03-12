@@ -3,8 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
-import { AppService } from '../../../../services/app.service'
-import { ClaimsService  } from '../../../../services/claims.service'
+import { AppService       } from '../../../../services/app.service'
+import { ClaimsService    } from '../../../../services/claims.service'
+import { ClaimsApiService } from '../../../../services/claims-api.service'
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-claim-init',
@@ -21,10 +24,12 @@ export class ClaimInitComponent implements OnInit {
   public cifSubmitted: boolean = false;
 
 
-  constructor(
-    public aps: AppService,
-    public cs:  ClaimsService,
-    private fb: FormBuilder,
+  constructor( 
+    public  aps  : AppService,
+    public  cs   : ClaimsService,
+    private fb   : FormBuilder,
+    private cas  : ClaimsApiService,
+    private tort : ToastrService
   ){
 
   }
@@ -61,9 +66,21 @@ export class ClaimInitComponent implements OnInit {
     if (this.cliamInitiateForm.invalid) { return; }
   }
 
+  showSuccess() {
+    this.tort.success('Hello world!', 'Toastr fun!', {
+      timeOut: 1000000000,
+    });
+  }
+
   ngOnInit() {
     this.cs.tabincLimit = 2;
-    this.claimFormInit()
+    this.claimFormInit();
+
+    this.cas.claimInitiate()
+    .subscribe((data)=>{
+      console.log(data)
+    })
+    
   }
 
 }
