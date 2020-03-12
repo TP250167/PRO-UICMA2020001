@@ -9,6 +9,12 @@ using UICMA.Domain.Entities.Additional_InformationMap;
 using UICMA.Domain.Entities.ALJ_Decision;
 using UICMA.Domain.Entities.ALJ_DecisionMap;
 using UICMA.Domain.Entities.Associated_Documents;
+using UICMA.Domain.Entities.Benefit_Audit;
+using UICMA.Domain.Entities.Benefit_AuditMap;
+using UICMA.Domain.Entities.Benefit_Charge;
+using UICMA.Domain.Entities.Benefit_Charge_Claimant_DetailMap;
+using UICMA.Domain.Entities.Benefit_Charge_ClaimantDetail;
+using UICMA.Domain.Entities.Benefit_ChargeMap;
 using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_AppealMap;
 using UICMA.Domain.Entities.Claim_Determination;
@@ -17,12 +23,16 @@ using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_InterviewMap;
 using UICMA.Domain.Entities.Claim_Response;
 using UICMA.Domain.Entities.Claim_ResponseMap;
+using UICMA.Domain.Entities.ClaimExceptionMap;
+using UICMA.Domain.Entities.ClaimExceptions;
 using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.CUIAB_AcknowledgementMap;
 using UICMA.Domain.Entities.EmployeeMap;
 using UICMA.Domain.Entities.Employees;
 using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.Form_Document_Map;
+using UICMA.Domain.Entities.HearingMap;
+using UICMA.Domain.Entities.Hearings;
 using UICMA.Domain.Entities.Issues_List;
 using UICMA.Domain.Entities.Issues_ListMap;
 using UICMA.Domain.Entities.MD_Document;
@@ -53,12 +63,16 @@ using UICMA.Domain.Entities.RARecipientRules;
 using UICMA.Domain.Entities.RARecipients;
 using UICMA.Domain.Entities.RAScheduleMap;
 using UICMA.Domain.Entities.RASchedules;
+using UICMA.Domain.Entities.Request_To_Reopen;
+using UICMA.Domain.Entities.Request_To_ReopenMap;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Response_to_EmployerMap;
 using UICMA.Domain.Entities.TemplateMap;
 using UICMA.Domain.Entities.Templates;
 using UICMA.Domain.Entities.Wages_After_Appeal;
 using UICMA.Domain.Entities.Wages_After_AppealMap;
+using UICMA.Domain.Entities.WritMap;
+using UICMA.Domain.Entities.Writs;
 
 namespace UICMA.Repository
 {
@@ -86,10 +100,11 @@ namespace UICMA.Repository
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<RABatchRecipientRule> RABatchRecipientRules { get; set; }
         public DbSet<FormDocument> FormDocument { get; set; }
-
-
-
-
+        public DbSet<ClaimException> ClaimExceptions { get; set; }
+        public DbSet<Hearing> Hearings { get; set; }
+        public DbSet<BenefitAudit> BenefitAudits { get; set; }
+        public DbSet<Writ> Writs { get; set; }
+        public DbSet<RequestToReopen> RequestToReopens { get; set; }
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
@@ -146,6 +161,13 @@ namespace UICMA.Repository
             new RARecipientRuleMap(modelBuilder.Entity<RARecipientRule>());
             new RAScheduleMap(modelBuilder.Entity<RASchedule>());
             new FormDocumentMap(modelBuilder.Entity<FormDocument>());
+            new ClaimExceptionMap(modelBuilder.Entity<ClaimException>());
+            new HearingMap(modelBuilder.Entity<Hearing>());
+            new BenefitAuditMap(modelBuilder.Entity<BenefitAudit>());
+            new WritMap(modelBuilder.Entity<Writ>());
+            new RequestToReopenMap(modelBuilder.Entity<RequestToReopen>());
+            new BenefitChargeMap(modelBuilder.Entity<BenefitCharge>());
+            new BenefitChargeClaimantDetailMap(modelBuilder.Entity<BenefitChargeClaimantDetail>());
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UICMA.Domain.Entities.RABatchs;
+using UICMA.Domain.Entities.RASchedules;
 
 namespace UICMA.Domain.Entities.RABatchSchedules
 {
@@ -9,9 +10,9 @@ namespace UICMA.Domain.Entities.RABatchSchedules
     {
         public Int64 Id { get; set; }
         public Int64 BatchId { get; set; }
-        public Int64 ScheduleId { get; set; }
+        public Int64 RAScheduleId { get; set; }
 
         public RABatch RAbatch { get; set; }
-        public Schedule schedule { get; set; }
+        public RASchedule RAschedule { get; set; }
     }
 }

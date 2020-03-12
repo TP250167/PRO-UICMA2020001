@@ -73,7 +73,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 772, DateTimeKind.Local).AddTicks(188));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 959, DateTimeKind.Local).AddTicks(4474));
 
                     b.Property<string>("PartiesAppearing")
                         .HasColumnName("PARTIES_APPEARING");
@@ -135,7 +135,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 785, DateTimeKind.Local).AddTicks(9752));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 987, DateTimeKind.Local).AddTicks(3066));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -182,6 +182,172 @@ namespace UICMA.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ATTENDEE_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Benefit_Audit.BenefitAudit", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
+
+                    b.Property<string>("ClaimantName")
+                        .HasColumnName("CLAIMANT_NAME");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<string>("FormCode")
+                        .HasColumnName("FORM_CODE");
+
+                    b.Property<DateTime?>("MailDate")
+                        .HasColumnName("MAIL_DATE");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 118, DateTimeKind.Local).AddTicks(7531));
+
+                    b.Property<string>("Notes")
+                        .HasColumnName("NOTES");
+
+                    b.Property<string>("SocialSecurityNumber")
+                        .HasColumnName("SOCIAL_SECURITY_NUMBER");
+
+                    b.HasKey("Id")
+                        .HasName("BENEFIT_AUDIT_ID");
+
+                    b.HasIndex("ClaimId")
+                        .IsUnique();
+
+                    b.ToTable("BENEFIT_AUDIT_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Benefit_Charge.BenefitCharge", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountId")
+                        .HasColumnName("ACCOUNT_ID");
+
+                    b.Property<string>("ActualAmountPaid")
+                        .HasColumnName("ACTUAL_AMOUNT_PAID");
+
+                    b.Property<string>("AmountPaidByBYB")
+                        .HasColumnName("AMOUNT_PAID_BY_BYB");
+
+                    b.Property<string>("AmountPaidByFiscalYear")
+                        .HasColumnName("AMOUNT_PAID_BY_FISCAL_YEAR");
+
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<string>("FormCode")
+                        .HasColumnName("FORM_CODE");
+
+                    b.Property<DateTime?>("IssuedDate")
+                        .HasColumnName("ISSUED_DATE");
+
+                    b.Property<long?>("LetterId")
+                        .HasColumnName("LETTER_ID");
+
+                    b.Property<string>("MaxAmountReceived")
+                        .HasColumnName("MAX_AMOUNT_RECEIVED");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 145, DateTimeKind.Local).AddTicks(782));
+
+                    b.Property<string>("Notes")
+                        .HasColumnName("NOTES");
+
+                    b.HasKey("Id")
+                        .HasName("BENEFIT_CHARGE_ID");
+
+                    b.HasIndex("ClaimId")
+                        .IsUnique();
+
+                    b.ToTable("BENEFIT_CHARGE_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Benefit_Charge_ClaimantDetail.BenefitChargeClaimantDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ChargeCode")
+                        .HasColumnName("CHARGE_CODE");
+
+                    b.Property<DateTime?>("ChargeQuarterDate")
+                        .HasColumnName("CHARGE_QUARTER_DATE");
+
+                    b.Property<DateTime?>("ClaimDate")
+                        .HasColumnName("CLAIM_DATE");
+
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnName("CLAIM_TYPE");
+
+                    b.Property<string>("ClaimantName")
+                        .HasColumnName("CLAIMANT_NAME");
+
+                    b.Property<string>("ClaimantSSN")
+                        .HasColumnName("CLAIMANT_SSN");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<decimal?>("EmployerCharge")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnName("EMPLOYER_CHARGE")
+                        .HasColumnType("decimal(16,2)");
+
+                    b.Property<long>("FormId")
+                        .HasColumnName("FORM_ID");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 153, DateTimeKind.Local).AddTicks(3625));
+
+                    b.Property<string>("PCMCode")
+                        .HasColumnName("PCM_CODE");
+
+                    b.HasKey("Id")
+                        .HasName("BEN_CHAR_CLAIMANT_DETAIL_ID");
+
+                    b.HasIndex("FormId");
+
+                    b.ToTable("BEN_CHAR_CLAIMANT_DETAIL_TBL");
                 });
 
             modelBuilder.Entity("UICMA.Domain.Entities.CUIAB_Acknowledgement.CUIABAcknowledgement", b =>
@@ -238,7 +404,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 777, DateTimeKind.Local).AddTicks(970));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 968, DateTimeKind.Local).AddTicks(1647));
 
                     b.HasKey("Id")
                         .HasName("CUIAB_ACKNOWLEDGEMENT_ID");
@@ -247,6 +413,51 @@ namespace UICMA.API.Migrations
                         .IsUnique();
 
                     b.ToTable("CUIAB_ACKNOWLEDGEMENT_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.ClaimExceptions.ClaimException", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<long>("DocumentId")
+                        .HasColumnName("DOCUMENT_ID");
+
+                    b.Property<DateTime?>("ExceptionDate")
+                        .HasColumnName("EXCEPTION_DATE");
+
+                    b.Property<string>("ExceptionReason")
+                        .HasColumnName("EXCEPTION_REASON");
+
+                    b.Property<long>("FormId")
+                        .HasColumnName("FORM_ID");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 98, DateTimeKind.Local).AddTicks(2141));
+
+                    b.HasKey("Id")
+                        .HasName("CLAIM_EXCEPTION_ID");
+
+                    b.HasIndex("DocumentId");
+
+                    b.HasIndex("FormId");
+
+                    b.ToTable("CLAIM_EXCEPTION_TBL");
                 });
 
             modelBuilder.Entity("UICMA.Domain.Entities.Claim_Appeal.ClaimAppeal", b =>
@@ -300,7 +511,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 756, DateTimeKind.Local).AddTicks(7293));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 928, DateTimeKind.Local).AddTicks(7057));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -371,7 +582,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 747, DateTimeKind.Local).AddTicks(4428));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 917, DateTimeKind.Local).AddTicks(4578));
 
                     b.Property<string>("SocialSecurityNumber")
                         .HasColumnName("SOCIAL_SECURITY_NUMBER");
@@ -439,7 +650,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 738, DateTimeKind.Local).AddTicks(7832));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 906, DateTimeKind.Local).AddTicks(1915));
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("PHONE_NUMBER");
@@ -539,7 +750,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 730, DateTimeKind.Local).AddTicks(9418));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 895, DateTimeKind.Local).AddTicks(9386));
 
                     b.Property<bool>("OfferLetter")
                         .ValueGeneratedOnAdd()
@@ -760,7 +971,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 765, DateTimeKind.Local).AddTicks(5905));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 92, DateTimeKind.Local).AddTicks(1413));
 
                     b.Property<DateTime?>("ReceivedDate")
                         .HasColumnName("RECEIVED_DATE");
@@ -776,6 +987,82 @@ namespace UICMA.API.Migrations
                     b.HasIndex("FormId");
 
                     b.ToTable("FORM_DOCUMENT_MAP_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Hearings.Hearing", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdministrativeLawJudge")
+                        .HasColumnName("ADMINISTRATIVE_LAW_JUDGE");
+
+                    b.Property<string>("AppellantName")
+                        .HasColumnName("APPELLANT_NAME");
+
+                    b.Property<bool>("AppellantType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("APPELLANT_TYPE")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("CaseNumber")
+                        .HasColumnName("CASE_NUMBER");
+
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
+
+                    b.Property<string>("ClaimantName")
+                        .HasColumnName("CLAIMANT_NAME");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<string>("EDDOffice")
+                        .HasColumnName("EDD_OFFICE");
+
+                    b.Property<string>("FormCode")
+                        .HasColumnName("FORM_CODE");
+
+                    b.Property<DateTime?>("HearingDate")
+                        .HasColumnName("HEARING_DATE");
+
+                    b.Property<string>("HearingPlace")
+                        .HasColumnName("HEARING_PLACE");
+
+                    b.Property<string>("HearingTime")
+                        .HasColumnName("HEARING_TIME");
+
+                    b.Property<long?>("IssuesList")
+                        .HasColumnName("ISSUES_LIST");
+
+                    b.Property<DateTime?>("MailDate")
+                        .HasColumnName("MAIL_DATE");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 111, DateTimeKind.Local).AddTicks(719));
+
+                    b.Property<string>("Notes")
+                        .HasColumnName("NOTES");
+
+                    b.Property<string>("SocialSecurityNumber")
+                        .HasColumnName("SOCIAL_SECURITY_NUMBER");
+
+                    b.HasKey("Id")
+                        .HasName("NOTICE_OF_HEARING_ID");
+
+                    b.HasIndex("ClaimId")
+                        .IsUnique();
+
+                    b.ToTable("NOTICE_OF_HEARING_TBL");
                 });
 
             modelBuilder.Entity("UICMA.Domain.Entities.Issues_List.IssuesList", b =>
@@ -802,7 +1089,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 759, DateTimeKind.Local).AddTicks(4191));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 931, DateTimeKind.Local).AddTicks(7955));
 
                     b.HasKey("Id")
                         .HasName("ISSUES_LIST_ID");
@@ -842,7 +1129,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 722, DateTimeKind.Local).AddTicks(5967));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 887, DateTimeKind.Local).AddTicks(7883));
 
                     b.HasKey("Id")
                         .HasName("MD_DOCUMENT_ID");
@@ -877,7 +1164,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 720, DateTimeKind.Local).AddTicks(2186));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 884, DateTimeKind.Local).AddTicks(873));
 
                     b.HasKey("Id")
                         .HasName("MD_FORM_ID");
@@ -933,7 +1220,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 717, DateTimeKind.Local).AddTicks(1885));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 878, DateTimeKind.Local).AddTicks(8843));
 
                     b.Property<string>("NewClaim")
                         .HasColumnName("NEW_CLAIM");
@@ -980,7 +1267,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 789, DateTimeKind.Local).AddTicks(7910));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 995, DateTimeKind.Local).AddTicks(2927));
 
                     b.Property<string>("NotifyAttachment")
                         .HasColumnName("NOTIFY_ATTACHMENT")
@@ -1047,7 +1334,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 742, DateTimeKind.Local).AddTicks(3868));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 910, DateTimeKind.Local).AddTicks(8331));
 
                     b.HasKey("Id")
                         .HasName("QUESTIONS_ID");
@@ -1066,11 +1353,11 @@ namespace UICMA.API.Migrations
                     b.Property<string>("DocumentationPath")
                         .HasColumnName("DOCUMENTATION_PATH");
 
+                    b.Property<long>("RAScheduleId")
+                        .HasColumnName("RA_SCHEDULE_ID");
+
                     b.Property<long>("RecipientId")
                         .HasColumnName("RECIPIENT_ID");
-
-                    b.Property<long>("ScheduleId")
-                        .HasColumnName("SCHEDULE_ID");
 
                     b.Property<string>("Type")
                         .HasColumnName("TYPE");
@@ -1078,9 +1365,9 @@ namespace UICMA.API.Migrations
                     b.HasKey("Id")
                         .HasName("RA_ASSOCIATED_DOCUMENT_ID");
 
-                    b.HasIndex("RecipientId");
+                    b.HasIndex("RAScheduleId");
 
-                    b.HasIndex("ScheduleId");
+                    b.HasIndex("RecipientId");
 
                     b.ToTable("RA_ASSOCIATED_DOCUMENT_TBL");
                 });
@@ -1138,15 +1425,15 @@ namespace UICMA.API.Migrations
                     b.Property<long>("BatchId")
                         .HasColumnName("BATCH_ID");
 
-                    b.Property<long>("ScheduleId")
-                        .HasColumnName("SCHEDULE_ID");
+                    b.Property<long>("RAScheduleId")
+                        .HasColumnName("RA_SCHEDULE_ID");
 
                     b.HasKey("Id")
                         .HasName("RA_BATCH_SCHEDULE_MAP_ID");
 
                     b.HasIndex("BatchId");
 
-                    b.HasIndex("ScheduleId");
+                    b.HasIndex("RAScheduleId");
 
                     b.ToTable("RA_BATCH_SCHEDULE_MAP_TBL");
                 });
@@ -1205,7 +1492,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 827, DateTimeKind.Local).AddTicks(7928));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 67, DateTimeKind.Local).AddTicks(4134));
 
                     b.Property<DateTime?>("NextOccurrance")
                         .HasColumnName("NEXT_OCCURRANCE");
@@ -1243,7 +1530,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 839, DateTimeKind.Local).AddTicks(7191));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 86, DateTimeKind.Local).AddTicks(621));
 
                     b.Property<string>("RecipientRuleName")
                         .HasColumnName("RECIPIENT_RULE_NAME");
@@ -1320,7 +1607,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 835, DateTimeKind.Local).AddTicks(5885));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 78, DateTimeKind.Local).AddTicks(4717));
 
                     b.Property<DateTime?>("NotifiedSentOn")
                         .HasColumnName("NOTIFIED_SENT_ON");
@@ -1364,7 +1651,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 844, DateTimeKind.Local).AddTicks(7815));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 90, DateTimeKind.Local).AddTicks(9836));
 
                     b.Property<DateTime?>("ScheduleDate")
                         .HasColumnName("SCHEDULE_DATE");
@@ -1382,6 +1669,80 @@ namespace UICMA.API.Migrations
                         .HasName("RA_SCHEDULE_ID");
 
                     b.ToTable("RA_SCHEDULE_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Request_To_Reopen.RequestToReopen", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountNumber")
+                        .HasColumnName("ACCOUNT_NUMBER");
+
+                    b.Property<long?>("AdministrativeLawJudgeServer")
+                        .HasColumnName("ADMIN_LAW_JUDGE_SERVER");
+
+                    b.Property<string>("AppealOfficeAddress")
+                        .HasColumnName("APPEAL_OFFICE_ADDRESS");
+
+                    b.Property<string>("CaseNumber")
+                        .HasColumnName("CASE_NUMBER");
+
+                    b.Property<string>("City")
+                        .HasColumnName("CITY");
+
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
+
+                    b.Property<string>("ClaimantName")
+                        .HasColumnName("CLAIMANT_NAME");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<string>("Employer")
+                        .HasColumnName("EMPLOYER");
+
+                    b.Property<string>("FormCode")
+                        .HasColumnName("FORM_CODE");
+
+                    b.Property<DateTime?>("HearingDate")
+                        .HasColumnName("HEARING_DATE");
+
+                    b.Property<string>("HearingTime")
+                        .HasColumnName("HEARING_TIME");
+
+                    b.Property<DateTime?>("MailDate")
+                        .HasColumnName("MAIL_DATE");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 135, DateTimeKind.Local).AddTicks(4144));
+
+                    b.Property<string>("Signature")
+                        .HasColumnName("SIGNATURE");
+
+                    b.Property<string>("State")
+                        .HasColumnName("STATE");
+
+                    b.Property<string>("Zipcode")
+                        .HasColumnName("ZIPCODE");
+
+                    b.HasKey("Id")
+                        .HasName("REQUEST_TO_REOPEN_ID");
+
+                    b.HasIndex("ClaimId")
+                        .IsUnique();
+
+                    b.ToTable("REQUEST_TO_REOPEN_TBL");
                 });
 
             modelBuilder.Entity("UICMA.Domain.Entities.Response_to_Employer.ResponseToEmployer", b =>
@@ -1420,7 +1781,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 751, DateTimeKind.Local).AddTicks(2375));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 922, DateTimeKind.Local).AddTicks(118));
 
                     b.Property<string>("SocialSecurityNumber")
                         .HasColumnName("SOCIAL_SECURITY_NUMBER");
@@ -1444,7 +1805,7 @@ namespace UICMA.API.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 704, DateTimeKind.Local).AddTicks(8256));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 859, DateTimeKind.Local).AddTicks(138));
 
                     b.Property<long?>("CreatorId");
 
@@ -1456,7 +1817,7 @@ namespace UICMA.API.Migrations
 
                     b.Property<DateTime>("ModifiedOn")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 705, DateTimeKind.Local).AddTicks(6664));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 860, DateTimeKind.Local).AddTicks(4822));
 
                     b.Property<long?>("ModifierId");
 
@@ -1504,7 +1865,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 792, DateTimeKind.Local).AddTicks(7247));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 1, DateTimeKind.Local).AddTicks(3971));
 
                     b.Property<string>("TemplateAttachmentContent")
                         .HasColumnName("TEMPLATE_ATTACHMENT_CONTENT")
@@ -1596,7 +1957,7 @@ namespace UICMA.API.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("MODIFIED_ON")
-                        .HasDefaultValue(new DateTime(2020, 3, 11, 15, 5, 41, 781, DateTimeKind.Local).AddTicks(6478));
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 38, 977, DateTimeKind.Local).AddTicks(1364));
 
                     b.Property<string>("PreparerName")
                         .HasColumnName("PREPARER_NAME");
@@ -1614,6 +1975,50 @@ namespace UICMA.API.Migrations
                         .IsUnique();
 
                     b.ToTable("WAGES_AFTER_APPEAL_TBL");
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Writs.Writ", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClaimId")
+                        .HasColumnName("CLAIM_ID");
+
+                    b.Property<string>("ClaimantName")
+                        .HasColumnName("CLAIMANT_NAME");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnName("CREATED_ON");
+
+                    b.Property<string>("FormCode")
+                        .HasColumnName("FORM_CODE");
+
+                    b.Property<DateTime?>("MailDate")
+                        .HasColumnName("MAIL_DATE");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MODIFIED_ON")
+                        .HasDefaultValue(new DateTime(2020, 3, 12, 14, 51, 39, 126, DateTimeKind.Local).AddTicks(1670));
+
+                    b.Property<string>("Notes")
+                        .HasColumnName("NOTES");
+
+                    b.HasKey("Id")
+                        .HasName("WRIT_ID");
+
+                    b.HasIndex("ClaimId")
+                        .IsUnique();
+
+                    b.ToTable("WRIT_TBL");
                 });
 
             modelBuilder.Entity("UICMA.Domain.Entities.ALJ_Decision.ALJDecision", b =>
@@ -1658,11 +2063,48 @@ namespace UICMA.API.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("UICMA.Domain.Entities.Benefit_Audit.BenefitAudit", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.New_Claim.Claim", "claim")
+                        .WithOne("benefitAudit")
+                        .HasForeignKey("UICMA.Domain.Entities.Benefit_Audit.BenefitAudit", "ClaimId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Benefit_Charge.BenefitCharge", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.New_Claim.Claim", "claim")
+                        .WithOne("benefitCharge")
+                        .HasForeignKey("UICMA.Domain.Entities.Benefit_Charge.BenefitCharge", "ClaimId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Benefit_Charge_ClaimantDetail.BenefitChargeClaimantDetail", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.Benefit_Charge.BenefitCharge", "benefitCharge")
+                        .WithMany("benefitChargeClaimantDetail")
+                        .HasForeignKey("FormId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("UICMA.Domain.Entities.CUIAB_Acknowledgement.CUIABAcknowledgement", b =>
                 {
                     b.HasOne("UICMA.Domain.Entities.New_Claim.Claim", "claim")
                         .WithOne("acknowledgement")
                         .HasForeignKey("UICMA.Domain.Entities.CUIAB_Acknowledgement.CUIABAcknowledgement", "ClaimId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.ClaimExceptions.ClaimException", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.MD_Document.MDDocument", "MDDocument")
+                        .WithMany("ClaimExceptions")
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("UICMA.Domain.Entities.MD_Form.MDForm", "MDForm")
+                        .WithMany("ClaimExceptions")
+                        .HasForeignKey("FormId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -1711,6 +2153,14 @@ namespace UICMA.API.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("UICMA.Domain.Entities.Hearings.Hearing", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.New_Claim.Claim", "claim")
+                        .WithOne("hearing")
+                        .HasForeignKey("UICMA.Domain.Entities.Hearings.Hearing", "ClaimId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("UICMA.Domain.Entities.Questions.Question", b =>
                 {
                     b.HasOne("UICMA.Domain.Entities.Claim_Interview.ClaimInterview", "claimInterview")
@@ -1721,14 +2171,15 @@ namespace UICMA.API.Migrations
 
             modelBuilder.Entity("UICMA.Domain.Entities.RAAssociatedDocuments.RAAssociatedDocument", b =>
                 {
+                    b.HasOne("UICMA.Domain.Entities.RASchedules.RASchedule", "RAschedule")
+                        .WithMany("RAassociatedDocument")
+                        .HasForeignKey("RAScheduleId")
+                        .HasConstraintName("ASS_DOC_SCHEDULE_ID")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("UICMA.Domain.Entities.RARecipients.RARecipient", "RArecipient")
                         .WithMany("RAassociatedDocument")
                         .HasForeignKey("RecipientId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("UICMA.Domain.Entities.Schedule", "schedule")
-                        .WithMany("RAassociatedDocument")
-                        .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -1765,9 +2216,9 @@ namespace UICMA.API.Migrations
                         .HasForeignKey("BatchId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("UICMA.Domain.Entities.Schedule", "schedule")
+                    b.HasOne("UICMA.Domain.Entities.RASchedules.RASchedule", "RAschedule")
                         .WithMany("RAbatchSchedule")
-                        .HasForeignKey("ScheduleId")
+                        .HasForeignKey("RAScheduleId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -1781,6 +2232,14 @@ namespace UICMA.API.Migrations
                     b.HasOne("UICMA.Domain.Entities.Templates.Template", "template")
                         .WithMany("RAbatchTemplate")
                         .HasForeignKey("TemplateId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Request_To_Reopen.RequestToReopen", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.New_Claim.Claim", "claim")
+                        .WithOne("requestToReopen")
+                        .HasForeignKey("UICMA.Domain.Entities.Request_To_Reopen.RequestToReopen", "ClaimId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -1808,6 +2267,14 @@ namespace UICMA.API.Migrations
                     b.HasOne("UICMA.Domain.Entities.New_Claim.Claim", "claim")
                         .WithOne("wagesAfterAppeal")
                         .HasForeignKey("UICMA.Domain.Entities.Wages_After_Appeal.WagesAfterAppeal", "ClaimId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("UICMA.Domain.Entities.Writs.Writ", b =>
+                {
+                    b.HasOne("UICMA.Domain.Entities.New_Claim.Claim", "claim")
+                        .WithOne("writ")
+                        .HasForeignKey("UICMA.Domain.Entities.Writs.Writ", "ClaimId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618

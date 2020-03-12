@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UICMA.Domain.Entities.Associated_Documents;
+using UICMA.Domain.Entities.ClaimExceptions;
 using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.MD_Document;
 
@@ -20,5 +21,6 @@ namespace UICMA.Domain.Entities.MD_Form
 
         public List<AssociatedDocuments> AssociatedDocuments { get; set; }
         public List<FormDocument> FormDocuments { get; set; }
+        public List<ClaimException> ClaimExceptions { get; set; }
     }
 }
