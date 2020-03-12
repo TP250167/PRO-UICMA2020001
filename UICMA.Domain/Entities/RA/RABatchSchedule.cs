@@ -12,7 +12,7 @@ namespace UICMA.Domain.Entities.RABatchSchedules
         public Int64 BatchId { get; set; }
         public Int64 RAScheduleId { get; set; }
 
-        public RABatch RAbatch { get; set; }
+        public RABatchView RAbatch { get; set; }
         public RASchedule RAschedule { get; set; }
     }
 }

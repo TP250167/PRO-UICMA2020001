@@ -48,6 +48,7 @@ using UICMA.Domain.Entities.NotificationMap;
 using UICMA.Domain.Entities.Notifications;
 using UICMA.Domain.Entities.Questions;
 using UICMA.Domain.Entities.QuestionsMap;
+using UICMA.Domain.Entities.RA.RAView;
 using UICMA.Domain.Entities.RAAssociatedDocumentMap;
 using UICMA.Domain.Entities.RAAssociatedDocuments;
 using UICMA.Domain.Entities.RABatchMap;
@@ -113,6 +114,13 @@ namespace UICMA.Repository
         public DbSet<BenefitAudit> BenefitAudits { get; set; }
         public DbSet<Writ> Writs { get; set; }
         public DbSet<RequestToReopen> RequestToReopens { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        
+        public DbSet<RABatchView> RABatch { get; set; }
+        public DbSet<RARecipient> RARecipient { get; set; }
+        public DbSet<RABatchViewModel> spRaBatchDetail { get; set; }
+        public DbSet<RANotificationViewModel> vwRaNotificationList { get; set; }
+
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
         {
@@ -164,7 +172,7 @@ namespace UICMA.Repository
             new RABatchScheduleMap(modelBuilder.Entity<RABatchSchedule>());
             new RABatchTemplateMap(modelBuilder.Entity<RABatchTemplate>());
             new EmployeeMap(modelBuilder.Entity<Employee>());
-            new RABatchMap(modelBuilder.Entity<RABatch>());
+            new RABatchMap(modelBuilder.Entity<RABatchView>());
             new RARecipientMap(modelBuilder.Entity<RARecipient>());
             new RARecipientRuleMap(modelBuilder.Entity<RARecipientRule>());
             new RAScheduleMap(modelBuilder.Entity<RASchedule>());
@@ -180,6 +188,11 @@ namespace UICMA.Repository
             new WagesMap(modelBuilder.Entity<Wages>());
             new WagesAppealMap(modelBuilder.Entity<WagesAppeal>());
             new RequestForEmployeeDataMap(modelBuilder.Entity<RequestForEmployeeData>());
+        }
+
+        internal object Where(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
         }
     }
 }

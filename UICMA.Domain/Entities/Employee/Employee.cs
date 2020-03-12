@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace UICMA.Domain.Entities.Employees
 {
-   public class Employee 
+   public class Employee :IBaseEntity
     {
+        
+
+        [NotMapped]
+        public Int64 Id { get; set; }
         [Key]
         public string EmployeeNumberCode { get; set; }
         public string LastName { get; set; }

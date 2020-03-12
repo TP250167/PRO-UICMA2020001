@@ -10,7 +10,7 @@ namespace UICMA.Domain.Entities.RABatchMap
 {
   public class RABatchMap
     {
-        public RABatchMap(EntityTypeBuilder<RABatch> builder)
+        public RABatchMap(EntityTypeBuilder<RABatchView> builder)
         {
             builder.ToTable("RA_BATCH_TBL");
             builder.HasKey(s => s.Id).HasName("RA_BATCH_ID");

@@ -28,8 +28,12 @@ using UICMA.API.Extensions;
 using UICMA.API.ViewModels.Mappings;
 using UICMA.Repository;
 using UICMA.Repository.ClaimRepository;
+using UICMA.Repository.RARepository;
+using UICMA.Repository.RARepository;
 using UICMA.Service;
 using UICMA.Service.ClaimServices;
+using UICMA.Service.RAService;
+using UICMA.Service.RAService;
 
 namespace UICMA.API
 {
@@ -197,6 +201,23 @@ namespace UICMA.API
             builder.RegisterType<CUIABAcknowRepository>().As<ICUIABAcknowRepository>();
 
 
+            //RA  Repository and Service 
+            builder.RegisterType<RABatchService>().As<IRABatchService>();
+            builder.RegisterType<RABatchRepository>().As<IRABatchRepository>();
+            builder.RegisterType<RARecipientService>().As<IRARecipientService>();
+            builder.RegisterType<RARecipientRepository>().As<IRARecipientRepository>();
+            builder.RegisterType<RAScheduleRepository>().As<IRAScheduleRepository>();
+            builder.RegisterType<RABatchScheduleRepository>().As<IRABatchScheduleRepository>();
+            builder.RegisterType<EmployeeInfoDataRepository>().As<IEmployeeInfoDataRepository>();
+            builder.RegisterType<RABatchRecipientRepository>().As<IRABatchRecipientRepository>();
+            builder.RegisterType<TemplateRepository>().As<ITemplateRepository>();
+            builder.RegisterType<RARecipientRuleService>().As<IRARecipientRuleService>();
+            builder.RegisterType<RARecipientRuleRepository>().As<IRARecipientRuleRepository>();
+            builder.RegisterType<RABatchRecipientRuleRepository>().As<IRABatchRecipientRuleRepository>();
+            
+
+
+
             builder.RegisterType<FormDocumentMapService>().As<IFormDocumentMapService>();
             builder.RegisterType<FormDocumentMapRepository>().As<IFormDocumentMapRepository>();
 
@@ -218,6 +239,9 @@ namespace UICMA.API
 
                                                                         
             ////////////////
+
+
+
 
             builder.Populate(services);
             var container = builder.Build();

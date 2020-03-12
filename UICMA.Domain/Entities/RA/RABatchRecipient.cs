@@ -12,7 +12,7 @@ namespace UICMA.Domain.Entities.RABatchRecipients
         public Int64 BatchId { get; set; }
         public Int64 RecipientId { get; set; }
 
-        public RABatch RAbatch { get; set; }
+        public RABatchView RAbatch { get; set; }
         public RARecipient RArecipient { get; set; }
     }
 }

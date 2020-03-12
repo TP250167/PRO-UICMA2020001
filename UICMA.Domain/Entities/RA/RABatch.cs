@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using UICMA.Domain.Entities.RABatchRecipientRules;
 using UICMA.Domain.Entities.RABatchRecipients;
 using UICMA.Domain.Entities.RABatchSchedules;
 using UICMA.Domain.Entities.RABatchTemplates;
 using UICMA.Domain.Entities.RARecipientRules;
+using UICMA.Domain.Entities.RASchedules;
 
 namespace UICMA.Domain.Entities.RABatchs
 {
-   public class RABatch :IBaseEntity
+   public class RABatchView :IBaseEntity
     {
         public Int64 Id { get; set; }
         public string BatchName { get; set; }
@@ -24,10 +26,16 @@ namespace UICMA.Domain.Entities.RABatchs
         public DateTime? CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public DateTime? NextOccurrance { get; set; }
+        
         public ICollection<RABatchRecipientRule> RAbatchRecipientRule { get; set; }
         public ICollection<RABatchSchedule> RAbatchSchedule { get; set; }
         public ICollection<RABatchTemplate> RAbatchTemplate { get; set; }
         public ICollection<RABatchRecipient> RAbatchRecipient { get; set; }
+       
+        [NotMapped]
+        public RABatchRecipientRule RAbatchRecRule { get; set; }
+        [NotMapped]
+        public RASchedule RASchedule { get; set; }
     }
 }
 
