@@ -8,6 +8,7 @@ using UICMA.Domain.Entities.Claim_Determination;
 using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_Response;
 using UICMA.Domain.Entities.CUIAB_Acknowledgement;
+using UICMA.Domain.Entities.Hearings;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Wages_After_Appeal;
 
@@ -48,5 +49,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public CUIABAcknowledgement acknowledgement { get; set; }
         public WagesAfterAppeal  wagesAfterAppeal {get;set;}
         public AdditionalInformation additionalInformation { get; set; }
+        public Hearing hearing { get; set; }
     }
 }

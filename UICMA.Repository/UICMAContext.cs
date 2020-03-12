@@ -25,6 +25,8 @@ using UICMA.Domain.Entities.EmployeeMap;
 using UICMA.Domain.Entities.Employees;
 using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.Form_Document_Map;
+using UICMA.Domain.Entities.HearingMap;
+using UICMA.Domain.Entities.Hearings;
 using UICMA.Domain.Entities.Issues_List;
 using UICMA.Domain.Entities.Issues_ListMap;
 using UICMA.Domain.Entities.MD_Document;
@@ -89,7 +91,7 @@ namespace UICMA.Repository
         public DbSet<RABatchRecipientRule> RABatchRecipientRules { get; set; }
         public DbSet<FormDocument> FormDocument { get; set; }
         public DbSet<ClaimException> ClaimExceptions { get; set; }
-
+        public DbSet<Hearing> Hearings { get; set; }
 
 
 
@@ -149,6 +151,7 @@ namespace UICMA.Repository
             new RAScheduleMap(modelBuilder.Entity<RASchedule>());
             new FormDocumentMap(modelBuilder.Entity<FormDocument>());
             new ClaimExceptionMap(modelBuilder.Entity<ClaimException>());
+            new HearingMap(modelBuilder.Entity<Hearing>());
         }
     }
 }
