@@ -14,6 +14,8 @@
     <Compile Remove="Migrations\20200311090509_add-form-document-map.Designer.cs" />
     <Compile Remove="Migrations\20200312042106_change-scheduletbl-to-raschedule.cs" />
     <Compile Remove="Migrations\20200312042106_change-scheduletbl-to-raschedule.Designer.cs" />
+    <Compile Remove="Migrations\20200312045035_add-exception-tbl.cs" />
+    <Compile Remove="Migrations\20200312045035_add-exception-tbl.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

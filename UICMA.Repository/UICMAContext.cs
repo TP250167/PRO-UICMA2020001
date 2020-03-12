@@ -17,6 +17,8 @@ using UICMA.Domain.Entities.Claim_Interview;
 using UICMA.Domain.Entities.Claim_InterviewMap;
 using UICMA.Domain.Entities.Claim_Response;
 using UICMA.Domain.Entities.Claim_ResponseMap;
+using UICMA.Domain.Entities.ClaimExceptionMap;
+using UICMA.Domain.Entities.ClaimExceptions;
 using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.CUIAB_AcknowledgementMap;
 using UICMA.Domain.Entities.EmployeeMap;
@@ -86,7 +88,7 @@ namespace UICMA.Repository
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<RABatchRecipientRule> RABatchRecipientRules { get; set; }
         public DbSet<FormDocument> FormDocument { get; set; }
-
+        public DbSet<ClaimException> ClaimExceptions { get; set; }
 
 
 
@@ -146,6 +148,7 @@ namespace UICMA.Repository
             new RARecipientRuleMap(modelBuilder.Entity<RARecipientRule>());
             new RAScheduleMap(modelBuilder.Entity<RASchedule>());
             new FormDocumentMap(modelBuilder.Entity<FormDocument>());
+            new ClaimExceptionMap(modelBuilder.Entity<ClaimException>());
         }
     }
 }
