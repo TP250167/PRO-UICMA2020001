@@ -13,6 +13,9 @@ namespace UICMA.Domain.Entities.RABatchRecipientRules
         public Int64 BatchId { get; set; }
         public Int64 RecipientRuleId { get; set; }
         [NotMapped]
+
+        public string RecipientRuleListId { get; set; }
+        [NotMapped]
         public String RecipientRuleName { get; set; }
         [NotMapped]
         public String RecipientRule { get; set; }

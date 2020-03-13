@@ -1,7 +1,7 @@
 <div class="cc-page-title">
     <h2>Reasonable Assurance Notification Management</h2>
     <div class="text-right Notification-button">
-    <button class="btn btn-primary" (click)="aps.openModal(checkAttachment)">Save Claim Info</button>
+    <button class="btn btn-primary" (click)="aps.openModal(checkAttachment)">Add Batch</button>
     </div>
 </div>
 <div class="container-fluid cc-pad-zero">
@@ -94,8 +94,8 @@
 </div>
 <ng-template #checkAttachment>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">NA Batch Detail Update</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.closeModel()">
+        <h4 class="modal-title pull-left">Add RA Batch Detail</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.close()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>

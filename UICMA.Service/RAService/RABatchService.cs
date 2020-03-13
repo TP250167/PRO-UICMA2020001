@@ -31,8 +31,10 @@ namespace UICMA.Service.RAService
         private INotificationRepository _NotificationRepository;
         private IRABatchRecipientRuleRepository _RABatchRecipientRuleRepository;
 
+        private IRARecipientRuleRepository _RARecipientRuleRepository;
+
         public RABatchService(IRABatchRepository _RABatchRepository, IRAScheduleRepository _RAScheduleRepository, IRABatchScheduleRepository _RABatchScheduleRepository, IEmployeeInfoDataRepository _EmployeeInfoDataRepository, IRARecipientRepository _RARecipientRepository,
-            ITemplateRepository _TemplateRepository, IRABatchRecipientRepository _RABatchRecipientRepository, INotificationRepository _NotificationRepository, IRABatchRecipientRuleRepository _RABatchRecipientRuleRepository)
+            ITemplateRepository _TemplateRepository, IRABatchRecipientRepository _RABatchRecipientRepository, INotificationRepository _NotificationRepository, IRABatchRecipientRuleRepository _RABatchRecipientRuleRepository, IRARecipientRuleRepository _RARecipientRuleRepository)
         {
             this._RABatchRepository = _RABatchRepository;
             this._RAScheduleRepository = _RAScheduleRepository;
@@ -43,15 +45,17 @@ namespace UICMA.Service.RAService
             this._RABatchRecipientRepository = _RABatchRecipientRepository;
             this._NotificationRepository = _NotificationRepository;
             this._RABatchRecipientRuleRepository = _RABatchRecipientRuleRepository;
+            this._RARecipientRuleRepository =_RARecipientRuleRepository;
         }
         
 
         //Add and Update RABatch
         public RABatchView CreateBatch(RABatchView Batch)
         {
+
             RABatchView oBatch = new RABatchView();
             RASchedule rASchedule = new RASchedule();
-
+            int Recipientcount = 0;
             if (Batch.Id == 0)
             {
                 //Add RABatch
@@ -64,23 +68,23 @@ namespace UICMA.Service.RAService
                 //Add RAScheduleMap
                 RABatchSchedule rABatchSchedule = new RABatchSchedule();
                 rABatchSchedule.BatchId = oBatch.Id;
-                List<Employee> Emp = new List<Employee>();
+                List<Employee> Emp = new List<Employee>();             
+                rASchedule = _RAScheduleRepository.AddData(rASchedule);
+                rABatchSchedule.RAScheduleId = rASchedule.Id;
+                rABatchSchedule = _RABatchScheduleRepository.AddData(rABatchSchedule);
+                var  Rules = Batch.RAbatchRecRule.RecipientRuleListId.Split(",");
+                foreach (var recp in Rules)
+                {              
                 RABatchRecipientRule rARecipientRule = new RABatchRecipientRule();
                 rARecipientRule.BatchId= oBatch.Id;
-                rARecipientRule.RecipientRuleId = Batch.RAbatchRecRule.RecipientRuleId;
+                rARecipientRule.RecipientRuleId = Convert.ToInt32(recp);
                 rARecipientRule = _RABatchRecipientRuleRepository.AddData(rARecipientRule);
-                int Recipientcount = 0;             
-                switch (Batch.RAbatchRecRule.RecipientRuleId)
+                    var Rule = _RARecipientRuleRepository.GetSingle(Convert.ToInt32(recp));                              
+                switch (Rule.RecipientRuleName)
                 {
-                    case 1:
+                    case "1":
                         Emp = _EmployeeInfoDataRepository.GetClassifiedEmployee();
-                        Recipientcount = Emp.Count;
-
-                        rASchedule.TotalRecipient = Recipientcount;
-                        rASchedule = _RAScheduleRepository.AddData(rASchedule);
-                        rABatchSchedule.RAScheduleId = rASchedule.Id;
-                        rABatchSchedule = _RABatchScheduleRepository.AddData(rABatchSchedule);
-
+                        Recipientcount +=  Emp.Count;                      
                         if (Emp.Count != 0)
                         {
                             foreach (var employee in Emp)
@@ -91,38 +95,29 @@ namespace UICMA.Service.RAService
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status ="Active";
                                 recipient.CreatedOn = DateTime.Now;
-                                var addrecipient = _RARecipientRepository.AddData(recipient);
-
-                               
+                                var addrecipient = _RARecipientRepository.AddData(recipient);                               
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId= oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
                                var  AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
-
-                                List<Template> temp = _TemplateRepository.GetTempalteByRule(Batch.RAbatchRecRule.RecipientRuleName);
-
+                                    int Tempid = 1;
+                                    Template temp = _TemplateRepository.GetSingle(Tempid);
                                 Notification notify = new Notification();
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
                                 notify.NotifyFrom = "maran.m@kosoft.co";
                                 notify.NotifyStatus = "To Email";
-                                notify.NotifyBody = temp[0].TemplateBodyContent;
+                                notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
                                 var AddNotifation = _NotificationRepository.AddData(notify);                               
                             }
                         }
                         break;
 
-                    case 2:
+                    case "3 EXCEPT  3Y":
                         Emp = _EmployeeInfoDataRepository.GetUnclassifiedEmployee();
-                        Recipientcount = Emp.Count;
-
-                        rASchedule.TotalRecipient = Recipientcount;
-                        rASchedule = _RAScheduleRepository.AddData(rASchedule);
-                        rABatchSchedule.RAScheduleId = rASchedule.Id;
-                        rABatchSchedule = _RABatchScheduleRepository.AddData(rABatchSchedule);
-
+                        Recipientcount += Emp.Count;
                         if (Emp.Count != 0)
                         {
                             foreach (var employee in Emp)
@@ -134,36 +129,27 @@ namespace UICMA.Service.RAService
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
                                 var addrecipient = _RARecipientRepository.AddData(recipient);
-
-
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
                                 var AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
-
-                                List<Template> temp = _TemplateRepository.GetTempalteByRule(Batch.RAbatchRecRule.RecipientRuleName);
-
-                                Notification notify = new Notification();
+                                    int Tempid = 1;
+                                    Template temp = _TemplateRepository.GetSingle(Tempid);
+                                    Notification notify = new Notification();
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
                                 notify.NotifyFrom = "maran.m@kosoft.co";
                                 notify.NotifyStatus = "To Email";
-                                notify.NotifyBody = temp[0].TemplateBodyContent;
+                                notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
                                 var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;
-                    case 3:
+                    case "2F":
                         Emp = _EmployeeInfoDataRepository.GetTeacherAssitantEmployee();
-                        Recipientcount = Emp.Count;
-
-                        rASchedule.TotalRecipient = Recipientcount;
-                        rASchedule = _RAScheduleRepository.AddData(rASchedule);
-                        rABatchSchedule.RAScheduleId = rASchedule.Id;
-                        rABatchSchedule = _RABatchScheduleRepository.AddData(rABatchSchedule);
-
+                        Recipientcount+= Emp.Count;                     
                         if (Emp.Count != 0)
                         {
                             foreach (var employee in Emp)
@@ -175,36 +161,27 @@ namespace UICMA.Service.RAService
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
                                 var addrecipient = _RARecipientRepository.AddData(recipient);
-
-
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
                                 var AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
-
-                                List<Template> temp = _TemplateRepository.GetTempalteByRule(Batch.RAbatchRecRule.RecipientRuleName);
-
-                                Notification notify = new Notification();
+                                    int Tempid = 1;
+                                    Template temp = _TemplateRepository.GetSingle(Tempid);
+                                    Notification notify = new Notification();
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
                                 notify.NotifyFrom = "maran.m@kosoft.co";
                                 notify.NotifyStatus = "To Email";
-                                notify.NotifyBody = temp[0].TemplateBodyContent;
+                                notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
                                 var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;
-                    case 4:
+                    case "2UTK":
                         Emp = _EmployeeInfoDataRepository.GetSpecialEducation();
-                        Recipientcount = Emp.Count;
-
-                        rASchedule.TotalRecipient = Recipientcount;
-                        rASchedule = _RAScheduleRepository.AddData(rASchedule);
-                        rABatchSchedule.RAScheduleId = rASchedule.Id;
-                        rABatchSchedule = _RABatchScheduleRepository.AddData(rABatchSchedule);
-
+                        Recipientcount+= Emp.Count;                      
                         if (Emp.Count != 0)
                         {
                             foreach (var employee in Emp)
@@ -216,36 +193,28 @@ namespace UICMA.Service.RAService
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
                                 var addrecipient = _RARecipientRepository.AddData(recipient);
-
-
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
                                 var AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
-
-                                List<Template> temp = _TemplateRepository.GetTempalteByRule(Batch.RAbatchRecRule.RecipientRuleName);
-
-                                Notification notify = new Notification();
+                                    int Tempid = 1;
+                                    Template temp = _TemplateRepository.GetSingle(Tempid);
+                                    Notification notify = new Notification();
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
                                 notify.NotifyFrom = "maran.m@kosoft.co";
                                 notify.NotifyStatus = "To Email";
-                                notify.NotifyBody = temp[0].TemplateBodyContent;
+                                notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
                                 var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;
-                    case 5:
+                    case "2USX AND 2UTH AND 2UTE":
                         Emp = _EmployeeInfoDataRepository.GetSupportSchool();
-                        Recipientcount = Emp.Count;
-
-                        rASchedule.TotalRecipient = Recipientcount;
-                        rASchedule = _RAScheduleRepository.AddData(rASchedule);
-                        rABatchSchedule.RAScheduleId = rASchedule.Id;
-                        rABatchSchedule = _RABatchScheduleRepository.AddData(rABatchSchedule);
-
+                        Recipientcount += Emp.Count;
+                       
                         if (Emp.Count != 0)
                         {
                             foreach (var employee in Emp)
@@ -257,32 +226,30 @@ namespace UICMA.Service.RAService
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
                                 var addrecipient = _RARecipientRepository.AddData(recipient);
-
-
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
                                 var AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
-
-                                List<Template> temp = _TemplateRepository.GetTempalteByRule(Batch.RAbatchRecRule.RecipientRuleName);
-
-                                Notification notify = new Notification();
+                                    int Tempid = 1;
+                                    Template temp = _TemplateRepository.GetSingle(Tempid);
+                                    Notification notify = new Notification();
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
                                 notify.NotifyFrom = "maran.m@kosoft.co";
                                 notify.NotifyStatus = "To Email";
-                                notify.NotifyBody = temp[0].TemplateBodyContent;
+                                notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
                                 var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;                  
-                }                             
+                }
+
+                }
+                rASchedule.TotalRecipient = Recipientcount;
+                rASchedule = _RAScheduleRepository.UpdateData(rASchedule);             
             }
-
-
-
             return Batch;
 
         }
