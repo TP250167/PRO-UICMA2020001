@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { line-height: 1.5; color: 
 h3, .h3 { font-size: 18px; }
 p { font-size: 14px; font-weight: 300; line-height: 1.7; } 
 ::-webkit-scrollbar { width: 6px; background-color: lightgrey; }
-::-webkit-scrollbar-thumb { background-color:#b3b3b3; border-radius: 420px; }
+::-webkit-scrollbar-thumb { background-color:$primary; border-radius: 420px; }
 
 // ::-webkit-scrollbar-track { }
 
@@ -314,6 +314,11 @@ select.form-control , .cc-datepicker , .dataTables_length select {
 
 .cc-task-list {
 
+    height: 340px;
+    overflow: auto;
+    padding-right: 5px;
+
+
     accordion-group {
         margin: 5px 0;
     }
@@ -359,6 +364,7 @@ select.form-control , .cc-datepicker , .dataTables_length select {
     }
 
     .panel-collapse  {
+        display: none !important;
         .panel-body {
             padding: 10px 0 0 0;
         }
@@ -674,6 +680,12 @@ app-sidebar-process-steps {
 
 .modal , .modal-backdrop{
     z-index: 33333333333;
+}
+
+.cc-text-link {
+    color: #5d78ff;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 // datepicker 

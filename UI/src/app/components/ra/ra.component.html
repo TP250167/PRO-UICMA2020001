@@ -1,7 +1,7 @@
 <div class="cc-page-title">
     <h2>Reasonable Assurance Notification Management</h2>
     <div class="text-right Notification-button">
-    <button class="btn btn-primary" (click)="aps.openModal(checkAttachment)">Add Batch</button>
+    <button class="btn btn-primary" (click)="aps.openModal(checkAttachment)">Create Batch</button>
     </div>
 </div>
 <div class="container-fluid cc-pad-zero">
@@ -17,49 +17,22 @@
                     <div class="cc-task-list">
                         <accordion [isAnimated]="true" [closeOthers]="true">
 
-                            <accordion-group>
-                                <button class="btn btn-link" accordion-heading type="button">
+                            <accordion-group *ngFor="let item of schedulesList">
+                                <button (click)="getBatchesDetails(item.id)" class="btn btn-link" accordion-heading type="button">
                                     <div class="cc-list-icon"> <span><i class="fa fa-check"></i></span> </div>
-                                    <div class="cc-tla-heading">Summer Break RA Notification Batch</div>
+                                    <div class="cc-tla-heading">{{item.batchName}}</div>
                                 </button>
-                                <div class="cc-accordion-content">
+                                <!-- <div class="cc-accordion-content">
                                     <ul>
                                         <li><i class="fa fa-envelope"></i>1900321- Awaiting for call from 16Dec, 2018</li>
                                         <li><i class="fa fa-envelope"></i>1900330- Awaiting for call from 24Dec, 2018</li>
                                         <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
                                         <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </accordion-group>
 
-                            <accordion-group>
-                                <button class="btn btn-link" accordion-heading type="button">
-                                    <div class="cc-list-icon"><span><i class="fa fa-repeat"></i></span></div>
-                                    <div class="cc-tla-heading">BiWeekly RA Notification Batch</div>
-                                </button>
-                                <div class="cc-accordion-content">
-                                    <ul>
-                                        <li><i class="fa fa-envelope"></i>1st Dec 2019 batch</li>
-                                        <li><i class="fa fa-envelope"></i>15th Nov 2019 batch</li>
-                                        <li><i class="fa fa-envelope"></i>1st  Nov 2019 batch</li>
-                                    </ul>
-                                </div>
-                            </accordion-group>
-
-                            <accordion-group>
-                                <button class="btn btn-link" accordion-heading type="button">
-                                    <div class="cc-list-icon"> <span><i class="fa fa-cog"></i></span> </div>
-                                    <div class="cc-tla-heading">Thanks Giving Break RA Notification Batch</div>
-                                </button>
-                                <div class="cc-accordion-content">
-                                    <ul>
-                                        <li><i class="fa fa-envelope"></i> 1900321- Awaiting for call from 16Dec, 2018</li>
-                                        <li><i class="fa fa-envelope"></i>1900330- Awaiting for call from 24Dec, 2018</li>
-                                    </ul>
-                                </div>
-                            </accordion-group>
-
-                            <accordion-group>
+                            <!-- <accordion-group>
                                 <button class="btn btn-link" accordion-heading type="button">
                                     <div class="cc-list-icon"> <span><i class="fa fa-cog"></i></span> </div>
                                     <div class="cc-tla-heading">Other RA Notification Batch</div>
@@ -70,7 +43,7 @@
                                         <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
                                     </ul>
                                 </div>
-                            </accordion-group>
+                            </accordion-group> -->
                         
                         </accordion>
                     </div>
@@ -84,8 +57,40 @@
                         <span class="badge badge-primary">Notification Logs</span>
                     </h3>
                     <div class="card-content">
-                        <h3 class="card-content-title">Batch Name</h3>
-                        <a (click)="gotoNotificationLogs()">Summer Break RA Notification Batch</a>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>Batch Name</td>
+                                    <td (click)="gotoNotificationLogs(batchDetails.id)"><span class="cc-text-link">{{batchDetails.batch_Name}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Batch Description</td>
+                                    <td>{{batchDetails.batch_Description}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>{{batchDetails.status}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Recipient</td>
+                                    <td>{{batchDetails.total_Recipient}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Schedule Date</td>
+                                    <td>{{batchDetails.schedule_Date | date:'MM/dd/yyyy'}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Successful Delivery</td>
+                                    <td>{{batchDetails.sucessful_Delivery}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Failed Delivery</td>
+                                    <td>{{batchDetails.failed_Delivery}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <h3 class="card-content-title">Batch Name</h3>
+                        <a (click)="gotoNotificationLogs()">Summer Break RA Notification Batch</a> -->
                     </div>
                 </div>
             </div>
@@ -95,18 +100,18 @@
 <ng-template #checkAttachment>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Add RA Batch Detail</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.close()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.closeModel()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form appFormInputFocus [formGroup]="batchInitiateForm"
+    <form appFormInputFocus [formGroup]="batchInitiateForm" 
     (ngSubmit)="submitBatchInitiateForm()">
     <div class="modal-body">
         <div class="cc-form-section">
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="batchName">Batch Name</label>
-                        <input type="text" class="form-control"
+                        <input type="text" class="form-control" autocomplete="off"
                           formControlName="batchName" name="batchName"
                           [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchName.errors }">
                     <div *ngIf="bfi.batchName.touched && bfi.batchName.errors ||bifSubmitted" 
@@ -117,9 +122,17 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="recipientSet">Recipient Set</label>
-                        <input type="text" class="form-control"
-                          formControlName="recipientSet" name="recipientSet"
-                          [ngClass]="{ 'is-invalid':bifSubmitted && bfi.recipientSet.errors }">
+                        <ng-multiselect-dropdown  formControlName="recipientSet" name="recipientSet"
+                                [placeholder]="'custom placeholder'"
+                                [data]="dropdownList"
+                                [(ngModel)]="selectedItems"
+                                [settings]="dropdownSettings"
+                                >
+                        </ng-multiselect-dropdown>
+
+                        <!-- <input type="text" class="form-control"
+                          formControlName="recipientSet" name="recipientSet" autocomplete="off"
+                          [ngClass]="{ 'is-invalid':bifSubmitted && bfi.recipientSet.errors }"> -->
                     <div *ngIf="bfi.recipientSet.touched && bfi.recipientSet.errors ||bifSubmitted" 
                         class="invalid-feedback">
                         <div *ngIf="bfi.recipientSet.errors">This field is required
@@ -128,7 +141,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="scheduleDate">Schedule Date</label>
-                        <input type="text" class="form-control cc-datepicker"
+                        <input type="text" class="form-control cc-datepicker" autocomplete="off"
                             bsDatepicker formControlName="scheduleDate"
                             name="scheduleDate"
                             [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
@@ -144,7 +157,7 @@
         </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="aps.closeModel()">Cancel</button>
-        <button class="btn btn-primary" (click)="check()">Ok</button>
+        <button class="btn btn-primary" (click)="createBatch()">Ok</button>
     </div>
     </form>
 

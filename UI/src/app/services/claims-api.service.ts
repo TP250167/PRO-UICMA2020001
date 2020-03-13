@@ -14,15 +14,15 @@ import { ClaimModel } from '../@models/claims/claim-model'
 export class ClaimsApiService {
 
   constructor(
-    private http: HttpClient,
-    private cls: ConfigsLoaderService
+    private http : HttpClient,
+    private cls  : ConfigsLoaderService
   ) {
   }
 
 
   getClaimsList() {
-    return this.http.get<ClaimModel>(
-      `${this.cls.ApiUrl}/api/NewClaim/GetNewClaimAll`
+    return this.http.get(
+      `${this.cls.ApiUrl}api/NewClaim/GetNewClaimAll`
     )
   }
 

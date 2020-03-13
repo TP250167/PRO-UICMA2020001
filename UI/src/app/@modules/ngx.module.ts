@@ -12,6 +12,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { ToastrModule } from 'ngx-toastr';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +42,7 @@ import { CustomUploadDirective } from '../@directives/custom-upload.directive';
     TimepickerModule.forRoot(),
     SortableModule.forRoot(),
     ToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -59,6 +62,7 @@ import { CustomUploadDirective } from '../@directives/custom-upload.directive';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgMultiSelectDropDownModule,
     FormInputFocusDirective,
     CustomUploadDirective
   ]

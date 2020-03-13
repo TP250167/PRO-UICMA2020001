@@ -14,7 +14,7 @@ import { NotificationLogsComponent } from '../components/ra/notification-logs/no
 const routes: Routes = [
   { path: "", component: RaComponent, },
   { path: "", component: SidebarComponent, outlet: 'sidebar' },
-  { path: "notification-log", component: NotificationLogsComponent},
+  { path: "notification-log/:id", component: NotificationLogsComponent},
 ]
 
 

@@ -5,40 +5,43 @@
   <div class="cc-page-info">
     <div class="container-fluid">
         <div class="row cc-wbg">
-            <div class="col-md-3">
+            <div class="col-md-3 form-group">
                 <div class="cc-page-info-box">
                     <h3>Batch Name</h3>
-                    <h5>Summer Break</h5>
+                    <select name="" id="" class="form-control" [(ngModel)]="batchVal" (change)="getBatcheInfo(batchVal);raNotificationList(batchVal)">
+                      <option value="{{item.id}}" [selected]="item.batchName == bactchInfo.batch_Name" *ngFor="let item of bactchList">{{item.batchName}}</option>
+                    </select>
+                      <!-- <h5>{{bactchInfo.batch_Name}}</h5> -->
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="cc-page-info-box">
                     <h3>Date of Notification</h3>
-                    <h5>10/3/2020</h5>
+                    <h5>{{bactchInfo.schedule_Date | date:'MM/dd/yyyy'}}</h5>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="cc-page-info-box">
                     <h3>Total Recipient</h3>
-                    <h5>43,244</h5>
+                    <h5>{{bactchInfo.total_Recipient}}</h5>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="cc-page-info-box">
                     <h3>Successful Delivery</h3>
-                    <h5>43,233</h5>
+                    <h5>{{bactchInfo.sucessful_Delivery}}</h5>
                 </div>
             </div>
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <div class="cc-page-info-box">
                     <h3>Retry Success</h3>
-                    <h5>28</h5>
+                    <h5>{{bactchInfo.batch_Name}}</h5>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-3">
                 <div class="cc-page-info-box">
                     <h3>Failed Delivery</h3>
-                    <h5>98</h5>
+                    <h5>{{bactchInfo.failed_Delivery}}</h5>
                 </div>
             </div>
         </div>
@@ -56,14 +59,16 @@
             <thead>
               <tr>
                 <th>Date & Time</th>
-                <th>Recipient Name(Emp #)</th>
+                <th>Recipient Name</th>
+                <th>Recipient Number</th>
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody *ngIf="loglist?.length != 0">
+            <tbody >
               <tr *ngFor="let item of loglist">
-                <td>{{ item.DateTime}}</td>
-                <td>{{ item.RecipientName}}</td>
+                <td>{{ item.created_on | date:'MM/dd/yyyy'}}</td>
+                <td>{{ item.employee_Name}}</td>
+                <td>{{ item.employee_Number}}</td>
                 <td class="cc-dbt-action">
                   <div class="cc-dbt-wrapper">
                     <i class="fa fa-envelope"></i>
@@ -74,7 +79,7 @@
             </tbody>
             <tbody *ngIf="loglist?.length == 0">
               <tr>
-                <td colspan="3" class="no-data-available">No data!</td>
+                <td colspan="4" class="no-data-available">No data!</td>
               </tr>
             <tbody>
           </table>
