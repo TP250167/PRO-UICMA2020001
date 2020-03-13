@@ -20,6 +20,8 @@
     <Compile Remove="Migrations\20200312061710_add-writ-tbl.Designer.cs" />
     <Compile Remove="Migrations\20200312100507_ADD-DETERMINATION-TBL.cs" />
     <Compile Remove="Migrations\20200312100507_ADD-DETERMINATION-TBL.Designer.cs" />
+    <Compile Remove="Migrations\20200313101841_alter-claim-tbl.cs" />
+    <Compile Remove="Migrations\20200313101841_alter-claim-tbl.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

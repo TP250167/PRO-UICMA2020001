@@ -33,6 +33,12 @@ namespace UICMA.Domain.Entities.New_ClaimMap
             builder.Property(s => s.MailDate).HasColumnName("MAIL_DATE");
             builder.Property(s => s.EffectiveDateOfClaim).HasColumnName("EFFECTIVE_DATE_OF_CLAIM");
             builder.Property(s => s.LastDateWorked).HasColumnName("LAST_DATE_WORKED");
+            builder.Property(s => s.DeadlineDate).HasColumnName("DEADLINE_DATE");
+            builder.Property(s => s.ReceivedDate).HasColumnName("RECEIVED_DATE");
+            builder.Property(s => s.Address).HasColumnName("ADDRESS");
+            builder.Property(s => s.ProtestDecision).HasColumnName("PROTEST_DECISION");
+            builder.Property(s => s.ClaimantStatus).HasColumnName("CLAIMANT_STATUS");
+            builder.Property(s => s.BYB).HasColumnName("BYB");
         }
     }
 }

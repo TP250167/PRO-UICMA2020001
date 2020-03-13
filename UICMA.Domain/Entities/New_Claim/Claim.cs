@@ -48,6 +48,12 @@ namespace UICMA.Domain.Entities.New_Claim
         public DateTime? MailDate { get; set; }
         public DateTime? EffectiveDateOfClaim { get; set; }
         public DateTime? LastDateWorked { get; set; }
+        public string Address { get; set; }
+        public string ProtestDecision { get; set; }
+        public DateTime? ReceivedDate { get; set; }
+        public DateTime? DeadlineDate { get; set; }
+        public string ClaimantStatus { get; set; }
+        public string BYB { get; set; }
 
         public ClaimResponse claimResponse { get; set; }
         public ClaimInterview claimInterview { get; set; }
