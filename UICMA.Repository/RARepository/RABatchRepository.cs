@@ -28,7 +28,7 @@ namespace UICMA.Repository.RARepository
 
         public List<RANotificationViewModel> GetRANotificationList(int Batchid)
         {
-            return context.vwRaNotificationList.Where(s => s.Status == "Active").ToList();
+            return context.vwRaNotificationList.Where(s => s.Status == "Active" && s.Id == Batchid).ToList();
         }
 
     }

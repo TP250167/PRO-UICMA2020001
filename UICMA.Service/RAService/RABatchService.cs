@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UICMA.Domain.Entities;
@@ -30,11 +31,13 @@ namespace UICMA.Service.RAService
         private IRABatchRecipientRepository _RABatchRecipientRepository;
         private INotificationRepository _NotificationRepository;
         private IRABatchRecipientRuleRepository _RABatchRecipientRuleRepository;
-
         private IRARecipientRuleRepository _RARecipientRuleRepository;
+        private string _FromMail;
+        
 
         public RABatchService(IRABatchRepository _RABatchRepository, IRAScheduleRepository _RAScheduleRepository, IRABatchScheduleRepository _RABatchScheduleRepository, IEmployeeInfoDataRepository _EmployeeInfoDataRepository, IRARecipientRepository _RARecipientRepository,
-            ITemplateRepository _TemplateRepository, IRABatchRecipientRepository _RABatchRecipientRepository, INotificationRepository _NotificationRepository, IRABatchRecipientRuleRepository _RABatchRecipientRuleRepository, IRARecipientRuleRepository _RARecipientRuleRepository)
+            ITemplateRepository _TemplateRepository, IRABatchRecipientRepository _RABatchRecipientRepository, INotificationRepository _NotificationRepository, IRABatchRecipientRuleRepository _RABatchRecipientRuleRepository, IRARecipientRuleRepository _RARecipientRuleRepository,
+             IConfiguration configuration)
         {
             this._RABatchRepository = _RABatchRepository;
             this._RAScheduleRepository = _RAScheduleRepository;
@@ -46,6 +49,7 @@ namespace UICMA.Service.RAService
             this._NotificationRepository = _NotificationRepository;
             this._RABatchRecipientRuleRepository = _RABatchRecipientRuleRepository;
             this._RARecipientRuleRepository =_RARecipientRuleRepository;
+            _FromMail = configuration.GetSection("FromMail").Value;
         }
         
 
@@ -106,11 +110,13 @@ namespace UICMA.Service.RAService
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
-                                notify.NotifyFrom = "maran.m@kosoft.co";
+                                notify.NotifyFrom = _FromMail;
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
-                                var AddNotifation = _NotificationRepository.AddData(notify);                               
+                                notify.NotifyAttachment = temp.TemplateAttachmentContent;
+
+                                    var AddNotifation = _NotificationRepository.AddData(notify);                               
                             }
                         }
                         break;
@@ -139,7 +145,7 @@ namespace UICMA.Service.RAService
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
-                                notify.NotifyFrom = "maran.m@kosoft.co";
+                                notify.NotifyFrom = _FromMail;
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
@@ -171,7 +177,7 @@ namespace UICMA.Service.RAService
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
-                                notify.NotifyFrom = "maran.m@kosoft.co";
+                                notify.NotifyFrom = _FromMail;
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
@@ -203,7 +209,7 @@ namespace UICMA.Service.RAService
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
-                                notify.NotifyFrom = "maran.m@kosoft.co";
+                                notify.NotifyFrom = _FromMail;
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
@@ -236,7 +242,7 @@ namespace UICMA.Service.RAService
                                 notify.EmployeeNumber = employee.EmployeeNumberCode;
                                 notify.NotifyTo = employee.OIDEmailAddress;
                                 notify.NotifySubject = Batch.BatchName;
-                                notify.NotifyFrom = "maran.m@kosoft.co";
+                                notify.NotifyFrom = _FromMail;
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
