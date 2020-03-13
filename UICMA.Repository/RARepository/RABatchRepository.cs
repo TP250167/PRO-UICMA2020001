@@ -23,12 +23,13 @@ namespace UICMA.Repository.RARepository
         }
         public RABatchViewModel GetBatchViewbyID(int Batchid)
         {
-            return context.spRaBatchDetail.FromSql("spRaBatchDetail  @p0", Batchid).FirstOrDefault();        
+            return context.spRaBatchDetail.FromSql("spRaBatchDetail  @p0", Batchid).AsNoTracking().FirstOrDefault();        
         }
 
         public List<RANotificationViewModel> GetRANotificationList(int Batchid)
         {
-            return context.vwRaNotificationList.Where(s => s.Status == "Active" && s.Id == Batchid).ToList();
+            var result= context.spRaNotificationList.FromSql("spRaNotificationList  @p0", Batchid).AsNoTracking().ToList();
+            return new List<RANotificationViewModel>(result);
         }
 
     }

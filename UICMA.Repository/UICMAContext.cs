@@ -121,7 +121,7 @@ namespace UICMA.Repository
         public DbSet<RABatchView> RABatch { get; set; }
         public DbSet<RARecipient> RARecipient { get; set; }
         public DbSet<RABatchViewModel> spRaBatchDetail { get; set; }
-        public DbSet<RANotificationViewModel> vwRaNotificationList { get; set; }
+        public DbSet<RANotificationViewModel> spRaNotificationList { get; set; }
 
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)
