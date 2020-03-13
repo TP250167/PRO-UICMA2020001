@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { ClaimsApiService } from '../../services/claims-api.service'
+
+
 
 @Component({
   selector: 'app-claims-list',
@@ -16,6 +19,7 @@ export class ClaimsListComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private acs: ClaimsApiService
   ) {
 
   }
@@ -27,10 +31,16 @@ export class ClaimsListComponent implements OnInit {
       pageLength: 5
     };
 
-    this.http.get('http://localhost:3000/claims')
-      .subscribe(res => {
-        this.claims = res;
-      });
+    this.acs.getClaimsList()
+      .subscribe(
+        (res) => {
+          this.claims = res
+          console.log(this.claims)
+        },
+        (error) => {
+          console.log('error caught in claim list component', error)
+        }
+      )
 
   }
 
@@ -42,5 +52,5 @@ export class ClaimsListComponent implements OnInit {
   ngOnInit() {
     this.getClaimsDetails()
   }
-  
+
 }

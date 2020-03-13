@@ -256,7 +256,7 @@
 <ng-template #uploadAttachment>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Add Documents</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.close()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.closeModel()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -286,8 +286,8 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="aps.decline()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="aps.confirm()">Ok</button>
+        <button type="button" class="btn btn-danger" (click)="aps.closeModel()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="aps.closeModel()">Ok</button>
     </div>
 
 

@@ -75,12 +75,6 @@ export class ClaimInitComponent implements OnInit {
   ngOnInit() {
     this.cs.tabincLimit = 2;
     this.claimFormInit();
-
-    this.cas.claimInitiate()
-    .subscribe((data)=>{
-      console.log(data)
-    })
-    
   }
 
 }
