@@ -12,6 +12,8 @@ namespace UICMA.Domain.Entities.Response_to_Employer
         public string SocialSecurityNumber { get; set; }
         public DateTime? DateMailed { get; set; }
         public DateTime? BenefitYearBeganDate { get; set; }
+        public DateTime? SeperationDate { get; set; }
+        public DateTime? PostmarkDate { get; set; }
         public string FormCode { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }

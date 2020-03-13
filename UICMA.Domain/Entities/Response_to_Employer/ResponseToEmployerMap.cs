@@ -25,6 +25,8 @@ namespace UICMA.Domain.Entities.Response_to_EmployerMap
             builder.Property(s => s.BenefitYearBeganDate).HasColumnName("BENEFIT_YEAR_BEGAN_DATE");
             builder.Property(s => s.FormPath).HasColumnName("FORM_PATH");
             builder.Property(s => s.FormCode).HasColumnName("FORM_CODE");
+            builder.Property(s => s.PostmarkDate).HasColumnName("POSTMARK_DATE");
+            builder.Property(s => s.SeperationDate).HasColumnName("SEPERATION_DATE");
 
             builder.HasOne<Claim>(s => s.claim).WithOne(x => x.responsetoEmployer).HasForeignKey<ResponseToEmployer>(t => t.ClaimId);
         }
