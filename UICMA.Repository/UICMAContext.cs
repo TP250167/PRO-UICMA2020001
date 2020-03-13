@@ -27,6 +27,8 @@ using UICMA.Domain.Entities.ClaimExceptionMap;
 using UICMA.Domain.Entities.ClaimExceptions;
 using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.CUIAB_AcknowledgementMap;
+using UICMA.Domain.Entities.CUIAB_Board_Appeal;
+using UICMA.Domain.Entities.CUIAB_Board_AppealMap;
 using UICMA.Domain.Entities.Determination_Appeal;
 using UICMA.Domain.Entities.Determination_AppealMap;
 using UICMA.Domain.Entities.EmployeeMap;
@@ -188,6 +190,7 @@ namespace UICMA.Repository
             new WagesMap(modelBuilder.Entity<Wages>());
             new WagesAppealMap(modelBuilder.Entity<WagesAppeal>());
             new RequestForEmployeeDataMap(modelBuilder.Entity<RequestForEmployeeData>());
+            new CUIABBoardAppealMap(modelBuilder.Entity<CUIABBoardAppeal>());
         }
 
         internal object Where(Func<object, bool> p)
