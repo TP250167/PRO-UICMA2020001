@@ -39,6 +39,9 @@ namespace UICMA.Domain.Entities.New_ClaimMap
             builder.Property(s => s.ProtestDecision).HasColumnName("PROTEST_DECISION");
             builder.Property(s => s.ClaimantStatus).HasColumnName("CLAIMANT_STATUS");
             builder.Property(s => s.BYB).HasColumnName("BYB");
+            builder.Property(s => s.City).HasColumnName("CITY");
+            builder.Property(s => s.State).HasColumnName("STATE");
+            builder.Property(s => s.Zipcode).HasColumnName("ZIPCODE");
         }
     }
 }

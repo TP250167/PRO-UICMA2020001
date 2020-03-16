@@ -54,6 +54,9 @@ namespace UICMA.Domain.Entities.New_Claim
         public DateTime? DeadlineDate { get; set; }
         public string ClaimantStatus { get; set; }
         public string BYB { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zipcode { get; set; }
 
         public ClaimResponse claimResponse { get; set; }
         public ClaimInterview claimInterview { get; set; }
