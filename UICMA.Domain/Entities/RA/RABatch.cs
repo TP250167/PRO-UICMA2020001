@@ -26,7 +26,8 @@ namespace UICMA.Domain.Entities.RABatchs
         public DateTime? CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public DateTime? NextOccurrance { get; set; }
-        
+        public bool IsAnnual { get; set; }
+        public bool IsCustom { get; set; } 
         public ICollection<RABatchRecipientRule> RAbatchRecipientRule { get; set; }
         public ICollection<RABatchSchedule> RAbatchSchedule { get; set; }
         public ICollection<RABatchTemplate> RAbatchTemplate { get; set; }
