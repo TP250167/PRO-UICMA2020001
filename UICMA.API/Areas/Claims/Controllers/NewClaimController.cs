@@ -67,12 +67,25 @@ namespace UICMA.API.Areas.Claims.Controllers
             return result;
         }
 
+        
 
 
+        [HttpGet("GetActivesClaims/{Year}/{Status}")]
+        public ActionResult<ViewNewClaims> GetActivesClaims(int Year, string Status)
+        {
+            var result = _NewClaimService.GetActivesClaims(Year,Status);
+            return result;
+        }
 
 
+        [HttpGet("GetReqNumClaims/{RequestNumber}")]
+        public ActionResult<Claim> GetReqNumClaims(string RequestNumber)
+        {
+            var result = _NewClaimService.GetReqNumClaims(RequestNumber);
+            return result;
+        }
 
-
+        
 
     }
 }

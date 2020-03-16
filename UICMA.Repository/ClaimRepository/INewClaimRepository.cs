@@ -9,5 +9,7 @@ namespace UICMA.Repository.ClaimRepository
     {
         IEnumerable<Claim> GetActiveClaims(int Year);
         IEnumerable<Claim> GetExceptionClaims(int Year);
+        List<Claim> GetClaimsByYear(int Year, string Status);
+        Claim GetReqNumClaims(string RequestNumber);
     }
 }

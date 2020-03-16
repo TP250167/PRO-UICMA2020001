@@ -12,5 +12,8 @@ namespace UICMA.Service.ClaimServices
         Claim GetNewclaimbyID(int Id);
         IEnumerable<Claim> GetActiveClaims(int Year);
         IEnumerable<Claim> GetExceptionClaims(int Year);
+        ViewNewClaims GetActivesClaims(int Year, string Status);
+
+        Claim GetReqNumClaims(string RequestNumber);
     }
 }

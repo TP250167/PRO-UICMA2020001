@@ -75,5 +75,30 @@ namespace UICMA.Service.ClaimServices
         }
 
 
+        public ViewNewClaims GetActivesClaims(int Year,string Status)
+        {
+            
+            ViewNewClaims viewNewClaims = new ViewNewClaims();
+
+            
+            viewNewClaims.NewClaims= _newClaim.GetClaimsByYear(Year, Status);
+            viewNewClaims.Draw = 1;
+            viewNewClaims.RecordsTotal = viewNewClaims.NewClaims.Count;
+           
+            return viewNewClaims;
+
+
+
+        }
+
+        public Claim GetReqNumClaims(string RequestNumber)
+        {
+
+            return _newClaim.GetReqNumClaims(RequestNumber);
+
+        }
+
+        
+
     }
 }

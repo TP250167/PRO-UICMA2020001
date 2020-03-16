@@ -32,5 +32,20 @@ namespace UICMA.Repository.ClaimRepository
         }
 
 
+        public List<Claim> GetClaimsByYear(int Year,string Status)
+        {
+            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == Status && s.BenefitYearBeginning == Year).ToList();
+
+            return ActiveClaims;
+        }
+
+        public Claim GetReqNumClaims(string RequestNumber)
+        {
+            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == "Active" && s.RequestNumber == RequestNumber).FirstOrDefault();
+
+            return ActiveClaims;
+        }
+
+
     }
 }
