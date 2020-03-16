@@ -10,7 +10,7 @@ namespace UICMA.Domain.Entities.Claim_Determination
         public Int64 Id { get; set; }
         public string Decision { get; set; }
         public DateTime? MailedDate { get; set; }
-        public string BenefitYearBegan { get; set; }
+        public DateTime? BenefitYearBegan { get; set; }
         public string SocialSecurityNumber { get; set; }
         public string FieldOffice { get; set; }
         public string FormCode { get; set; }
