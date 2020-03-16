@@ -23,8 +23,8 @@ namespace UICMA.Domain.Entities.ClaimExceptionMap
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY");
 
-            builder.HasOne(t => t.MDDocument).WithMany(s => s.ClaimExceptions).HasForeignKey(t => t.DocumentId);
-            builder.HasOne(t => t.MDForm).WithMany(s => s.ClaimExceptions).HasForeignKey(t => t.FormId);
+          //  builder.HasOne(t => t.MDDocument).WithMany(s => s.ClaimExceptions).HasForeignKey(t => t.DocumentId);
+          //  builder.HasOne(t => t.MDForm).WithMany(s => s.ClaimExceptions).HasForeignKey(t => t.FormId);
         }
     }
 }

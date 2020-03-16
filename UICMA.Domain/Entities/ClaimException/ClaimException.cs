@@ -9,9 +9,9 @@ namespace UICMA.Domain.Entities.ClaimExceptions
    public class ClaimException :IBaseEntity
     {
         public Int64 Id { get; set; }
-        public Int64 ClaimId { get; set; }
-        public Int64 DocumentId { get; set; }
-        public Int64 FormId { get; set; }
+        public Int64? ClaimId { get; set; }
+        public Int64? DocumentId { get; set; }
+        public Int64? FormId { get; set; }
         public string ExceptionReason { get; set; }
         public DateTime? ExceptionDate { get; set; }
         public string CreatedBy  { get; set; }
