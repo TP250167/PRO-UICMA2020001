@@ -8,19 +8,19 @@
             <div class="col-md-4">
                 <div class="cc-page-info-box">
                     <h3>Request Number</h3>
-                    <h5>1900014</h5>
+                    <h5>{{claimDetail.requestNumber}}</h5>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="cc-page-info-box">
                     <h3>Request Title</h3>
-                    <h5>Ui claim from Alex Decosta</h5>
+                    <h5>{{claimDetail.requestTitle}}</h5>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="cc-page-info-box">
                     <h3>Initiated On</h3>
-                    <h5>2/25/2020</h5>
+                    <h5>{{claimDetail.createdOn}}</h5>
                 </div>
             </div>
         </div>
@@ -46,17 +46,44 @@
                                             <form appFormInputFocus [formGroup]="cliamInitiateForm"
                                                 (ngSubmit)="submitCliamInitiateForm()">
 
-                                                <div class="form-row">
-
+                                                <div class="form-row cc-pcbg">
                                                     <div class="form-group col-md-6">
                                                         <label for="inputEmail4">Claiment Name</label>
                                                         <input type="text" class="form-control"
-                                                            formControlName="claimName" name="claimName"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.claimName.errors }">
-                                                        <div *ngIf="cfi.claimName.touched && cfi.claimName.errors || cifSubmitted"
+                                                            formControlName="claimantName" name="claimantName"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.claimantName.errors }">
+                                                        <div *ngIf="cfi.claimantName.touched && cfi.claimantName.errors || cifSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="cfi.claimName.errors || cifSubmitted">This field
-                                                                is required </div>
+                                                            <div *ngIf="cfi.claimantName.errors || cifSubmitted">This
+                                                                field is required </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="empNo">Emp No.</label>
+                                                        <div>
+                                                            <span class="cc-inputborder">0000452134</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="gender">Gender</label>
+                                                        <div>
+                                                            <span class="cc-inputborder">Male</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="socialSecurityNumber">Social Security Number</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="socialSecurityNumber"
+                                                            name="socialSecurityNumber"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.socialSecurityNumber.errors }">
+                                                        <div *ngIf="cfi.socialSecurityNumber.touched && cfi.socialSecurityNumber.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.socialSecurityNumber.errors">This field is
+                                                                required (Numbers only)</div>
                                                         </div>
                                                     </div>
 
@@ -95,25 +122,30 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="zip">Zip</label>
-                                                        <input type="text" class="form-control" formControlName="zip"
-                                                            name="zip"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.zip.errors }">
-                                                        <div *ngIf="cfi.zip.touched && cfi.zip.errors || cifSubmitted"
+                                                        <label for="zipcode">zipcode</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="zipcode" name="zipcode"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.zipcode.errors }">
+                                                        <div *ngIf="cfi.zipcode.touched && cfi.zipcode.errors || cifSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="cfi.zip.errors">This field is required </div>
+                                                            <div *ngIf="cfi.zipcode.errors">This field is required
+                                                                (Numbers only)</div>
                                                         </div>
                                                     </div>
 
+                                                </div>
+
+                                                <div class="form-row">
                                                     <div class="form-group col-md-6">
-                                                        <label for="mailDate">Mail Date</label>
+                                                        <label for="benefitYearBeginning">Benefit Year Begining</label>
                                                         <input type="text" class="form-control"
-                                                            formControlName="mailDate" name="mailDate"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.mailDate.errors }">
-                                                        <div *ngIf="cfi.mailDate.touched && cfi.mailDate.errors || cifSubmitted"
+                                                            formControlName="benefitYearBeginning"
+                                                            name="benefitYearBeginning"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.benefitYearBeginning.errors }">
+                                                        <div *ngIf="cfi.benefitYearBeginning.touched && cfi.benefitYearBeginning.errors || cifSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="cfi.mailDate.errors">This field is required
-                                                            </div>
+                                                            <div *ngIf="cfi.benefitYearBeginning.errors">This field is
+                                                                required (Numbers only)</div>
                                                         </div>
                                                     </div>
 
@@ -133,11 +165,42 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
+                                                        <label for="mailDate">Mail Date</label>
+                                                        <input type="text" class="form-control cc-datepicker"
+                                                            autocomplete="off" bsDatepicker
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false , dateInputFormat: 'MM-DD-YYYY'}"
+                                                            formControlName="mailDate" name="mailDate"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.mailDate.errors }">
+                                                        <div *ngIf="cfi.mailDate.touched && cfi.mailDate.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.mailDate.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="effectiveDateOfClaim">Effective Date of
+                                                            Claim</label>
+                                                        <input type="text" class="form-control cc-datepicker"
+                                                            autocomplete="off" bsDatepicker
+                                                            formControlName="effectiveDateOfClaim"
+                                                            name="effectiveDateOfClaim"
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false , dateInputFormat: 'MM-DD-YYYY'}"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.effectiveDateOfClaim.errors }">
+                                                        <div *ngIf="cfi.effectiveDateOfClaim.touched && cfi.effectiveDateOfClaim.errors || cifSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="cfi.effectiveDateOfClaim.errors">This field is
+                                                                required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
                                                         <label for="receiveDate">Receive Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="receiveDate"
-                                                            name="receiveDate"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            autocomplete="off" bsDatepicker
+                                                            formControlName="receiveDate" name="receiveDate"
+                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false , dateInputFormat: 'MM-DD-YYYY'}"
                                                             [ngClass]="{ 'is-invalid': cifSubmitted && cfi.receiveDate.errors }">
                                                         <div *ngIf="cfi.receiveDate.touched && cfi.receiveDate.errors || cifSubmitted"
                                                             class="invalid-feedback">
@@ -147,35 +210,10 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="ssn">Social Security Number</label>
-                                                        <input type="text" class="form-control" formControlName="ssn"
-                                                            name="ssn"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.ssn.errors }">
-                                                        <div *ngIf="cfi.ssn.touched && cfi.ssn.errors || cifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="cfi.ssn.errors">This field is required </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col-md-6">
-                                                        <label for="EffectiveDate">Effective Date of Claim</label>
-                                                        <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="EffectiveDate"
-                                                            name="EffectiveDate"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.EffectiveDate.errors }">
-                                                        <div *ngIf="cfi.EffectiveDate.touched && cfi.EffectiveDate.errors || cifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="cfi.EffectiveDate.errors">This field is required
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col-md-6">
                                                         <label for="lastDateWorked">Last Date Worked</label>
                                                         <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="lastDateWorked"
-                                                            name="lastDateWorked"
+                                                            autocomplete="off" bsDatepicker
+                                                            formControlName="lastDateWorked" name="lastDateWorked"
                                                             [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
                                                             [ngClass]="{ 'is-invalid': cifSubmitted && cfi.lastDateWorked.errors }">
                                                         <div *ngIf="cfi.lastDateWorked.touched && cfi.lastDateWorked.errors || cifSubmitted"
@@ -186,62 +224,38 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="separation">Reason for
-                                                            Separation</label>
+                                                        <label for="reasonForSeparation">Reason for Separation</label>
                                                         <input type="text" class="form-control"
-                                                            formControlName="separation" name="separation"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.separation.errors }">
-                                                        <div *ngIf="cfi.separation.touched && cfi.separation.errors || cifSubmitted"
+                                                            formControlName="reasonForSeparation"
+                                                            name="reasonForSeparation"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.reasonForSeparation.errors }">
+                                                        <div *ngIf="cfi.reasonForSeparation.touched && cfi.reasonForSeparation.errors || cifSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="cfi.separation.errors">This field is required
+                                                            <div *ngIf="cfi.reasonForSeparation.errors">This field is
+                                                                required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="byb">Benefit Year Begining</label>
-                                                        <input type="text" class="form-control" formControlName="byb"
-                                                            name="byb"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.byb.errors }">
-                                                        <div *ngIf="cfi.byb.touched && cfi.byb.errors || cifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="cfi.byb.errors">This field is required </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col-md-6">
-                                                        <label for="mailDateEDD">Date Mailed to EDD</label>
+                                                        <label for="dateMailedToEDD">Date Mailed to EDD</label>
                                                         <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="mailDateEDD"
-                                                            name="mailDateEDD"
+                                                            autocomplete="off" bsDatepicker
+                                                            formControlName="dateMailedToEDD" name="dateMailedToEDD"
                                                             [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
-                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.mailDateEDD.errors }">
-                                                        <div *ngIf="cfi.mailDateEDD.touched && cfi.mailDateEDD.errors || cifSubmitted"
+                                                            [ngClass]="{ 'is-invalid': cifSubmitted && cfi.dateMailedToEDD.errors }">
+                                                        <div *ngIf="cfi.dateMailedToEDD.touched && cfi.dateMailedToEDD.errors || cifSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="cfi.mailDateEDD.errors">This field is required
+                                                            <div *ngIf="cfi.dateMailedToEDD.errors">This field is
+                                                                required
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-group col-md-6">
-                                                        <label for="empNo">Emp No.</label>
-                                                        <div>
-                                                            <span>0000452134</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col-md-6">
-                                                        <label for="gender">Gender</label>
-                                                        <div>
-                                                            <span>Male</span>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
 
-
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveClaim()">Save Claim
+                                                        Info</button>
                                                 </div>
 
                                             </form>
@@ -256,7 +270,8 @@
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
                                             <span class="badge badge-primary">List Of Documents</span>
-                                            <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
+                                            <button class="btn btn-success"
+                                                (click)="aps.openModal(uploadAttachment)">Add
                                                 Document</button>
                                         </h3>
                                     </div>
@@ -346,11 +361,6 @@
             </div>
         </div>
     </div>
-</div>
-
-
-<div>
-    <button (click)="showSuccess()" class="btn btn-primary">show Toaster</button>
 </div>
 
 <ng-template #uploadAttachment>

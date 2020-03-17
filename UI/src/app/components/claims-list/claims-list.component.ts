@@ -31,10 +31,11 @@ export class ClaimsListComponent implements OnInit {
       pageLength: 5
     };
 
-    this.acs.getClaimsList()
+    this.acs.getClaimsList(2020,'Active')
       .subscribe(
         (res) => {
           this.claims = res
+          this.claims =  this.claims.newClaims;
           console.log(this.claims)
         },
         (error) => {

@@ -58,7 +58,7 @@ p { font-size: 14px; font-weight: 300; line-height: 1.7; }
 
 // form style start 
 .form-control , 
-.dataTables_wrapper .dataTables_filter input { height: calc(1.5em + 1rem + 2px) !important; padding: 0.3rem 1rem !important; font-size: 14px; border: 1px solid $brcolor; }
+.dataTables_wrapper .dataTables_filter input , .cc-inputborder{ height: calc(1.5em + 1rem + 2px) !important; padding: 0.3rem 1rem !important; font-size: 14px; border: 1px solid $brcolor; }
 
 .form-control::placeholder , select.form-control::placeholder  ,
 .dataTables_wrapper .dataTables_filter input::placeholder
@@ -686,6 +686,19 @@ app-sidebar-process-steps {
     color: #5d78ff;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.cc-pcbg {
+    background: #eceef7;
+    padding: 25px 10px 0 10px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+.cc-inputborder {
+    border: 1px solid #d2d2d2;
+    display: flex;
+    align-items: center;
 }
 
 // datepicker 
