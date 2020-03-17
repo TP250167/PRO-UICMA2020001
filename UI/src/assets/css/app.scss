@@ -364,12 +364,11 @@ select.form-control , .cc-datepicker , .dataTables_length select {
     }
 
     .panel-collapse  {
-        display: none !important;
+        // display: none !important;
         .panel-body {
             padding: 10px 0 0 0;
         }
     }
-
 
     .cc-accordion-content {
         ul {
@@ -1195,4 +1194,9 @@ bs-datepicker-container, bs-daterangepicker-container {
     color: #fd397a !important;
     font-size: 80%;
 
+}
+
+
+.biweeklylist .panel-collapse {
+    display: block !important;
 }

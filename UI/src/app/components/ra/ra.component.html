@@ -1,7 +1,7 @@
 <div class="cc-page-title">
     <h2>Reasonable Assurance Notification Management</h2>
     <div class="text-right Notification-button">
-    <button class="btn btn-primary" (click)="aps.openModal(checkAttachment)">Create Batch</button>
+        <button class="btn btn-primary" (click)="aps.openModal(checkAttachment)">Create Batch</button>
     </div>
 </div>
 <div class="container-fluid cc-pad-zero">
@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    
+
                     <h3 class="card-title mb-3">
                         <span class="badge badge-primary">Notification Schedules</span>
                     </h3>
@@ -18,7 +18,8 @@
                         <accordion [isAnimated]="true" [closeOthers]="true">
 
                             <accordion-group *ngFor="let item of schedulesList">
-                                <button (click)="getBatchesDetails(item.id)" class="btn btn-link" accordion-heading type="button">
+                                <button (click)="getBatchesDetails(item.id)" class="btn btn-link" accordion-heading
+                                    type="button">
                                     <div class="cc-list-icon"> <span><i class="fa fa-check"></i></span> </div>
                                     <div class="cc-tla-heading">{{item.batchName}}</div>
                                 </button>
@@ -30,6 +31,21 @@
                                         <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
                                     </ul>
                                 </div> -->
+                            </accordion-group>
+
+                            <accordion-group class="biweeklylist">
+                                <button  class="btn btn-link" accordion-heading
+                                    type="button">
+                                    <div class="cc-list-icon"> <span><i class="fa fa-refresh"></i></span> </div>
+                                    <div class="cc-tla-heading">Biweekly RA Notification Batch</div>
+                                </button>
+                                <div class="cc-accordion-content">
+                                    <ul>
+                                        <li (click)="getBatchesDetails(item.id)" *ngFor="let item of biWeeklyBatched">
+                                            <i class="fa fa-envelope"></i>{{item.batchName}}
+                                        </li>
+                                    </ul>
+                                </div>
                             </accordion-group>
 
                             <!-- <accordion-group>
@@ -44,7 +60,7 @@
                                     </ul>
                                 </div>
                             </accordion-group> -->
-                        
+
                         </accordion>
                     </div>
                 </div>
@@ -61,7 +77,8 @@
                             <tbody>
                                 <tr>
                                     <td>Batch Name</td>
-                                    <td (click)="gotoNotificationLogs(batchDetails.id)"><span class="cc-text-link">{{batchDetails.batch_Name}}</span></td>
+                                    <td (click)="gotoNotificationLogs(batchDetails.id)"><span
+                                            class="cc-text-link">{{batchDetails.batch_Name}}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Batch Description</td>
@@ -73,7 +90,7 @@
                                 </tr>
                                 <tr>
                                     <td>Total Recipient</td>
-                                    <td>{{batchDetails.total_Recipient}}</td>
+                                    <td> <span class="cc-text-link">{{batchDetails.total_Recipient}}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Schedule Date</td>
@@ -81,11 +98,11 @@
                                 </tr>
                                 <tr>
                                     <td>Successful Delivery</td>
-                                    <td>{{batchDetails.sucessful_Delivery}}</td>
+                                    <td> <span class="cc-text-link">{{batchDetails.sucessful_Delivery}}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Failed Delivery</td>
-                                    <td>{{batchDetails.failed_Delivery}}</td>
+                                    <td><span class="cc-text-link">{{batchDetails.failed_Delivery}}</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -104,61 +121,140 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form appFormInputFocus [formGroup]="batchInitiateForm" 
-    (ngSubmit)="submitBatchInitiateForm()">
-    <div class="modal-body">
-        <div class="cc-form-section">
+    <form appFormInputFocus [formGroup]="batchInitiateForm" (ngSubmit)="submitBatchInitiateForm()">
+        <div class="modal-body">
+            <div class="cc-form-section">
                 <div class="form-row">
+
                     <div class="form-group col-md-12">
                         <label for="batchName">Batch Name</label>
-                        <input type="text" class="form-control" autocomplete="off"
-                          formControlName="batchName" name="batchName"
-                          [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchName.errors }">
-                    <div *ngIf="bfi.batchName.touched && bfi.batchName.errors ||bifSubmitted" 
-                         class="invalid-feedback">
-                         <div *ngIf="bfi.batchName.errors">This field is required
-                         </div>
-                    </div>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="recipientSet">Recipient Set</label>
-                        <ng-multiselect-dropdown  formControlName="recipientSet" name="recipientSet"
-                                [placeholder]="'custom placeholder'"
-                                [data]="dropdownList"
-                                [(ngModel)]="selectedItems"
-                                [settings]="dropdownSettings"
-                                >
-                        </ng-multiselect-dropdown>
-
-                        <!-- <input type="text" class="form-control"
-                          formControlName="recipientSet" name="recipientSet" autocomplete="off"
-                          [ngClass]="{ 'is-invalid':bifSubmitted && bfi.recipientSet.errors }"> -->
-                    <div *ngIf="bfi.recipientSet.touched && bfi.recipientSet.errors ||bifSubmitted" 
-                        class="invalid-feedback">
-                        <div *ngIf="bfi.recipientSet.errors">This field is required
-                        </div>
-                   </div>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="scheduleDate">Schedule Date</label>
-                        <input type="text" class="form-control cc-datepicker" autocomplete="off"
-                            bsDatepicker formControlName="scheduleDate"
-                            name="scheduleDate"
-                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
-                            [ngClass]="{ 'is-invalid':bifSubmitted && bfi.scheduleDate.errors }">
-                        <div *ngIf="bfi.scheduleDate.touched && bfi.scheduleDate.errors ||bifSubmitted"
+                        <input type="text" class="form-control" autocomplete="off" formControlName="batchName"
+                            name="batchName" [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchName.errors }">
+                        <div *ngIf="bfi.batchName.touched && bfi.batchName.errors ||bifSubmitted"
                             class="invalid-feedback">
-                            <div *ngIf="bfi.scheduleDate.errors">This field is required
+                            <div *ngIf="bfi.batchName.errors">This field is required
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group col-md-12">
+                        <label for="batchDescription">Batch Description</label>
+                        <input type="text" class="form-control" autocomplete="off" formControlName="batchDescription"
+                            name="batchDescription"
+                            [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchDescription.errors }">
+                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||bifSubmitted"
+                            class="invalid-feedback">
+                            <div *ngIf="bfi.batchDescription.errors">This field is required
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+                        <label for="batchDescription">Choose Template</label>
+
+                        <select id="inputState" class="form-control" autocomplete="off" formControlName="TemplateID"
+                            name="TemplateID">
+                            <option value="{{item.id}}" *ngFor="let item of templateList">{{item.templateName}}</option>
+                        </select>
+
+                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||bifSubmitted"
+                            class="invalid-feedback">
+                            <div *ngIf="bfi.batchDescription.errors">This field is required
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+
+                        <div class="form-row">
+
+                            <div class="col-md-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" selected class="custom-control-input" id="annual" name="isAnnual"
+                                        value="true" (click)="showRecipientSection('True') " formControlName="isAnnual">
+                                    <label class="custom-control-label" for="annual">Annual</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="biWeekly" name="isAnnual"
+                                        value="false" (click)="showRecipientSection('False')" formControlName="isAnnual">
+                                    <label class="custom-control-label" for="biWeekly">Bi Weekly</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="custom" name="isAnnual" (click)="showUpfileSection()">
+                                    <label class="custom-control-label" for="custom">Custom</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||bifSubmitted"
+                            class="invalid-feedback">
+                            <div *ngIf="bfi.batchDescription.errors">This field is required
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="cc-repset col-md-12" *ngIf="(showRecipient == true && showUpbtn == false)">
+                        <div class="form-group">
+                            <label for="recipientSet">Recipient Set</label>
+                            <ng-multiselect-dropdown formControlName="recipientSet" name="recipientSet"
+                                [placeholder]="'custom placeholder'" [data]="dropdownList" [(ngModel)]="selectedItems"
+                                [settings]="dropdownSettings">
+                            </ng-multiselect-dropdown>
+
+                            <!-- <input type="text" class="form-control"
+                                formControlName="recipientSet" name="recipientSet" autocomplete="off"
+                                [ngClass]="{ 'is-invalid':bifSubmitted && bfi.recipientSet.errors }"> -->
+                            <div *ngIf="bfi.recipientSet.touched && bfi.recipientSet.errors ||bifSubmitted"
+                                class="invalid-feedback">
+                                <div *ngIf="bfi.recipientSet.errors">This field is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduleDate">Schedule Date</label>
+                            <input type="text" class="form-control cc-datepicker" autocomplete="off" bsDatepicker
+                                formControlName="scheduleDate" name="scheduleDate"
+                                [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                [ngClass]="{ 'is-invalid':bifSubmitted && bfi.scheduleDate.errors }">
+                            <div *ngIf="bfi.scheduleDate.touched && bfi.scheduleDate.errors ||bifSubmitted"
+                                class="invalid-feedback">
+                                <div *ngIf="bfi.scheduleDate.errors">This field is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cc-upfile col-md-12" *ngIf="(showRecipient == false && showUpbtn == true)">
+                        <div class="form-group cc-file-upload">
+                            <input type="file" appCustomUpload class="form-control">
+                            <div class="cc-fu-wrapper">
+                                <div class="cc-file-upload-filed">
+                                    <span class="cc-fuf-text"></span>
+                                </div>
+                                <div class="cc-file-upload-button">Choose File</div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="aps.closeModel()">Cancel</button>
-        <button class="btn btn-primary" (click)="createBatch()">Ok</button>
-    </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="aps.closeModel()">Cancel</button>
+            <button class="btn btn-primary" (click)="createBatch()">Ok</button>
+        </div>
     </form>
 
 </ng-template>

@@ -18,14 +18,19 @@ export class RaComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
-  public dropdownList     :any = [];
-  public selectedItems    :any = [];
-  public dropdownSettings :any = {};
-  
+  public templateList: any = [];
+  public dropdownList: any = [];
+  public selectedItems: any = [];
+  public dropdownSettings: any = {};
+
+  public biWeeklyBatched: any = [];
+
+  public showRecipient: boolean;
+  public showUpbtn: boolean;
 
 
-  public schedulesList:any = [] ;
-  public batchDetails :any = [] ;
+  public schedulesList: any = [];
+  public batchDetails: any = [];
 
 
   // form setion var 
@@ -48,7 +53,10 @@ export class RaComponent implements OnInit {
     this.batchInitiateForm = this.fb.group({
       batchName: ['', Validators.required],
       recipientSet: ['', Validators.required],
+      batchDescription: ['', Validators.required],
+      TemplateID: ['', Validators.required],
       scheduleDate: ['', Validators.required],
+      isAnnual : ['', Validators.required]
     });
   }
 
@@ -67,44 +75,30 @@ export class RaComponent implements OnInit {
 
   createBatch() {
 
-    let recipientValue ="" ;
+    let recipientValue = "";
 
-    for(let i =0 ; i < this.batchInitiateForm.value.recipientSet.length; i++) {
-      recipientValue += this.batchInitiateForm.value.recipientSet[i].item_id + ',' ;
+    for (let i = 0; i < this.batchInitiateForm.value.recipientSet.length; i++) {
+      recipientValue += this.batchInitiateForm.value.recipientSet[i].item_id + ',';
     }
 
-    recipientValue =  recipientValue.replace(/,\s*$/,"")
+    recipientValue = recipientValue.replace(/,\s*$/, "")
 
     let data = {
       "id": 0,
       "batchName": this.batchInitiateForm.value.batchName,
-      "batchDescription": "RA Summer Test",
-      "frequency": "Daily",
-      "isRecuring": true,
-      "occurrance": null,
-      "status": "Active",
-      "time": null,
-      "createdBy": "1",
-      "modifiedBy": null,
-      "createdOn": null,
-      "modifiedOn": "2020-03-11T11:26:03.2823861",
-      "nextOccurrance": null,
-      "rAbatchRecipientRule": null,
-      "rAbatchSchedule": null,
-      "rAbatchTemplate": null,
-      "rAbatchRecipient": null,
-      "RAbatchRecRule":{
-        "RecipientRuleListId":recipientValue
-        },
-      "RASchedule":{
-        "scheduleDate": this.datePipe.transform(this.batchInitiateForm.value.scheduleDate,'MM-dd-yyyy'),
-        "status":"Active"
+      "batchDescription": this.batchInitiateForm.value.batchDescription,
+      "isAnnual": this.batchInitiateForm.value.isAnnual,
+      "TemplateID": this.batchInitiateForm.value.TemplateID,
+      "RAbatchRecRule": {
+        "RecipientRuleListId": recipientValue
+      },
+      "RASchedule": {
+        "scheduleDate": this.datePipe.transform(this.batchInitiateForm.value.scheduleDate, 'MM-dd-yyyy'),
+        "status": "Active"
       }
-     }
+    }
 
-    console.log(data)
-
-    if(!this.batchInitiateForm.invalid) {
+    if (!this.batchInitiateForm.invalid) {
       this.ras.createBatch(data)
         .subscribe(
           (res) => {
@@ -120,53 +114,53 @@ export class RaComponent implements OnInit {
 
   }
 
-  getBatches(){
+  getBatches() {
     this.ras.getAllBatch()
-    .subscribe(
-      (res) => {
-        this.schedulesList =  res ;
-        this.getBatchesDetails(this.schedulesList[0].id)
-        console.log(this.schedulesList)
-      },
-      (error) => {
-        console.log('error caught in get batch list', error)
-      }
-    )
-  }
-
-  getBatchesDetails(id){
-    this.ras.getBatchDetails(id)
-    .subscribe(
-      (res) => {
-        this.batchDetails = res ;
-        console.log(this.batchDetails)
-      },
-      (error) => {
-        console.log('error caught in get batch details', error)
-      }
-    )
-  }
-  
-  multiselectConfig(){
-    
-    this.ras.getRecipient()
-    .subscribe(
-      (res) => {
-        let resdata = res ;
-
-        console.log(resdata)
-        Object.keys(resdata).length
-        
-        for(let i=0; i < Object.keys(resdata).length; i++) {
-            this.dropdownList.push({item_id:`${resdata[i].id}`,item_text:`${resdata[i].recipientRuleType}`}) ;
+      .subscribe(
+        (res) => {
+          this.schedulesList = res;
+          this.getBatchesDetails(this.schedulesList[0].id)
+          console.log(this.schedulesList)
+        },
+        (error) => {
+          console.log('error caught in get batch list', error)
         }
-      },
-      (error) => {
-        console.log('error caught in get batch details', error)
-      }
-    )
+      )
+  }
 
-    this.dropdownSettings  = {
+  getBatchesDetails(id) {
+    this.ras.getBatchDetails(id)
+      .subscribe(
+        (res) => {
+          this.batchDetails = res;
+          console.log(this.batchDetails)
+        },
+        (error) => {
+          console.log('error caught in get batch details', error)
+        }
+      )
+  }
+
+  multiselectConfig(bval) {
+
+    this.ras.getRecipient(bval)
+      .subscribe(
+        (res) => {
+          let resdata = res;
+          this.dropdownList = []
+
+          for (let i = 0; i < Object.keys(resdata).length; i++) {
+            this.dropdownList.push({ item_id: `${resdata[i].id}`, item_text: `${resdata[i].recipientRuleType}` });
+          }
+
+          console.log(this.dropdownList)
+        },
+        (error) => {
+          console.log('error caught in get batch details', error)
+        }
+      )
+
+    this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
       textField: 'item_text',
@@ -175,12 +169,53 @@ export class RaComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+  }
+
+  getTemplateId() {
+    this.ras.getTemplateId()
+      .subscribe(
+        (res) => {
+          this.templateList = res;
+          console.log(this.templateList)
+        },
+        (error) => {
+          console.log('error caught in template call', error)
+        }
+      )
+  }
+
+  getBiweeklyBatches() {
+    this.ras.getRaWeeklyBatch()
+      .subscribe(
+        (res) => {
+          this.biWeeklyBatched = res;
+          console.log(this.biWeeklyBatched)
+        },
+        (error) => {
+          console.log('error caught in template call', error)
+        }
+      )
+  }
+
+  showRecipientSection(val) {
+    console.log(val)
+    this.showRecipient = true
+    this.showUpbtn = false
+    this.multiselectConfig(val)
+  }
+
+  showUpfileSection() {
+    this.showRecipient = false
+    this.showUpbtn = true
   }
 
   ngOnInit() {
-    this.multiselectConfig()
+    this.multiselectConfig('True')
     this.batchFormInit()
+    this.getTemplateId()
     this.getBatches()
+    this.getBiweeklyBatches()
   }
 
 }

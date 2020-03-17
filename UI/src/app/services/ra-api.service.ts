@@ -37,12 +37,33 @@ export class RaApiService {
       `${this.cls.ApiUrl}api/RABatch/GetBatchViewbyID/${id}`
     )
   }
-  
-  getRecipient() {
+
+  getRaWeeklyBatch() {
     return this.http.get(
-      `${this.cls.ApiUrl}api/RARecipientRule/GetAllRARecipientRule`
+      `${this.cls.ApiUrl}api/RABatch/GetAllRABiWeeklyBatch`
     )
   }
+  
+  getRecipient(boolval) {
+    return this.http.get(
+      `${this.cls.ApiUrl}api/RARecipientRule/GetAllRARecipientRuleByAnnual/${boolval}`
+    )
+  }
+
+  getTemplateId(){
+    return this.http.get(
+      `${this.cls.ApiUrl}api/RATemplate/GetAllTemplate`
+    )
+  }
+
+
+
+
+
+
+
+
+  
   
   getRaNotificationList(id){
     return this.http.get(
