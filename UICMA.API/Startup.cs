@@ -214,8 +214,9 @@ namespace UICMA.API
             builder.RegisterType<RARecipientRuleService>().As<IRARecipientRuleService>();
             builder.RegisterType<RARecipientRuleRepository>().As<IRARecipientRuleRepository>();
             builder.RegisterType<RABatchRecipientRuleRepository>().As<IRABatchRecipientRuleRepository>();
-            
-
+            builder.RegisterType<RATemplateService>().As<IRATemplateService>();
+            builder.RegisterType<TemplateRepository>().As<ITemplateRepository>();
+            //RA Repository and Service End
 
 
             builder.RegisterType<FormDocumentMapService>().As<IFormDocumentMapService>();

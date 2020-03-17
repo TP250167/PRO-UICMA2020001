@@ -1910,11 +1910,6 @@ namespace UICMA.API.Migrations
                     b.Property<string>("Frequency")
                         .HasColumnName("FREQUENCY");
 
-                    b.Property<bool>("IsAnnual")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("IS_ANNUAL")
-                        .HasDefaultValue(false);
-
                     b.Property<bool>("IsCustom")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("IS_CUSTOM")
@@ -1962,6 +1957,11 @@ namespace UICMA.API.Migrations
 
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnName("CREATED_ON");
+
+                    b.Property<bool>("IsAnnual")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IS_ANNUAL")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnName("MODIFIED_BY");

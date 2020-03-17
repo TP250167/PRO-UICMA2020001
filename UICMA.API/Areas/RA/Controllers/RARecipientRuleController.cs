@@ -30,6 +30,12 @@ namespace UICMA.API.Areas.RA.Controllers
             var result = _RARecipientRuleService.GetAllRARecipientRule().ToList();
             return result;
         }
+
+        [HttpGet("GetAllRARecipientRuleByAnnual/{Annual}")]
+        public IEnumerable<RARecipientRule> GetAllRARecipientRuleByAnnual(bool Annual)
+        {
+            return _RARecipientRuleService.GetAllRARecipientRuleByAnnual(Annual);           
+        }
     }
 }
 

@@ -20,6 +20,7 @@ namespace UICMA.Domain.Entities.RARecipientRuleMap
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY");
             builder.Property(s => s.RecipientRuleType).HasColumnName("RECIPIENT_RULE_TYPE");
+            builder.Property(s => s.IsAnnual).HasColumnName("IS_ANNUAL").HasDefaultValue(false);
         }
     }
 }

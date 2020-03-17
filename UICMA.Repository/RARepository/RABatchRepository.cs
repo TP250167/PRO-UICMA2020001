@@ -19,7 +19,7 @@ namespace UICMA.Repository.RARepository
      
         public IEnumerable<RABatchView> GetAllRABatch()
         {          
-            return context.RABatch.Where(s => s.Status == "Active").ToList();
+            return context.RABatch.Where(s => s.Status == "Active" && s.Frequency == "Yearly").OrderByDescending(s => s.CreatedOn).ToList();
         }
         public RABatchViewModel GetBatchViewbyID(int Batchid)
         {
@@ -30,6 +30,11 @@ namespace UICMA.Repository.RARepository
         {
             var result= context.spRaNotificationList.FromSql("spRaNotificationList  @p0", Batchid).AsNoTracking().ToList();
             return new List<RANotificationViewModel>(result);
+        }
+
+        public IEnumerable<RABatchView> GetAllRABiWeeklyBatch()
+        {
+            return context.RABatch.Where(s => s.Status == "Active" && s.Frequency == "Weekly").OrderByDescending(s => s.CreatedOn).ToList().Take(5);
         }
 
     }

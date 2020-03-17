@@ -16,6 +16,7 @@ namespace UICMA.Domain.Entities.RARecipientRules
         public string RecipientRuleName { get; set; }
         public string RecipientRuleStatus { get; set; }
         public string RecipientRuleType { get; set; }
+        public bool IsAnnual { get; set; }      
         public ICollection<RABatchRecipientRule> RAbatchRecipientRule { get; set; }
     }
 }

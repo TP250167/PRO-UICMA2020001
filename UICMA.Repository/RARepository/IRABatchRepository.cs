@@ -11,5 +11,6 @@ namespace UICMA.Repository.RARepository
         IEnumerable<RABatchView> GetAllRABatch();
         RABatchViewModel GetBatchViewbyID(int Batchid);
         List<RANotificationViewModel> GetRANotificationList(int Batchid);
+        IEnumerable<RABatchView> GetAllRABiWeeklyBatch();
     }
 }

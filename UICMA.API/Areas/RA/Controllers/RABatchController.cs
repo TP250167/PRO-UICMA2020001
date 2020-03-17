@@ -21,6 +21,7 @@ namespace UICMA.API.Areas.RA.Controllers
         private ILoggerManager _logger;
         private IMapper _mapper;
         private IRABatchService _RABatchService;
+        
 
         public RABatchController(ILoggerManager logger, IMapper mapper, IRABatchService _RABatchService)
         {
@@ -61,6 +62,11 @@ namespace UICMA.API.Areas.RA.Controllers
             return _RABatchService.GetRANotificationList(Batchid);
         }
 
-
+        [HttpGet("GetAllRABiWeeklyBatch")]
+        public ActionResult<IEnumerable<RABatchView>> GetAllRABiWeeklyBatch()
+        {
+            return _RABatchService.GetAllRABiWeeklyBatch().ToList();
+           
+        }
     }
 }

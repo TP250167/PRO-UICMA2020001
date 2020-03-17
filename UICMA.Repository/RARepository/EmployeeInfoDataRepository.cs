@@ -35,5 +35,18 @@ namespace UICMA.Repository.RARepository
         {
             return context.Employee.Where(s => (s.EmpTypeCode == "2USX" && s.EmpTypeCode == "2UTH" && s.EmpTypeCode == "2UTE")).ToList();
         }
+
+        public List<Employee> GetHiredEmployee()
+        {
+            return context.Employee.Where(s => s.EmpTypeCode == "MASSN" && s.SEIDCode=="INFO 0").ToList();
+        }
+        public List<Employee> GetReHiredEmployee()
+        {
+            return context.Employee.Where(s => s.EmpTypeCode == "BEGDA" && s.SEIDCode == "INFO 0").ToList();
+        }
+        public List<Employee> GetChangesJobEmployee()
+        {
+            return context.Employee.Where(s => s.EmpTypeCode == "STELL" && s.SEIDCode == "INFO 1").ToList();
+        }
     }
 }

@@ -122,6 +122,7 @@ namespace UICMA.Repository
         public DbSet<RARecipient> RARecipient { get; set; }
         public DbSet<RABatchViewModel> spRaBatchDetail { get; set; }
         public DbSet<RANotificationViewModel> spRaNotificationList { get; set; }
+        public DbSet<RARecipientRule> RARecipientRule { get; set; }
 
 
         public UICMAContext(DbContextOptions<UICMAContext> options) : base(options)

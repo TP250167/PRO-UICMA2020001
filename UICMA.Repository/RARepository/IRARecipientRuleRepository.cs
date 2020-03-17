@@ -7,6 +7,8 @@ namespace UICMA.Repository.RARepository
 {
     public interface IRARecipientRuleRepository : IEntityBaseRepository<RARecipientRule>
     {
+        List<RARecipientRule> GetAllRARecipientRuleByAnnual(bool Annual);
+        
     }
 }
 

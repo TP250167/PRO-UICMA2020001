@@ -21,8 +21,7 @@ namespace UICMA.Domain.Entities.RABatchMap
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY");
             builder.Property(s => s.IsRecuring).HasColumnName("IS_RECURING").HasDefaultValue(false);
-            builder.Property(s => s.IsCustom).HasColumnName("IS_CUSTOM").HasDefaultValue(false);
-            builder.Property(s => s.IsAnnual).HasColumnName("IS_ANNUAL").HasDefaultValue(false);
+            builder.Property(s => s.IsCustom).HasColumnName("IS_CUSTOM").HasDefaultValue(false);          
             builder.Property(s => s.Frequency).HasColumnName("FREQUENCY");
             builder.Property(s => s.Time).HasColumnName("TIME");
             builder.Property(s => s.Occurrance).HasColumnName("OCCURRANCE");

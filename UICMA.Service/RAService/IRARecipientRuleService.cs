@@ -8,5 +8,6 @@ namespace UICMA.Service.RAService
     public interface IRARecipientRuleService
     {
         IEnumerable<RARecipientRule> GetAllRARecipientRule();
+        List<RARecipientRule> GetAllRARecipientRuleByAnnual(bool Annual);
     }
 }

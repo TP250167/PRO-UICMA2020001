@@ -21,6 +21,10 @@ namespace UICMA.Service.RAService
         {
             return _RARecipientRuleRepository.GetAll();
         }
+        public List<RARecipientRule> GetAllRARecipientRuleByAnnual(bool Annual)
+        {
+            return _RARecipientRuleRepository.GetAllRARecipientRuleByAnnual(Annual);
+        }
     }
 }
 

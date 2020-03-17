@@ -12,5 +12,8 @@ namespace UICMA.Repository.RARepository
         List<Employee> GetTeacherAssitantEmployee();
         List<Employee> GetSpecialEducation();
         List<Employee> GetSupportSchool();
+        List<Employee> GetHiredEmployee();
+        List<Employee> GetReHiredEmployee();
+        List<Employee> GetChangesJobEmployee();
     }
 }
