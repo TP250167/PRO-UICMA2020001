@@ -19,14 +19,14 @@ namespace UICMA.Repository.ClaimRepository
 
         public IEnumerable<Claim> GetActiveClaims(int Year)
         {
-            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == "Active" && s.BenefitYearBeginning == Year).ToList();
+            var ActiveClaims = context.Claims.Where(s => s.ClaimantStatus == "Active" && s.BenefitYearBeginning == Year).ToList();
 
             return ActiveClaims;
         }
 
         public IEnumerable<Claim> GetExceptionClaims(int Year)
         {
-            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == "Exception" && s.BenefitYearBeginning == Year).ToList();
+            var ActiveClaims = context.Claims.Where(s => s.ClaimantStatus == "Exception" && s.BenefitYearBeginning == Year).ToList();
 
             return ActiveClaims;
         }
@@ -34,14 +34,14 @@ namespace UICMA.Repository.ClaimRepository
 
         public List<Claim> GetClaimsByYear(int Year,string Status)
         {
-            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == Status && s.BenefitYearBeginning == Year).ToList();
+            var ActiveClaims = context.Claims.Where(s => s.ClaimantStatus == Status && s.BenefitYearBeginning == Year).ToList();
 
             return ActiveClaims;
         }
 
         public Claim GetReqNumClaims(string RequestNumber)
         {
-            var ActiveClaims = context.Claims.Where(s => s.CurrentStage == "Active" && s.RequestNumber == RequestNumber).FirstOrDefault();
+            var ActiveClaims = context.Claims.Where(s => s.ClaimantStatus =="Active" && s.RequestNumber ==RequestNumber).FirstOrDefault();
 
             return ActiveClaims;
         }
