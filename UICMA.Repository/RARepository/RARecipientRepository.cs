@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UICMA.Domain.Entities.RA.RAView;
 using UICMA.Domain.Entities.RABatchRecipients;
 using UICMA.Domain.Entities.RARecipients;
 
@@ -21,7 +23,7 @@ namespace UICMA.Repository.RARepository
 
         public RARecipient GetRARecipientbyBatchID(int id)
         {
-            return context.RARecipient.Where(s => s.Id == id ).FirstOrDefault();
+            return context.RARecipient.Where(s => s.Id == id).FirstOrDefault();
         }
         public RARecipient DeleteRARecipientId(int id)
         {
@@ -31,7 +33,21 @@ namespace UICMA.Repository.RARepository
             context.SaveChanges();
             return (Recipient);
         }
+        public List<RARecipientView> GetAllRecipient(int Batchid)
+        {
+            var Recipient = context.vwTotalRecipient.Where(s => s.Id == Batchid).AsNoTracking().ToList();
+            return new List<RARecipientView>(Recipient);          
 
+        }
+        public List<RARecipientView> GetAllDeliverdRecipient(int Batchid)
+        {
+            var Recipients = context.vwTotalRecipient.Where(s => s.Id == Batchid && s.Delivered_On != null).AsNoTracking().ToList();
+            return new List<RARecipientView>(Recipients);
+        }
+        public List<RARecipientView> GetAllFailedRecipient(int Batchid)
+        {
+            var Recipients = context.vwTotalRecipient.Where(s => s.Id == Batchid && s.Failed_On != null).AsNoTracking().ToList();
+            return new List<RARecipientView>(Recipients);
+        }
     }
 }
-

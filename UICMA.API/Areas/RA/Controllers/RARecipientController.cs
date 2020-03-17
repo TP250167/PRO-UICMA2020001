@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UICMA.Domain.Entities.RA.RAView;
 using UICMA.Domain.Entities.RARecipients;
 using UICMA.Service;
 using UICMA.Service.RAService;
@@ -54,5 +55,24 @@ namespace UICMA.API.Areas.RA.Controllers
             var results = _RARecipientService.DeleteRARecipientId(id);
             return results;
         }
+        [HttpGet("GetAllRARecipient/{Batchid}")]
+        public List<RARecipientView> GetAllRecipient(int Batchid)
+        {
+            var results = _RARecipientService.GetAllRecipient(Batchid);
+            return results;          
+        }
+
+        [HttpGet("GetAllDeliverdRecipient/{Batchid}")]
+        public List<RARecipientView> GetAllDeliverdRecipient(int Batchid)
+        {
+            var results = _RARecipientService.GetAllDeliverdRecipient(Batchid);
+            return results;
+        }
+        [HttpGet("GetAllFailedRecipient/{Batchid}")]
+        public List<RARecipientView> GetAllFailedRecipient(int Batchid)
+        {
+            var results = _RARecipientService.GetAllFailedRecipient(Batchid);
+            return results;
+        }      
     }
 }

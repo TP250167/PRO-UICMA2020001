@@ -20,7 +20,7 @@ namespace UICMA.Domain.Entities.RA.RAView
         public int? Total_Recipient { get; set; }
         public int? Sucessful_Delivery { get; set; }
         public DateTime? Schedule_Date { get; set; }
-        public string Failed_Delivery { get; set; }
+        public int? Failed_Delivery { get; set; }
        
     }
 }

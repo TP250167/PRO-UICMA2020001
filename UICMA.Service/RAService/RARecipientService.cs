@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities.RA.RAView;
 using UICMA.Domain.Entities.RARecipientRules;
 using UICMA.Domain.Entities.RARecipients;
 using UICMA.Repository.RARepository;
@@ -38,8 +39,22 @@ namespace UICMA.Service.RAService
             return _RARecipientRepository.DeleteRARecipientId(id);
 
         }
-       
 
+        //Get AllRecipient By RABatch_Id
+        public List<RARecipientView> GetAllRecipient(int Batchid)
+        {
+            return _RARecipientRepository.GetAllRecipient(Batchid);
+
+        }
+        public List<RARecipientView> GetAllDeliverdRecipient(int Batchid)
+        {
+            return _RARecipientRepository.GetAllDeliverdRecipient(Batchid);
+        }
+        public List<RARecipientView> GetAllFailedRecipient(int Batchid)
+        {
+            return _RARecipientRepository.GetAllFailedRecipient(Batchid);
+        }
+        
     }
 }
 
