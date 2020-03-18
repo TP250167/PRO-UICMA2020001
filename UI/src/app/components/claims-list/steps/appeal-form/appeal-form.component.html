@@ -39,34 +39,26 @@
                                     <div class="col-md-12">
                                         <div class="cc-form-title">
                                             <h3 class="card-title mb-3">
-                                                <span class="badge badge-primary">Ui claims details</span>
+                                                <span class="badge badge-primary">Claims Details</span>
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="appealInitiateForm"
-                                                (ngSubmit)="submitAppealInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="appealInitiateForm" (ngSubmit)="submitAppealInitiateForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="claimantName">Claimant Name</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="claimantName" name="claimantName"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.claimantName.errors }">
-                                                        <div *ngIf="afi.claimantName.touched && afi.claimantName.errors || aifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="afi.claimantName.errors || aifSubmitted  ">This field
-                                                                is required </div>
+                                                        <input type="text" class="form-control" formControlName="claimantName" name="claimantName" [ngClass]="{ 'is-invalid': aifSubmitted && afi.claimantName.errors }">
+                                                        <div *ngIf="afi.claimantName.touched && afi.claimantName.errors || aifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="afi.claimantName.errors || aifSubmitted  ">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="ssn">Social Security Number</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="ssn" name="ssn"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.ssn.errors }">
-                                                        <div *ngIf="afi.ssn.touched && afi.ssn.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="ssn" name="ssn" [ngClass]="{ 'is-invalid': aifSubmitted && afi.ssn.errors }">
+                                                        <div *ngIf="afi.ssn.touched && afi.ssn.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.ssn.errors">This field is required
                                                             </div>
                                                         </div>
@@ -74,44 +66,32 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="needTranslator">Need Translator</label>
-                                                        <input type="text" class="form-control" formControlName="needTranslator"
-                                                            name="needTranslator"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.needTranslator.errors }">
-                                                        <div *ngIf="afi.needTranslator.touched && afi.needTranslator.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="needTranslator" name="needTranslator" [ngClass]="{ 'is-invalid': aifSubmitted && afi.needTranslator.errors }">
+                                                        <div *ngIf="afi.needTranslator.touched && afi.needTranslator.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.needTranslator.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="translatorLanguage">Translator Language</label>
-                                                        <input type="text" class="form-control" formControlName="translatorLanguage"
-                                                            name="translatorLanguage"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.translatorLanguage.errors }">
-                                                        <div *ngIf="afi.translatorLanguage.touched && afi.translatorLanguage.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="translatorLanguage" name="translatorLanguage" [ngClass]="{ 'is-invalid': aifSubmitted && afi.translatorLanguage.errors }">
+                                                        <div *ngIf="afi.translatorLanguage.touched && afi.translatorLanguage.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.translatorLanguage.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="appellantAddress">Appellant Address</label>
-                                                        <input type="text" class="form-control" formControlName="appellantAddress"
-                                                            name="appellantAddress"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantAddress.errors }">
-                                                        <div *ngIf="afi.appellantAddress.touched && afi.appellantAddress.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="appellantAddress" name="appellantAddress" [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantAddress.errors }">
+                                                        <div *ngIf="afi.appellantAddress.touched && afi.appellantAddress.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.appellantAddress.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="appellantTelephoneNo">Appellant Telephone No</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="appellantTelephoneNo" name="appellantTelephoneNo"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantTelephoneNo.errors }">
-                                                        <div *ngIf="afi.appellantTelephoneNo.touched && afi.appellantTelephoneNo.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="appellantTelephoneNo" name="appellantTelephoneNo" [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantTelephoneNo.errors }">
+                                                        <div *ngIf="afi.appellantTelephoneNo.touched && afi.appellantTelephoneNo.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.appellantTelephoneNo.errors">This field is required
                                                             </div>
                                                         </div>
@@ -119,67 +99,52 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="appellantFaxNo">Appellant Fax No</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="appellantFaxNo" name="appellantFaxNo"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantFaxNo.errors }">
-                                                        <div *ngIf="afi.appellantFaxNo.touched && afi.appellantFaxNo.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="appellantFaxNo" name="appellantFaxNo" [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantFaxNo.errors }">
+                                                        <div *ngIf="afi.appellantFaxNo.touched && afi.appellantFaxNo.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.appellantFaxNo.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="appellantcellphoneNo">Appellant Cell Phone No</label>
-                                                        <input type="text" class="form-control" formControlName="appellantcellphoneNo"
-                                                            name="appellantcellphoneNo"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantcellphoneNo.errors }">
-                                                        <div *ngIf="afi.appellantcellphoneNo.touched && afi.appellantcellphoneNo.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <label for="appellantcellphoneNo">Appellant Cell Phone
+                                                            No</label>
+                                                        <input type="text" class="form-control" formControlName="appellantcellphoneNo" name="appellantcellphoneNo" [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantcellphoneNo.errors }">
+                                                        <div *ngIf="afi.appellantcellphoneNo.touched && afi.appellantcellphoneNo.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.appellantcellphoneNo.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="appellanteMailAddress">Appellant E-mail Address</label>
-                                                        <input type="text" class="form-control" formControlName="appellanteMailAddress"
-                                                            name=" appellanteMailAddress"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellanteMailAddress.errors }">
-                                                        <div *ngIf="afi.appellanteMailAddress.touched && afi.appellanteMailAddress.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <label for="appellanteMailAddress">Appellant E-mail
+                                                            Address</label>
+                                                        <input type="text" class="form-control" formControlName="appellanteMailAddress" name=" appellanteMailAddress" [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellanteMailAddress.errors }">
+                                                        <div *ngIf="afi.appellanteMailAddress.touched && afi.appellanteMailAddress.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.appellanteMailAddress.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="authorizeEmail">Authorize To Send Email</label>
-                                                        <input type="text" class="form-control" formControlName="authorizeEmail"
-                                                            name="authorizeEmail"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.authorizeEmail.errors }">
-                                                        <div *ngIf="afi.authorizeEmail.touched && afi.authorizeEmail.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="authorizeEmail" name="authorizeEmail" [ngClass]="{ 'is-invalid': aifSubmitted && afi.authorizeEmail.errors }">
+                                                        <div *ngIf="afi.authorizeEmail.touched && afi.authorizeEmail.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.authorizeEmail.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="authorizeVm">Authorize To SendTxtOrVM</label>
-                                                        <input type="text" class="form-control" formControlName="authorizeVm"
-                                                            name="authorizeVm"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.authorizeVm.errors }">
-                                                        <div *ngIf="afi.authorizeVm.touched && afi.authorizeVm.errors || aifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="afi.authorizeVm.errors">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="authorizeVm" name="authorizeVm" [ngClass]="{ 'is-invalid': aifSubmitted && afi.authorizeVm.errors }">
+                                                        <div *ngIf="afi.authorizeVm.touched && afi.authorizeVm.errors || aifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="afi.authorizeVm.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="employerAccountNo">Employer Account Number</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="employerAccountNo" name="employerAccountNo"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.employerAccountNo.errors }">
-                                                        <div *ngIf="afi.employerAccountNo.touched && afi.employerAccountNo.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="employerAccountNo" name="employerAccountNo" [ngClass]="{ 'is-invalid': aifSubmitted && afi.employerAccountNo.errors }">
+                                                        <div *ngIf="afi.employerAccountNo.touched && afi.employerAccountNo.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.employerAccountNo.errors">This field is required
                                                             </div>
                                                         </div>
@@ -187,70 +152,51 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="agentName">Agent Name</label>
-                                                        <input type="text" class="form-control" formControlName="agentName"
-                                                            name="agentName"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.agentName.errors }">
-                                                        <div *ngIf="afi.agentName.touched && afi.agentName.errors || aifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="afi.agentName.errors">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="agentName" name="agentName" [ngClass]="{ 'is-invalid': aifSubmitted && afi.agentName.errors }">
+                                                        <div *ngIf="afi.agentName.touched && afi.agentName.errors || aifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="afi.agentName.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="agentAddress">Agent Address</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="agentAddress" name=" agentAddress"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.agentAddress.errors }">
-                                                        <div *ngIf="afi.agentAddress.touched && afi.agentAddress.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="agentAddress" name=" agentAddress" [ngClass]="{ 'is-invalid': aifSubmitted && afi.agentAddress.errors }">
+                                                        <div *ngIf="afi.agentAddress.touched && afi.agentAddress.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.agentAddress.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="appellantNoticeDate">Appellant Notice Date</label>
-                                                        <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="appellantNoticeDate"
-                                                            name="appellantNoticeDate"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantNoticeDate .errors }">
-                                                        <div *ngIf="afi.appellantNoticeDate.touched && afi.appellantNoticeDate.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="appellantNoticeDate" name="appellantNoticeDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantNoticeDate .errors }">
+                                                        <div *ngIf="afi.appellantNoticeDate.touched && afi.appellantNoticeDate.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.appellantNoticeDate.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="form-group col-md-6">
-                                                        <label for="appellantComments">Appellant Statement2 Comments</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="appellantComments" name="appellantComments"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantComments  .errors }">
-                                                        <div *ngIf="afi.appellantComments.touched && afi.appellantComments.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <label for="appellantComments">Appellant Statement2
+                                                            Comments</label>
+                                                        <input type="text" class="form-control" formControlName="appellantComments" name="appellantComments" [ngClass]="{ 'is-invalid': aifSubmitted && afi.appellantComments  .errors }">
+                                                        <div *ngIf="afi.appellantComments.touched && afi.appellantComments.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.appellantComments.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label for="SignatureAppellant">Signature Appellant Or Agent</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="SignatureAppellant" name="SignatureAppellant"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.SignatureAppellant.errors }">
-                                                        <div *ngIf="afi.SignatureAppellant.touched && afi.SignatureAppellant.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <label for="SignatureAppellant">Signature Appellant Or
+                                                            Agent</label>
+                                                        <input type="text" class="form-control" formControlName="SignatureAppellant" name="SignatureAppellant" [ngClass]="{ 'is-invalid': aifSubmitted && afi.SignatureAppellant.errors }">
+                                                        <div *ngIf="afi.SignatureAppellant.touched && afi.SignatureAppellant.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.SignatureAppellant.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="formDate">Form 1000M Date</label>
-                                                        <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="formDate"
-                                                            name="formDate"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
-                                                            [ngClass]="{ 'is-invalid': aifSubmitted && afi.formDate.errors }">
-                                                        <div *ngIf="afi.formDate.touched && afi.formDate.errors || aifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="formDate" name="formDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': aifSubmitted && afi.formDate.errors }">
+                                                        <div *ngIf="afi.formDate.touched && afi.formDate.errors || aifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="afi.formDate.errors">This field is required
                                                             </div>
                                                         </div>
@@ -274,7 +220,7 @@
                                 <div class="row">
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
-                                            <span class="badge badge-primary">List Of Documents</span>
+                                            <span class="badge badge-primary">List of Documents</span>
                                             <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
                                                 Document</button>
                                         </h3>
@@ -332,24 +278,20 @@
                                         <div class="doc-view">
                                             <div class="cc-slider-wrapper">
                                                 <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left" aria-hidden="true"></i>
                                                     </div>
                                                     <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
                                                         <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                                 <div class="cc-dov-view-tabs">
                                                     <tabset #staticTabs>
                                                         <tab class="active">
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
                                                         </tab>
                                                         <tab>
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
                                                         </tab>
                                                     </tabset>
                                                 </div>

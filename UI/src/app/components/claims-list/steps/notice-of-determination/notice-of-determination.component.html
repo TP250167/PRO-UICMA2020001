@@ -14,7 +14,7 @@
             <div class="col-md-4">
                 <div class="cc-page-info-box">
                     <h3>Request Title</h3>
-                    <h5>Ui claim from Alex Decosta</h5>
+                    <h5>claim from Alex Decosta</h5>
                 </div>
             </div>
             <div class="col-md-4">
@@ -39,36 +39,27 @@
                                     <div class="col-md-12">
                                         <div class="cc-form-title">
                                             <h3 class="card-title mb-3">
-                                                <span class="badge badge-primary">Ui claims details</span>
+                                                <span class="badge badge-primary">Claims Details</span>
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="noticeDeterminationForm"
-                                                (ngSubmit)="submitNoticeDeterminationForm()">
+                                            <form appFormInputFocus [formGroup]="noticeDeterminationForm" (ngSubmit)="submitNoticeDeterminationForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="dateMailed">Date Mailed</label>
-                                                        <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="dateMailed"
-                                                            name="dateMailed "
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
-                                                            [ngClass]="{ 'is-invalid': nifSubmitted && nfi.dateMailed.errors }">
-                                                        <div *ngIf=" nfi.dateMailed.touched && nfi.dateMailed.errors || nifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf=" nfi.dateMailed.errors">This field is
-                                                                required </div>
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="dateMailed" name="dateMailed " [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': nifSubmitted && nfi.dateMailed.errors }">
+                                                        <div *ngIf=" nfi.dateMailed.touched && nfi.dateMailed.errors || nifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf=" nfi.dateMailed.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="byb">Benefit Year Began</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="byb" name="byb"
-                                                            [ngClass]="{ 'is-invalid': nifSubmitted && nfi.byb.errors }">
-                                                        <div *ngIf="nfi.byb.touched && nfi.byb.errors || nifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="byb" name="byb" [ngClass]="{ 'is-invalid': nifSubmitted && nfi.byb.errors }">
+                                                        <div *ngIf="nfi.byb.touched && nfi.byb.errors || nifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="nfi.byb.errors">This field is required
                                                             </div>
                                                         </div>
@@ -76,36 +67,29 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="ssn">SSN</label>
-                                                        <input type="text" class="form-control" formControlName="ssn"
-                                                            name="ssn"
-                                                            [ngClass]="{ 'is-invalid': nifSubmitted && nfi.ssn.errors }">
-                                                        <div *ngIf="nfi.ssn.touched && nfi.ssn.errors || nifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="ssn" name="ssn" [ngClass]="{ 'is-invalid': nifSubmitted && nfi.ssn.errors }">
+                                                        <div *ngIf="nfi.ssn.touched && nfi.ssn.errors || nifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="nfi.ssn.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="fieldOffice">Field Office</label>
-                                                        <input type="text" class="form-control" formControlName="fieldOffice"
-                                                            name="fieldOffice"
-                                                            [ngClass]="{ 'is-invalid':nifSubmitted && nfi.fieldOffice.errors }">
-                                                        <div *ngIf="nfi.fieldOffice.touched && nfi.fieldOffice.errors || nifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="nfi.fieldOffice.errors">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="fieldOffice" name="fieldOffice" [ngClass]="{ 'is-invalid':nifSubmitted && nfi.fieldOffice.errors }">
+                                                        <div *ngIf="nfi.fieldOffice.touched && nfi.fieldOffice.errors || nifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="nfi.fieldOffice.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="decision">Decision</label>
-                                                        <input type="dropdown" class="form-control" formControlName="decision"
-                                                            name="decision"
-                                                            [ngClass]="{ 'is-invalid': nifSubmitted && nfi.decision.errors }">
-                                                        <div *ngIf="nfi.decision.touched && nfi.decision.errors || nifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="nfi.decision.errors">This field is required </div>
+                                                        <input type="dropdown" class="form-control" formControlName="decision" name="decision" [ngClass]="{ 'is-invalid': nifSubmitted && nfi.decision.errors }">
+                                                        <div *ngIf="nfi.decision.touched && nfi.decision.errors || nifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="nfi.decision.errors">This field is required
+                                                            </div>
                                                         </div>
-                                                    </div>                   
+                                                    </div>
 
                                                 </div>
                                                 <div class="text-right">
@@ -123,7 +107,7 @@
                                 <div class="row">
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
-                                            <span class="badge badge-primary">List Of Documents</span>
+                                            <span class="badge badge-primary">List of Documents</span>
                                             <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
                                                 Document</button>
                                         </h3>
@@ -181,24 +165,20 @@
                                         <div class="doc-view">
                                             <div class="cc-slider-wrapper">
                                                 <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left" aria-hidden="true"></i>
                                                     </div>
                                                     <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
                                                         <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                                 <div class="cc-dov-view-tabs">
                                                     <tabset #staticTabs>
                                                         <tab class="active">
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
                                                         </tab>
                                                         <tab>
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
                                                         </tab>
                                                     </tabset>
                                                 </div>

@@ -39,12 +39,11 @@
                                     <div class="col-md-12">
                                         <div class="cc-form-title">
                                             <h3 class="card-title mb-3">
-                                                <span class="badge badge-primary">Ui claims details</span>
+                                                <span class="badge badge-primary">Claims Details</span>
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="acknowledgementForm"
-                                                (ngSubmit)="submitAcknowledgementForm()">
+                                            <form appFormInputFocus [formGroup]="acknowledgementForm" (ngSubmit)="submitAcknowledgementForm()">
 
                                                 <div class="form-row">
 
@@ -52,7 +51,8 @@
                                                         <label for="claimName">Claimant Name</label>
                                                         <input type="text" class="form-control" formControlName="claimName" name="claimName" [ngClass]="{ 'is-invalid': ackSubmitted && acki.claimName.errors }">
                                                         <div *ngIf="acki.claimName.touched && acki.claimName.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.claimName.errors">This field is required </div>
+                                                            <div *ngIf="acki.claimName.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -74,12 +74,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                            
+
                                                     <div class="form-group col-md-6">
                                                         <label for="appellant">Appellant</label>
                                                         <input type="text" class="form-control" formControlName="appellant" name="appellant" [ngClass]="{ 'is-invalid': ackSubmitted && acki.appellant.errors }">
                                                         <div *ngIf="acki.appellant.touched && acki.appellant.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.appellant.errors">This field is required </div>
+                                                            <div *ngIf="acki.appellant.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -87,7 +88,8 @@
                                                         <label for="mailDate">Date Mailed</label>
                                                         <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="mailDate" name="mailDate" [ngClass]="{ 'is-invalid': ackSubmitted && acki.mailDate.errors }">
                                                         <div *ngIf="acki.mailDate.touched && acki.mailDate.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.mailDate.errors">This field is required </div>
+                                                            <div *ngIf="acki.mailDate.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -109,9 +111,8 @@
                                 <div class="row">
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
-                                            <span class="badge badge-primary">List Of Documents</span>
-                                            <button class="btn btn-success"
-                                                (click)="aps.openModal(uploadAttachment)">Add
+                                            <span class="badge badge-primary">List of Documents</span>
+                                            <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
                                                 Document</button>
                                         </h3>
                                     </div>
@@ -168,24 +169,20 @@
                                         <div class="doc-view">
                                             <div class="cc-slider-wrapper">
                                                 <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left" aria-hidden="true"></i>
                                                     </div>
                                                     <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
                                                         <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                                 <div class="cc-dov-view-tabs">
                                                     <tabset #staticTabs>
                                                         <tab class="active">
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
                                                         </tab>
                                                         <tab>
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
                                                         </tab>
                                                     </tabset>
                                                 </div>

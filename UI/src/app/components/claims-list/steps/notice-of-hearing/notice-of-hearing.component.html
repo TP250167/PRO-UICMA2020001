@@ -39,34 +39,26 @@
                                     <div class="col-md-12">
                                         <div class="cc-form-title">
                                             <h3 class="card-title mb-3">
-                                                <span class="badge badge-primary">Ui claims details</span>
+                                                <span class="badge badge-primary">Claims Details</span>
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="hearingInitiateForm"
-                                                (ngSubmit)="submitHearingInitiateForm() ">
+                                            <form appFormInputFocus [formGroup]="hearingInitiateForm" (ngSubmit)="submitHearingInitiateForm() ">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="caseNo">Case No</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="caseNo" name="caseNo"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.caseNo.errors }">
-                                                        <div *ngIf="hfi.caseNo.touched && hfi.caseNo.errors || hifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="hfi.caseNo.errors || hifSubmitted">This field
-                                                                is required </div>
+                                                        <input type="text" class="form-control" formControlName="caseNo" name="caseNo" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.caseNo.errors }">
+                                                        <div *ngIf="hfi.caseNo.touched && hfi.caseNo.errors || hifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="hfi.caseNo.errors || hifSubmitted">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="claimantName">Claimant Name</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="claimantName" name="claimantName"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.claimantName.errors }">
-                                                        <div *ngIf="hfi.claimantName.touched && hfi.claimantName.errors || hifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="claimantName" name="claimantName" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.claimantName.errors }">
+                                                        <div *ngIf="hfi.claimantName.touched && hfi.claimantName.errors || hifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="hfi.claimantName.errors">This field is required
                                                             </div>
                                                         </div>
@@ -74,46 +66,34 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="employerInfo">Employer Info</label>
-                                                        <input type="text" class="form-control" formControlName="employerInfo"
-                                                            name="employerInfo"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.employerInfo.errors }">
-                                                        <div *ngIf="hfi.employerInfo.touched && hfi.employerInfo.errors || hifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="hfi.employerInfo.errors">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="employerInfo" name="employerInfo" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.employerInfo.errors }">
+                                                        <div *ngIf="hfi.employerInfo.touched && hfi.employerInfo.errors || hifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="hfi.employerInfo.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="hearingDate">Hearing Date</label>
-                                                        <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="hearingDate"
-                                                            name="hearingDate"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.hearingDate.errors }">
-                                                        <div *ngIf="hfi.hearingDate.touched && hfi.hearingDate.errors || hifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="hfi.hearingDate.errors">This field is
-                                                                required </div>
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="hearingDate" name="hearingDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.hearingDate.errors }">
+                                                        <div *ngIf="hfi.hearingDate.touched && hfi.hearingDate.errors || hifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="hfi.hearingDate.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                
+
                                                     <div class="form-group col-md-6">
                                                         <label for="hearingTime">Hearing Time</label>
-                                                        <input type="text" class="form-control" formControlName="hearingTime"
-                                                            name="hearingTime"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.hearingTime.errors }">
-                                                        <div *ngIf="hfi.hearingTime.touched && hfi.hearingTime.errors || hifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="hfi.hearingTime.errors">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="hearingTime" name="hearingTime" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.hearingTime.errors }">
+                                                        <div *ngIf="hfi.hearingTime.touched && hfi.hearingTime.errors || hifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="hfi.hearingTime.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="hearingPlace">Hearing Place</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="hearingPlace" name="hearingPlace"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.hearingPlace.errors }">
-                                                        <div *ngIf="hfi.hearingPlace.touched && hfi.hearingPlace.errors || hifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="hearingPlace" name="hearingPlace" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.hearingPlace.errors }">
+                                                        <div *ngIf="hfi.hearingPlace.touched && hfi.hearingPlace.errors || hifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="hfi.hearingPlace.errors">This field is required
                                                             </div>
                                                         </div>
@@ -121,25 +101,17 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="issueCode">IssueCode</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="issueCode" name="issueCode"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.issueCode.errors }">
-                                                        <div *ngIf="hfi.issueCode.touched && hfi.issueCode.errors || hifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="hfi.issueCode.errors">This field is
-                                                                required </div>
+                                                        <input type="text" class="form-control" formControlName="issueCode" name="issueCode" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.issueCode.errors }">
+                                                        <div *ngIf="hfi.issueCode.touched && hfi.issueCode.errors || hifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="hfi.issueCode.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="issueContext">IssueContext</label>
-                                                        <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="issueContext"
-                                                            name="issueContext"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.issueContext.errors }">
-                                                        <div *ngIf="hfi.issueContext.touched && hfi.issueContext.errors || hifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <label for="issueContext">Issue Context</label>
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="issueContext" name="issueContext" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.issueContext.errors }">
+                                                        <div *ngIf="hfi.issueContext.touched && hfi.issueContext.errors || hifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="hfi.issueContext.errors">This field is required
                                                             </div>
                                                         </div>
@@ -147,34 +119,27 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="appellantName">Appellant Name</label>
-                                                        <input type="text" class="form-control" formControlName="appellantName"
-                                                            name="appellantName"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.appellantName.errors }">
-                                                        <div *ngIf="hfi.appellantName.touched && hfi.appellantName.errors || hifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="hfi.appellantName.errors">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="appellantName" name="appellantName" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.appellantName.errors }">
+                                                        <div *ngIf="hfi.appellantName.touched && hfi.appellantName.errors || hifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="hfi.appellantName.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="claimantAppellant">Claimant-Appellant</label>
-                                                        <input type="text" class="form-control" formControlName="claimantAppellant"
-                                                            name="claimantAppellant"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.claimantAppellant.errors }">
-                                                        <div *ngIf="hfi.claimantAppellant.touched && hfi.claimantAppellant.errors || hifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="claimantAppellant" name="claimantAppellant" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.claimantAppellant.errors }">
+                                                        <div *ngIf="hfi.claimantAppellant.touched && hfi.claimantAppellant.errors || hifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="hfi.claimantAppellant.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="lausdAppelant">LAUSD-Appelant</label>
-                                                        <input type="text" class="form-control" formControlName="lausdAppelant"
-                                                            name="lausdAppelant"
-                                                            [ngClass]="{ 'is-invalid': hifSubmitted && hfi.lausdAppelant.errors }">
-                                                        <div *ngIf="hfi.lausdAppelant.touched && hfi.lausdAppelant.errors || hifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="hfi.lausdAppelant.errors">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="lausdAppelant" name="lausdAppelant" [ngClass]="{ 'is-invalid': hifSubmitted && hfi.lausdAppelant.errors }">
+                                                        <div *ngIf="hfi.lausdAppelant.touched && hfi.lausdAppelant.errors || hifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="hfi.lausdAppelant.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -253,24 +218,20 @@
                                         <div class="doc-view">
                                             <div class="cc-slider-wrapper">
                                                 <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left" aria-hidden="true"></i>
                                                     </div>
                                                     <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
                                                         <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                                 <div class="cc-dov-view-tabs">
                                                     <tabset #staticTabs>
                                                         <tab class="active">
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
                                                         </tab>
                                                         <tab>
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
                                                         </tab>
                                                     </tabset>
                                                 </div>

@@ -39,12 +39,11 @@
                                     <div class="col-md-12">
                                         <div class="cc-form-title">
                                             <h3 class="card-title mb-3">
-                                                <span class="badge badge-primary">Ui claims details</span>
+                                                <span class="badge badge-primary">Claims Details</span>
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="aljDecistionForm"
-                                                (ngSubmit)="submitAljForm()">
+                                            <form appFormInputFocus [formGroup]="aljDecistionForm" (ngSubmit)="submitAljForm()">
 
                                                 <div class="form-row">
 
@@ -52,7 +51,8 @@
                                                         <label for="claimName">Claimant Name</label>
                                                         <input type="text" class="form-control" formControlName="claimName" name="claimName" [ngClass]="{ 'is-invalid': aljSubmitted && alji.claimName.errors }">
                                                         <div *ngIf="alji.claimName.touched && alji.claimName.errors || aljSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="alji.claimName.errors">This field is required </div>
+                                                            <div *ngIf="alji.claimName.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -79,7 +79,8 @@
                                                         <label for="mailDate">Mail Date</label>
                                                         <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="mailDate" name="mailDate" [ngClass]="{ 'is-invalid': aljSubmitted && alji.mailDate.errors }">
                                                         <div *ngIf="alji.mailDate.touched && alji.mailDate.errors || aljSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="alji.mailDate.errors">This field is required </div>
+                                                            <div *ngIf="alji.mailDate.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -87,7 +88,8 @@
                                                         <label for="caseNumber">Case No.</label>
                                                         <input type="text" class="form-control" formControlName="caseNumber" name="caseNumber" [ngClass]="{ 'is-invalid': aljSubmitted && alji.caseNumber.errors }">
                                                         <div *ngIf="alji.caseNumber.touched && alji.caseNumber.errors || aljSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="alji.caseNumber.errors">This field is required </div>
+                                                            <div *ngIf="alji.caseNumber.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -105,7 +107,8 @@
                                                         <label for="reopen">Application to Reopen</label>
                                                         <input type="text" class="form-control" formControlName="reopen" name="reopen" [ngClass]="{ 'is-invalid': aljSubmitted && alji.reopen.errors }">
                                                         <div *ngIf="alji.reopen.touched && alji.reopen.errors || aljSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="alji.reopen.errors">This field is required </div>
+                                                            <div *ngIf="alji.reopen.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -113,7 +116,8 @@
                                                         <label for="hearingDate">Date of Hearing</label>
                                                         <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="hearingDate" name="hearingDate" [ngClass]="{ 'is-invalid': aljSubmitted && alji.hearingDate.errors }">
                                                         <div *ngIf="alji.hearingDate.touched && alji.hearingDate.errors || aljSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="alji.hearingDate.errors">This field is required </div>
+                                                            <div *ngIf="alji.hearingDate.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -121,7 +125,8 @@
                                                         <label for="hearingPlace">Place of Hearing</label>
                                                         <input type="text" class="form-control" formControlName="hearingPlace" name="hearingPlace" [ngClass]="{ 'is-invalid': aljSubmitted && alji.hearingPlace.errors }">
                                                         <div *ngIf="alji.hearingPlace.touched && alji.hearingPlace.errors || aljSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="alji.hearingPlace.errors">This field is required </div>
+                                                            <div *ngIf="alji.hearingPlace.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -137,7 +142,8 @@
                                                         <label for="decision">Decision</label>
                                                         <input type="text" class="form-control" formControlName="decision" name="decision" [ngClass]="{ 'is-invalid': aljSubmitted && alji.decision.errors }">
                                                         <div *ngIf="alji.decision.touched && alji.decision.errors || aljSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="alji.decision.errors">This field is required </div>
+                                                            <div *ngIf="alji.decision.errors">This field is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -159,9 +165,8 @@
                                 <div class="row">
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
-                                            <span class="badge badge-primary">List Of Documents</span>
-                                            <button class="btn btn-success"
-                                                (click)="aps.openModal(uploadAttachment)">Add
+                                            <span class="badge badge-primary">List of Documents</span>
+                                            <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
                                                 Document</button>
                                         </h3>
                                     </div>
@@ -218,24 +223,20 @@
                                         <div class="doc-view">
                                             <div class="cc-slider-wrapper">
                                                 <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left" aria-hidden="true"></i>
                                                     </div>
                                                     <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
                                                         <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                                 <div class="cc-dov-view-tabs">
                                                     <tabset #staticTabs>
                                                         <tab class="active">
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
                                                         </tab>
                                                         <tab>
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
                                                         </tab>
                                                     </tabset>
                                                 </div>

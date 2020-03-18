@@ -39,34 +39,26 @@
                                     <div class="col-md-12">
                                         <div class="cc-form-title">
                                             <h3 class="card-title mb-3">
-                                                <span class="badge badge-primary">Ui claims details</span>
+                                                <span class="badge badge-primary">Claims Details</span>
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="benefitchargeInitiateForm"
-                                                (ngSubmit)="submitBenefitAuditInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="benefitchargeInitiateForm" (ngSubmit)="submitBenefitAuditInitiateForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="letterID">Letter ID</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="letterID" name="letterID"
-                                                            [ngClass]="{ 'is-invalid': bifSubmitted && bfi.letterID.errors }">
-                                                        <div *ngIf="bfi.letterID.touched && bfi.letterID.errors || bifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="bfi.letterID.errors || bifSubmitted">This field
-                                                                is required </div>
+                                                        <input type="text" class="form-control" formControlName="letterID" name="letterID" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.letterID.errors }">
+                                                        <div *ngIf="bfi.letterID.touched && bfi.letterID.errors || bifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="bfi.letterID.errors || bifSubmitted">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="issuedDate">Issued Date</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="issuedDate" name="issuedDate"
-                                                            [ngClass]="{ 'is-invalid': bifSubmitted && bfi.issuedDate.errors }">
-                                                        <div *ngIf="bfi.issuedDate.touched && bfi.issuedDate.errors || bifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="issuedDate" name="issuedDate" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.issuedDate.errors }">
+                                                        <div *ngIf="bfi.issuedDate.touched && bfi.issuedDate.errors || bifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="bfi.issuedDate.errors">This field is required
                                                             </div>
                                                         </div>
@@ -74,23 +66,16 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="accountID">Account ID</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="accountID" name="accountID"
-                                                            [ngClass]="{ 'is-invalid': bifSubmitted && bfi.accountID.errors }">
-                                                        <div *ngIf="bfi.accountID.touched && bfi.accountID.errors || bifSubmitted"
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="bfi.accountID.errors || bifSubmitted">This field
-                                                                is required </div>
+                                                        <input type="text" class="form-control" formControlName="accountID" name="accountID" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.accountID.errors }">
+                                                        <div *ngIf="bfi.accountID.touched && bfi.accountID.errors || bifSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="bfi.accountID.errors || bifSubmitted">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="claimantSSN">Claimant SSN</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="claimantSSN" name="claimantSSN"
-                                                            [ngClass]="{ 'is-invalid': bifSubmitted && bfi.claimantSSN.errors }">
-                                                        <div *ngIf="bfi.claimantSSN.touched && bfi.claimantSSN.errors || bifSubmitted"
-                                                            class="invalid-feedback">
+                                                        <input type="text" class="form-control" formControlName="claimantSSN" name="claimantSSN" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.claimantSSN.errors }">
+                                                        <div *ngIf="bfi.claimantSSN.touched && bfi.claimantSSN.errors || bifSubmitted" class="invalid-feedback">
                                                             <div *ngIf="bfi.claimantSSN.errors">This field is required
                                                             </div>
                                                         </div>
@@ -114,7 +99,7 @@
                                 <div class="row">
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
-                                            <span class="badge badge-primary">List Of Documents</span>
+                                            <span class="badge badge-primary">List of Documents</span>
                                             <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
                                                 Document</button>
                                         </h3>
@@ -172,24 +157,20 @@
                                         <div class="doc-view">
                                             <div class="cc-slider-wrapper">
                                                 <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left" aria-hidden="true"></i>
                                                     </div>
                                                     <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
                                                         <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
-                                                            aria-hidden="true"></i>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                                 <div class="cc-dov-view-tabs">
                                                     <tabset #staticTabs>
                                                         <tab class="active">
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
                                                         </tab>
                                                         <tab>
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
                                                         </tab>
                                                     </tabset>
                                                 </div>
@@ -246,4 +227,3 @@
 
 
 </ng-template>
-
