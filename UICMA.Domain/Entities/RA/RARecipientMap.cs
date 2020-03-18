@@ -29,8 +29,8 @@ namespace UICMA.Domain.Entities.RARecipientMap
             builder.Property(s => s.RetryFail).HasColumnName("RETRY_FAIL");
             builder.Property(s => s.RetrySucess).HasColumnName("RETRY_SUCESS");
             builder.Property(s => s.RequestType).HasColumnName("REQUEST_TYPE");
-            builder.Property(s => s.JobCode).HasColumnName("JOD_CODE");
-            builder.Property(s => s.JobTitle).HasColumnName("JOD_TITLE");
+            builder.Property(s => s.JobCode).HasColumnName("JOB_CODE");
+            builder.Property(s => s.JobTitle).HasColumnName("JOB_TITLE");
             builder.Property(s => s.IsSucessfullyDeliver).HasColumnName("IS_SUCESSFULLY_DELIVER").HasDefaultValue(false);
             builder.Property(s => s.IsSentMailCaptured).HasColumnName("IS_SENT_MAIL_CAPTURED").HasDefaultValue(false);
             builder.Property(s => s.IsDeliveryMailCaptured).HasColumnName("IS_DELIVERY_MAIL_CAPTURED").HasDefaultValue(false);

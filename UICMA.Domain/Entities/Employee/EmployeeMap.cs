@@ -49,8 +49,8 @@ namespace UICMA.Domain.Entities.EmployeeMap
             entityBuilder.Property(t => t.LastUpdateDate).HasColumnName("LAST_UPDATE_DATE");
             entityBuilder.Property(t => t.LastUpdateBy).HasColumnName("LAST_UPDATED_BY");
             entityBuilder.Property(t => t.SEIDCode).HasColumnName("SEID_CODE");
-            entityBuilder.Property(s => s.JobCode).HasColumnName("JOD_CODE");
-            entityBuilder.Property(s => s.JobTitle).HasColumnName("JOD_TITLE");
+            entityBuilder.Property(s => s.JobCode).HasColumnName("JOB_CODE");
+            entityBuilder.Property(s => s.JobTitle).HasColumnName("JOB_TITLE");
         }
     }
 }
