@@ -16,5 +16,8 @@ namespace UICMA.Service.RAService
         RABatchViewModel GetBatchViewbyID(int Batchid);
         List<RANotificationViewModel> GetRANotificationList(int Batchid);
         IEnumerable<RABatchView> GetAllRABiWeeklyBatch();
+
+        RABatchView UpdateBatch(RABatchView Batch);
+        IEnumerable<RABatchView> GetAllRABothBatch();
     }
 }

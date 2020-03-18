@@ -139,9 +139,12 @@ namespace UICMA.Service.RAService
                 {
                     int count = 0;
                     DataRow dr = tblcsv.NewRow();
-                    dr["EmployeeName"] = csvRow.Split(',')[0].Replace("\"", "");
+                    dr["FirstName"] = csvRow.Split(',')[0].Replace("\"", "");
+                    dr["LastName"] = csvRow.Split(',')[0].Replace("\"", "");
                     dr["EmployeeNumber"] = csvRow.Split(',')[0].Replace("\"", "");
                     dr["EmployeeEmail"] = csvRow.Split(',')[1].Replace("\"", "");
+                    dr["JobCode"] = csvRow.Split(',')[1].Replace("\"", "");
+                    dr["JobTitle"] = csvRow.Split(',')[1].Replace("\"", "");
                     tblcsv.Rows.Add(dr);
                     count++;
                 }
@@ -154,6 +157,8 @@ namespace UICMA.Service.RAService
                                          LastName = Convert.ToString(rw["LastName"]),
                                          EmployeeNumber = Convert.ToString(rw["EmployeeNumber"]),
                                          EmployeeEmail = Convert.ToString(rw["EmployeeEmail"]),
+                                         JobCode = Convert.ToString(rw["JobCode"]),
+                                         JobTitle = Convert.ToString(rw["JobTitle"]),
                                          // CreatedOn = DateTime.Now                                        
                                      }).ToList();
                 Recipientcount += convertedList.Count;
@@ -166,6 +171,8 @@ namespace UICMA.Service.RAService
                         recipient.LastName = employee.LastName;
                         recipient.EmployeeEmail = employee.EmployeeEmail;
                         recipient.EmployeeNumber = employee.EmployeeNumber;
+                        recipient.JobCode = employee.JobCode;
+                        recipient.JobTitle = employee.JobTitle;
                         recipient.Status = "Active";
                         recipient.CreatedOn = DateTime.Now;
                         var addrecipient = _RARecipientRepository.AddData(recipient);
@@ -238,7 +245,9 @@ namespace UICMA.Service.RAService
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status ="Active";
                                 recipient.CreatedOn = DateTime.Now;
-                                var addrecipient = _RARecipientRepository.AddData(recipient);                               
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);                               
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId= oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
@@ -275,7 +284,9 @@ namespace UICMA.Service.RAService
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
-                                var addrecipient = _RARecipientRepository.AddData(recipient);
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
@@ -309,7 +320,9 @@ namespace UICMA.Service.RAService
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
-                                var addrecipient = _RARecipientRepository.AddData(recipient);
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
@@ -343,7 +356,9 @@ namespace UICMA.Service.RAService
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
-                                var addrecipient = _RARecipientRepository.AddData(recipient);
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
@@ -378,7 +393,9 @@ namespace UICMA.Service.RAService
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
-                                var addrecipient = _RARecipientRepository.AddData(recipient);
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);
                                 RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                 raBatchRecipientMap.BatchId = oBatch.Id;
                                 raBatchRecipientMap.RecipientId = recipient.Id;
@@ -452,6 +469,8 @@ namespace UICMA.Service.RAService
                                     recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                     recipient.Status = "Active";
                                     recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
                                     var addrecipient = _RARecipientRepository.AddData(recipient);
                                     RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                     raBatchRecipientMap.BatchId = oBatch.Id;
@@ -487,8 +506,12 @@ namespace UICMA.Service.RAService
                                     recipient.LastName = employee.LastName;
                                     recipient.EmployeeEmail = employee.OIDEmailAddress;
                                     recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
                                     recipient.Status = "Active";
                                     recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
                                     var addrecipient = _RARecipientRepository.AddData(recipient);
                                     RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                     raBatchRecipientMap.BatchId = oBatch.Id;
@@ -523,6 +546,8 @@ namespace UICMA.Service.RAService
                                     recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                     recipient.Status = "Active";
                                     recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
                                     var addrecipient = _RARecipientRepository.AddData(recipient);
                                     RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
                                     raBatchRecipientMap.BatchId = oBatch.Id;
@@ -552,7 +577,390 @@ namespace UICMA.Service.RAService
             return Batch;
 
         }
+        public RABatchView UpdateBatch(RABatchView Batch)
+        {
 
+            RABatchView oBatch = new RABatchView();
+            RASchedule rASchedule = new RASchedule();
+            int Recipientcount = 0;
+           
+            //Annual Batch Update
+            if (Batch.Id != 0 && Batch.isAnnual == true)
+            {
+                //Update RABatch
+                DateTime today = DateTime.Now;
+                Batch.CreatedOn = DateTime.Now;
+                DateTime NextOccuranceDate = DateTime.Now.AddYears(1);
+                Batch.NextOccurrance = NextOccuranceDate;
+                Batch.Status = "Active";
+                Batch.IsRecuring = true;
+                Batch.Frequency = "Yearly";
+                Batch.Id = Batch.Id;
+                oBatch = _RABatchRepository.UpdateData(Batch);
+
+                //Update RASchedule
+                rASchedule.Id = Batch.RASchedule.Id;
+                rASchedule.ScheduleDate = Batch.RASchedule.ScheduleDate;
+                rASchedule.Status = "Active";
+                rASchedule.CreatedBy = Batch.CreatedBy;
+                rASchedule.CreatedOn = DateTime.Now;                               
+                rASchedule = _RAScheduleRepository.UpdateData(rASchedule);
+
+                List<Employee> Emp = new List<Employee>();
+                var Rules = Batch.RAbatchRecRule.RecipientRuleListId.Split(",");
+                foreach (var recp in Rules)
+                {
+                    RABatchRecipientRule rARecipientRule = new RABatchRecipientRule();
+                    rARecipientRule.BatchId = Batch.Id;
+                    rARecipientRule.RecipientRuleId = Convert.ToInt32(recp);
+                    rARecipientRule = _RABatchRecipientRuleRepository.UpdateData(rARecipientRule);
+                    var Rule = _RARecipientRuleRepository.GetSingle(Convert.ToInt32(recp));
+                    switch (Rule.RecipientRuleName)
+                    {
+                        case "1":
+                            Emp = _EmployeeInfoDataRepository.GetClassifiedEmployee();
+                            Recipientcount += Emp.Count;
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;                                    
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.UpdateData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.UpdateData(raBatchRecipientMap);
+                                    //Template
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
+
+                                    var AddNotifation = _NotificationRepository.UpdateData(notify);
+                                }
+                            }
+                            break;
+
+                        case "3 EXCEPT  3Y":
+                            Emp = _EmployeeInfoDataRepository.GetUnclassifiedEmployee();
+                            Recipientcount += Emp.Count;
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.UpdateData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.UpdateData(raBatchRecipientMap);
+
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    var AddNotifation = _NotificationRepository.UpdateData(notify);
+                                }
+                            }
+                            break;
+                        case "2F":
+                            Emp = _EmployeeInfoDataRepository.GetTeacherAssitantEmployee();
+                            Recipientcount += Emp.Count;
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.UpdateData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.UpdateData(raBatchRecipientMap);
+
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    var AddNotifation = _NotificationRepository.UpdateData(notify);
+                                }
+                            }
+                            break;
+                        case "2UTK":
+                            Emp = _EmployeeInfoDataRepository.GetSpecialEducation();
+                            Recipientcount += Emp.Count;
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.UpdateData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.UpdateData(raBatchRecipientMap);
+
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    var AddNotifation = _NotificationRepository.UpdateData(notify);
+                                }
+                            }
+                            break;
+                        case "2USX AND 2UTH AND 2UTE":
+                            Emp = _EmployeeInfoDataRepository.GetSupportSchool();
+                            Recipientcount += Emp.Count;
+
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    var addrecipient = _RARecipientRepository.UpdateData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.UpdateData(raBatchRecipientMap);
+
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    var AddNotifation = _NotificationRepository.UpdateData(notify);
+                                }
+                            }
+                            break;
+                    }
+
+                }
+                rASchedule.TotalRecipient = Recipientcount;
+                rASchedule = _RAScheduleRepository.UpdateData(rASchedule);
+            }
+            //Weekly Batch Creation
+            if (Batch.Id == 0 && Batch.isAnnual == false)
+            {
+                //Add RABatch
+                DateTime today = DateTime.Now;
+                DateTime NextOccuranceDate = today.AddDays(15);
+                Batch.NextOccurrance = NextOccuranceDate;
+                Batch.CreatedOn = DateTime.Now;
+                Batch.Status = "Active";
+                Batch.IsRecuring = true;
+                Batch.Frequency = "Weekly";
+                oBatch = _RABatchRepository.AddData(Batch);
+                //Add RASchedule
+                rASchedule.ScheduleDate = Batch.RASchedule.ScheduleDate;
+                rASchedule.Status = "Active";
+                rASchedule.CreatedBy = Batch.CreatedBy;
+                rASchedule.CreatedOn = DateTime.Now;
+                //Add RAScheduleMap
+                RABatchSchedule rABatchSchedule = new RABatchSchedule();
+                rABatchSchedule.BatchId = Batch.Id;
+                List<Employee> Emp = new List<Employee>();
+                rASchedule = _RAScheduleRepository.AddData(rASchedule);
+                rABatchSchedule.RAScheduleId = rASchedule.Id;
+                rABatchSchedule = _RABatchScheduleRepository.AddData(rABatchSchedule);
+                var Rules = Batch.RAbatchRecRule.RecipientRuleListId.Split(",");
+                foreach (var recp in Rules)
+                {
+                    RABatchRecipientRule rARecipientRule = new RABatchRecipientRule();
+                    rARecipientRule.BatchId = Batch.Id;
+                    rARecipientRule.RecipientRuleId = Convert.ToInt32(recp);
+                    rARecipientRule = _RABatchRecipientRuleRepository.AddData(rARecipientRule);
+                    var Rule = _RARecipientRuleRepository.GetSingle(Convert.ToInt32(recp));
+                    switch (Rule.RecipientRuleName)
+                    {
+                        case "INFO 0 AND MASSN ":
+                            Emp = _EmployeeInfoDataRepository.GetHiredEmployee();
+                            Recipientcount += Emp.Count;
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
+                                    //Template
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
+
+                                    var AddNotifation = _NotificationRepository.AddData(notify);
+                                }
+                            }
+                            break;
+
+                        case "INFO 0 AND BEGDA":
+                            Emp = _EmployeeInfoDataRepository.GetReHiredEmployee();
+                            Recipientcount += Emp.Count;
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
+
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    var AddNotifation = _NotificationRepository.AddData(notify);
+                                }
+                            }
+                            break;
+                        case "INFO 1 AND STELL":
+                            Emp = _EmployeeInfoDataRepository.GetChangesJobEmployee();
+                            Recipientcount += Emp.Count;
+                            if (Emp.Count != 0)
+                            {
+                                foreach (var employee in Emp)
+                                {
+                                    RARecipient recipient = new RARecipient();
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.EmployeeNumber = employee.EmployeeNumberCode;
+                                    recipient.Status = "Active";
+                                    recipient.CreatedOn = DateTime.Now;
+                                    recipient.JobCode = employee.JobCode;
+                                    recipient.JobTitle = employee.JobTitle;
+                                    var addrecipient = _RARecipientRepository.AddData(recipient);
+                                    RABatchRecipient raBatchRecipientMap = new RABatchRecipient();
+                                    raBatchRecipientMap.BatchId = Batch.Id;
+                                    raBatchRecipientMap.RecipientId = recipient.Id;
+                                    var AddraBatchRecipientMap = _RABatchRecipientRepository.AddData(raBatchRecipientMap);
+
+                                    Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
+                                    Notification notify = new Notification();
+                                    notify.CreatedOn = DateTime.Now;
+                                    notify.EmployeeNumber = employee.EmployeeNumberCode;
+                                    notify.NotifyTo = employee.OIDEmailAddress;
+                                    notify.NotifySubject = Batch.BatchName;
+                                    notify.NotifyFrom = _FromMail;
+                                    notify.NotifyStatus = "To Email";
+                                    notify.NotifyBody = temp.TemplateBodyContent;
+                                    notify.RequestType = "Email";
+                                    var AddNotifation = _NotificationRepository.AddData(notify);
+                                }
+                            }
+                            break;
+                    }
+
+                }
+                rASchedule.TotalRecipient = Recipientcount;
+                rASchedule = _RAScheduleRepository.UpdateData(rASchedule);
+            }
+            return Batch;
+
+        }
 
         //Get AllRABatch 
         public IEnumerable<RABatchView> GetAllRABatch()
@@ -581,6 +989,10 @@ namespace UICMA.Service.RAService
         public IEnumerable<RABatchView> GetAllRABiWeeklyBatch()
         {
             return _RABatchRepository.GetAllRABiWeeklyBatch();
+        }
+        public IEnumerable<RABatchView> GetAllRABothBatch()
+        {
+            return _RABatchRepository.GetAllRABothBatch();
         }
 
     }

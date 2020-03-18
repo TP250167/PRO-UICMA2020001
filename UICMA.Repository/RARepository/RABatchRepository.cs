@@ -36,6 +36,11 @@ namespace UICMA.Repository.RARepository
         {
             return context.RABatch.Where(s => s.Status == "Active" && s.Frequency == "Weekly").OrderByDescending(s => s.CreatedOn).ToList().Take(5);
         }
+        public IEnumerable<RABatchView> GetAllRABothBatch()
+        {
+            return context.RABatch.Where(s => s.Status == "Active").OrderByDescending(s => s.CreatedOn).ToList();
+        }
+
 
     }
 }

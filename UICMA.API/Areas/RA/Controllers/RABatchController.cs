@@ -68,5 +68,15 @@ namespace UICMA.API.Areas.RA.Controllers
             return _RABatchService.GetAllRABiWeeklyBatch().ToList();
            
         }
+        [HttpPut ("UpdateBatch")]
+        public RABatchView UpdateBatch(RABatchView Batch)
+        {
+            return _RABatchService.UpdateBatch(Batch);
+        }
+        [HttpGet("GetAllBatch")]
+        public IEnumerable<RABatchView> GetAllRABothBatch()
+        {
+            return _RABatchService.GetAllRABothBatch();
+        }
     }
 }
