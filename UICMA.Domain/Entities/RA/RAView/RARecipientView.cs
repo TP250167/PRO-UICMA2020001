@@ -20,6 +20,7 @@ namespace UICMA.Domain.Entities.RA.RAView
         public string Batch_Name { get; set; }
         public string Job_Code { get; set; }
         public string Job_Title { get; set; }
+        public string Status { get; set; }
     }
 }
 
