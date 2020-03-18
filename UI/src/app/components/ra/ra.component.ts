@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
+import { Base64 } from 'js-base64';
+
 import { AppService } from '../../services/app.service'
 import { RaApiService } from '../../services/ra-api.service'
 
@@ -56,7 +58,7 @@ export class RaComponent implements OnInit {
       batchDescription: ['', Validators.required],
       TemplateID: ['', Validators.required],
       scheduleDate: ['', Validators.required],
-      isAnnual : ['', Validators.required]
+      isAnnual: ['', Validators.required]
     });
   }
 
@@ -102,7 +104,6 @@ export class RaComponent implements OnInit {
       this.ras.createBatch(data)
         .subscribe(
           (res) => {
-            console.log(res)
           },
           (error) => {
             console.log('error caught in batch creation', error)
@@ -120,7 +121,6 @@ export class RaComponent implements OnInit {
         (res) => {
           this.schedulesList = res;
           this.getBatchesDetails(this.schedulesList[0].id)
-          console.log(this.schedulesList)
         },
         (error) => {
           console.log('error caught in get batch list', error)
@@ -133,7 +133,6 @@ export class RaComponent implements OnInit {
       .subscribe(
         (res) => {
           this.batchDetails = res;
-          console.log(this.batchDetails)
         },
         (error) => {
           console.log('error caught in get batch details', error)
@@ -148,12 +147,10 @@ export class RaComponent implements OnInit {
         (res) => {
           let resdata = res;
           this.dropdownList = []
-
+          this.selectedItems = []
           for (let i = 0; i < Object.keys(resdata).length; i++) {
             this.dropdownList.push({ item_id: `${resdata[i].id}`, item_text: `${resdata[i].recipientRuleType}` });
           }
-
-          console.log(this.dropdownList)
         },
         (error) => {
           console.log('error caught in get batch details', error)
@@ -208,6 +205,10 @@ export class RaComponent implements OnInit {
   showUpfileSection() {
     this.showRecipient = false
     this.showUpbtn = true
+  }
+
+  convertToBase64(ev){
+    console.log(ev.target.files[0].name)
   }
 
   ngOnInit() {

@@ -58,7 +58,7 @@ p { font-size: 14px; font-weight: 300; line-height: 1.7; }
 
 // form style start 
 .form-control , 
-.dataTables_wrapper .dataTables_filter input , .cc-inputborder{ height: calc(1.5em + 1rem + 2px) !important; padding: 0.3rem 1rem !important; font-size: 14px; border: 1px solid $brcolor; }
+.dataTables_wrapper .dataTables_filter input , .cc-inputborder{ min-height: calc(1.5em + 1rem + 2px) !important; padding: 0.3rem 1rem !important; font-size: 14px; border: 1px solid $brcolor; }
 
 .form-control::placeholder , select.form-control::placeholder  ,
 .dataTables_wrapper .dataTables_filter input::placeholder
@@ -652,7 +652,7 @@ app-sidebar-process-steps {
     }
 
     .cc-fu-wrapper {
-        height: calc(1.5em + 1rem + 2px) !important;
+        min-height: calc(1.5em + 1rem + 2px) !important;
         padding: 0.3rem 1rem !important;
         font-size: 14px;
         border: 1px solid #e2e5ec;
@@ -675,6 +675,7 @@ app-sidebar-process-steps {
 .cc-file-upload-filed {
     position: relative;
     top: 3px;
+    padding-right: 30%;
 }
 
 .modal , .modal-backdrop{
@@ -699,6 +700,42 @@ app-sidebar-process-steps {
     display: flex;
     align-items: center;
 }
+
+.multiselect-dropdown {
+
+    .dropdown-btn {
+        border: 1px solid #e2e5ec !important;
+    }
+
+    .dropdown-down {
+        border-top: 8px solid #5d78ff !important;
+        border-left: 8px solid transparent !important;
+        border-right: 8px solid transparent !important;
+    }
+
+    .dropdown-up {
+        border-bottom: 8px solid #5d78ff !important;
+        border-left: 8px solid transparent !important;
+        border-right: 8px solid transparent !important;
+    }
+
+    .selected-item  {
+        background-color: $primary;
+    }
+}
+
+.multiselect-item-checkbox input[type=checkbox] + div::before {
+    border: 1px solid $primary;
+}
+
+.multiselect-item-checkbox input[type=checkbox] + div::after {
+    top: 42% !important; left: 3px !important; width: 8px !important; height: 4px !important;
+}
+
+.multiselect-item-checkbox input[type=checkbox]:checked + div::before {
+    background-color: $primary;
+}
+
 
 // datepicker 
 .bs-datepicker-container { padding:0 !important; }
@@ -1197,6 +1234,25 @@ bs-datepicker-container, bs-daterangepicker-container {
 }
 
 
-.biweeklylist .panel-collapse {
-    display: block !important;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// CSS for the application

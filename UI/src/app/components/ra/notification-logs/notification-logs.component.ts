@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 import { RaApiService } from '../../../services/ra-api.service'
 
@@ -11,12 +14,19 @@ import { RaApiService } from '../../../services/ra-api.service'
 })
 export class NotificationLogsComponent implements OnInit {
 
-  public dtOptions  : any;
-  public loglist    : any = [];
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
 
-  public batchVal   : number;
-  public bactchList : any = [] ;
-  public bactchInfo : any = [] ;
+
+  public dtOptions: DataTables.Settings = {};
+  public loglist: any = [];
+
+  dtTrigger: Subject<any> = new Subject();
+
+
+  public batchVal: number;
+  public bactchList: any = [];
+  public batchInfo: any = [];
 
 
   constructor(
@@ -27,12 +37,11 @@ export class NotificationLogsComponent implements OnInit {
 
   }
 
-
-  getBatchList(){
-      this.ras.getAllBatch()
+  getBatchList() {
+    this.ras.getAllBatchList()
       .subscribe(
         (res) => {
-          this.bactchList =  res ;
+          this.bactchList = res;
           console.log(this.bactchList)
         },
         (error) => {
@@ -41,30 +50,31 @@ export class NotificationLogsComponent implements OnInit {
       )
   }
 
-  getBatcheInfo(id){
+  getBatcheInfo(id) {
     this.ras.getBatchDetails(id)
-    .subscribe(
-      (res) => {
-        this.bactchInfo = res ;
-        this.raNotificationList(this.bactchInfo.id)
-      },
-      (error) => {
-        console.log('error caught in get batch details', error)
-      }
-    )
+      .subscribe(
+        (res) => {
+          this.batchInfo = res;
+          this.raNotificationList(this.batchInfo.id)
+        },
+        (error) => {
+          console.log('error caught in get batch details', error)
+        }
+      )
   }
 
   raNotificationList(id) {
 
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 5
     };
 
     this.ras.getRaNotificationList(id)
       .subscribe(
         (res) => {
           this.loglist = res;
+          this.dtTrigger.next();
           console.log(res)
         },
         (error) => {
@@ -73,16 +83,28 @@ export class NotificationLogsComponent implements OnInit {
       )
   }
 
+  rerenderDataTables(id): void {
+    this.dtElement.dtInstance
+      .then((dtInstance: DataTables.Api) => {
+        console.log(dtInstance)
+        dtInstance.destroy();
+        this.getBatcheInfo(id)
+      });
+  }
 
   ngOnInit() {
 
     this.getBatchList();
-    
+
     let batchId = this.route.snapshot.paramMap.get('id');
-    this.getBatcheInfo(batchId) 
+    this.getBatcheInfo(batchId)
 
-    this.batchVal =  parseInt(batchId);
+    this.batchVal = parseInt(batchId);
 
+  }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
 }

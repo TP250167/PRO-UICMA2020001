@@ -23,17 +23,9 @@
                                     <div class="cc-list-icon"> <span><i class="fa fa-check"></i></span> </div>
                                     <div class="cc-tla-heading">{{item.batchName}}</div>
                                 </button>
-                                <!-- <div class="cc-accordion-content">
-                                    <ul>
-                                        <li><i class="fa fa-envelope"></i>1900321- Awaiting for call from 16Dec, 2018</li>
-                                        <li><i class="fa fa-envelope"></i>1900330- Awaiting for call from 24Dec, 2018</li>
-                                        <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
-                                        <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
-                                    </ul>
-                                </div> -->
                             </accordion-group>
 
-                            <accordion-group class="biweeklylist">
+                            <accordion-group class="biweeklylist" [isOpen]="true">
                                 <button  class="btn btn-link" accordion-heading
                                     type="button">
                                     <div class="cc-list-icon"> <span><i class="fa fa-refresh"></i></span> </div>
@@ -47,19 +39,6 @@
                                     </ul>
                                 </div>
                             </accordion-group>
-
-                            <!-- <accordion-group>
-                                <button class="btn btn-link" accordion-heading type="button">
-                                    <div class="cc-list-icon"> <span><i class="fa fa-cog"></i></span> </div>
-                                    <div class="cc-tla-heading">Other RA Notification Batch</div>
-                                </button>
-                                <div class="cc-accordion-content">
-                                    <ul>
-                                        <li><i class="fa fa-envelope"></i>1900330- Awaiting for call from 24Dec, 2018</li>
-                                        <li><i class="fa fa-envelope"></i>1900321- Response Pending for call from 16Dec, 2018</li>
-                                    </ul>
-                                </div>
-                            </accordion-group> -->
 
                         </accordion>
                     </div>
@@ -208,7 +187,7 @@
                         <div class="form-group">
                             <label for="recipientSet">Recipient Set</label>
                             <ng-multiselect-dropdown formControlName="recipientSet" name="recipientSet"
-                                [placeholder]="'custom placeholder'" [data]="dropdownList" [(ngModel)]="selectedItems"
+                                [placeholder]="'Select Recipient'" [data]="dropdownList" [(ngModel)]="selectedItems"
                                 [settings]="dropdownSettings">
                             </ng-multiselect-dropdown>
 
@@ -237,7 +216,7 @@
 
                     <div class="cc-upfile col-md-12" *ngIf="(showRecipient == false && showUpbtn == true)">
                         <div class="form-group cc-file-upload">
-                            <input type="file" appCustomUpload class="form-control">
+                            <input type="file" appCustomUpload class="form-control" (change)="convertToBase64($event)">
                             <div class="cc-fu-wrapper">
                                 <div class="cc-file-upload-filed">
                                     <span class="cc-fuf-text"></span>
