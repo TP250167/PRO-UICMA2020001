@@ -21,6 +21,7 @@ namespace UICMA.Domain.Entities.RA.RAView
         public string Job_Code { get; set; }
         public string Job_Title { get; set; }
         public string Status { get; set; }
+        public string Employee_Number { get; set; }
     }
 }
 

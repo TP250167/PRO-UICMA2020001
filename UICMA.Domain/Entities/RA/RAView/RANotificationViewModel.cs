@@ -11,6 +11,7 @@ namespace UICMA.Domain.Entities.RA.RAView
         [Key]
         public Int64 Recipient_Id { get; set; }
         public Int64 Id { get; set; }
+        public string Employee_Number { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
         public string Employee_Email { get; set; }
