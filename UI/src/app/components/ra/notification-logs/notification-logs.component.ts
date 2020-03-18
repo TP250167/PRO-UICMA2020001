@@ -83,6 +83,42 @@ export class NotificationLogsComponent implements OnInit {
       )
   }
 
+  getAllDeliverdRecipient(id) {
+    this.dtElement.dtInstance
+      .then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.ras.getAllDeliverdRecipient(id)
+          .subscribe(
+            (res) => {
+              this.loglist = res;
+              this.dtTrigger.next();
+              console.log(res)
+            },
+            (error) => {
+              console.log('error caught in batch creation', error)
+            }
+          )
+      });
+  }
+
+  getAllFailedRecipient(id) {
+    this.dtElement.dtInstance
+      .then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.ras.getAllFailedRecipient(id)
+          .subscribe(
+            (res) => {
+              this.loglist = res;
+              this.dtTrigger.next();
+              console.log(res)
+            },
+            (error) => {
+              console.log('error caught in batch creation', error)
+            }
+          )
+      });
+  }
+
   rerenderDataTables(id): void {
     this.dtElement.dtInstance
       .then((dtInstance: DataTables.Api) => {

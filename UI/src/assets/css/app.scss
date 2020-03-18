@@ -736,6 +736,8 @@ app-sidebar-process-steps {
     background-color: $primary;
 }
 
+.cc-sucess-msg { color: $success; }
+.cc-failure-msg { color: $danger; }
 
 // datepicker 
 .bs-datepicker-container { padding:0 !important; }

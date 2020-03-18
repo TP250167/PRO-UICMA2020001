@@ -23,26 +23,20 @@
       <div class="col-md-2">
         <div class="cc-page-info-box">
           <h3>Total Recipient</h3>
-          <h5><span class="cc-text-link">{{batchInfo.total_Recipient}}</span></h5>
+          <h5><span class="cc-text-link" (click)="rerenderDataTables(batchInfo.id)">{{batchInfo.total_Recipient}}</span></h5>
         </div>
       </div>
       <div class="col-md-2">
         <div class="cc-page-info-box">
           <h3>Successful Delivery</h3>
-          <h5><span class="cc-text-link">{{batchInfo.sucessful_Delivery}}</span></h5>
+          <h5><span class="cc-text-link" (click)="getAllDeliverdRecipient(batchInfo.id)">{{batchInfo.sucessful_Delivery}}</span></h5>
         </div>
       </div>
-      <!-- <div class="col-md-3">
-                <div class="cc-page-info-box">
-                    <h3>Retry Success</h3>
-                    <h5>{{batchInfo.batch_Name}}</h5>
-                </div>
-            </div> -->
       <div class="col-md-2">
         <div class="cc-page-info-box" style="display: flex;">
           <div>
             <h3>Failed Delivery</h3>
-            <h5><span class="cc-text-link">{{batchInfo.failed_Delivery}}</span></h5>
+            <h5><span  (click)="getAllFailedRecipient(batchInfo.id)" class="cc-text-link">{{batchInfo.failed_Delivery}}</span></h5>
           </div>
           <div>
             <img style="width: 30px;cursor: pointer;" src="../../../../assets/img/ecel.png" alt="">
@@ -63,21 +57,27 @@
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
           <thead>
             <tr>
-              <th>Date & Time</th>
-              <th>Recipient Name</th>
-              <th>Recipient Number</th>
+              <th>Employee No</th>
+              <th>First Name</th>
+              <th>Last Number</th>
+              <th>Email</th>
+              <th>Job Code</th>
+              <th>Job Title</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of loglist">
-              <td>{{ item.created_on | date:'MM/dd/yyyy'}}</td>
-              <td>{{ item.employee_Name}}</td>
               <td>{{ item.employee_Number}}</td>
+              <td>{{ item.first_Name}}</td>
+              <td>{{ item.last_Name}}</td>
+              <td>{{ item.employee_Email}}</td>
+              <td>{{ item.job_Code}}</td>
+              <td>{{ item.job_Title}}</td>
               <td class="cc-dbt-action">
                 <div class="cc-dbt-wrapper">
-                  <i class="fa fa-envelope"></i>
-                  <i class="fa fa-envelope"></i>
+                  <i class="fa fa-envelope cc-sucess-msg" *ngIf="item.failed_On == null && item.delivered_On != null"></i>
+                  <i class="fa fa-envelope cc-failure-msg" *ngIf="item.delivered_On == null && item.failed_On != null"></i>
                 </div>
               </td>
             </tr>

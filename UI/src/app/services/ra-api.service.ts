@@ -68,6 +68,17 @@ export class RaApiService {
     )
   }
 
+  getAllDeliverdRecipient(id){
+    return this.http.get(
+      `${this.cls.ApiUrl}api/RARecipient/GetAllDeliverdRecipient/${id}`
+    )
+  }
+
+  getAllFailedRecipient(id){
+    return this.http.get(
+      `${this.cls.ApiUrl}api/RARecipient/GetAllFailedRecipient/${id}`
+    )
+  }
 
 
 }
