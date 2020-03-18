@@ -10,7 +10,8 @@ namespace UICMA.Domain.Entities.RARecipients
     {
         public Int64 Id { get; set; }
         public string EmployeeNumber { get; set; }
-        public string EmployeeName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string EmployeeEmail { get; set; }
         public string EmailReferenceNumber { get; set; }
         public string Status { get; set; }
@@ -29,6 +30,8 @@ namespace UICMA.Domain.Entities.RARecipients
         public bool IsDeliveryMailCaptured { get; set; }
         public bool IsSentMailCaptured { get; set; }
         public string RequestType { get; set; }
+        public string JobCode { get; set; }
+        public string JobTitle { get; set; }
         public ICollection<RAAssociatedDocument> RAassociatedDocument { get; set; }
         public ICollection<RABatchRecipient> RAbatchRecipient { get; set; }
     }

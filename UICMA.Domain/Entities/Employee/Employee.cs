@@ -50,5 +50,7 @@ namespace UICMA.Domain.Entities.Employees
         public string CreatedBy { get; set; }
         public DateTime? LastUpdateDate { get; set; }
         public string LastUpdateBy { get; set; }
+        public string JobCode { get; set; }
+        public string JobTitle { get; set; }
     }
 }

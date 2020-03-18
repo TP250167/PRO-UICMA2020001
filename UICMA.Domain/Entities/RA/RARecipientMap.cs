@@ -16,7 +16,8 @@ namespace UICMA.Domain.Entities.RARecipientMap
             builder.Property(s => s.CreatedOn).HasColumnName("CREATED_ON");
             builder.Property(s => s.ModifiedOn).HasDefaultValue(DateTime.Now).HasColumnName("MODIFIED_ON");
             builder.Property(s => s.EmployeeEmail).HasColumnName("EMPLOYEE_EMAIL");
-            builder.Property(s => s.EmployeeName).HasColumnName("EMPLOYEE_NAME");
+            builder.Property(s => s.FirstName).HasColumnName("FIRST_NAME");
+            builder.Property(s => s.LastName).HasColumnName("LAST_NAME");
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY");
             builder.Property(s => s.EmployeeNumber).HasColumnName("EMPLOYEE_NUMBER");
@@ -28,6 +29,8 @@ namespace UICMA.Domain.Entities.RARecipientMap
             builder.Property(s => s.RetryFail).HasColumnName("RETRY_FAIL");
             builder.Property(s => s.RetrySucess).HasColumnName("RETRY_SUCESS");
             builder.Property(s => s.RequestType).HasColumnName("REQUEST_TYPE");
+            builder.Property(s => s.JobCode).HasColumnName("JOD_CODE");
+            builder.Property(s => s.JobTitle).HasColumnName("JOD_TITLE");
             builder.Property(s => s.IsSucessfullyDeliver).HasColumnName("IS_SUCESSFULLY_DELIVER").HasDefaultValue(false);
             builder.Property(s => s.IsSentMailCaptured).HasColumnName("IS_SENT_MAIL_CAPTURED").HasDefaultValue(false);
             builder.Property(s => s.IsDeliveryMailCaptured).HasColumnName("IS_DELIVERY_MAIL_CAPTURED").HasDefaultValue(false);

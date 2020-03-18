@@ -150,7 +150,8 @@ namespace UICMA.Service.RAService
                 var convertedList = (from rw in tblcsv.AsEnumerable()
                                      select new RARecipient()
                                      {
-                                         EmployeeName = Convert.ToString(rw["EmployeeName"]),
+                                         FirstName = Convert.ToString(rw["FirstName"]),
+                                         LastName = Convert.ToString(rw["LastName"]),
                                          EmployeeNumber = Convert.ToString(rw["EmployeeNumber"]),
                                          EmployeeEmail = Convert.ToString(rw["EmployeeEmail"]),
                                          // CreatedOn = DateTime.Now                                        
@@ -161,7 +162,8 @@ namespace UICMA.Service.RAService
                     foreach (var employee in convertedList)
                     {
                         RARecipient recipient = new RARecipient();
-                        recipient.EmployeeName = employee.EmployeeName;
+                        recipient.FirstName = employee.FirstName;
+                        recipient.LastName = employee.LastName;
                         recipient.EmployeeEmail = employee.EmployeeEmail;
                         recipient.EmployeeNumber = employee.EmployeeNumber;
                         recipient.Status = "Active";
@@ -175,7 +177,7 @@ namespace UICMA.Service.RAService
                         Template temp = _TemplateRepository.GetSingle(Batch.TemplateID);
                         Notification notify = new Notification();
                         notify.CreatedOn = DateTime.Now;
-                        notify.EmployeeNumber = employee.EmployeeName;
+                        notify.EmployeeNumber = employee.EmployeeNumber;
                         notify.NotifyTo = employee.EmployeeEmail;
                         notify.NotifySubject = Batch.BatchName;
                         notify.NotifyFrom = _FromMail;
@@ -230,7 +232,8 @@ namespace UICMA.Service.RAService
                             foreach (var employee in Emp)
                             {                             
                                 RARecipient recipient = new RARecipient();
-                                recipient.EmployeeName = employee.FirstName + " " +employee.LastName;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;                                   
                                 recipient.EmployeeEmail = employee.OIDEmailAddress;
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status ="Active";
@@ -266,8 +269,9 @@ namespace UICMA.Service.RAService
                             foreach (var employee in Emp)
                             {
                                 RARecipient recipient = new RARecipient();
-                                recipient.EmployeeName = employee.FirstName + " " + employee.LastName;
-                                recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
@@ -299,8 +303,9 @@ namespace UICMA.Service.RAService
                             foreach (var employee in Emp)
                             {
                                 RARecipient recipient = new RARecipient();
-                                recipient.EmployeeName = employee.FirstName + " " + employee.LastName;
-                                recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
@@ -332,8 +337,9 @@ namespace UICMA.Service.RAService
                             foreach (var employee in Emp)
                             {
                                 RARecipient recipient = new RARecipient();
-                                recipient.EmployeeName = employee.FirstName + " " + employee.LastName;
-                                recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
@@ -366,8 +372,9 @@ namespace UICMA.Service.RAService
                             foreach (var employee in Emp)
                             {
                                 RARecipient recipient = new RARecipient();
-                                recipient.EmployeeName = employee.FirstName + " " + employee.LastName;
-                                recipient.EmployeeEmail = employee.OIDEmailAddress;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
+                                    recipient.EmployeeEmail = employee.OIDEmailAddress;
                                 recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                 recipient.Status = "Active";
                                 recipient.CreatedOn = DateTime.Now;
@@ -439,7 +446,8 @@ namespace UICMA.Service.RAService
                                 foreach (var employee in Emp)
                                 {
                                     RARecipient recipient = new RARecipient();
-                                    recipient.EmployeeName = employee.FirstName + " " + employee.LastName;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
                                     recipient.EmployeeEmail = employee.OIDEmailAddress;
                                     recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                     recipient.Status = "Active";
@@ -475,7 +483,8 @@ namespace UICMA.Service.RAService
                                 foreach (var employee in Emp)
                                 {
                                     RARecipient recipient = new RARecipient();
-                                    recipient.EmployeeName = employee.FirstName + " " + employee.LastName;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
                                     recipient.EmployeeEmail = employee.OIDEmailAddress;
                                     recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                     recipient.Status = "Active";
@@ -508,7 +517,8 @@ namespace UICMA.Service.RAService
                                 foreach (var employee in Emp)
                                 {
                                     RARecipient recipient = new RARecipient();
-                                    recipient.EmployeeName = employee.FirstName + " " + employee.LastName;
+                                    recipient.FirstName = employee.FirstName;
+                                    recipient.LastName = employee.LastName;
                                     recipient.EmployeeEmail = employee.OIDEmailAddress;
                                     recipient.EmployeeNumber = employee.EmployeeNumberCode;
                                     recipient.Status = "Active";
