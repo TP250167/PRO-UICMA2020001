@@ -10,7 +10,7 @@
           <h3>Batch Name</h3>
           <select name="" id="" class="form-control" [(ngModel)]="batchVal" (change)="rerenderDataTables(batchVal)">
             <option value="{{item.id}}" [selected]="item.batchName == batchInfo.batch_Name"
-              *ngFor="let item of bactchList">{{item.batchName}}</option>
+              *ngFor="let item of batchList">{{item.batchName}}</option>
           </select>
         </div>
       </div>
@@ -23,22 +23,25 @@
       <div class="col-md-2">
         <div class="cc-page-info-box">
           <h3>Total Recipient</h3>
-          <h5><span class="cc-text-link" (click)="rerenderDataTables(batchInfo.id)">{{batchInfo.total_Recipient}}</span></h5>
+          <h5><span class="cc-text-link" (click)="rerenderDataTables(batchInfo.id)">{{batchInfo.total_Recipient}}</span>
+          </h5>
         </div>
       </div>
       <div class="col-md-2">
         <div class="cc-page-info-box">
           <h3>Successful Delivery</h3>
-          <h5><span class="cc-text-link" (click)="getAllDeliverdRecipient(batchInfo.id)">{{batchInfo.sucessful_Delivery}}</span></h5>
+          <h5><span class="cc-text-link"
+              (click)="getAllDeliverdRecipient(batchInfo.id)">{{batchInfo.sucessful_Delivery}}</span></h5>
         </div>
       </div>
       <div class="col-md-2">
         <div class="cc-page-info-box" style="display: flex;">
           <div>
             <h3>Failed Delivery</h3>
-            <h5><span  (click)="getAllFailedRecipient(batchInfo.id)" class="cc-text-link">{{batchInfo.failed_Delivery}}</span></h5>
+            <h5><span (click)="getAllFailedRecipient(batchInfo.id)"
+                class="cc-text-link">{{batchInfo.failed_Delivery}}</span></h5>
           </div>
-          <div>
+          <div (click)="downloadCsv(batchInfo.id)">
             <img style="width: 30px;cursor: pointer;" src="../../../../assets/img/ecel.png" alt="">
           </div>
         </div>
@@ -50,8 +53,22 @@
 <div class="cc-claims-main-page">
   <div class="cc-claims-table cc-data-tables">
     <div class="cc-dbtable-wrapper">
-      <div class="cc-table-heading">
+      <div class="cc-table-heading d-flex justify-content-between">
         <h3>List of Notification Items</h3>
+        <div class="d-flex">
+          <div class="d-flex align-items-center cc-msg-content">
+            <i class="fa fa-envelope"></i>
+            <span>Awaiting For Delivery</span>
+          </div>
+          <div class="d-flex align-items-center cc-msg-content">
+            <i class="fa fa-envelope cc-sucess-msg"></i>
+            <span>Successfully Delivery</span>
+          </div>
+          <div class="d-flex align-items-center cc-msg-content">
+            <i class="fa fa-envelope cc-failure-msg"></i>
+            <span>Failed Delivery</span>
+          </div>
+        </div>
       </div>
       <div class="cc-table-wrapper">
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -76,6 +93,7 @@
               <td>{{ item.job_Title}}</td>
               <td class="cc-dbt-action">
                 <div class="cc-dbt-wrapper">
+                  <i class="fa fa-envelope" *ngIf="item.failed_On == null && item.delivered_On == null && item.notified_Sent_On == null"></i>
                   <i class="fa fa-envelope cc-sucess-msg" *ngIf="item.failed_On == null && item.delivered_On != null"></i>
                   <i class="fa fa-envelope cc-failure-msg" *ngIf="item.delivered_On == null && item.failed_On != null"></i>
                 </div>

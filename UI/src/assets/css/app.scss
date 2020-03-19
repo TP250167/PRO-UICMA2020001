@@ -88,7 +88,8 @@ p { font-size: 14px; font-weight: 300; line-height: 1.7; }
     box-shadow: 0 0 0 0.2rem rgba(29, 201, 183, .3);
 }
 
-.form-control.is-invalid, .was-validated .form-control:invalid {
+.form-control.is-invalid, .was-validated .form-control:invalid , 
+ng-multiselect-dropdown.is-invalid .dropdown-btn {
     border-color: $danger ;
 }
 
@@ -116,6 +117,14 @@ select.form-control , .cc-datepicker , .dataTables_length select {
     background-size: 12px;
     background-repeat: no-repeat;
     background-position: calc(100% - 10px) 50%;
+}
+
+.custom-control-label::after {
+    top: 0px;
+    left: -24.4px;
+    width: 1.4rem;
+    height: 1.4rem;
+    background-image: unset !important;
 }
 
 .cc-datepicker {
@@ -619,7 +628,7 @@ app-sidebar-process-steps {
 .cc-page-info {
     .col-12 { padding: 0; margin-bottom: 20px; }
     .cc-page-info-box { border-right: 2px dashed #eef0f9; padding-right: 10px; h3 { font-size: 16px; font-weight: bold; } h5 { font-size: 14px; margin: 0; } }
-    .col-md-4:last-child {
+    [class *='col-md']:last-child {
         .cc-page-info-box { border-right: 0; }
     }
 }
@@ -739,6 +748,15 @@ app-sidebar-process-steps {
 .cc-sucess-msg { color: $success; }
 .cc-failure-msg { color: $danger; }
 
+.d-flex.align-items-center.cc-msg-content {
+    margin-left: 22px;
+
+    .fa.fa-envelope {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+}
+
 // datepicker 
 .bs-datepicker-container { padding:0 !important; }
 bs-datepicker-navigation-view { display: flex; width: 100%; justify-content: space-between; }
@@ -802,7 +820,7 @@ table.dataTable {
 
 
 
-table.dataTable thead .sorting_asc , table.dataTable thead .sorting , table.dataTable thead .sorting_desc{ background-image: unset !important; }
+table.dataTable thead .sorting_asc , table.dataTable thead .sorting , table.dataTable thead .sorting_desc{ background-image: inherit ; }
 table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_desc_disabled { cursor: pointer; position: relative; }
 table.dataTable thead th, table.dataTable thead td { border: 0; }
 table.dataTable thead th { 
@@ -1196,6 +1214,14 @@ tr:first-child>td>.fc-day-grid-event{margin-top:2px;}
     }
 }
 
+@media only screen and (max-width:1400px) {
+    .cc-page-info [class *='col-md'] {
+        -webkit-box-flex: 0;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
 // media query style end
 
 .cc-page-title{
@@ -1242,6 +1268,24 @@ bs-datepicker-container, bs-daterangepicker-container {
 
 
 
+// css for ms 
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    html body {
+        .cc-app-wrapper .cc-main-content > .cc-sidebar .cc-block-wrapper {
+            align-items: inherit;
+        }
+    }
+
+    .cc-app-wrapper .cc-main-content > .cc-sidebar { width: 320px; }
+    .cc-app-wrapper .cc-main-content > .cc-main { padding-right: 320px; }
+    .bs-datepicker-head, .bs-datepicker-body { min-width: 300px; }
+    
+}
+
+select::-ms-expand {
+    display: none;
+}
 
 
 

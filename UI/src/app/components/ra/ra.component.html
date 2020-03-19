@@ -26,8 +26,7 @@
                             </accordion-group>
 
                             <accordion-group class="biweeklylist" [isOpen]="true">
-                                <button  class="btn btn-link" accordion-heading
-                                    type="button">
+                                <button class="btn btn-link" accordion-heading type="button">
                                     <div class="cc-list-icon"> <span><i class="fa fa-refresh"></i></span> </div>
                                     <div class="cc-tla-heading">Biweekly RA Notification Batch</div>
                                 </button>
@@ -133,7 +132,7 @@
                         <label for="batchDescription">Choose Template</label>
 
                         <select id="inputState" class="form-control" autocomplete="off" formControlName="TemplateID"
-                            name="TemplateID">
+                            name="TemplateID" [ngClass]="{ 'is-invalid':bifSubmitted && bfi.TemplateID.errors }">
                             <option value="{{item.id}}" *ngFor="let item of templateList">{{item.templateName}}</option>
                         </select>
 
@@ -152,8 +151,9 @@
 
                             <div class="col-md-4">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" selected class="custom-control-input" id="annual" name="isAnnual"
-                                        value="true" (click)="showRecipientSection('True') " formControlName="isAnnual">
+                                    <input type="radio" selected class="custom-control-input" id="annual"
+                                        name="isAnnual" value="true" (click)="showRecipientSection('True') "
+                                        formControlName="isAnnual">
                                     <label class="custom-control-label" for="annual">Annual</label>
                                 </div>
                             </div>
@@ -161,14 +161,16 @@
                             <div class="col-md-4">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="biWeekly" name="isAnnual"
-                                        value="false" (click)="showRecipientSection('False')" formControlName="isAnnual">
+                                        value="false" (click)="showRecipientSection('False')"
+                                        formControlName="isAnnual">
                                     <label class="custom-control-label" for="biWeekly">Bi Weekly</label>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="custom"  name="isAnnual" value="custom" formControlName="isAnnual" (click)="showUpfileSection()">
+                                    <input type="radio" class="custom-control-input" id="custom" name="isAnnual"
+                                        value="custom" formControlName="isAnnual" (click)="showUpfileSection()">
                                     <label class="custom-control-label" for="custom">Custom</label>
                                 </div>
                             </div>
@@ -186,7 +188,7 @@
                     <div class="cc-repset col-md-12" *ngIf="(showRecipient == true && showUpbtn == false)">
                         <div class="form-group">
                             <label for="recipientSet">Recipient Set</label>
-                            <ng-multiselect-dropdown formControlName="recipientSet" name="recipientSet"
+                            <ng-multiselect-dropdown [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchDescription.errors }" formControlName="recipientSet" name="recipientSet"
                                 [placeholder]="'Select Recipient'" [data]="dropdownList" [(ngModel)]="selectedItems"
                                 [settings]="dropdownSettings">
                             </ng-multiselect-dropdown>
@@ -204,7 +206,7 @@
                             <label for="scheduleDate">Schedule Date</label>
                             <input type="text" class="form-control cc-datepicker" autocomplete="off" bsDatepicker
                                 formControlName="scheduleDate" name="scheduleDate"
-                                [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false , adaptivePosition: true }"
                                 [ngClass]="{ 'is-invalid':bifSubmitted && bfi.scheduleDate.errors }">
                             <div *ngIf="bfi.scheduleDate.touched && bfi.scheduleDate.errors ||bifSubmitted"
                                 class="invalid-feedback">
@@ -216,7 +218,8 @@
 
                     <div class="cc-upfile col-md-12" *ngIf="(showRecipient == false && showUpbtn == true)">
                         <div class="form-group cc-file-upload">
-                            <input type="file" appCustomUpload class="form-control" (change)="convertToBase64($event)">
+                            <input type="file" formControlName="base64Val" name="base64Val" appCustomUpload
+                                class="form-control" (change)="convertToBase64($event)">
                             <div class="cc-fu-wrapper">
                                 <div class="cc-file-upload-filed">
                                     <span class="cc-fuf-text"></span>

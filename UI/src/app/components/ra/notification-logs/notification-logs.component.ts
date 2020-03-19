@@ -6,6 +6,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 
 import { RaApiService } from '../../../services/ra-api.service'
+import { ExcelService } from '../../../services/excel.service'
 
 @Component({
   selector: 'app-notification-logs',
@@ -25,14 +26,15 @@ export class NotificationLogsComponent implements OnInit {
 
 
   public batchVal: number;
-  public bactchList: any = [];
+  public batchList: any = [];
   public batchInfo: any = [];
 
 
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private ras: RaApiService
+    private ras: RaApiService,
+    private exs: ExcelService
   ) {
 
   }
@@ -41,8 +43,7 @@ export class NotificationLogsComponent implements OnInit {
     this.ras.getAllBatchList()
       .subscribe(
         (res) => {
-          this.bactchList = res;
-          console.log(this.bactchList)
+          this.batchList = res;
         },
         (error) => {
           console.log('error caught in get batch list', error)
@@ -67,15 +68,15 @@ export class NotificationLogsComponent implements OnInit {
 
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 5,
     };
 
     this.ras.getRaNotificationList(id)
       .subscribe(
         (res) => {
           this.loglist = res;
+          console.log(this.loglist)
           this.dtTrigger.next();
-          console.log(res)
         },
         (error) => {
           console.log('error caught in batch creation', error)
@@ -126,6 +127,21 @@ export class NotificationLogsComponent implements OnInit {
         dtInstance.destroy();
         this.getBatcheInfo(id)
       });
+  }
+
+  downloadCsv(id) {
+    this.ras.getAllFailedRecipient(id)
+      .subscribe(
+        (res) => {
+          let csvData = res; 
+          if(Object.keys(csvData).length == 0) { 
+            csvData = [{"message":'No Data Available'}]
+          } 
+          console.log(csvData)
+          this.exs.downloadFile(csvData, 'failed_delivery.csv')
+        },
+        (error) => { console.log('error caught in download csv creation', error) }
+      )
   }
 
   ngOnInit() {
