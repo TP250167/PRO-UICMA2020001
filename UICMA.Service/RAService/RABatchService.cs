@@ -124,9 +124,12 @@ namespace UICMA.Service.RAService
                 }
 
                 DataTable tblcsv = new DataTable();
+                tblcsv.Columns.Add("FirstName");
+                tblcsv.Columns.Add("LastName");
                 tblcsv.Columns.Add("EmployeeNumber");
                 tblcsv.Columns.Add("EmployeeEmail");
-                tblcsv.Columns.Add("EmployeeName");
+                tblcsv.Columns.Add("JobCode");
+                tblcsv.Columns.Add("JobTitle");
 
                 string CSVFilePath = csvpath;
                 string ReadCSV = System.IO.File.ReadAllText(CSVFilePath);
@@ -135,16 +138,18 @@ namespace UICMA.Service.RAService
                 var exactColumn = exactColumnWithHeader.ToList();
                 exactColumn.RemoveAt(0);
                 //spliting row after new line 
+
+
                 foreach (string csvRow in exactColumn)
                 {
                     int count = 0;
                     DataRow dr = tblcsv.NewRow();
                     dr["FirstName"] = csvRow.Split(',')[0].Replace("\"", "");
-                    dr["LastName"] = csvRow.Split(',')[0].Replace("\"", "");
-                    dr["EmployeeNumber"] = csvRow.Split(',')[0].Replace("\"", "");
-                    dr["EmployeeEmail"] = csvRow.Split(',')[1].Replace("\"", "");
-                    dr["JobCode"] = csvRow.Split(',')[1].Replace("\"", "");
-                    dr["JobTitle"] = csvRow.Split(',')[1].Replace("\"", "");
+                    dr["LastName"] = csvRow.Split(',')[1].Replace("\"", "");
+                    dr["EmployeeNumber"] = csvRow.Split(',')[2].Replace("\"", "");
+                    dr["EmployeeEmail"] = csvRow.Split(',')[3].Replace("\"", "");
+                    dr["JobCode"] = csvRow.Split(',')[4].Replace("\"", "");
+                    dr["JobTitle"] = csvRow.Split(',')[5].Replace("\"", "");
                     tblcsv.Rows.Add(dr);
                     count++;
                 }
@@ -302,7 +307,8 @@ namespace UICMA.Service.RAService
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
-                                var AddNotifation = _NotificationRepository.AddData(notify);
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
+                                    var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;
@@ -338,7 +344,8 @@ namespace UICMA.Service.RAService
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
-                                var AddNotifation = _NotificationRepository.AddData(notify);
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
+                                    var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;
@@ -374,7 +381,8 @@ namespace UICMA.Service.RAService
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
-                                var AddNotifation = _NotificationRepository.AddData(notify);
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
+                                    var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;
@@ -411,7 +419,8 @@ namespace UICMA.Service.RAService
                                 notify.NotifyStatus = "To Email";
                                 notify.NotifyBody = temp.TemplateBodyContent;
                                 notify.RequestType = "Email";
-                                var AddNotifation = _NotificationRepository.AddData(notify);
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
+                                    var AddNotifation = _NotificationRepository.AddData(notify);
                             }
                         }
                         break;                  
@@ -528,6 +537,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.AddData(notify);
                                 }
                             }
@@ -564,6 +574,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.AddData(notify);
                                 }
                             }
@@ -650,7 +661,6 @@ namespace UICMA.Service.RAService
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
                                     notify.NotifyAttachment = temp.TemplateAttachmentContent;
-
                                     var AddNotifation = _NotificationRepository.UpdateData(notify);
                                 }
                             }
@@ -688,6 +698,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.UpdateData(notify);
                                 }
                             }
@@ -724,6 +735,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.UpdateData(notify);
                                 }
                             }
@@ -760,6 +772,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.UpdateData(notify);
                                 }
                             }
@@ -797,6 +810,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.UpdateData(notify);
                                 }
                             }
@@ -912,6 +926,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.AddData(notify);
                                 }
                             }
@@ -948,6 +963,7 @@ namespace UICMA.Service.RAService
                                     notify.NotifyStatus = "To Email";
                                     notify.NotifyBody = temp.TemplateBodyContent;
                                     notify.RequestType = "Email";
+                                    notify.NotifyAttachment = temp.TemplateAttachmentContent;
                                     var AddNotifation = _NotificationRepository.AddData(notify);
                                 }
                             }
