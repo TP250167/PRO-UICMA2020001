@@ -38,7 +38,7 @@ namespace UICMA.Repository.RARepository
         }
         public IEnumerable<RABatchView> GetAllRABothBatch()
         {
-            return context.RABatch.Where(s => s.Status == "Active").OrderByDescending(s => s.CreatedOn).ToList();
+            return context.RABatch.Where(s => s.Status == "Active" && s.IsCustom == false).OrderByDescending(s => s.CreatedOn).ToList();
         }
 
 
