@@ -17,6 +17,7 @@ export class RaApiService {
   }
 
 
+  // Batch creation 
   createBatch(payloadData) {
     return this.http.post(
       `${this.cls.ApiUrl}api/RABatch/CreateBatch`,
@@ -24,13 +25,17 @@ export class RaApiService {
     )
   }
 
-
   getAllBatch(){
     return this.http.get(
       `${this.cls.ApiUrl}api/RABatch/GetAllRABatch`
     )
   }
 
+  getAllBatchList(){
+    return this.http.get(
+      `${this.cls.ApiUrl}api/RABatch/GetAllBatch`
+    )
+  }
 
   getBatchDetails(id){
     return this.http.get(
@@ -56,14 +61,6 @@ export class RaApiService {
     )
   }
 
-
-
-
-
-
-
-
-  
   
   getRaNotificationList(id){
     return this.http.get(
@@ -71,6 +68,17 @@ export class RaApiService {
     )
   }
 
+  getAllDeliverdRecipient(id){
+    return this.http.get(
+      `${this.cls.ApiUrl}api/RARecipient/GetAllDeliverdRecipient/${id}`
+    )
+  }
+
+  getAllFailedRecipient(id){
+    return this.http.get(
+      `${this.cls.ApiUrl}api/RARecipient/GetAllFailedRecipient/${id}`
+    )
+  }
 
 
 }

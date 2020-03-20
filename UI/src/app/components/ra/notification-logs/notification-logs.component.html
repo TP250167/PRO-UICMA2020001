@@ -1,95 +1,112 @@
 <div class="cc-page-title">
-    <h2>Reasonable Assurance Notification Management</h2>
-  </div>
-  
-  <div class="cc-page-info">
-    <div class="container-fluid">
-        <div class="row cc-wbg">
-            <div class="col-md-3 form-group">
-                <div class="cc-page-info-box">
-                    <h3>Batch Name</h3>
-                    <select name="" id="" class="form-control" [(ngModel)]="batchVal" (change)="getBatcheInfo(batchVal);raNotificationList(batchVal)">
-                      <option value="{{item.id}}" [selected]="item.batchName == bactchInfo.batch_Name" *ngFor="let item of bactchList">{{item.batchName}}</option>
-                    </select>
-                      <!-- <h5>{{bactchInfo.batch_Name}}</h5> -->
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="cc-page-info-box">
-                    <h3>Date of Notification</h3>
-                    <h5>{{bactchInfo.schedule_Date | date:'MM/dd/yyyy'}}</h5>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="cc-page-info-box">
-                    <h3>Total Recipient</h3>
-                    <h5><span class="cc-text-link">{{bactchInfo.total_Recipient}}</span></h5>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="cc-page-info-box">
-                    <h3>Successful Delivery</h3>
-                    <h5><span class="cc-text-link">{{bactchInfo.sucessful_Delivery}}</span></h5>
-                </div>
-            </div>
-            <!-- <div class="col-md-3">
-                <div class="cc-page-info-box">
-                    <h3>Retry Success</h3>
-                    <h5>{{bactchInfo.batch_Name}}</h5>
-                </div>
-            </div> -->
-            <div class="col-md-2">
-                <div class="cc-page-info-box" style="display: flex;">
-                  <div>
-                    <h3>Failed Delivery</h3>
-                    <h5><span class="cc-text-link">{{bactchInfo.failed_Delivery}}</span></h5>
-                  </div>
-                  <div>
-                    <img style="width: 30px;cursor: pointer;" src="../../../../assets/img/ecel.png" alt="">
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <h2>Reasonable Assurance Notification Management</h2>
 </div>
 
-  <div class="cc-claims-main-page">
-    <div class="cc-claims-table cc-data-tables">
-      <div class="cc-dbtable-wrapper">
-        <div class="cc-table-heading">
-          <h3>List of Notification Items</h3>
+<div class="cc-page-info">
+  <div class="container-fluid">
+    <div class="row cc-wbg">
+      <div class="col-md-3 form-group">
+        <div class="cc-page-info-box">
+          <h3>Batch Name</h3>
+          <select name="" id="" class="form-control" [(ngModel)]="batchVal" (change)="rerenderDataTables(batchVal)">
+            <option value="{{item.id}}" [selected]="item.batchName == batchInfo.batch_Name"
+              *ngFor="let item of batchList">{{item.batchName}}</option>
+          </select>
         </div>
-        <div class="cc-table-wrapper">
-          <table datatable [dtOptions]="dtOptions" class="row-border hover">
-            <thead>
-              <tr>
-                <th>Date & Time</th>
-                <th>Recipient Name</th>
-                <th>Recipient Number</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody >
-              <tr *ngFor="let item of loglist">
-                <td>{{ item.created_on | date:'MM/dd/yyyy'}}</td>
-                <td>{{ item.employee_Name}}</td>
-                <td>{{ item.employee_Number}}</td>
-                <td class="cc-dbt-action">
-                  <div class="cc-dbt-wrapper">
-                    <i class="fa fa-envelope"></i>
-                    <i class="fa fa-envelope"></i>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-            <tbody *ngIf="loglist?.length == 0">
-              <tr>
-                <td colspan="4" class="no-data-available">No data!</td>
-              </tr>
-            <tbody>
-          </table>
+      </div>
+      <div class="col-md-3">
+        <div class="cc-page-info-box">
+          <h3>Date of Notification</h3>
+          <h5>{{batchInfo.schedule_Date | date:'MM/dd/yyyy'}}</h5>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="cc-page-info-box">
+          <h3>Total Recipient</h3>
+          <h5><span class="cc-text-link" (click)="rerenderDataTables(batchInfo.id)">{{batchInfo.total_Recipient}}</span>
+          </h5>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="cc-page-info-box">
+          <h3>Successful Delivery</h3>
+          <h5><span class="cc-text-link"
+              (click)="getAllDeliverdRecipient(batchInfo.id)">{{batchInfo.sucessful_Delivery}}</span></h5>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="cc-page-info-box" style="display: flex;">
+          <div>
+            <h3>Failed Delivery</h3>
+            <h5><span (click)="getAllFailedRecipient(batchInfo.id)"
+                class="cc-text-link">{{batchInfo.failed_Delivery}}</span></h5>
+          </div>
+          <div (click)="downloadCsv(batchInfo.id)">
+            <img style="width: 30px;cursor: pointer;" src="../../../../assets/img/ecel.png" alt="">
+          </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
 
+<div class="cc-claims-main-page">
+  <div class="cc-claims-table cc-data-tables">
+    <div class="cc-dbtable-wrapper">
+      <div class="cc-table-heading d-flex justify-content-between">
+        <h3>List of Notification Items</h3>
+        <div class="d-flex">
+          <div class="d-flex align-items-center cc-msg-content">
+            <i class="fa fa-envelope"></i>
+            <span>Awaiting For Delivery</span>
+          </div>
+          <div class="d-flex align-items-center cc-msg-content">
+            <i class="fa fa-envelope cc-sucess-msg"></i>
+            <span>Successfully Delivery</span>
+          </div>
+          <div class="d-flex align-items-center cc-msg-content">
+            <i class="fa fa-envelope cc-failure-msg"></i>
+            <span>Failed Delivery</span>
+          </div>
+        </div>
+      </div>
+      <div class="cc-table-wrapper">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+          <thead>
+            <tr>
+              <th>Employee No</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Employee Email</th>
+              <th>Job Code</th>
+              <th>Job Title</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of loglist">
+              <td>{{ item.employee_Number}}</td>
+              <td>{{ item.first_Name}}</td>
+              <td>{{ item.last_Name}}</td>
+              <td>{{ item.employee_Email}}</td>
+              <td>{{ item.job_Code}}</td>
+              <td>{{ item.job_Title}}</td>
+              <td class="cc-dbt-action">
+                <div class="cc-dbt-wrapper">
+                  <i class="fa fa-envelope" *ngIf="item.failed_On == null && item.delivered_On == null && item.notified_Sent_On == null"></i>
+                  <i class="fa fa-envelope cc-sucess-msg" *ngIf="item.failed_On == null && item.delivered_On != null"></i>
+                  <i class="fa fa-envelope cc-failure-msg" *ngIf="item.delivered_On == null && item.failed_On != null"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="loglist?.length == 0">
+            <tr>
+              <td colspan="4" class="no-data-available">No data!</td>
+            </tr>
+          <tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
