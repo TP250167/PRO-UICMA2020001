@@ -33,6 +33,8 @@ using UICMA.Domain.Entities.Determination_Appeal;
 using UICMA.Domain.Entities.Determination_AppealMap;
 using UICMA.Domain.Entities.EmployeeMap;
 using UICMA.Domain.Entities.Employees;
+using UICMA.Domain.Entities.ExtractingIndexValueMap;
+using UICMA.Domain.Entities.ExtractingIndexValues;
 using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.Form_Document_Map;
 using UICMA.Domain.Entities.HearingMap;
@@ -194,6 +196,7 @@ namespace UICMA.Repository
             new WagesAppealMap(modelBuilder.Entity<WagesAppeal>());
             new RequestForEmployeeDataMap(modelBuilder.Entity<RequestForEmployeeData>());
             new CUIABBoardAppealMap(modelBuilder.Entity<CUIABBoardAppeal>());
+            new ExtractingIndexValueMap(modelBuilder.Entity<ExtractingIndexValue>());
         }
 
         internal object Where(Func<object, bool> p)

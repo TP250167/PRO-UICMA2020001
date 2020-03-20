@@ -32,6 +32,8 @@
     <Compile Remove="Migrations\20200320092555_ALTER-MAPING.Designer.cs" />
     <Compile Remove="Migrations\20200320095415_change-sp.cs" />
     <Compile Remove="Migrations\20200320095415_change-sp.Designer.cs" />
+    <Compile Remove="Migrations\20200320095849_change-sp.cs" />
+    <Compile Remove="Migrations\20200320095849_change-sp.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
