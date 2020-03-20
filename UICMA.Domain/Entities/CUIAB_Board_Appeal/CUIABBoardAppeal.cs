@@ -5,7 +5,7 @@ using UICMA.Domain.Entities.New_Claim;
 
 namespace UICMA.Domain.Entities.CUIAB_Board_Appeal
 {
-   public class CUIABBoardAppeal
+   public class CUIABBoardAppeal:IBaseEntity
     {
         public Int64 Id { get; set; }
         public string ClaimantName { get; set; }

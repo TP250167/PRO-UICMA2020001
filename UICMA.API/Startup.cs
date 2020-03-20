@@ -201,6 +201,84 @@ namespace UICMA.API
             builder.RegisterType<CUIABAcknowRepository>().As<ICUIABAcknowRepository>();
 
 
+            builder.RegisterType<AttendeeService>().As<IAttendeeService>();
+            builder.RegisterType<AttendeeRepository>().As<IAttendeeRepository>();
+
+            builder.RegisterType<BenefitAuditService>().As<IBenefitAuditService>();
+            builder.RegisterType<BenefitAuditRepository>().As<IBenefitAuditRepository>();
+
+
+            builder.RegisterType<BenefitChargeService>().As<IBenefitChargeService>();
+            builder.RegisterType<BenefitChargeRepository>().As<IBenefitChargeRepository>();
+
+            builder.RegisterType<ClaimExceptionService>().As<IClaimExceptionService>();
+            builder.RegisterType<ClaimExceptionRepository>().As<IClaimExceptionRepository>();
+
+            builder.RegisterType<CUIABBoardAppealService>().As<ICUIABBoardAppealService>();
+            builder.RegisterType<CUIABBoardAppealRepository>().As<ICUIABBoardAppealRepository>();
+
+            builder.RegisterType<DeterminationAppealService>().As<IDeterminationAppealService>();
+            builder.RegisterType<DeterminationAppealRepository>().As<IDeterminationAppealRepository>();
+
+            builder.RegisterType<HearingService>().As<HearingService>();
+            builder.RegisterType<HearingRepository>().As<IHearingRepository>();
+
+            builder.RegisterType<QuestionsService>().As<IQuestionsService>();
+            builder.RegisterType<QuestionsRepository>().As<IQuestionsRepository>();
+
+            builder.RegisterType<RequestForEmpDataService>().As<IRequestForEmpDataService>();
+            builder.RegisterType<RequestForEmpDataRepository>().As<IRequestForEmpDataRepository>();
+
+            builder.RegisterType<RequestToReopenService>().As<IRequestToReopenService>();
+            builder.RegisterType<RequestToReopenRepository>().As<IRequestToReopenRepository>();
+
+            builder.RegisterType<WagesService>().As<IWagesService>();
+            builder.RegisterType<WagesRepository>().As<IWagesRepository>();
+
+            builder.RegisterType<WagesAppealService>().As<IWagesAppealService>();
+            builder.RegisterType<WagesAppealRepository>().As<IWagesAppealRepository>();
+
+            builder.RegisterType<WritService>().As<IWritService>();
+            builder.RegisterType<WritRepository>().As<IWritRepository>();
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //RA  Repository and Service 
             builder.RegisterType<RABatchService>().As<IRABatchService>();
             builder.RegisterType<RABatchRepository>().As<IRABatchRepository>();

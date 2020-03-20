@@ -18,6 +18,8 @@ namespace UICMA.Domain.Entities.ClaimExceptions
         public string ModifiedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
+        public int BenefitYearBeginning { get; set; }
+        public string Status { get; set; }
 
         public MDDocument MDDocument { get; set; }
         public MDForm MDForm { get; set; }
