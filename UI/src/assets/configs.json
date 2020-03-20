@@ -2,12 +2,12 @@
     "isTest": true,
     "apiURL": "https://uicmadev.kotest.in/uicma-api/",
     "adalConfig": {
-        "tenant": "df2b60de-e9ac-4e5b-b6c4-48c497b72c88",
-        "clientId": "a6740f62-a247-4b41-bf10-ac62af8f78a3",
+        "tenant": "26befc41-8e24-4cfb-ab7f-16f6019d1e10",
+        "clientId": "3f6720bc-c4ae-4dc3-bcfa-9c24524ad951",
         "cacheLocation": "localStorage",
         "postLogoutRedirectUri": "http://localhost:4200/",
         "endpoints": {
-            "https://uicmadev.kotest.in/uicma-api/": "a6740f62-a247-4b41-bf10-ac62af8f78a3"
+            "https://uicmadev.kotest.in/uicma-api/": "3f6720bc-c4ae-4dc3-bcfa-9c24524ad951"
         }
     }
 }

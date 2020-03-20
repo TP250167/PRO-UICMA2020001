@@ -521,7 +521,6 @@ app-sidebar-process-steps {
         left: 13px;
         z-index: -2;
     }
-
 }
 
 .cc-step-time {
@@ -1276,6 +1275,8 @@ bs-datepicker-container, bs-daterangepicker-container {
             align-items: inherit;
         }
     }
+
+    .cc-process-step::after { display: none; }
 
     .cc-app-wrapper .cc-main-content > .cc-sidebar { width: 320px; }
     .cc-app-wrapper .cc-main-content > .cc-main { padding-right: 320px; }
