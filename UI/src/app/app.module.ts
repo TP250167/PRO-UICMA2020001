@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule , APP_INITIALIZER} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AdalService, AdalGuard, AdalInterceptor } from 'adal-angular4';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -36,14 +37,21 @@ import { HeaderComponent } from './components/header/header.component';
     HttpClientModule
   ],
   providers: [
+    { 
+      provide: LocationStrategy, 
+      useClass: HashLocationStrategy 
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFactory,
       deps: [ConfigsLoaderService],
       multi: true
     },
-    AdalService, AdalGuard, {provide: HTTP_INTERCEPTORS, useClass: AdInterceptorService, multi: true }
-  
+    AdalService, AdalGuard, {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AdInterceptorService, 
+      multi: true 
+    }
   ],
   bootstrap: [AppComponent]
 })
