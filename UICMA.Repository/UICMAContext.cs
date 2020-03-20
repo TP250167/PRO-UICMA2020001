@@ -15,6 +15,8 @@ using UICMA.Domain.Entities.Benefit_Charge;
 using UICMA.Domain.Entities.Benefit_Charge_Claimant_DetailMap;
 using UICMA.Domain.Entities.Benefit_Charge_ClaimantDetail;
 using UICMA.Domain.Entities.Benefit_ChargeMap;
+using UICMA.Domain.Entities.BoardDecisionMap;
+using UICMA.Domain.Entities.BoardDecisions;
 using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_AppealMap;
 using UICMA.Domain.Entities.Claim_Determination;
@@ -197,11 +199,8 @@ namespace UICMA.Repository
             new RequestForEmployeeDataMap(modelBuilder.Entity<RequestForEmployeeData>());
             new CUIABBoardAppealMap(modelBuilder.Entity<CUIABBoardAppeal>());
             new ExtractingIndexValueMap(modelBuilder.Entity<ExtractingIndexValue>());
+            new BoardDecisionMap(modelBuilder.Entity<BoardDecision>());
         }
-
-        internal object Where(Func<object, bool> p)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

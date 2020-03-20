@@ -5,6 +5,7 @@ using UICMA.Domain.Entities.Additional_Information;
 using UICMA.Domain.Entities.ALJ_Decision;
 using UICMA.Domain.Entities.Benefit_Audit;
 using UICMA.Domain.Entities.Benefit_Charge;
+using UICMA.Domain.Entities.BoardDecisions;
 using UICMA.Domain.Entities.Claim_Appeal;
 using UICMA.Domain.Entities.Claim_Determination;
 using UICMA.Domain.Entities.Claim_Interview;
@@ -80,5 +81,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public RequestForEmployeeData requestForEmployeeData { get; set; }
         public CUIABBoardAppeal CUIABboardAppeal { get; set; }
         public FormDocument formDocument { get; set; }
+        public BoardDecision boardDecision { get; set; }
     }
 }
