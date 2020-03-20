@@ -12,6 +12,7 @@ using UICMA.Domain.Entities.Claim_Response;
 using UICMA.Domain.Entities.CUIAB_Acknowledgement;
 using UICMA.Domain.Entities.CUIAB_Board_Appeal;
 using UICMA.Domain.Entities.Determination_Appeal;
+using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.Hearings;
 using UICMA.Domain.Entities.NoticeOfWages;
 using UICMA.Domain.Entities.Request_For_EmployeeData;
@@ -53,7 +54,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public DateTime? ReceivedDate { get; set; }
         public DateTime? DeadlineDate { get; set; }
         public string ClaimantStatus { get; set; }
-        public DateTime? ReceiveDate { get; set; }
         public string BYB { get; set; }
         public string City { get; set; }
         public string State { get; set; }
@@ -79,5 +79,6 @@ namespace UICMA.Domain.Entities.New_Claim
         public WagesAppeal wagesAppeal { get; set; }
         public RequestForEmployeeData requestForEmployeeData { get; set; }
         public CUIABBoardAppeal CUIABboardAppeal { get; set; }
+        public FormDocument formDocument { get; set; }
     }
 }

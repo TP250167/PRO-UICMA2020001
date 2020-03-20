@@ -21,7 +21,7 @@ namespace UICMA.Domain.Entities.ClaimExceptions
         public int BenefitYearBeginning { get; set; }
         public string Status { get; set; }
 
-        public MDDocument MDDocument { get; set; }
-        public MDForm MDForm { get; set; }
+     //   public MDDocument MDDocument { get; set; }
+     //   public MDForm MDForm { get; set; }
     }
 }

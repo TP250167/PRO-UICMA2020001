@@ -31,7 +31,6 @@ namespace UICMA.Domain.Entities.New_ClaimMap
             builder.Property(s => s.BenefitYearBeginning).HasColumnName("BENEFIT_YEAR_BEGINNING");
             builder.Property(s => s.DateMailedToEDD).HasColumnName("DATE_MAILED_TO_EDD");
             builder.Property(s => s.MailDate).HasColumnName("MAIL_DATE");
-            builder.Property(s => s.ReceiveDate).HasColumnName("RECEIVE_DATE");
             builder.Property(s => s.EffectiveDateOfClaim).HasColumnName("EFFECTIVE_DATE_OF_CLAIM");
             builder.Property(s => s.LastDateWorked).HasColumnName("LAST_DATE_WORKED");
             builder.Property(s => s.DeadlineDate).HasColumnName("DEADLINE_DATE");

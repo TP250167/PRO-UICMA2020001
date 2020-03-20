@@ -21,7 +21,7 @@ namespace UICMA.Domain.Entities.MD_Document
         public bool IsMandatory { get; set; }
 
         public List<AssociatedDocuments> AssociatedDocuments { get; set; }
-        public List<FormDocument> FormDocuments { get; set; }
+      //  public List<FormDocument> FormDocuments { get; set; }
         public List<ClaimException> ClaimExceptions { get; set; }
     }
 }

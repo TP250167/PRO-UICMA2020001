@@ -20,7 +20,7 @@ namespace UICMA.Domain.Entities.MD_Form
         public DateTime? ModifiedOn { get; set; }
 
         public List<AssociatedDocuments> AssociatedDocuments { get; set; }
-        public List<FormDocument> FormDocuments { get; set; }
+      //  public List<FormDocument> FormDocuments { get; set; }
         public List<ClaimException> ClaimExceptions { get; set; }
     }
 }

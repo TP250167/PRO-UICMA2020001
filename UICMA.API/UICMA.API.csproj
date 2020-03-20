@@ -22,6 +22,16 @@
     <Compile Remove="Migrations\20200312100507_ADD-DETERMINATION-TBL.Designer.cs" />
     <Compile Remove="Migrations\20200313101841_alter-claim-tbl.cs" />
     <Compile Remove="Migrations\20200313101841_alter-claim-tbl.Designer.cs" />
+    <Compile Remove="Migrations\20200316110933_alter-exceptiontblle.cs" />
+    <Compile Remove="Migrations\20200316110933_alter-exceptiontblle.Designer.cs" />
+    <Compile Remove="Migrations\20200320090527_ALTER-MAPING-TBL.cs" />
+    <Compile Remove="Migrations\20200320090527_ALTER-MAPING-TBL.Designer.cs" />
+    <Compile Remove="Migrations\20200320092325_ALTER-MAPING-TABLE.cs" />
+    <Compile Remove="Migrations\20200320092325_ALTER-MAPING-TABLE.Designer.cs" />
+    <Compile Remove="Migrations\20200320092555_ALTER-MAPING.cs" />
+    <Compile Remove="Migrations\20200320092555_ALTER-MAPING.Designer.cs" />
+    <Compile Remove="Migrations\20200320095415_change-sp.cs" />
+    <Compile Remove="Migrations\20200320095415_change-sp.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
