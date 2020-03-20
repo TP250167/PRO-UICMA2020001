@@ -6,7 +6,7 @@ using UICMA.Repository.ClaimRepository;
 
 namespace UICMA.Service.ClaimServices
 {
-   public class WritService
+   public class WritService: IWritService
     {
         private IWritRepository _Writ;
 

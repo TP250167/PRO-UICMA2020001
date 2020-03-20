@@ -241,40 +241,6 @@ namespace UICMA.API
             builder.RegisterType<WritService>().As<IWritService>();
             builder.RegisterType<WritRepository>().As<IWritRepository>();
 
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
