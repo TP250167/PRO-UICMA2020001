@@ -105,7 +105,7 @@ ng-multiselect-dropdown.is-invalid .dropdown-btn {
     margin-bottom: 25px;
 
     >label {
-        font-weight: 500;
+        font-weight: 400;
     }
 }
 
@@ -697,7 +697,7 @@ app-sidebar-process-steps {
 }
 
 .cc-pcbg {
-    background: #eceef7;
+    background: #f7f9ff;
     padding: 25px 10px 0 10px;
     border-radius: 4px;
     margin-bottom: 25px;
@@ -881,7 +881,7 @@ html body .dataTables_wrapper .dataTables_paginate .paginate_button:active { bor
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover { color: #fff !important; }
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active { border-color: unset !important; }
 .dataTables_wrapper .dataTables_paginate .paginate_button { padding: 0.25em 0.7em; font-size: 13.5px; border-radius: 3px; }
-
+table.dataTable thead th, table.dataTable tfoot th , .table thead td, .table thead th { font-weight: 400; }
 
 // ngx component style end
 
