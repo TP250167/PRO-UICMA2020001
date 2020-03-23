@@ -6,8 +6,8 @@ import { SidebarModule } from './sidebar.module'
 import { JqueryDatatableModule } from '../@modules/jquery-datatable.module'
  
 
-import { ClaimsListComponent } from '@components/claims-list/claims-list.component'
-import { SidebarComponent } from '@components/sidebar/sidebar.component'
+import { ClaimsListComponent } from 'app/@components/claims-list/claims-list.component'
+import { SidebarComponent } from 'app/@components/sidebar/sidebar.component'
 
 const routes: Routes = [
   { path: "", component: ClaimsListComponent},

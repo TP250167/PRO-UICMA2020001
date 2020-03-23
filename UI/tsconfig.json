@@ -3,8 +3,8 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@components/*"   : [ "app/components/*" ],
-      "@services/*"     : [ "app/services/*" ],
+      "@components/*"   : [ "app/@components/*" ],
+      "@services/*"     : [ "app/@services/*" ],
       "@modules/*"      : [ "app/@modules/*" ],
       "@models/*"       : [ "app/@models/*" ],
       "@directives/*"   : [ "app/@directives/*" ],

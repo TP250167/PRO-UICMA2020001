@@ -19,7 +19,7 @@ import { SidebarModule } from './@modules/sidebar.module'
 
 // components 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from '@components/header/header.component';
 
 
 @NgModule({

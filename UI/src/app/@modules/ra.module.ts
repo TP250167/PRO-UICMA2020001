@@ -6,9 +6,9 @@ import { JqueryDatatableModule } from '../@modules/jquery-datatable.module'
 
 
 //component
-import { RaComponent } from '@components/ra/ra.component'
-import { SidebarComponent } from '@components/sidebar/sidebar.component'
-import { NotificationLogsComponent } from '@components/ra/notification-logs/notification-logs.component';
+import { RaComponent } from 'app/@components/ra/ra.component'
+import { SidebarComponent } from 'app/@components/sidebar/sidebar.component'
+import { NotificationLogsComponent } from 'app/@components/ra/notification-logs/notification-logs.component';
 
 
 const routes: Routes = [
