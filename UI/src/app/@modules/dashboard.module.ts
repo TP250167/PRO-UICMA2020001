@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgxModule } from '@modules/ngx.module'
+import { NgxModule } from 'app/@modules/ngx.module'
 import { ChartsModule } from 'ng2-charts';
 import { RouterModule, Routes } from '@angular/router';
 import { SidebarModule } from './sidebar.module'

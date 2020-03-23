@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgxModule } from '@modules/ngx.module'
+import { NgxModule } from 'app/@modules/ngx.module'
 
 
 import { SidebarComponent } from 'app/@components/sidebar/sidebar.component'

@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
-import { AppService } from '@services/app.service'
-import { ClaimsService  } from '@services/claims.service'
+import { AppService } from 'app/@services/app.service'
+import { ClaimsService  } from 'app/@services/claims.service'
 
 @Component({
   selector: 'app-de1545-appeal-form',

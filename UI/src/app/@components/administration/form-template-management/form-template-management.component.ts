@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 
-import { AppService } from '@services/app.service'
+import { AppService } from 'app/@services/app.service'
 
 @Component({
   selector: 'app-form-template-management',

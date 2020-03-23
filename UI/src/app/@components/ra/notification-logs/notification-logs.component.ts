@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 
-import { RaApiService } from '@services/ra-api.service'
-import { ExcelService } from '@services/excel.service'
+import { RaApiService } from 'app/@services/ra-api.service'
+import { ExcelService } from 'app/@services/excel.service'
 
 @Component({
   selector: 'app-notification-logs',

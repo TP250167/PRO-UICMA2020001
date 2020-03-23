@@ -6,8 +6,8 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 import { Base64 } from 'js-base64';
 
-import { AppService } from '@services/app.service'
-import { RaApiService } from '@services/ra-api.service'
+import { AppService } from 'app/@services/app.service'
+import { RaApiService } from 'app/@services/ra-api.service'
 import { ToastrService } from 'ngx-toastr';
 
 import { DatePipe } from '@angular/common';
