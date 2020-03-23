@@ -20,8 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 
-import { FormInputFocusDirective } from '../@directives/form-input-focus.directive';
-import { CustomUploadDirective } from '../@directives/custom-upload.directive';
+import { FormInputFocusDirective } from '@directives/form-input-focus.directive';
+import { CustomUploadDirective } from '@directives/custom-upload.directive';
 
 
 @NgModule({

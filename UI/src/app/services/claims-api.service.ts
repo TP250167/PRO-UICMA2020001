@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ConfigsLoaderService } from "../configs-loader.service";
 
 // models
-import { ClaimModel } from "../@models/claims/claim-model";
+import { ClaimModel } from "@models/claims/claim-model";
 
 @Injectable({
   providedIn: "root"

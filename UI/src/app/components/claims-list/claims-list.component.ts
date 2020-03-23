@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { ClaimsApiService } from "../../services/claims-api.service";
+import { ClaimsApiService } from "@services/claims-api.service";
 
 @Component({
   selector: "app-claims-list",

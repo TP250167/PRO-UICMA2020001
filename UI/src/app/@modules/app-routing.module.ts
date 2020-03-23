@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BtcomponentComponent } from '../btcomponent/btcomponent.component';
-
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   { path: 'dashboard', loadChildren: "./dashboard.module#DashboardModule" },
@@ -12,7 +10,6 @@ const routes: Routes = [
   { path: 'claims/:id', loadChildren: "./claim.module#ClaimModule" },
   { path: 'reports', loadChildren: "./reports.module#ReportsModule" },
   { path: 'administration', loadChildren: "./administration.module#AdministrationModule" },
-  { path: 'btcompontent', component: BtcomponentComponent },
   { path: '**' , redirectTo : '/dashboard'}
 ];
 

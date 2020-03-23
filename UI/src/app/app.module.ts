@@ -19,14 +19,12 @@ import { SidebarModule } from './@modules/sidebar.module'
 
 // components 
 import { AppComponent } from './app.component';
-import { BtcomponentComponent } from './btcomponent/btcomponent.component';
 import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BtcomponentComponent,
     HeaderComponent
   ],
   imports: [

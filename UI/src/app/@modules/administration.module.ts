@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NgxModule } from '../@modules/ngx.module'
+import { NgxModule } from '@modules/ngx.module'
 import { RouterModule, Routes } from '@angular/router';
 import { SidebarModule } from './sidebar.module'
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import { AdministrationComponent } from '../components/administration/administration.component'
-import { SidebarComponent } from '../components/sidebar/sidebar.component'
-import { FormTemplateManagementComponent } from '../components/administration/form-template-management/form-template-management.component';
+import { AdministrationComponent } from '@components/administration/administration.component'
+import { SidebarComponent } from '@components/sidebar/sidebar.component'
+import { FormTemplateManagementComponent } from '@components/administration/form-template-management/form-template-management.component';
 
 
 const routes: Routes = [

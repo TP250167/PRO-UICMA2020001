@@ -7,9 +7,9 @@ import { DatePipe } from '@angular/common';
 import { TabsetComponent } from 'ngx-bootstrap';
 
 
-import { AppService } from '../../../../services/app.service'
-import { ClaimsService } from '../../../../services/claims.service'
-import { ClaimsApiService } from '../../../../services/claims-api.service'
+import { AppService } from '@services/app.service'
+import { ClaimsService } from '@services/claims.service'
+import { ClaimsApiService } from '@services/claims-api.service'
 
 import { ToastrService } from 'ngx-toastr';
 

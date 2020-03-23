@@ -1,6 +1,6 @@
 // theme colors
 
-$primary   : #5d78ff !important;
+$primary   : #869aff !important;
 $secondary : #242939 !important;
 $warning   : #fb6340 !important;
 $danger    : #fd397a !important;
@@ -307,7 +307,7 @@ select.form-control , .cc-datepicker , .dataTables_length select {
     font-size: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
-    border-left: 3px solid #5d78ff;
+    border-left: 3px solid #869aff;
 }
 
 .cc-wbg {
@@ -348,7 +348,7 @@ select.form-control , .cc-datepicker , .dataTables_length select {
         min-height: 25px;
         min-width: 25px;
         border-radius: 50%;
-        background-color: #5d78ff;
+        background-color: #869aff;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -453,7 +453,7 @@ select.form-control , .cc-datepicker , .dataTables_length select {
       .cc-dot {
         height: 10px;
         min-width: 10px;
-        background: #5d78ff;
+        background: #869aff;
         border-radius: 50%;
         position: relative;
         top: 4px;
@@ -672,7 +672,7 @@ app-sidebar-process-steps {
         top: 52%;
         right: 12px;
         padding: 4px 18px;
-        background: #5d78ff;
+        background: #869aff;
         color: #fff;
         border-radius: 4px;
         transform: translateY(-50%);
@@ -691,7 +691,7 @@ app-sidebar-process-steps {
 }
 
 .cc-text-link {
-    color: #5d78ff;
+    color: #869aff;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -716,13 +716,13 @@ app-sidebar-process-steps {
     }
 
     .dropdown-down {
-        border-top: 8px solid #5d78ff !important;
+        border-top: 8px solid #869aff !important;
         border-left: 8px solid transparent !important;
         border-right: 8px solid transparent !important;
     }
 
     .dropdown-up {
-        border-bottom: 8px solid #5d78ff !important;
+        border-bottom: 8px solid #869aff !important;
         border-left: 8px solid transparent !important;
         border-right: 8px solid transparent !important;
     }
@@ -839,7 +839,7 @@ table.dataTable tbody td {
 .table-bordered td, .table-bordered th { border: 1px solid #ebedf2; }
 .dataTables_wrapper .dataTable td.orting_asc_disabled:after, .dataTables_wrapper .dataTable td.orting_asc_disabled:before, .dataTables_wrapper .dataTable td.orting_desc_disabled:after, .dataTables_wrapper .dataTable td.orting_desc_disabled:before, .dataTables_wrapper .dataTable td.sorting:after, .dataTables_wrapper .dataTable td.sorting:before, .dataTables_wrapper .dataTable td.sorting_asc:after, .dataTables_wrapper .dataTable td.sorting_asc:before, .dataTables_wrapper .dataTable td.sorting_desc:after, .dataTables_wrapper .dataTable td.sorting_desc:before, .dataTables_wrapper .dataTable th.orting_asc_disabled:after, .dataTables_wrapper .dataTable th.orting_asc_disabled:before, .dataTables_wrapper .dataTable th.orting_desc_disabled:after, .dataTables_wrapper .dataTable th.orting_desc_disabled:before, .dataTables_wrapper .dataTable th.sorting:after, .dataTables_wrapper .dataTable th.sorting:before, .dataTables_wrapper .dataTable th.sorting_asc:after, .dataTables_wrapper .dataTable th.sorting_asc:before, .dataTables_wrapper .dataTable th.sorting_desc:after, .dataTables_wrapper .dataTable th.sorting_desc:before { 
     bottom: 0.6rem !important;
-    color: #5d78ff;
+    color: #869aff;
     font-size: 18px;
 } 
 table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc_disabled:after, table.dataTable thead .sorting_desc_disabled:before { 
@@ -1111,6 +1111,16 @@ tr:first-child>td>.fc-day-grid-event{margin-top:2px;}
     z-index: 888888888888;
 }
 
+// ra page style start 
+
+.cc-nl-table{
+    tr {
+        td {
+            width: 50%;
+        }
+    }
+}
+
 // form template management 
 
 .app-ftm {
@@ -1138,7 +1148,7 @@ tr:first-child>td>.fc-day-grid-event{margin-top:2px;}
         border: 0 !important;
         background-color: $bgcolor !important;
         &.active { 
-            background: #5d78ff !important;
+            background: #869aff !important;
             .fa {
                 color: #fff !important;
             }

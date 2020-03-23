@@ -1,6 +1,6 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 
-import { ClaimsService } from '../../services/claims.service'
+import { ClaimsService } from '@services/claims.service'
 
 @Component({
   selector: 'app-sidebar-process-steps',
