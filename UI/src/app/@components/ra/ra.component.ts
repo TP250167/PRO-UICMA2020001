@@ -42,7 +42,7 @@ export class RaComponent implements OnInit {
 
   // form setion var 
   public batchInitiateForm: FormGroup;
-  public bifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
   constructor(
     public aps: AppService,
@@ -96,7 +96,7 @@ export class RaComponent implements OnInit {
   get bfi() { return this.batchInitiateForm.controls; }
 
   submitBatchInitiateForm() {
-    this.bifSubmitted = true;
+    this.formSubmitted = true;
     if (this.batchInitiateForm.invalid) { return; }
   }
 

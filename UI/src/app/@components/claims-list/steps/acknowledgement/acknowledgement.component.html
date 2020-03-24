@@ -49,18 +49,18 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="claimName">Claimant Name</label>
-                                                        <input type="text" class="form-control" formControlName="claimName" name="claimName" [ngClass]="{ 'is-invalid': ackSubmitted && acki.claimName.errors }">
-                                                        <div *ngIf="acki.claimName.touched && acki.claimName.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.claimName.errors">This field is required
+                                                        <input type="text" class="form-control" formControlName="claimName" name="claimName" [ngClass]="{ 'is-invalid': formSubmitted && fc.claimName.errors }">
+                                                        <div *ngIf="fc.claimName.touched && fc.claimName.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.claimName.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="abCaseNumber">AB Case No</label>
-                                                        <input type="text" class="form-control" formControlName="abCaseNumber" name="abCaseNumber" [ngClass]="{ 'is-invalid': ackSubmitted && acki.abCaseNumber.errors }">
-                                                        <div *ngIf="acki.abCaseNumber.touched && acki.abCaseNumber.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.abCaseNumber.errors">This field is required
+                                                        <input type="text" class="form-control" formControlName="abCaseNumber" name="abCaseNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.abCaseNumber.errors }">
+                                                        <div *ngIf="fc.abCaseNumber.touched && fc.abCaseNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.abCaseNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -68,27 +68,27 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="aljDecisionNumber">ALJ Decision No</label>
-                                                        <input type="text" class="form-control" formControlName="aljDecisionNumber" name="aljDecisionNumber" [ngClass]="{ 'is-invalid': ackSubmitted && acki.aljDecisionNumber.errors }">
-                                                        <div *ngIf="acki.aljDecisionNumber.touched && acki.aljDecisionNumber.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.aljDecisionNumber.errors">This field is required
+                                                        <input type="text" class="form-control" formControlName="aljDecisionNumber" name="aljDecisionNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.aljDecisionNumber.errors }">
+                                                        <div *ngIf="fc.aljDecisionNumber.touched && fc.aljDecisionNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.aljDecisionNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="appellant">Appellant</label>
-                                                        <input type="text" class="form-control" formControlName="appellant" name="appellant" [ngClass]="{ 'is-invalid': ackSubmitted && acki.appellant.errors }">
-                                                        <div *ngIf="acki.appellant.touched && acki.appellant.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.appellant.errors">This field is required
+                                                        <input type="text" class="form-control" formControlName="appellant" name="appellant" [ngClass]="{ 'is-invalid': formSubmitted && fc.appellant.errors }">
+                                                        <div *ngIf="fc.appellant.touched && fc.appellant.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.appellant.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="mailDate">Date Mailed</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="mailDate" name="mailDate" [ngClass]="{ 'is-invalid': ackSubmitted && acki.mailDate.errors }">
-                                                        <div *ngIf="acki.mailDate.touched && acki.mailDate.errors || ackSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="acki.mailDate.errors">This field is required
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="mailDate" name="mailDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailDate.errors }">
+                                                        <div *ngIf="fc.mailDate.touched && fc.mailDate.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.mailDate.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>

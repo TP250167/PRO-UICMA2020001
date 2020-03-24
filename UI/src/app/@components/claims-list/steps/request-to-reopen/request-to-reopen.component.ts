@@ -17,7 +17,7 @@ export class RequestToReopenComponent implements OnInit {
   
   // form setion var 
   public reopenInitiateForm: FormGroup;
-  public bifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -49,10 +49,10 @@ export class RequestToReopenComponent implements OnInit {
     });
   }
 
-  get bfi() { return this.reopenInitiateForm.controls; }
+  get fc() { return this.reopenInitiateForm.controls; }
 
   submitReopenInitiateForm() {
-    this.bifSubmitted = true;
+    this.formSubmitted = true;
     if (this.reopenInitiateForm.invalid) { return; }
   }
 

@@ -255,19 +255,19 @@ export class ClaimsApiService {
 
 
 
-  // DE1919 Request for Wages start
-  getClaimAppealList() {
-    return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
-  }
+  // // DE1919 Request for Wages start
+  // getClaimAppealList() {
+  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
+  // }
 
-  getClaimAppeal(id){
-    return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
-  }
+  // getClaimAppeal(id){
+  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
+  // }
 
-  updateClaimAppeal(payloadData) {
-    return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
-  }
-  // DE1919 Request for Wages end
+  // updateClaimAppeal(payloadData) {
+  //   return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
+  // }
+  // // DE1919 Request for Wages end
 
 
 
@@ -300,7 +300,6 @@ export class ClaimsApiService {
     return this.http.post<any>(`${this.cls.ApiUrl}api/BenefitCharge/AddandUpdateBenefitCharge`, payloadData);
   }
   // 428F Benefit Charges start
-
 
 
   // Request to Re-open start

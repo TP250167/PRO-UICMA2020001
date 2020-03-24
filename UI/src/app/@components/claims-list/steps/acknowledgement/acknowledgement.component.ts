@@ -18,7 +18,7 @@ export class AcknowledgementComponent implements OnInit {
 
   // form setion var 
   public acknowledgementForm: FormGroup;
-  public ackSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
   constructor(
     public aps: AppService,
@@ -40,10 +40,10 @@ export class AcknowledgementComponent implements OnInit {
     });
   }
 
-  get acki() { return this.acknowledgementForm.controls; }
+  get fc() { return this.acknowledgementForm.controls; }
 
   submitAcknowledgementForm() {
-    this.ackSubmitted = true;
+    this.formSubmitted = true;
     if (this.acknowledgementForm.invalid) { return; }
     console.log(this.acknowledgementForm.value)
   }

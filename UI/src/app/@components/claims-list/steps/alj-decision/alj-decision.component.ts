@@ -18,7 +18,7 @@ export class AljDecisionComponent implements OnInit {
 
   // form setion var 
   public aljDecistionForm: FormGroup;
-  public aljSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
   constructor(
     public aps: AppService,
@@ -46,10 +46,10 @@ export class AljDecisionComponent implements OnInit {
     });
   }
 
-  get alji() { return this.aljDecistionForm.controls; }
+  get fc() { return this.aljDecistionForm.controls; }
 
   submitAljForm() {
-    this.aljSubmitted = true;
+    this.formSubmitted = true;
     if (this.aljDecistionForm.invalid) { return; }
     console.log(this.aljDecistionForm.value)
   }

@@ -17,7 +17,7 @@ export class NoticeOfWagesComponent implements OnInit {
 
   // form setion var 
   noticeOfWagesInitiateForm: FormGroup;
-  nwifSubmitted: boolean = false;
+  formSubmitted: boolean = false;
 
 
   constructor(
@@ -43,10 +43,10 @@ export class NoticeOfWagesComponent implements OnInit {
     });
   }
 
-  get nwfi() { return this.noticeOfWagesInitiateForm.controls; }
+  get fc() { return this.noticeOfWagesInitiateForm.controls; }
 
   submitNoticeOfWagesInitiateForm() {
-    this.nwifSubmitted = true;
+    this.formSubmitted = true;
     if (this.noticeOfWagesInitiateForm.invalid) { return; }
     console.log(this.noticeOfWagesInitiateForm.value)
   }

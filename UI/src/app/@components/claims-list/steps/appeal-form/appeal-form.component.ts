@@ -17,7 +17,7 @@ export class AppealFormComponent implements OnInit {
 
   // form setion var 
   appealInitiateForm: FormGroup;
-  aifSubmitted: boolean = false;
+  formSubmitted: boolean = false;
 
 
   constructor(
@@ -56,10 +56,10 @@ export class AppealFormComponent implements OnInit {
     });
   }
 
-  get afi() { return this.appealInitiateForm.controls; }
+  get fc() { return this.appealInitiateForm.controls; }
 
   submitAppealInitiateForm() {
-    this.aifSubmitted = true;
+    this.formSubmitted = true;
     if (this.appealInitiateForm.invalid) { return; }
     console.log(this.appealInitiateForm.value)
   }

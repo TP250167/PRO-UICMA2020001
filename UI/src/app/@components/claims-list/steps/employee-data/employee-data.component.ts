@@ -17,7 +17,7 @@ export class EmployeeDataComponent implements OnInit {
   
   // form setion var 
   public employeeInitiateForm: FormGroup;
-  public eifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -47,10 +47,10 @@ export class EmployeeDataComponent implements OnInit {
     });
   }
 
-  get efi() { return this.employeeInitiateForm.controls; }
+  get fc() { return this.employeeInitiateForm.controls; }
 
   submitEmployeeInitiateForm() {
-    this.eifSubmitted = true;
+    this.formSubmitted = true;
     if (this.employeeInitiateForm.invalid) { return; }
   }
 

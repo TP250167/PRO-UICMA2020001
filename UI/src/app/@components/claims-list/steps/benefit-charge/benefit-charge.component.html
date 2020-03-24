@@ -49,34 +49,34 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="letterID">Letter ID</label>
-                                                        <input type="text" class="form-control" formControlName="letterID" name="letterID" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.letterID.errors }">
-                                                        <div *ngIf="bfi.letterID.touched && bfi.letterID.errors || bifSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="bfi.letterID.errors || bifSubmitted">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="letterID" name="letterID" [ngClass]="{ 'is-invalid': formSubmitted && fc.letterID.errors }">
+                                                        <div *ngIf="fc.letterID.touched && fc.letterID.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.letterID.errors || formSubmitted">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="issuedDate">Issued Date</label>
-                                                        <input type="text" class="form-control" formControlName="issuedDate" name="issuedDate" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.issuedDate.errors }">
-                                                        <div *ngIf="bfi.issuedDate.touched && bfi.issuedDate.errors || bifSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="bfi.issuedDate.errors">This field is required
+                                                        <input type="text" class="form-control" formControlName="issuedDate" name="issuedDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.issuedDate.errors }">
+                                                        <div *ngIf="fc.issuedDate.touched && fc.issuedDate.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.issuedDate.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="accountID">Account ID</label>
-                                                        <input type="text" class="form-control" formControlName="accountID" name="accountID" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.accountID.errors }">
-                                                        <div *ngIf="bfi.accountID.touched && bfi.accountID.errors || bifSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="bfi.accountID.errors || bifSubmitted">This field is required </div>
+                                                        <input type="text" class="form-control" formControlName="accountID" name="accountID" [ngClass]="{ 'is-invalid': formSubmitted && fc.accountID.errors }">
+                                                        <div *ngIf="fc.accountID.touched && fc.accountID.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.accountID.errors || formSubmitted">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="claimantSSN">Claimant SSN</label>
-                                                        <input type="text" class="form-control" formControlName="claimantSSN" name="claimantSSN" [ngClass]="{ 'is-invalid': bifSubmitted && bfi.claimantSSN.errors }">
-                                                        <div *ngIf="bfi.claimantSSN.touched && bfi.claimantSSN.errors || bifSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="bfi.claimantSSN.errors">This field is required
+                                                        <input type="text" class="form-control" formControlName="claimantSSN" name="claimantSSN" [ngClass]="{ 'is-invalid': formSubmitted && fc.claimantSSN.errors }">
+                                                        <div *ngIf="fc.claimantSSN.touched && fc.claimantSSN.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.claimantSSN.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>

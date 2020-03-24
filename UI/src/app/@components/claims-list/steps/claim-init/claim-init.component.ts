@@ -31,7 +31,7 @@ export class ClaimInitComponent implements OnInit {
 
   // form setion var 
   public cliamInitiateForm: FormGroup;
-  public cifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
   constructor(
     public aps: AppService,
@@ -53,28 +53,28 @@ export class ClaimInitComponent implements OnInit {
   // form section 
   claimFormInit() {
     this.cliamInitiateForm = this.fb.group({
-      id: [''],
-      claimantName: ['', Validators.required],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipcode: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
-      mailDate: ['', Validators.required],
-      additionalClaim: ['', Validators.required],
-      receiveDate: ['', Validators.required],
-      socialSecurityNumber: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
-      effectiveDateOfClaim: ['', Validators.required],
-      lastDateWorked: ['', Validators.required],
-      reasonForSeparation: ['', Validators.required],
-      benefitYearBeginning: ['',[Validators.required,Validators.pattern("^[0-9]*$")]],
-      dateMailedToEDD: ['', Validators.required],
+      id                   : [''                                                      ],
+      claimantName         : ['', Validators.required                                 ],
+      address              : ['', Validators.required                                 ],
+      city                 : ['', Validators.required                                 ],
+      state                : ['', Validators.required                                 ],
+      zipcode              : ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      mailDate             : ['', Validators.required                                 ],
+      additionalClaim      : ['', Validators.required                                 ],
+      receiveDate          : ['', Validators.required                                 ],
+      socialSecurityNumber : ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      effectiveDateOfClaim : ['', Validators.required                                 ],
+      lastDateWorked       : ['', Validators.required                                 ],
+      reasonForSeparation  : ['', Validators.required                                 ],
+      benefitYearBeginning : ['',[Validators.required,Validators.pattern("^[0-9]*$")] ],
+      dateMailedToEDD      : ['', Validators.required                                 ],
     });
   }
 
-  get cfi() { return this.cliamInitiateForm.controls; }
+  get fc() { return this.cliamInitiateForm.controls; }
 
   submitCliamInitiateForm() {
-    this.cifSubmitted = true;
+    this.formSubmitted = true;
     if (this.cliamInitiateForm.invalid) { return; }
   }
 
@@ -97,7 +97,8 @@ export class ClaimInitComponent implements OnInit {
   }
 
   getClaimDetail() {
-    this.claimId = parseInt(this.route.snapshot.paramMap.get('id')) 
+    // this.claimId = parseInt(this.route.snapshot.paramMap.get('id')) 
+    this.claimId = 1542 
     this.cas.getClaim(this.claimId)
       .subscribe(
         (res) => {

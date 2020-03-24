@@ -17,7 +17,7 @@ export class BenefitAuditComponent implements OnInit {
   
   // form setion var 
   public benefitAuditInitiateForm: FormGroup;
-  public bifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -42,10 +42,10 @@ export class BenefitAuditComponent implements OnInit {
     });
   }
 
-  get bfi() { return this.benefitAuditInitiateForm.controls; }
+  get fc() { return this.benefitAuditInitiateForm.controls; }
 
   submitBenefitAuditInitiateForm() {
-    this.bifSubmitted = true;
+    this.formSubmitted = true;
     if (this.benefitAuditInitiateForm.invalid) { return; }
   }
 

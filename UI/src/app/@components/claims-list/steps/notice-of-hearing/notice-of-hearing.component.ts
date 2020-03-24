@@ -17,7 +17,7 @@ export class NoticeOfHearingComponent implements OnInit {
   
   // form setion var 
   public hearingInitiateForm: FormGroup;
-  public hifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -51,10 +51,10 @@ export class NoticeOfHearingComponent implements OnInit {
     });
   }
 
-  get hfi() { return this.hearingInitiateForm.controls; }
+  get fc() { return this.hearingInitiateForm.controls; }
 
   submitHearingInitiateForm() {
-    this.hifSubmitted = true;
+    this.formSubmitted = true;
     if (this.hearingInitiateForm.invalid) { return; }
   }
 

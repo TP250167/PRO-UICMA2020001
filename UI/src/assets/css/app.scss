@@ -132,6 +132,10 @@ select.form-control , .cc-datepicker , .dataTables_length select {
     background-size: 18px;
 }
 
+.form-control:disabled, .form-control[readonly] {
+    background-color: rgba(236, 238, 247, 0.75);
+}
+
 
 // app layout style start 
 

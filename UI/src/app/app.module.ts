@@ -35,10 +35,10 @@ import { HeaderComponent } from '@components/header/header.component';
     HttpClientModule
   ],
   providers: [
-    { 
-      provide: LocationStrategy, 
-      useClass: HashLocationStrategy 
-    },
+    // { 
+    //   provide: LocationStrategy, 
+    //   useClass: HashLocationStrategy 
+    // },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFactory,

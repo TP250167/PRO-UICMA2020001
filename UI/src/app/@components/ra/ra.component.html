@@ -107,8 +107,8 @@
                     <div class="form-group col-md-12">
                         <label for="batchName">Batch Name</label>
                         <input type="text" class="form-control" autocomplete="off" formControlName="batchName"
-                            name="batchName" [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchName.errors }">
-                        <div *ngIf="bfi.batchName.touched && bfi.batchName.errors ||bifSubmitted"
+                            name="batchName" [ngClass]="{ 'is-invalid':formSubmitted && bfi.batchName.errors }">
+                        <div *ngIf="bfi.batchName.touched && bfi.batchName.errors ||formSubmitted"
                             class="invalid-feedback">
                             <div *ngIf="bfi.batchName.errors">This field is required
                             </div>
@@ -119,8 +119,8 @@
                         <label for="batchDescription">Batch Description</label>
                         <input type="text" class="form-control" autocomplete="off" formControlName="batchDescription"
                             name="batchDescription"
-                            [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchDescription.errors }">
-                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||bifSubmitted"
+                            [ngClass]="{ 'is-invalid':formSubmitted && bfi.batchDescription.errors }">
+                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||formSubmitted"
                             class="invalid-feedback">
                             <div *ngIf="bfi.batchDescription.errors">This field is required
                             </div>
@@ -132,11 +132,11 @@
                         <label for="batchDescription">Choose Template</label>
 
                         <select id="inputState" class="form-control" autocomplete="off" formControlName="TemplateID"
-                            name="TemplateID" [ngClass]="{ 'is-invalid':bifSubmitted && bfi.TemplateID.errors }">
+                            name="TemplateID" [ngClass]="{ 'is-invalid':formSubmitted && bfi.TemplateID.errors }">
                             <option value="{{item.id}}" *ngFor="let item of templateList">{{item.templateName}}</option>
                         </select>
 
-                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||bifSubmitted"
+                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||formSubmitted"
                             class="invalid-feedback">
                             <div *ngIf="bfi.batchDescription.errors">This field is required
                             </div>
@@ -177,7 +177,7 @@
 
                         </div>
 
-                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||bifSubmitted"
+                        <div *ngIf="bfi.batchDescription.touched && bfi.batchDescription.errors ||formSubmitted"
                             class="invalid-feedback">
                             <div *ngIf="bfi.batchDescription.errors">This field is required
                             </div>
@@ -188,15 +188,15 @@
                     <div class="cc-repset col-md-12" *ngIf="(showRecipient == true && showUpbtn == false)">
                         <div class="form-group">
                             <label for="recipientSet">Recipient Set</label>
-                            <ng-multiselect-dropdown [ngClass]="{ 'is-invalid':bifSubmitted && bfi.batchDescription.errors }" formControlName="recipientSet" name="recipientSet"
+                            <ng-multiselect-dropdown [ngClass]="{ 'is-invalid':formSubmitted && bfi.batchDescription.errors }" formControlName="recipientSet" name="recipientSet"
                                 [placeholder]="'Select Recipient'" [data]="dropdownList" [(ngModel)]="selectedItems"
                                 [settings]="dropdownSettings">
                             </ng-multiselect-dropdown>
 
                             <!-- <input type="text" class="form-control"
                                 formControlName="recipientSet" name="recipientSet" autocomplete="off"
-                                [ngClass]="{ 'is-invalid':bifSubmitted && bfi.recipientSet.errors }"> -->
-                            <div *ngIf="bfi.recipientSet.touched && bfi.recipientSet.errors ||bifSubmitted"
+                                [ngClass]="{ 'is-invalid':formSubmitted && bfi.recipientSet.errors }"> -->
+                            <div *ngIf="bfi.recipientSet.touched && bfi.recipientSet.errors ||formSubmitted"
                                 class="invalid-feedback">
                                 <div *ngIf="bfi.recipientSet.errors">This field is required
                                 </div>
@@ -207,8 +207,8 @@
                             <input type="text" class="form-control cc-datepicker" autocomplete="off" bsDatepicker
                                 formControlName="scheduleDate" name="scheduleDate"
                                 [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false , adaptivePosition: true }"
-                                [ngClass]="{ 'is-invalid':bifSubmitted && bfi.scheduleDate.errors }">
-                            <div *ngIf="bfi.scheduleDate.touched && bfi.scheduleDate.errors ||bifSubmitted"
+                                [ngClass]="{ 'is-invalid':formSubmitted && bfi.scheduleDate.errors }">
+                            <div *ngIf="bfi.scheduleDate.touched && bfi.scheduleDate.errors ||formSubmitted"
                                 class="invalid-feedback">
                                 <div *ngIf="bfi.scheduleDate.errors">This field is required
                                 </div>

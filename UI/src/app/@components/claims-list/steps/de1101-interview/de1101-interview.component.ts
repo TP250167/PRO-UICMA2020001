@@ -16,7 +16,7 @@ export class De1101InterviewComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   public de1101InterviewInitiateForm: FormGroup;
-  public bifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -60,10 +60,10 @@ export class De1101InterviewComponent implements OnInit {
     });
   }
 
-  get bfi() { return this.de1101InterviewInitiateForm.controls; }
+  get fc() { return this.de1101InterviewInitiateForm.controls; }
 
   submitde1101InterviewInitiateForm() {
-    this.bifSubmitted = true;
+    this.formSubmitted = true;
     if (this.de1101InterviewInitiateForm.invalid) { return; }
   }
 

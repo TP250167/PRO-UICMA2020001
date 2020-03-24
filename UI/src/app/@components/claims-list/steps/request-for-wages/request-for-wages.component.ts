@@ -17,7 +17,7 @@ export class RequestForWagesComponent implements OnInit {
   
   // form setion var 
   public wagesInitiateForm: FormGroup;
-  public wifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -47,10 +47,10 @@ export class RequestForWagesComponent implements OnInit {
     });
   }
 
-  get wfi() { return this.wagesInitiateForm.controls; }
+  get fc() { return this.wagesInitiateForm.controls; }
 
   submitWagesInitiateForm() {
-    this.wifSubmitted = true;
+    this.formSubmitted = true;
     if (this.wagesInitiateForm.invalid) { return; }
   }
 

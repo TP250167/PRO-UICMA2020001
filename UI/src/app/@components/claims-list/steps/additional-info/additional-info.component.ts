@@ -17,7 +17,7 @@ export class AdditionalInfoComponent implements OnInit {
   
   // form setion var 
   public additionalInitiateForm: FormGroup;
-  public aifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -44,10 +44,10 @@ export class AdditionalInfoComponent implements OnInit {
     });
   }
 
-  get afi() { return this.additionalInitiateForm.controls; }
+  get fc() { return this.additionalInitiateForm.controls; }
 
   submitAdditionalInitiateForm() {
-    this.aifSubmitted = true;
+    this.formSubmitted = true;
     if (this.additionalInitiateForm.invalid) { return; }
   }
 

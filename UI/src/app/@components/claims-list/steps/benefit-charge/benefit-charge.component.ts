@@ -17,7 +17,7 @@ export class BenefitChargeComponent implements OnInit {
   
   // form setion var 
   public benefitchargeInitiateForm: FormGroup;
-  public bifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -43,10 +43,10 @@ export class BenefitChargeComponent implements OnInit {
     }); 
   }
 
-  get bfi() { return this.benefitchargeInitiateForm.controls; }
+  get fc() { return this.benefitchargeInitiateForm.controls; }
 
   submitBenefitAuditInitiateForm() {
-    this.bifSubmitted = true;
+    this.formSubmitted = true;
     if (this.benefitchargeInitiateForm.invalid) { return; }
   }
 

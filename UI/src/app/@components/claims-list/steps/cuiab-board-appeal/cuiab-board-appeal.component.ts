@@ -17,7 +17,7 @@ export class CuiabBoardAppealComponent implements OnInit {
   
   // form setion var 
   public cuiabBoardAppealInitiateForm: FormGroup;
-  public bifSubmitted: boolean = false;
+  public formSubmitted: boolean = false;
 
 
   constructor(
@@ -71,10 +71,10 @@ export class CuiabBoardAppealComponent implements OnInit {
     });
   }
 
-  get bfi() { return this.cuiabBoardAppealInitiateForm.controls; }
+  get fc() { return this.cuiabBoardAppealInitiateForm.controls; }
 
   submitCUIABBoardAppealInitiateForm() {
-    this.bifSubmitted = true;
+    this.formSubmitted = true;
     if (this.cuiabBoardAppealInitiateForm.invalid) { return; }
   }
 
