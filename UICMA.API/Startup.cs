@@ -220,7 +220,7 @@ namespace UICMA.API
             builder.RegisterType<DeterminationAppealService>().As<IDeterminationAppealService>();
             builder.RegisterType<DeterminationAppealRepository>().As<IDeterminationAppealRepository>();
 
-            builder.RegisterType<HearingService>().As<HearingService>();
+            builder.RegisterType<HearingService>().As<IHearingService>();
             builder.RegisterType<HearingRepository>().As<IHearingRepository>();
 
             builder.RegisterType<QuestionsService>().As<IQuestionsService>();
