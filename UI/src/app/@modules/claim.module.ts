@@ -10,7 +10,6 @@ import { SidebarProcessStepsComponent } from 'app/@components/sidebar-process-st
 // step components 
 
 import { ClaimInitComponent } from 'app/@components/claims-list/steps/claim-init/claim-init.component'
-import { InterviewComponent } from 'app/@components/claims-list/steps/interview/interview.component'
 import { AljDecisionComponent } from 'app/@components/claims-list/steps/alj-decision/alj-decision.component'
 import { AcknowledgementComponent } from 'app/@components/claims-list/steps/acknowledgement/acknowledgement.component'
 import { NoticeOfDeterminationComponent } from 'app/@components/claims-list/steps/notice-of-determination/notice-of-determination.component';
@@ -43,7 +42,6 @@ const routes: Routes = [
   declarations: [
     ClaimComponent,
     ClaimInitComponent,
-    InterviewComponent,
     AljDecisionComponent,
     AcknowledgementComponent,
     NoticeOfDeterminationComponent,
@@ -72,7 +70,6 @@ const routes: Routes = [
     ClaimComponent,
     RouterModule,
     ClaimInitComponent,
-    InterviewComponent,
     AljDecisionComponent,
     AcknowledgementComponent,
     NoticeOfDeterminationComponent,
