@@ -1,18 +1,14 @@
 import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
-
 
 import { TabsetComponent } from 'ngx-bootstrap';
-
 
 import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
 import { ToastrService } from 'ngx-toastr';
-
 
 
 @Component({
@@ -28,7 +24,7 @@ export class DE1545AppealFormComponent implements OnInit {
   public claimId: number;
 
   // form setion var 
-  public de1545AppealInitiateForm: FormGroup;
+  public De1545AppealForm: FormGroup;
   public formSubmitted: boolean = false;
 
 
@@ -39,7 +35,6 @@ export class DE1545AppealFormComponent implements OnInit {
     private cas: ClaimsApiService,
     private tort: ToastrService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
   ) {
 
   }
@@ -51,7 +46,9 @@ export class DE1545AppealFormComponent implements OnInit {
 
   // form section 
   de1545AppealFormInit() {
-    this.de1545AppealInitiateForm = this.fb.group({
+    this.De1545AppealForm = this.fb.group({
+      id                         : [''],
+      claimId                    : [''],
       fieldOfficeAddress         : ['', Validators.required],
       lausdFaxDate               : ['', Validators.required],
       lausdAccountNumber         : ['', Validators.required],
@@ -67,16 +64,20 @@ export class DE1545AppealFormComponent implements OnInit {
     });
   }
 
-  get fc() { return this.de1545AppealInitiateForm.controls; }
+  get fc() { return this.De1545AppealForm.controls; }
+  get fv() { return this.De1545AppealForm.value; }
+  get fvalid() { return this.De1545AppealForm.valid; }
 
-  submitDE1545AppealInitiateForm() {
+  submitDe1545AppealForm() {
     this.formSubmitted = true;
-    if (this.de1545AppealInitiateForm.invalid) { return; }
+    if (this.De1545AppealForm.invalid) { return; }
   }
 
-  dE1545AppealFormSetValues(data) {
+  setFormvalues(data) {
+    this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
     this.fc.fieldOfficeAddress.setValue(data.fieldOfficeAddress)
-    this.fc.lausdFaxDate.setValue(data.lausdFaxDate)
+    this.fc.lausdFaxDate.setValue(this.aps.formatDate(data.lausdFaxDate))
     this.fc.lausdAccountNumber.setValue(data.lausdAccountNumber)
     this.fc.bybClaimDate.setValue(data.bybClaimDate)
     this.fc.claimantName.setValue(data.claimantName)
@@ -86,17 +87,18 @@ export class DE1545AppealFormComponent implements OnInit {
     this.fc.userPhoneNumber.setValue(data.userPhoneNumber)
     this.fc.signature.setValue(data.signature)
     this.fc.title.setValue(data.title)
-    this.fc.date.setValue(data.date)
+    this.fc.date.setValue(this.aps.formatDate(data.date))
   }
 
-  getdE1545AppealFormDetails() {
+  getFormDetails() {
     // this.claimId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.claimId = 1542
+    this.claimId = 1
     this.cas.getWagesAppeal(this.claimId)
       .subscribe(
         (res) => {
           this.appealFormDetails = res;
-          this.dE1545AppealFormSetValues(this.appealFormDetails)
+          console.log(this.appealFormDetails)
+          this.setFormvalues(this.appealFormDetails)
         },
         (error) => {
           console.log('error caught in get claim details', error)
@@ -104,27 +106,28 @@ export class DE1545AppealFormComponent implements OnInit {
       )
   }
 
-  saveDE1545AppealForm() {
-    console.log(this.de1545AppealInitiateForm.value)
-    // if (this.de1545AppealInitiateForm.valid) {
-    //   this.cas.updateWagesAppeal(this.de1545AppealInitiateForm.value)
-    //     .subscribe(
-    //       (res) => {
-    //         this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-    //         console.log(res)
-    //       },
-    //       (error) => {
-    //         console.log('error caught in batch detail update', error)
-    //       }
-    //     )
-
-    // }
+  saveForm() {
+    console.log(this.fv)
+    if (this.fvalid) {
+      console.log(this.fv,"test")
+      this.cas.updateWagesAppeal(this.fv)
+        .subscribe(
+          (res) => {
+            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
+            console.log(res)
+          },
+          (error) => {
+            console.log('error caught in batch detail update', error)
+          }
+        )
+    }
   }
 
 
   ngOnInit() {
-    this.cs.tabincLimit = 2;
+    this.cs.tabincLimit = 2
     this.de1545AppealFormInit()
+    this.getFormDetails()
   }
 
 

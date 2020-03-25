@@ -43,15 +43,15 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="hearingInitiateForm" (ngSubmit)="submitHearingInitiateForm() ">
+                                            <form appFormInputFocus [formGroup]="nohForm" (ngSubmit)="submitnohForm() ">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="caseNo">Case No</label>
-                                                        <input type="text" class="form-control" formControlName="caseNo" name="caseNo" [ngClass]="{ 'is-invalid': formSubmitted && fc.caseNo.errors }">
-                                                        <div *ngIf="fc.caseNo.touched && fc.caseNo.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.caseNo.errors || formSubmitted">This field is required </div>
+                                                        <label for="caseNumber">Case No</label>
+                                                        <input type="text" class="form-control" formControlName="caseNumber" name="caseNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.caseNumber.errors }">
+                                                        <div *ngIf="fc.caseNumber.touched && fc.caseNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.caseNumber.errors || formSubmitted">This field is required </div>
                                                         </div>
                                                     </div>
 
@@ -83,7 +83,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="hearingTime">Hearing Time</label>
-                                                        <input type="text" class="form-control" formControlName="hearingTime" name="hearingTime" [ngClass]="{ 'is-invalid': formSubmitted && fc.hearingTime.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" formControlName="hearingTime" name="hearingTime" [ngClass]="{ 'is-invalid': formSubmitted && fc.hearingTime.errors }">
                                                         <div *ngIf="fc.hearingTime.touched && fc.hearingTime.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.hearingTime.errors">This field is required
                                                             </div>
@@ -110,7 +110,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="issueContext">Issue Context</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="issueContext" name="issueContext" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted && fc.issueContext.errors }">
+                                                        <input type="text" class="form-control "formControlName="issueContext" name="issueContext" [ngClass]="{ 'is-invalid': formSubmitted && fc.issueContext.errors }">
                                                         <div *ngIf="fc.issueContext.touched && fc.issueContext.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.issueContext.errors">This field is required
                                                             </div>
@@ -146,7 +146,7 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
                                                 </div>
 
                                             </form>

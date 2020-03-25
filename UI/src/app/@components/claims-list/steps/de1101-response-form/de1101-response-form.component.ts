@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
-
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
@@ -25,10 +23,10 @@ export class De1101ResponseFormComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   // form setion var 
-  public de1101ResponseInitiateForm: FormGroup;
+  public De1101Form: FormGroup;
   public formSubmitted: boolean = false;
 
-  public claimId: number;
+  public formId: number;
   public responseFormDetails: any = []
 
   constructor(
@@ -38,7 +36,6 @@ export class De1101ResponseFormComponent implements OnInit {
     private cas: ClaimsApiService,
     private tort: ToastrService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
   ) {
 
   }
@@ -49,8 +46,9 @@ export class De1101ResponseFormComponent implements OnInit {
 
   // form section 
   de1101ResponseFormInit() {
-    this.de1101ResponseInitiateForm = this.fb.group({
+    this.De1101Form = this.fb.group({
       id                  : [''                     ],
+      claimId             : [''                     ],
       address             : ['', Validators.required],
       lausdMailDate       : ['', Validators.required],
       bybClaimDate        : ['', Validators.required],
@@ -69,20 +67,23 @@ export class De1101ResponseFormComponent implements OnInit {
     });
   }
 
-  get fc() { return this.de1101ResponseInitiateForm.controls; }
+  get fc() { return this.De1101Form.controls; }
+  get fv() { return this.De1101Form.value; }
+  get fvalid() { return this.De1101Form.valid; }
 
-  submitDE1101ResponseInitiateForm() {
+  submitDe1101Form() {
     this.formSubmitted = true;
-    if (this.de1101ResponseInitiateForm.invalid) { return; }
+    if (this.De1101Form.invalid) { return; }
   }
 
-  de1101ResponseFormSetValues(data) {
+  setFormvalues(data) {
     this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
     this.fc.address.setValue(data.address)
-    this.fc.lausdMailDate.setValue(data.lausdMailDate)
-    this.fc.bybClaimDate.setValue(data.bybClaimDate)
-    this.fc.effectiveDateOfClaim.setValue(data.effectiveDateOfClaim)
-    this.fc.dueDate.setValue(data.dueDate)
+    this.fc.lausdMailDate.setValue(this.aps.formatDate(data.lausdMailDate))
+    this.fc.bybClaimDate.setValue(this.aps.formatDate(data.bybClaimDate))
+    this.fc.effectiveDateOfClaim.setValue(this.aps.formatDate(data.effectiveDateOfClaim))
+    this.fc.dueDate.setValue(this.aps.formatDate(data.dueDate))
     this.fc.claimantName.setValue(data.claimantName)
     this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
     this.fc.lausdResponse.setValue(data.lausdResponse)
@@ -91,23 +92,24 @@ export class De1101ResponseFormComponent implements OnInit {
     this.fc.phoneNumber.setValue(data.phoneNumber)
     this.fc.signature.setValue(data.signature)
     this.fc.title.setValue(data.title)
+    this.fc.date.setValue(data.date)
     this.fc.attachedDocument.setValue(data.attachedDocument)
   }
 
-  disableDe1101ResponseFormField() {
-    this.fc.claimantName.disable();
-    this.fc.socialSecurityNumber.disable();
-    this.fc.phoneNumber.disable();
+  formFeildDisable() {
+    // this.fc.claimantName.disable();
+    // this.fc.socialSecurityNumber.disable();
+    // this.fc.phoneNumber.disable();
   }
 
-  getDe1101ResponseFormDetail() {
-    // this.claimId = parseInt(this.route.snapshot.paramMap.get('id'))
-    this.claimId = 2
-    this.cas.getClaimResponse(this.claimId)
+  getFormDetails() {
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
+    this.formId = 2
+    this.cas.getClaimResponse(this.formId)
       .subscribe(
         (res) => {
           this.responseFormDetails = res;
-          this.de1101ResponseFormSetValues(this.responseFormDetails)
+          this.setFormvalues(this.responseFormDetails)
         },
         (error) => {
           console.log('error caught in get claim details', error)
@@ -115,9 +117,19 @@ export class De1101ResponseFormComponent implements OnInit {
       )
   }
 
-  saveDe1101ResponseForm() {
-    if (this.de1101ResponseInitiateForm.valid) {
-      this.cas.updateClaimResponse(this.de1101ResponseInitiateForm.value)
+  saveForm() {
+
+    this.fv.lausdMailDate        = this.aps.formatDate(this.fv.lausdMailDate        )
+    this.fv.bybClaimDate         = this.aps.formatDate(this.fv.bybClaimDate         )
+    this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim )
+    this.fv.dueDate              = this.aps.formatDate(this.fv.dueDate              )
+    this.fv.date                 = this.aps.formatDate(this.fv.date                 )
+
+
+    console.log(this.fv)
+    
+    if (this.fvalid) {
+      this.cas.updateClaimResponse(this.fv)
         .subscribe(
           (res) => {
             this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
@@ -132,10 +144,10 @@ export class De1101ResponseFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cs.tabincLimit = 2;
-    this.de1101ResponseFormInit();
-    this.getDe1101ResponseFormDetail();
-    this.disableDe1101ResponseFormField();
+    this.cs.tabincLimit = 2
+    this.de1101ResponseFormInit()
+    this.getFormDetails()
+    this.formFeildDisable()
   }
 
 

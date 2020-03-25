@@ -2,6 +2,8 @@ import { Injectable , TemplateRef } from '@angular/core';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
+import { DatePipe } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ export class AppService {
 
   constructor(
     private modalService: BsModalService,
+    private datePipe: DatePipe
   ) { }
 
 
@@ -23,6 +26,9 @@ export class AppService {
     this.modalRef.hide();
   }
 
+  formatDate(val){
+   return this.datePipe.transform(val,'MM/dd/yyyy')
+  }
 
 
 }

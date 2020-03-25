@@ -43,7 +43,7 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="de1101ResponseInitiateForm" (ngSubmit)="submitDE1101ResponseInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="De1101Form" (ngSubmit)="submitDe1101Form()">
 
                                                 <div class="form-row cc-pcbg">
                                                     <div class="form-group col-md-6">
@@ -83,7 +83,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="lausdMailDate">LAUSD Mail Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="lausdMailDate" name="lausdMailDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted  && fc.lausdMailDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="lausdMailDate" name="lausdMailDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted  && fc.lausdMailDate.errors }">
                                                         <div *ngIf="fc.lausdMailDate.touched && fc.lausdMailDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.lausdMailDate.errors">This field is required
                                                             </div>
@@ -91,7 +91,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="bybClaimDate">Claim Date - BYB</label>
-                                                        <input type="text" class="form-control" formControlName="bybClaimDate" name="bybClaimDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="bybClaimDate" name="bybClaimDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
                                                         <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.bybClaimDate.errors">This field is required
                                                             </div>
@@ -99,7 +99,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="effectiveDateOfClaim">Effective Date of Claim</label>
-                                                        <input type="text" class="form-control" formControlName="effectiveDateOfClaim" name="effectiveDateOfClaim" [ngClass]="{ 'is-invalid': formSubmitted  && fc.effectiveDateOfClaim.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="effectiveDateOfClaim" name="effectiveDateOfClaim" [ngClass]="{ 'is-invalid': formSubmitted  && fc.effectiveDateOfClaim.errors }">
                                                         <div *ngIf="fc.effectiveDateOfClaim.touched && fc.effectiveDateOfClaim.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.effectiveDateOfClaim.errors">This field is required
                                                             </div>
@@ -107,7 +107,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="dueDate">1101 Mail Date/Due Date</label>
-                                                        <input type="text" class="form-control" formControlName="dueDate" name="dueDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dueDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="dueDate" name="dueDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dueDate.errors }">
                                                         <div *ngIf="fc.dueDate.touched && fc.dueDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.dueDate.errors">This field is required
                                                             </div>
@@ -116,8 +116,9 @@
                                                     <div class="form-group col-md-6">
                                                         <label for="issuesList">Issues List</label>
                                                         <select id="issuesList" class="form-control" formControlName="issuesList" name="issuesList" [ngClass]="{ 'is-invalid': formSubmitted  && fc.issuesList.errors }">
-                                                            <option selected>Choose...</option>
-                                                            <option>...</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
                                                         </select>
                                                         <div *ngIf="fc.issuesList.touched && fc.issuesList.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.issuesList.errors">This field is required
@@ -156,7 +157,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="date">Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted  && fc.date.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted  && fc.date.errors }">
                                                         <div *ngIf="fc.date.touched && fc.date.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.date.errors">This field is required
                                                             </div>
@@ -167,20 +168,20 @@
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="attachedDocument" formControlName="attachedDocument">
-                                                                    <label class="custom-control-label" for="customCheck1">Pear</label>
+                                                                    <input type="checkbox" class="custom-control-input" id="customCheck1" value="Attachment 1" name="attachedDocument" formControlName="attachedDocument">
+                                                                    <label class="custom-control-label" for="customCheck1">Attachment 1</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input" id="customCheck2" name="attachedDocument" formControlName="attachedDocument">
-                                                                    <label class="custom-control-label" for="customCheck2">Plum</label>
+                                                                    <input type="checkbox" class="custom-control-input" id="customCheck2" value="Attachment 2" name="attachedDocument" formControlName="attachedDocument">
+                                                                    <label class="custom-control-label" for="customCheck2">Attachment 2</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input" id="customCheck3" name="attachedDocument" formControlName="attachedDocument">
-                                                                    <label class="custom-control-label" for="customCheck3">Kiwi</label>
+                                                                    <input type="checkbox" class="custom-control-input" id="customCheck3" value="Attachment 3" name="attachedDocument" formControlName="attachedDocument">
+                                                                    <label class="custom-control-label" for="customCheck3">Attachment 3</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -191,7 +192,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary" (click)="saveDe1101ResponseForm()">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
                                                 </div>
                                             </form>
                                         </div>

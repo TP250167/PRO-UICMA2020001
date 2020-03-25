@@ -43,7 +43,7 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="responseInitiateForm" (ngSubmit)="submitResponseInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="De4614Form" (ngSubmit)="submitDe4614Form()">
 
                                                 <div class="form-row">
 
@@ -66,7 +66,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="dateMailed">Date Mailed</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="dateMailed" name="dateMailed" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dateMailed.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="dateMailed" name="dateMailed" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dateMailed.errors }">
                                                         <div *ngIf="fc.dateMailed.touched && fc.dateMailed.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.dateMailed.errors">This field is required
                                                             </div>
@@ -74,10 +74,10 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="benefitYearBeganDate">Benefit Year Began</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="benefitYearBeganDate" name="benefitYearBeganDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitYearBeganDate.errors }">
-                                                        <div *ngIf="fc.benefitYearBeganDate.touched && fc.benefitYearBeganDate.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.benefitYearBeganDate.errors">This field is required
+                                                        <label for="benefitYearBegan">Benefit Year Began</label>
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="benefitYearBegan" name="benefitYearBegan" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitYearBegan.errors }">
+                                                        <div *ngIf="fc.benefitYearBegan.touched && fc.benefitYearBegan.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.benefitYearBegan.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -85,7 +85,7 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                    <button class="btn btn-primary"  (click)="saveForm()">Save Claim Info</button>
                                                 </div>
 
                                             </form>

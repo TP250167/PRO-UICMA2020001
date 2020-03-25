@@ -43,14 +43,14 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="noticeDeterminationForm"
-                                                (ngSubmit)="submitNoticeDeterminationForm()">
+                                            <form appFormInputFocus [formGroup]="nodForm"
+                                                (ngSubmit)="submitnodForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="mailedDate">Date Mailed</label>
-                                                        <input type="text" class="form-control cc-datepicker"
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker"
                                                             bsDatepicker formControlName="mailedDate" name="mailedDate "
                                                             [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.mailedDate.errors }">
@@ -63,7 +63,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="benefitYearBegan">Benefit Year Began</label>
-                                                        <input type="text" class="form-control" formControlName="benefitYearBegan"
+                                                        <input type="text" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" class="form-control cc-datepicker" formControlName="benefitYearBegan"
                                                             name="benefitYearBegan"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.benefitYearBegan.errors }">
                                                         <div *ngIf="fc.benefitYearBegan.touched && fc.benefitYearBegan.errors || formSubmitted"
@@ -110,7 +110,7 @@
 
                                                 </div>
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary" (click)="saveNoticeDetermination()">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
                                                 </div>
 
                                             </form>

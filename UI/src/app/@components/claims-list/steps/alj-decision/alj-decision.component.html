@@ -43,7 +43,7 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="aljDecistionForm" (ngSubmit)="submitAljForm()">
+                                            <form appFormInputFocus [formGroup]="aljdForm" (ngSubmit)="submitAljForm()">
 
                                                 <div class="form-row">
 
@@ -57,10 +57,10 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="empInfo">Employer Info</label>
-                                                        <input type="text" class="form-control" formControlName="empInfo" name="empInfo" [ngClass]="{ 'is-invalid': formSubmitted && fc.empInfo.errors }">
-                                                        <div *ngIf="fc.empInfo.touched && fc.empInfo.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.empInfo.errors">This field is required
+                                                        <label for="employerInfo">Employer Info</label>
+                                                        <input type="text" class="form-control" formControlName="employerInfo" name="employerInfo" [ngClass]="{ 'is-invalid': formSubmitted && fc.employerInfo.errors }">
+                                                        <div *ngIf="fc.employerInfo.touched && fc.employerInfo.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.employerInfo.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -94,20 +94,19 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="fcaseNumber">Formerly Case No.</label>
-                                                        <input type="text" class="form-control" formControlName="fcaseNumber" name="fcaseNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.fcaseNumber.errors }">
-                                                        <div *ngIf="fc.fcaseNumber.touched && fc.fcaseNumber.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.fcaseNumber.errors">This field is required
+                                                        <label for="formerlyCaseNumber">Formerly Case No.</label>
+                                                        <input type="text" class="form-control" formControlName="formerlyCaseNumber" name="formerlyCaseNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.formerlyCaseNumber.errors }">
+                                                        <div *ngIf="fc.formerlyCaseNumber.touched && fc.formerlyCaseNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.formerlyCaseNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
-
                                                     <div class="form-group col-md-6">
-                                                        <label for="reopen">Application to Reopen</label>
-                                                        <input type="text" class="form-control" formControlName="reopen" name="reopen" [ngClass]="{ 'is-invalid': formSubmitted && fc.reopen.errors }">
-                                                        <div *ngIf="fc.reopen.touched && fc.reopen.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.reopen.errors">This field is required
+                                                        <label for="applicationReopenDate">Application to Reopen</label>
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="applicationReopenDate" name="applicationReopenDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.applicationReopenDate.errors }">
+                                                        <div *ngIf="fc.applicationReopenDate.touched && fc.applicationReopenDate.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.applicationReopenDate.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>

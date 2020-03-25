@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
@@ -20,11 +19,11 @@ export class NoticeOfDeterminationComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
-  public claimId: number;
+  public formId: number;
   public nodDetails : any = []
 
   // form section var 
-  noticeDeterminationForm: FormGroup;
+  nodForm: FormGroup;
   formSubmitted: boolean = false;
 
   constructor(
@@ -34,15 +33,16 @@ export class NoticeOfDeterminationComponent implements OnInit {
     private cas: ClaimsApiService,
     private tort: ToastrService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
   ) { }
 
   itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
 
   //form section
-  noticeDeterminationFormInit() {
-    this.noticeDeterminationForm = this.fb.group({
+  nodFormInit() {
+    this.nodForm = this.fb.group({
+      id                  : [''],
+      claimId             : [''],
       mailedDate          : ['', Validators.required],
       benefitYearBegan    : ['', Validators.required],
       socialSecurityNumber: ['', Validators.required],
@@ -51,29 +51,33 @@ export class NoticeOfDeterminationComponent implements OnInit {
     });
   }
 
-  get fc() { return this.noticeDeterminationForm.controls; }
+  get fc() { return this.nodForm.controls; }
+  get fv() { return this.nodForm.value; }
+  get fvalid() { return this.nodForm.valid; }
 
-  submitNoticeDeterminationForm() {
+  submitnodForm() {
     this.formSubmitted = true;
-    if (this.noticeDeterminationForm.invalid) { return; }
+    if (this.nodForm.invalid) { return; }
   }
 
-  NoticeDeterminationFormSetValues(data) {
-    this.fc.mailedDate.setValue(this.datePipe.transform(data.mailedDate, 'MM-dd-yyyy'))
-    this.fc.benefitYearBegan.setValue(this.datePipe.transform(data.benefitYearBegan, 'MM-dd-yyyy'))
+  setFormvalues(data) {
+    this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
+    this.fc.mailedDate.setValue(this.aps.formatDate(data.mailedDate))
+    this.fc.benefitYearBegan.setValue(this.aps.formatDate(data.benefitYearBegan))
     this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
     this.fc.fieldOffice.setValue(data.fieldOffice)
     this.fc.decision.setValue(data.decision)
   }
 
-  getNoticeDeterminationDetails() {
-    // this.claimId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.claimId = 2; 
-    this.cas.getClaimDetermination(this.claimId)
+  getFormDetails() {
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
+    this.formId = 1; 
+    this.cas.getClaimDetermination(this.formId)
       .subscribe(
         (res) => {
           this.nodDetails = res;
-          this.NoticeDeterminationFormSetValues(this.nodDetails)
+          this.setFormvalues(this.nodDetails)
         },
         (error) => {
           console.log('error caught in get claim details', error)
@@ -81,26 +85,29 @@ export class NoticeOfDeterminationComponent implements OnInit {
       )
   }
 
-  saveNoticeDetermination() {
-    if (this.noticeDeterminationForm.valid) {
-      console.log(this.noticeDeterminationForm.value)
-      // this.cas.updateClaimDetermination(this.noticeDeterminationForm.value)
-      //   .subscribe(
-      //     (res) => {
-      //       this.tort.success('updated', 'successfully updated', { timeOut: 5000, });
-      //       console.log(res)
-      //     },
-      //     (error) => {
-      //       console.log('error caught in batch detail update', error)
-      //     }
-      //   )
+  saveForm() {
+    if (this.fvalid) {
+      this.fv.mailedDate       = this.aps.formatDate(this.fv.mailedDate       )
+      this.fv.benefitYearBegan = this.aps.formatDate(this.fv.benefitYearBegan )
+      
+      console.log(this.fv)
+      this.cas.updateClaimDetermination(this.nodForm.value)
+        .subscribe(
+          (res) => {
+            this.tort.success('updated', 'successfully updated', { timeOut: 5000, });
+            console.log(res)
+          },
+          (error) => {
+            console.log('error caught in batch detail update', error)
+          }
+        )
     }
   }
 
   ngOnInit() {
     this.cs.tabincLimit = 2;
-    this.noticeDeterminationFormInit()
-    this.getNoticeDeterminationDetails()
+    this.nodFormInit()
+    this.getFormDetails()
   }
 
 }

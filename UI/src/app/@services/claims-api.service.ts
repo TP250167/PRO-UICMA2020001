@@ -134,7 +134,7 @@ export class ClaimsApiService {
   }
 
   getWagesAppeal(id){
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealbyID/id/${id}`);
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealbyID/${id}`);
   }
 
   updateWagesAppeal(payloadData) {
