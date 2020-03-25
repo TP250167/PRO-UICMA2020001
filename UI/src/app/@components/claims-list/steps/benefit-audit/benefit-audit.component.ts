@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
-import { ClaimsService  } from 'app/@services/claims.service'
+import { ClaimsService } from 'app/@services/claims.service'
+import { ClaimsApiService } from 'app/@services/claims-api.service'
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-benefit-audit',
@@ -14,44 +18,101 @@ import { ClaimsService  } from 'app/@services/claims.service'
 export class BenefitAuditComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+
+
   
   // form setion var 
-  public benefitAuditInitiateForm: FormGroup;
+  public baForm: FormGroup;
   public formSubmitted: boolean = false;
-
+  
+  public benefitAuditDetail: any = []
+  public formId: number;
 
   constructor(
     public aps: AppService,
-    public cs:  ClaimsService,
+    public cs: ClaimsService,
     private fb: FormBuilder,
-  ){
+    private cas: ClaimsApiService,
+    private tort: ToastrService,
+    private route: ActivatedRoute,
+  ) {
 
   }
 
 
-  itc() { this.cs.increaseTabCount(this.staticTabs) ; } 
+  itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
-
 
   // form section 
   benefitAuditFormInit() {
-    this.benefitAuditInitiateForm = this.fb.group({
-      claimName        : ['', Validators.required],
-      claimantSSN      : ['', Validators.required],
-      mailDate         : ['', Validators.required],
+    this.baForm = this.fb.group({
+      id         : [''                     ],
+      claimId    : [''                     ],
+      claimantName  : ['', Validators.required],
+      socialSecurityNumber: ['', Validators.required],
+      mailDate   : ['', Validators.required],
     });
   }
 
-  get fc() { return this.benefitAuditInitiateForm.controls; }
+  get fc() { return this.baForm.controls; }
+  get fv() { return this.baForm.value; }
+  get fvalid() { return this.baForm.valid; }
 
-  submitBenefitAuditInitiateForm() {
+  submitbaForm() {
     this.formSubmitted = true;
-    if (this.benefitAuditInitiateForm.invalid) { return; }
+    if (this.baForm.invalid) { return; }
+  }
+
+  setFormvalues(data) {
+    this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
+    this.fc.claimantName.setValue(data.claimantName)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
+    this.fc.mailDate.setValue(this.aps.formatDate(data.mailDate))
+
+  }
+
+  getFormDetails() {
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
+    this.formId = 1
+    this.cas.getBenefitAudit(this.formId)
+      .subscribe(
+        (res) => {
+          this.benefitAuditDetail = res;
+          this.setFormvalues(this.benefitAuditDetail)
+        },
+        (error) => {
+          console.log('error caught in get claim details', error)
+        }
+      )
+  }
+
+
+  saveForm() {
+
+    if (this.fvalid) {
+
+      this.fv.mailDate = this.aps.formatDate(this.fv.mailDate)
+
+      this.cas.updateBenefitAudit(this.fv)
+        .subscribe(
+          (res) => {
+            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
+            console.log(res)
+          },
+          (error) => {
+            console.log('error caught in batch detail update', error)
+          }
+        )
+
+    }
+
   }
 
   ngOnInit() {
     this.cs.tabincLimit = 2;
     this.benefitAuditFormInit()
+    this.getFormDetails()
   }
 
 }

@@ -43,18 +43,18 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="reopenInitiateForm" (ngSubmit)="submitReopenInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="roForm" (ngSubmit)="submitRoForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="officeAddress">Appl Office Address</label>
-                                                        <select id="officeAddress" class="form-control" formControlName="officeAddress" name="officeAddress" [ngClass]="{ 'is-invalid': formSubmitted  && fc.officeAddress.errors }">
+                                                        <label for="appealOfficeAddress">Appl Office Address</label>
+                                                        <select id="appealOfficeAddress" class="form-control" formControlName="appealOfficeAddress" name="appealOfficeAddress" [ngClass]="{ 'is-invalid': formSubmitted  && fc.appealOfficeAddress.errors }">
                                                             <option selected>Choose...</option>
                                                             <option>...</option>
                                                         </select>
-                                                        <div *ngIf="fc.officeAddress.touched && fc.officeAddress.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.officeAddress.errors || formSubmitted ">This field is required </div>
+                                                        <div *ngIf="fc.appealOfficeAddress.touched && fc.appealOfficeAddress.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.appealOfficeAddress.errors || formSubmitted ">This field is required </div>
                                                         </div>
                                                     </div>
 
@@ -68,30 +68,40 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="toALJ">To ALJ</label>
-                                                        <select id="toALJ" class="form-control" formControlName="toALJ" name="toALJ" [ngClass]="{ 'is-invalid': formSubmitted  && fc.toALJ.errors }">
-                                                            <option selected>Choose...</option>
-                                                            <option>...</option>
+                                                        <label for="administrativeLawJudgeServer">To ALJ</label>
+                                                        <select id="administrativeLawJudgeServer" class="form-control" formControlName="administrativeLawJudgeServer" name="administrativeLawJudgeServer" [ngClass]="{ 'is-invalid': formSubmitted  && fc.administrativeLawJudgeServer.errors }">
+                                                            <option selected>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
                                                         </select>
-                                                        <div *ngIf="fc.toALJ.touched && fc.toALJ.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.toALJ.errors || formSubmitted ">This field is required </div>
+                                                        <div *ngIf="fc.administrativeLawJudgeServer.touched && fc.administrativeLawJudgeServer.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.administrativeLawJudgeServer.errors || formSubmitted ">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="caseNo">Case No</label>
-                                                        <input type="text" class="form-control" formControlName="caseNo" name="caseNo" [ngClass]="{ 'is-invalid': formSubmitted  && fc.caseNo.errors }">
-                                                        <div *ngIf="fc.caseNo.touched && fc.caseNo.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.caseNo.errors">This field is required
+                                                        <label for="caseNumber">Case No</label>
+                                                        <input type="text" class="form-control" formControlName="caseNumber" name="caseNumber" [ngClass]="{ 'is-invalid': formSubmitted  && fc.caseNumber.errors }">
+                                                        <div *ngIf="fc.caseNumber.touched && fc.caseNumber.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.caseNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="hdt">Hearing Date Time</label>
-                                                        <input type="text" class="form-control" formControlName="hdt" name="hdt" [ngClass]="{ 'is-invalid': formSubmitted  && fc.hdt.errors }">
-                                                        <div *ngIf="fc.hdt.touched && fc.hdt.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.hdt.errors">This field is required
+                                                        <label for="hearingDate">Hearing Date</label>
+                                                        <input type="text" class="form-control" formControlName="hearingDate" name="hearingDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.hearingDate.errors }">
+                                                        <div *ngIf="fc.hearingDate.touched && fc.hearingDate.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.hearingDate.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="hearingTime">Hearing Time</label>
+                                                        <input type="text" class="form-control" formControlName="hearingTime" name="hearingTime" [ngClass]="{ 'is-invalid': formSubmitted  && fc.hearingTime.errors }">
+                                                        <div *ngIf="fc.hearingTime.touched && fc.hearingTime.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.hearingTime.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -114,10 +124,10 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="accountNo">Account No</label>
-                                                        <input type="text" class="form-control" formControlName="accountNo" name="accountNo" [ngClass]="{ 'is-invalid': formSubmitted  && fc.accountNo.errors }">
-                                                        <div *ngIf="fc.accountNo.touched && fc.accountNo.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.accountNo.errors">This field is required
+                                                        <label for="accountNumber">Account No</label>
+                                                        <input type="text" class="form-control" formControlName="accountNumber" name="accountNumber" [ngClass]="{ 'is-invalid': formSubmitted  && fc.accountNumber.errors }">
+                                                        <div *ngIf="fc.accountNumber.touched && fc.accountNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.accountNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -141,7 +151,7 @@
                                                 </div>
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
                                                 </div>
 
                                             </form>

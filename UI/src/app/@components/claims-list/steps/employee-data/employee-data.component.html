@@ -43,22 +43,22 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="employeeInitiateForm" (ngSubmit)="submitEmployeeInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="empDataForm" (ngSubmit)="submitEmpDataForm()">
 
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <label for="date">Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.date.errors }">
+                                                        <input type="text"  autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.date.errors }">
                                                         <div *ngIf="fc.date.touched && fc.date.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.date.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="byb">BYB</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="byb" name="byb" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.byb.errors }">
-                                                        <div *ngIf="fc.byb.touched && fc.byb.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.byb.errors || formSubmitted">This field is required </div>
+                                                        <label for="bybClaimDate">BYB</label>
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="bybClaimDate" name="bybClaimDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.bybClaimDate.errors }">
+                                                        <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.bybClaimDate.errors || formSubmitted">This field is required </div>
                                                         </div>
                                                     </div>
 
@@ -72,45 +72,45 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="claimantSSN">Claimant SSN</label>
-                                                        <input type="text" class="form-control" formControlName="claimantSSN" name="claimantSSN" [ngClass]="{ 'is-invalid': formSubmitted && fc.claimantSSN.errors }">
-                                                        <div *ngIf="fc.claimantSSN.touched && fc.claimantSSN.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.claimantSSN.errors">This field is required
+                                                        <label for="socialSecurityNumber">Claimant SSN</label>
+                                                        <input type="text" class="form-control" formControlName="socialSecurityNumber" name="socialSecurityNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.socialSecurityNumber.errors }">
+                                                        <div *ngIf="fc.socialSecurityNumber.touched && fc.socialSecurityNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.socialSecurityNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="completedBy">Completed By</label>
-                                                        <input type="text" class="form-control" formControlName="completedBy" name="completedBy" [ngClass]="{ 'is-invalid': formSubmitted && fc.completedBy.errors }">
-                                                        <div *ngIf="fc.completedBy.touched && fc.completedBy.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.completedBy.errors">This field is required
+                                                        <label for="userCompletedBy">Completed By</label>
+                                                        <input type="text" class="form-control" formControlName="userCompletedBy" name="userCompletedBy" [ngClass]="{ 'is-invalid': formSubmitted && fc.userCompletedBy.errors }">
+                                                        <div *ngIf="fc.userCompletedBy.touched && fc.userCompletedBy.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.userCompletedBy.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="dateCompleted">Date Completed</label>
-                                                        <input type="text" class="form-control" formControlName="dateCompleted" name="dateCompleted" [ngClass]="{ 'is-invalid': formSubmitted && fc.dateCompleted.errors }">
-                                                        <div *ngIf="fc.dateCompleted.touched && fc.dateCompleted.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.dateCompleted.errors">This field is required
+                                                        <label for="userCompletedDate">Date Completed</label>
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" formControlName="userCompletedDate" name="userCompletedDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.userCompletedDate.errors }">
+                                                        <div *ngIf="fc.userCompletedDate.touched && fc.userCompletedDate.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.userCompletedDate.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="title">Title</label>
-                                                        <input type="text" class="form-control" formControlName="title" name="title" [ngClass]="{ 'is-invalid': formSubmitted && fc.title.errors }">
-                                                        <div *ngIf="fc.title.touched && fc.title.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.title.errors">This field is required </div>
+                                                        <label for="userTitle">Title</label>
+                                                        <input type="text" class="form-control" formControlName="userTitle" name="userTitle" [ngClass]="{ 'is-invalid': formSubmitted && fc.userTitle.errors }">
+                                                        <div *ngIf="fc.userTitle.touched && fc.userTitle.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.userTitle.errors">This field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="telephoneNo">Telephone No</label>
-                                                        <input type="text" class="form-control" formControlName="telephoneNo" name="telephoneNo" [ngClass]="{ 'is-invalid': formSubmitted && fc.telephoneNo.errors }">
-                                                        <div *ngIf="fc.telephoneNo.touched && fc.telephoneNo.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.telephoneNo.errors">This field is required
+                                                        <label for="userTelephoneNumber">Telephone No</label>
+                                                        <input type="text" class="form-control" formControlName="userTelephoneNumber" name="userTelephoneNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.userTelephoneNumber.errors }">
+                                                        <div *ngIf="fc.userTelephoneNumber.touched && fc.userTelephoneNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.userTelephoneNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -118,7 +118,7 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
                                                 </div>
 
                                             </form>
