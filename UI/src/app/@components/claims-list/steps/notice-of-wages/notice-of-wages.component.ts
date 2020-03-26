@@ -46,12 +46,13 @@ export class NoticeOfWagesComponent implements OnInit {
   // form section 
   NoticeOfWagesFormInit() {
     this.nofwForm = this.fb.group({
-      id                   : ['', Validators.required],
-      claimId              : ['', Validators.required],
-      claimantName         : ['', Validators.required],
-      socialSecurityNumber : ['', Validators.required],
-      totalWages           : ['', Validators.required],
-      benefitsCharge       : ['', Validators.required],
+      id                       : ['', Validators.required],
+      claimId                  : ['', Validators.required],
+      claimantName             : ['', Validators.required],
+      socialSecurityNumber     : ['', Validators.required],
+      totalWagesForEmployee    : ['', Validators.required],
+      totalWagesForAllEmployees: ['', Validators.required],
+      benefitChargeableReserveAccount           : ['', Validators.required],
     });
   }
 
@@ -69,14 +70,15 @@ export class NoticeOfWagesComponent implements OnInit {
     this.fc.claimId.setValue(data.claimId)
     this.fc.claimantName.setValue(data.claimantName)
     this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
-    this.fc.totalWages.setValue(data.totalWages)
-    this.fc.benefitsCharge.setValue(data.benefitsCharge)
+    this.fc.totalWagesForEmployee.setValue(data.totalWagesForEmployee)
+    this.fc.totalWagesForAllEmployees.setValue(data.totalWagesForAllEmployees)
+    this.fc.benefitChargeableReserveAccount.setValue(data.benefitChargeableReserveAccount)
   }
 
   getFormDetails() {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) ;
     this.formId = 1;
-    this.cas.getWagesAfterAppeal(this.formId)
+    this.cas.getWages(this.formId)
       .subscribe(
         (res) => {
           this.nofwFormDetails = res;
@@ -90,7 +92,7 @@ export class NoticeOfWagesComponent implements OnInit {
 
   saveForm() {
     if (this.fvalid) { 
-      this.cas.updateWagesAfterAppeal(this.fv)
+      this.cas.updateWages(this.fv)
       .subscribe(
         (res) => {
           this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });

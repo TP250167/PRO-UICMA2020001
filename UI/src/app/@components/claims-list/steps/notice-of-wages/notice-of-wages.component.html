@@ -65,19 +65,28 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="totalWages">Total Wages Report</label>
-                                                        <input type="text" class="form-control" formControlName="totalWages" name="totalWages" [ngClass]="{ 'is-invalid': formSubmitted  && fc.totalWages.errors }">
-                                                        <div *ngIf="fc.totalWages.touched && fc.totalWages.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.totalWages.errors">This field is required
+                                                        <label for="totalWagesForEmployee">Total Wages For Employee</label>
+                                                        <input type="text" class="form-control" formControlName="totalWagesForEmployee" name="totalWagesForEmployee" [ngClass]="{ 'is-invalid': formSubmitted  && fc.totalWagesForEmployee.errors }">
+                                                        <div *ngIf="fc.totalWagesForEmployee.touched && fc.totalWagesForEmployee.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.totalWagesForEmployee.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="benefitsCharge ">Benefits Chargeable</label>
-                                                        <input type="text" class="form-control" formControlName="benefitsCharge" name="benefitsCharge" [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitsCharge.errors }">
-                                                        <div *ngIf="fc.benefitsCharge.touched && fc.benefitsCharge.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.benefitsCharge.errors">This field is required
+                                                        <label for="totalWagesForAllEmployees">Total Wages For All Employees</label>
+                                                        <input type="text" class="form-control" formControlName="totalWagesForAllEmployees" name="totalWagesForAllEmployees" [ngClass]="{ 'is-invalid': formSubmitted  && fc.totalWagesForAllEmployees.errors }">
+                                                        <div *ngIf="fc.totalWagesForAllEmployees.touched && fc.totalWagesForAllEmployees.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.totalWagesForAllEmployees.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="benefitChargeableReserveAccount ">Benefits Chargeable</label>
+                                                        <input type="text" class="form-control" formControlName="benefitChargeableReserveAccount" name="benefitChargeableReserveAccount" [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitChargeableReserveAccount.errors }">
+                                                        <div *ngIf="fc.benefitChargeableReserveAccount.touched && fc.benefitChargeableReserveAccount.errors || formSubmitted " class="invalid-feedback">
+                                                            <div *ngIf="fc.benefitChargeableReserveAccount.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>

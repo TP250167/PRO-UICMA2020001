@@ -43,13 +43,13 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="wagesInitiateForm" (ngSubmit)="submitWagesInitiateForm()">
+                                            <form appFormInputFocus [formGroup]="rfwForm" (ngSubmit)="submitRfwForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="mailingDate">Mailing Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="mailingDate" name="mailingDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailingDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="mailingDate" name="mailingDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailingDate.errors }">
                                                         <div *ngIf="fc.mailingDate.touched && fc.mailingDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.mailingDate.errors || formSubmitted">This field is required </div>
                                                         </div>
@@ -74,19 +74,19 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="claimantSSN">Claimant SSN</label>
-                                                        <input type="text" class="form-control" formControlName="claimantSSN" name="claimantSSN" [ngClass]="{ 'is-invalid': formSubmitted && fc.claimantSSN.errors }">
-                                                        <div *ngIf="fc.claimantSSN.touched && fc.claimantSSN.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.claimantSSN.errors">This field is required
+                                                        <label for="socialSecurityNumber">Claimant SSN</label>
+                                                        <input type="text" class="form-control" formControlName="socialSecurityNumber" name="socialSecurityNumber" [ngClass]="{ 'is-invalid': formSubmitted && fc.socialSecurityNumber.errors }">
+                                                        <div *ngIf="fc.socialSecurityNumber.touched && fc.socialSecurityNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.socialSecurityNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="deadlineDate">Deadline Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="deadlineDate" name="deadlineDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.deadlineDate.errors }">
-                                                        <div *ngIf="fc.deadlineDate.touched && fc.deadlineDate.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.deadlineDate.errors">This field is required
+                                                        <label for="deadLineDate">Deadline Date</label>
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="deadLineDate" name="deadLineDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.deadLineDate.errors }">
+                                                        <div *ngIf="fc.deadLineDate.touched && fc.deadLineDate.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.deadLineDate.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,7 +121,7 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
                                                 </div>
 
                                             </form>

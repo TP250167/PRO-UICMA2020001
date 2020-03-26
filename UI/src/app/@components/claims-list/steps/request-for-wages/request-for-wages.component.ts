@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
 import { ClaimsService  } from 'app/@services/claims.service'
+import { ClaimsApiService } from 'app/@services/claims-api.service'
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-request-for-wages',
@@ -16,14 +20,20 @@ export class RequestForWagesComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   
   // form setion var 
-  public wagesInitiateForm: FormGroup;
+  public rfwForm: FormGroup;
   public formSubmitted: boolean = false;
+  
+  public formId: number ;
+  public rfwFormDetails : any = [] ;
 
 
   constructor(
-    public aps: AppService,
-    public cs:  ClaimsService,
-    private fb: FormBuilder,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private tort : ToastrService   ,
+    private route: ActivatedRoute  ,
   ){
 
   }
@@ -35,28 +45,80 @@ export class RequestForWagesComponent implements OnInit {
 
   // form section 
   wagesFormInit() {
-    this.wagesInitiateForm = this.fb.group({
-      mailingDate             : ['', Validators.required],
-      caseNumber              : ['', Validators.required],
-      claimantName            : ['', Validators.required],
-      claimantSSN             : ['', Validators.required],
-      deadlineDate            : ['', Validators.required],
-      preparerName            : ['', Validators.required],
-      telephoneNumber         : ['', Validators.required],
-      faxNumber               : ['', Validators.required],
+    this.rfwForm = this.fb.group({
+      id                   : ['', Validators.required],
+      claimId              : ['', Validators.required],
+      mailingDate          : ['', Validators.required],
+      caseNumber           : ['', Validators.required],
+      claimantName         : ['', Validators.required],
+      socialSecurityNumber : ['', Validators.required],
+      deadLineDate         : ['', Validators.required],
+      preparerName         : ['', Validators.required],
+      telephoneNumber      : ['', Validators.required],
+      faxNumber            : ['', Validators.required],
     });
   }
 
-  get fc() { return this.wagesInitiateForm.controls; }
+  get fc() { return this.rfwForm.controls; }
+  get fv() { return this.rfwForm.value; }
+  get fvalid() { return this.rfwForm.valid; }
 
-  submitWagesInitiateForm() {
+  setFormvalues(data) {
+    this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
+    this.fc.mailingDate.setValue(this.aps.formatDate(data.mailingDate))
+    this.fc.caseNumber.setValue(data.caseNumber)
+    this.fc.claimantName.setValue(data.claimantName)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
+    this.fc.deadLineDate.setValue(this.aps.formatDate(data.deadLineDate))
+    this.fc.preparerName.setValue(data.preparerName)
+    this.fc.telephoneNumber.setValue(data.telephoneNumber)
+    this.fc.faxNumber.setValue(data.faxNumber)
+  }
+
+  getFormDetails() {
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) ;
+    this.formId = 1;
+    this.cas.getWagesAfterAppeal(this.formId)
+      .subscribe(
+        (res) => {
+          this.rfwFormDetails = res;
+          this.setFormvalues(this.rfwFormDetails);
+        },
+        (error) => {
+          console.log('error caught in get claim details', error);
+        }
+      )
+  }
+
+  saveForm() {
+    if (this.fvalid) { 
+
+      this.fv.mailingDate  = this.aps.formatDate(this.fv.mailingDate );
+      this.fv.deadLineDate = this.aps.formatDate(this.fv.deadLineDate);
+
+      this.cas.updateWagesAfterAppeal(this.fv)
+      .subscribe(
+        (res) => {
+          this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
+          console.log(res)
+        },
+        (error) => {
+          console.log('error caught in batch detail update', error);
+        }
+      )
+    }
+  }
+
+  submitRfwForm() {
     this.formSubmitted = true;
-    if (this.wagesInitiateForm.invalid) { return; }
+    if (this.rfwForm.invalid) { return; }
   }
 
   ngOnInit() {
     this.cs.tabincLimit = 2;
-    this. wagesFormInit()
+    this.wagesFormInit();
+    this.getFormDetails();
   }
 
 }

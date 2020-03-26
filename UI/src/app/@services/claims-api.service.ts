@@ -30,14 +30,14 @@ export class ClaimsApiService {
   }
   // claim list end
 
-  
+
 
   // DE1101 Response start
   getClaimResponseList() {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimResponse/GetClaimResponseAll`);
   }
 
-  getClaimResponse(id){
+  getClaimResponse(id) {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimResponse/GetClaimResponsebyID/${id}`);
   }
 
@@ -53,7 +53,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimInterview/GetClaimInterviewAll`);
   }
 
-  getClaimInterview(id){
+  getClaimInterview(id) {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimInterview/GetClaimInterviewbyID/${id}`);
   }
 
@@ -69,7 +69,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimDetermination/GetClaimDeterminationAll`);
   }
 
-  getClaimDetermination(id){
+  getClaimDetermination(id) {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimDetermination/GetClaimDeterminationbyID/${id}`);
   }
 
@@ -85,7 +85,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/ResponsetoEmployer/GetResponseToEmployerAll`);
   }
 
-  getResponsetoEmployer(id){
+    getResponsetoEmployer(id) {
     return this.http.get(`${this.cls.ApiUrl}api/ResponsetoEmployer/GetResponseToEmployerbyID/${id}`);
   }
 
@@ -101,7 +101,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
   }
 
-  getClaimAppeal(id){
+  getClaimAppeal(id) {
     return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
   }
 
@@ -113,32 +113,32 @@ export class ClaimsApiService {
 
 
   // DE1545 Notice of Wages start
-  getWagesAfterAppealList() {
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealAll`);
+  getWagesList() {
+    return this.http.get(`${this.cls.ApiUrl}api/Wages/GetWagesAll`);
   }
 
-  getWagesAfterAppeal(id){
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealbyID/${id}`);
+  getWages(id) {
+    return this.http.get(`${this.cls.ApiUrl}api/Wages/GetWagesbyID/${id}`);
   }
 
-  updateWagesAfterAppeal(payloadData) {
-    return this.http.post<any>(`${this.cls.ApiUrl}api/WagesAfterAppeal/AddandUpdateWagesAfterAppeal`, payloadData);
+  updateWages(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/Wages/AddandUpdateWages`, payloadData);
   }
   // DDE1545 Notice of Wages end
 
 
 
   // DE1545 Appeal Form start
-  getWagesList() {
-    return this.http.get(`${this.cls.ApiUrl}api/Wages/GetWagesAll`);
+  getWagesAppealList() {
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealAll`);
   }
 
-  getWages(id){
-    return this.http.get(`${this.cls.ApiUrl}api/Wages/GetWagesbyID/${id}`);
+  getWagesAppeal(id) {
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealbyID/${id}`);
   }
 
-  updateWages(payloadData) {
-    return this.http.post<any>(`${this.cls.ApiUrl}api/Wages/AddandUpdateWages`, payloadData);
+  updateWagesAppeal(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/WagesAppeal/AddandUpdateWagesAppeal`, payloadData);
   }
   // DE1545 Appeal Form end
 
@@ -149,7 +149,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/DeterminationAppeal/GetDeterminationAppealAll`);
   }
 
-  getDeterminationAppeal(id){
+  getDeterminationAppeal(id) {
     return this.http.get(`${this.cls.ApiUrl}api/DeterminationAppeal/GetDeterminationAppealbyID/${id}`);
   }
 
@@ -164,7 +164,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/HearingNotification/GetHearingAll`);
   }
 
-  getHearingNotification(id){
+  getHearingNotification(id) {
     return this.http.get(`${this.cls.ApiUrl}api/HearingNotification/GetHearingbyID/${id}`);
   }
 
@@ -180,7 +180,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/ALJDecision/GetALJDecisionAll`);
   }
 
-  getALJDecision(id){
+  getALJDecision(id) {
     return this.http.get(`${this.cls.ApiUrl}api/ALJDecision/GetALJDecisionbyID/${id}`);
   }
 
@@ -193,15 +193,15 @@ export class ClaimsApiService {
 
   // Acknowledgement start
   getAcknowledgementList() {
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealAll  `);
+    return this.http.get(`${this.cls.ApiUrl}api/CUIABAcknow/GetCUIABAcknowAll`);
   }
 
   getAcknowledgement(id){
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealbyID//${id}`);
+    return this.http.get(`${this.cls.ApiUrl}api/CUIABAcknow/GetCUIABAcknowbyID/${id}`);
   }
 
   updateAcknowledgement(payloadData) {
-    return this.http.post<any>(`${this.cls.ApiUrl}WagesAfterAppeal/AddandUpdateWagesAfterAppeal`, payloadData);
+    return this.http.post<any>(`${this.cls.ApiUrl}api/CUIABAcknow/AddandUpdateCUIABAcknow`, payloadData);
   }
   // Acknowledgement end
 
@@ -212,7 +212,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/CUIABBoardAppeal/GetCUIABBoardAppealAll`);
   }
 
-  getCUIABBoardAppeal(id){
+  getCUIABBoardAppeal(id) {
     return this.http.get(`${this.cls.ApiUrl}api/CUIABBoardAppeal/GetCUIABBoardAppealbyID/${id}`);
   }
 
@@ -228,7 +228,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/AdditionalInfo/GetAdditionalInfoAll`);
   }
 
-  getAdditionalInfo(id){
+  getAdditionalInfo(id) {
     return this.http.get(`${this.cls.ApiUrl}api/AdditionalInfo/GetAdditionalInfobyID/${id}`);
   }
 
@@ -244,7 +244,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/RequestForEmpData/GetRequestForEmpDataAll`);
   }
 
-  getRequestForEmpData(id){
+  getRequestForEmpData(id) {
     return this.http.get(`${this.cls.ApiUrl}api/RequestForEmpData/GetRequestForEmpDatabyID/${id}`);
   }
 
@@ -256,16 +256,16 @@ export class ClaimsApiService {
 
 
   // DE1919 Request for Wages start
-  getWagesAppealList() {
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealAll`);
+  getWagesAfterAppealList() {
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealAll`);
   }
 
-  getWagesAppeal(id){
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealbyID/${id}`);
+  getWagesAfterAppeal(id) {
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealbyID/${id}`);
   }
 
-  updateWagesAppeal(payloadData) {
-    return this.http.post<any>(`${this.cls.ApiUrl}api/WagesAppeal/AddandUpdateWagesAppeal`, payloadData);
+  updateWagesAfterAppeal(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/WagesAfterAppeal/AddandUpdateWagesAfterAppeal`, payloadData);
   }
   // DE1919 Request for Wages end
 
@@ -276,7 +276,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/BenefitAudit/GetBenefitAuditAll`);
   }
 
-  getBenefitAudit(id){
+  getBenefitAudit(id) {
     return this.http.get(`${this.cls.ApiUrl}api/BenefitAudit/GetBenefitAuditbyID/${id}`);
   }
 
@@ -292,7 +292,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/BenefitCharge/GetBenefitChargeAll`);
   }
 
-  getBenefitCharge(id){
+  getBenefitCharge(id) {
     return this.http.get(`${this.cls.ApiUrl}api/BenefitCharge/GetBenefitChargebyID/${id}`);
   }
 
@@ -307,7 +307,7 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/RequestToReopen/GetRequestToReopenAll`);
   }
 
-  getRequestToReopen(id){
+  getRequestToReopen(id) {
     return this.http.get(`${this.cls.ApiUrl}api/RequestToReopen/GetRequestToReopenbyID/${id}`);
   }
 

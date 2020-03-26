@@ -43,15 +43,15 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="acknowledgementForm" (ngSubmit)="submitAcknowledgementForm()">
+                                            <form appFormInputFocus [formGroup]="acknForm" (ngSubmit)="submitAcknForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="claimName">Claimant Name</label>
-                                                        <input type="text" class="form-control" formControlName="claimName" name="claimName" [ngClass]="{ 'is-invalid': formSubmitted && fc.claimName.errors }">
-                                                        <div *ngIf="fc.claimName.touched && fc.claimName.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.claimName.errors">This field is required
+                                                        <label for="claimantName">Claimant Name</label>
+                                                        <input type="text" class="form-control" formControlName="claimantName" name="claimantName" [ngClass]="{ 'is-invalid': formSubmitted && fc.claimantName.errors }">
+                                                        <div *ngIf="fc.claimantName.touched && fc.claimantName.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.claimantName.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -85,10 +85,10 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="mailDate">Date Mailed</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="mailDate" name="mailDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailDate.errors }">
-                                                        <div *ngIf="fc.mailDate.touched && fc.mailDate.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.mailDate.errors">This field is required
+                                                        <label for="dateMailed">Date Mailed</label>
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="dateMailed" name="dateMailed" [ngClass]="{ 'is-invalid': formSubmitted && fc.dateMailed.errors }">
+                                                        <div *ngIf="fc.dateMailed.touched && fc.dateMailed.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.dateMailed.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -97,7 +97,7 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
                                                 </div>
 
                                             </form>

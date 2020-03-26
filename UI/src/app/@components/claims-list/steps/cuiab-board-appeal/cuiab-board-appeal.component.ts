@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
-import { ClaimsService  } from 'app/@services/claims.service'
+import { ClaimsService } from 'app/@services/claims.service'
+import { ClaimsApiService } from 'app/@services/claims-api.service'
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cuiab-board-appeal',
@@ -14,73 +18,153 @@ import { ClaimsService  } from 'app/@services/claims.service'
 export class CuiabBoardAppealComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-  
+
   // form setion var 
-  public cuiabBoardAppealInitiateForm: FormGroup;
+  public cuiabaFrom: FormGroup;
   public formSubmitted: boolean = false;
+
+  public formId: number;
+  public cuiabaFromDetails: any = [];
 
 
   constructor(
     public aps: AppService,
-    public cs:  ClaimsService,
+    public cs: ClaimsService,
     private fb: FormBuilder,
-  ){
+    private cas: ClaimsApiService,
+    private tort: ToastrService,
+    private route: ActivatedRoute,
+  ) {
 
   }
 
 
-  itc() { this.cs.increaseTabCount(this.staticTabs) ; } 
+  itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
 
 
   // form section 
   CuiabBoardAppealFormInit() {
-    this.cuiabBoardAppealInitiateForm = this.fb.group({
-      officeAddress          : ['', Validators.required],
-      lausdFaxDate           : ['', Validators.required],
-      lausdAcNo              : ['', Validators.required],
-      ClaimDateByb           : ['', Validators.required],
-      claimantName           : ['', Validators.required],
-      claimantSSN            : ['', Validators.required],
-      caseNo                 : ['', Validators.required],
-      appealStatement        : ['', Validators.required],
-      printName              : ['', Validators.required],
-      phoneNo                : ['', Validators.required],
-      signature              : ['', Validators.required],
-      title                  : ['', Validators.required],
-      date                   : ['', Validators.required],
-      PartyFa                : ['', Validators.required],
-      appellantName          : ['', Validators.required],
-      appellantPn            : ['', Validators.required],
-      appellantFn            : ['', Validators.required],
-      appellantMa            : ['', Validators.required],
-      aljDecisionDate        : ['', Validators.required],
-      aljDcn                 : ['', Validators.required],
-      giveCp                 : ['', Validators.required],
-      emailAddress           : ['', Validators.required],
-      cellPhoneNo            : ['', Validators.required],
-      eClaimantName          : ['', Validators.required],
-      eClaimantSSN           : ['', Validators.required],
-      employerAn             : ['', Validators.required],
-      appellantArn           : ['', Validators.required],
-      appellantAra           : ['', Validators.required],
-      appellantArs           : ['', Validators.required],
-      dateSigned             : ['', Validators.required],
-      disagreeReason         : ['', Validators.required],
-     
+    this.cuiabaFrom = this.fb.group({
+      id                         : ['', Validators.required],
+      claimId                    : ['', Validators.required],
+      cuiabAddress               : ['', Validators.required],
+      lausdFaxDate               : ['', Validators.required],
+      lausdAccountNumber         : ['', Validators.required],
+      bybClaimDate               : ['', Validators.required],
+      claimantName               : ['', Validators.required],
+      socialSecurityNumber       : ['', Validators.required],
+      caseNumber                 : ['', Validators.required],
+      appealStatement            : ['', Validators.required],
+      userPrintName              : ['', Validators.required],
+      userPhoneNumber            : ['', Validators.required],
+      userSignature              : ['', Validators.required],
+      userTitle                  : ['', Validators.required],
+      userDate                   : ['', Validators.required],
+      partyFilingAppeal          : ['', Validators.required],
+      appellantName              : ['', Validators.required],
+      appellantPhoneNumber       : ['', Validators.required],
+      appellantFaxNumber         : ['', Validators.required],
+      appellantMailAddress       : ['', Validators.required],
+      aljDecisionDate            : ['', Validators.required],
+      aljDecisionCaseNumber      : ['', Validators.required],
+      cuiabPermission            : ['', Validators.required],
+      lausdEmailAddress          : ['', Validators.required],
+      cellPhoneNumber            : ['', Validators.required],
+      eClaimantName              : ['', Validators.required],
+      eClaimantSSN               : ['', Validators.required],
+      employerAccountNumber      : ['', Validators.required],
+      appellantAgentRepName      : ['', Validators.required],
+      appellantAgentRepAddress   : ['', Validators.required],
+      appellantAgentRepSignature : ['', Validators.required],
+      appellantAgentRepSignedDate: ['', Validators.required],
+      disagreeReason             : ['', Validators.required],
     });
   }
 
-  get fc() { return this.cuiabBoardAppealInitiateForm.controls; }
+  get fc() { return this.cuiabaFrom.controls; }
+  get fv() { return this.cuiabaFrom.value; }
+  get fvalid() { return this.cuiabaFrom.valid; }
 
-  submitCUIABBoardAppealInitiateForm() {
+  submitCuiabaFrom() {
     this.formSubmitted = true;
-    if (this.cuiabBoardAppealInitiateForm.invalid) { return; }
+    if (this.cuiabaFrom.invalid) { return; }
+  }
+
+  setFormvalues(data) {
+    this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
+    this.fc.cuiabAddress.setValue(data.cuiabAddress)
+    this.fc.lausdFaxDate.setValue(this.aps.formatDate(data.lausdFaxDate))
+    this.fc.lausdAccountNumber.setValue(data.lausdAccountNumber)
+    this.fc.bybClaimDate.setValue(this.aps.formatDate(data.bybClaimDate))
+    this.fc.claimantName.setValue(data.claimantName)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
+    this.fc.caseNumber.setValue(data.caseNumber)
+    this.fc.appealStatement.setValue(data.appealStatement)
+    this.fc.userPrintName.setValue(data.userPrintName)
+    this.fc.userPhoneNumber.setValue(data.userPhoneNumber)
+    this.fc.userSignature.setValue(data.userSignature)
+    this.fc.userTitle.setValue(data.userTitle)
+    this.fc.userDate.setValue(this.aps.formatDate(data.userDate))
+    this.fc.partyFilingAppeal.setValue(this.aps.formatDate(data.partyFilingAppeal))
+    this.fc.appellantName.setValue(data.appellantName)
+    this.fc.appellantPhoneNumber.setValue(data.appellantPhoneNumber)
+    this.fc.appellantFaxNumber.setValue(data.appellantFaxNumber)
+    this.fc.appellantMailAddress.setValue(data.appellantMailAddress)
+    this.fc.aljDecisionDate.setValue(data.aljDecisionDate)
+    this.fc.aljDecisionCaseNumber.setValue(data.aljDecisionCaseNumber)
+    this.fc.cuiabPermission.setValue(data.cuiabPermission)
+    this.fc.lausdEmailAddress.setValue(data.lausdEmailAddress)
+    this.fc.cellPhoneNumber.setValue(data.cellPhoneNumber)
+    this.fc.employerAccountNumber.setValue(data.employerAccountNumber)
+    this.fc.appellantAgentRepName.setValue(data.appellantAgentRepName)
+    this.fc.appellantAgentRepAddress.setValue(data.appellantAgentRepAddress)
+    this.fc.appellantAgentRepSignature.setValue(data.appellantAgentRepSignature)
+    this.fc.appellantAgentRepSignedDate.setValue(data.appellantAgentRepSignedDate)
+    this.fc.disagreeReason.setValue(data.disagreeReason)
+  }
+
+  getFormDetails() {
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) ;
+    this.formId = 1;
+    this.cas.getCUIABBoardAppeal(this.formId)
+      .subscribe(
+        (res) => {
+          this.cuiabaFromDetails = res;
+          this.setFormvalues(this.cuiabaFromDetails);
+        },
+        (error) => {
+          console.log('error caught in get claim details', error);
+        }
+      )
+  }
+
+  saveForm() {
+    if (this.fvalid) {
+
+      this.fv.lausdFaxDate = this.aps.formatDate(this.fv.lausdFaxDate);
+      this.fv.bybClaimDate = this.aps.formatDate(this.fv.bybClaimDate);
+      this.fv.userDate     = this.aps.formatDate(this.fv.userDate);
+      this.fv.partyFilingAppeal = this.aps.formatDate(this.fv.partyFilingAppeal)
+
+      this.cas.updateCUIABBoardAppeal(this.fv)
+        .subscribe(
+          (res) => {
+            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
+            console.log(res)
+          },
+          (error) => {
+            console.log('error caught in batch detail update', error);
+          }
+        )
+    }
   }
 
   ngOnInit() {
     this.cs.tabincLimit = 2;
     this.CuiabBoardAppealFormInit()
+    this.getFormDetails()
   }
 
 }
