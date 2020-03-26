@@ -96,67 +96,67 @@ export class ClaimsApiService {
 
 
 
-  // // DE4614 Appeal Form start
-  // getClaimAppealList() {
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
-  // }
+  // DE4614 Appeal Form start
+  getClaimAppealList() {
+    return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
+  }
 
-  // getClaimAppeal(id){
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
-  // }
+  getClaimAppeal(id){
+    return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
+  }
 
-  // updateClaimAppeal(payloadData) {
-  //   return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
-  // }
-  // // DE4614 Appeal Form end
+  updateClaimAppeal(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
+  }
+  // DE4614 Appeal Form end
 
 
 
-  // // DE1545 Notice of Wages start
-  // getClaimAppealList() {
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
-  // }
+  // DE1545 Notice of Wages start
+  getWagesAfterAppealList() {
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealAll`);
+  }
 
-  // getClaimAppeal(id){
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
-  // }
+  getWagesAfterAppeal(id){
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealbyID/${id}`);
+  }
 
-  // updateClaimAppeal(payloadData) {
-  //   return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
-  // }
-  // // DDE1545 Notice of Wages end
+  updateWagesAfterAppeal(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/WagesAfterAppeal/AddandUpdateWagesAfterAppeal`, payloadData);
+  }
+  // DDE1545 Notice of Wages end
 
 
 
   // DE1545 Appeal Form start
-  getWagesAppealList() {
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealAll`);
+  getWagesList() {
+    return this.http.get(`${this.cls.ApiUrl}api/Wages/GetWagesAll`);
   }
 
-  getWagesAppeal(id){
-    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealbyID/${id}`);
+  getWages(id){
+    return this.http.get(`${this.cls.ApiUrl}api/Wages/GetWagesbyID/${id}`);
   }
 
-  updateWagesAppeal(payloadData) {
-    return this.http.post<any>(`${this.cls.ApiUrl}api/WagesAppeal/AddandUpdateWagesAppeal`, payloadData);
+  updateWages(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/Wages/AddandUpdateWages`, payloadData);
   }
   // DE1545 Appeal Form end
 
 
 
-  // // 1000M Appeal Form start
-  // getClaimAppealList() {
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
-  // }
+  // 1000M Appeal Form start
+  getDeterminationAppealList() {
+    return this.http.get(`${this.cls.ApiUrl}api/DeterminationAppeal/GetDeterminationAppealAll`);
+  }
 
-  // getClaimAppeal(id){
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
-  // }
+  getDeterminationAppeal(id){
+    return this.http.get(`${this.cls.ApiUrl}api/DeterminationAppeal/GetDeterminationAppealbyID/${id}`);
+  }
 
-  // updateClaimAppeal(payloadData) {
-  //   return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
-  // }
-  // // 1000M Appeal Form end
+  updateDeterminationAppeal(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/DeterminationAppeal/AddandUpdateDeterminationAppeal`, payloadData);
+  }
+  // 1000M Appeal Form end
 
 
   // Notice of Hearing start
@@ -191,19 +191,19 @@ export class ClaimsApiService {
 
 
 
-  // // Acknowledgement start
-  // getClaimAppealList() {
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
-  // }
+  // Acknowledgement start
+  getAcknowledgementList() {
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealAll  `);
+  }
 
-  // getClaimAppeal(id){
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
-  // }
+  getAcknowledgement(id){
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAfterAppeal/GetWagesAfterAppealbyID//${id}`);
+  }
 
-  // updateClaimAppeal(payloadData) {
-  //   return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
-  // }
-  // // Acknowledgement end
+  updateAcknowledgement(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}WagesAfterAppeal/AddandUpdateWagesAfterAppeal`, payloadData);
+  }
+  // Acknowledgement end
 
 
 
@@ -255,19 +255,19 @@ export class ClaimsApiService {
 
 
 
-  // // DE1919 Request for Wages start
-  // getClaimAppealList() {
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetclaimAppealAll`);
-  // }
+  // DE1919 Request for Wages start
+  getWagesAppealList() {
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealAll`);
+  }
 
-  // getClaimAppeal(id){
-  //   return this.http.get(`${this.cls.ApiUrl}api/ClaimAppeal/GetMasterApplicationbyId/${id}`);
-  // }
+  getWagesAppeal(id){
+    return this.http.get(`${this.cls.ApiUrl}api/WagesAppeal/GetWagesAppealbyID/${id}`);
+  }
 
-  // updateClaimAppeal(payloadData) {
-  //   return this.http.post<any>(`${this.cls.ApiUrl}api/ClaimAppeal/AddandUpdateclaimAppeal`, payloadData);
-  // }
-  // // DE1919 Request for Wages end
+  updateWagesAppeal(payloadData) {
+    return this.http.post<any>(`${this.cls.ApiUrl}api/WagesAppeal/AddandUpdateWagesAppeal`, payloadData);
+  }
+  // DE1919 Request for Wages end
 
 
 

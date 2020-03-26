@@ -1,10 +1,14 @@
 import { Component, OnInit,ElementRef,ViewChild,TemplateRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
+import { ClaimsApiService } from 'app/@services/claims-api.service'
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notice-of-wages',
@@ -16,14 +20,20 @@ export class NoticeOfWagesComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   // form setion var 
-  noticeOfWagesInitiateForm: FormGroup;
+  nofwForm: FormGroup;
   formSubmitted: boolean = false;
+
+  public formId: number ;
+  public nofwFormDetails : any = []
 
 
   constructor(
     public aps: AppService,
     public cs: ClaimsService,
     private fb: FormBuilder,
+    private cas: ClaimsApiService,
+    private tort: ToastrService,
+    private route: ActivatedRoute,
   ) {
 
   }
@@ -35,25 +45,68 @@ export class NoticeOfWagesComponent implements OnInit {
 
   // form section 
   NoticeOfWagesFormInit() {
-    this.noticeOfWagesInitiateForm = this.fb.group({
-      claimantName             : ['', Validators.required],
-      ssn                      : ['', Validators.required],
-      totalWages               : ['', Validators.required],
-      benefitsCharge           : ['', Validators.required],
+    this.nofwForm = this.fb.group({
+      id                   : ['', Validators.required],
+      claimId              : ['', Validators.required],
+      claimantName         : ['', Validators.required],
+      socialSecurityNumber : ['', Validators.required],
+      totalWages           : ['', Validators.required],
+      benefitsCharge       : ['', Validators.required],
     });
   }
 
-  get fc() { return this.noticeOfWagesInitiateForm.controls; }
+  get fc() { return this.nofwForm.controls; }
+  get fv() { return this.nofwForm.value; }
+  get fvalid() { return this.nofwForm.valid; }
 
-  submitNoticeOfWagesInitiateForm() {
+  submitNofwForm() {
     this.formSubmitted = true;
-    if (this.noticeOfWagesInitiateForm.invalid) { return; }
-    console.log(this.noticeOfWagesInitiateForm.value)
+    if (this.nofwForm.invalid) { return; }
+  }
+
+  setFormvalues(data) {
+    this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
+    this.fc.claimantName.setValue(data.claimantName)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
+    this.fc.totalWages.setValue(data.totalWages)
+    this.fc.benefitsCharge.setValue(data.benefitsCharge)
+  }
+
+  getFormDetails() {
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) ;
+    this.formId = 1;
+    this.cas.getWagesAfterAppeal(this.formId)
+      .subscribe(
+        (res) => {
+          this.nofwFormDetails = res;
+          this.setFormvalues(this.nofwFormDetails);
+        },
+        (error) => {
+          console.log('error caught in get claim details', error);
+        }
+      )
+  }
+
+  saveForm() {
+    if (this.fvalid) { 
+      this.cas.updateWagesAfterAppeal(this.fv)
+      .subscribe(
+        (res) => {
+          this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
+          console.log(res)
+        },
+        (error) => {
+          console.log('error caught in batch detail update', error);
+        }
+      )
+    }
   }
 
   ngOnInit() {
     this.cs.tabincLimit = 2;
-    this.NoticeOfWagesFormInit()
+    this.NoticeOfWagesFormInit();
+    this.getFormDetails();
   }
 
 }

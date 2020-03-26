@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
@@ -22,11 +21,11 @@ export class De4614AppealFormComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   
 
-  public claimId: number ;
+  public formId: number ;
   public appealFormDetails : any = []
 
   // form setion var 
-  public de4614AppealInitiateForm: FormGroup;
+  public De4614AppealForm: FormGroup;
   public formSubmitted: boolean = false;
 
   
@@ -38,7 +37,6 @@ export class De4614AppealFormComponent implements OnInit {
     private cas: ClaimsApiService,
     private tort: ToastrService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
   ){
 
   }
@@ -50,43 +48,61 @@ export class De4614AppealFormComponent implements OnInit {
 
   // form section 
   de4614AppealFormInit() {
-    this.de4614AppealInitiateForm = this.fb.group({
-      officeAddress          : ['', Validators.required],
-      lausdFaxDate           : ['', Validators.required],
-      lausdAcNo              : ['', Validators.required],
-      ClaimDateByb           : ['', Validators.required],
-      de4614Date             : ['', Validators.required],
-      claimantName           : ['', Validators.required],
-      claimantSSN            : ['', Validators.required],
-      lausdeInfo             : ['', Validators.required],
-      printName              : ['', Validators.required],
-      phoneNo                : ['', Validators.required],
-      signature              : ['', Validators.required],
-      title                  : ['', Validators.required],
-      date                   : ['', Validators.required],
+    this.De4614AppealForm = this.fb.group({
+      id                          : ['', Validators.required],
+      claimId                     : ['', Validators.required],
+      address                     : ['', Validators.required],
+      lausdFaxDate                : ['', Validators.required],
+      lausdAccountNumber          : ['', Validators.required],
+      bybClaimDate                : ['', Validators.required],
+      formDate                    : ['', Validators.required],
+      claimantName                : ['', Validators.required],
+      socialSecurityNumber        : ['', Validators.required],
+      lausdEligibilityInformation : ['', Validators.required],
+      printName                   : ['', Validators.required],
+      phoneNumber                 : ['', Validators.required],
+      signature                   : ['', Validators.required],
+      title                       : ['', Validators.required],
+      date                        : ['', Validators.required],
     });
   }
 
-  get fc() { return this.de4614AppealInitiateForm.controls; }
+  get fc() { return this.De4614AppealForm.controls; }
+  get fv() { return this.De4614AppealForm.value; }
+  get fvalid() { return this.De4614AppealForm.valid; }
 
-  submitDE4614AppealInitiateForm() {
+  submitDe4614AppealForm() {
     this.formSubmitted = true;
-    if (this.de4614AppealInitiateForm.invalid) { return; }
+    if (this.De4614AppealForm.invalid) { return; }
   }
 
-
-  appealFormSetValues(data) {
-
+  setFormvalues(data) {
+    this.fc.id.setValue(data.id)
+    this.fc.claimId.setValue(data.claimId)
+    this.fc.address.setValue(data.address)
+    this.fc.lausdFaxDate.setValue(this.aps.formatDate(data.lausdFaxDate))
+    this.fc.lausdAccountNumber.setValue(data.lausdAccountNumber)
+    this.fc.bybClaimDate.setValue(this.aps.formatDate(data.bybClaimDate))
+    this.fc.formDate.setValue(this.aps.formatDate(data.formDate))
+    this.fc.claimantName.setValue(data.claimantName)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
+    this.fc.lausdEligibilityInformation.setValue(data.lausdEligibilityInformation)
+    this.fc.printName.setValue(data.printName)
+    this.fc.phoneNumber.setValue(data.phoneNumber)
+    this.fc.signature.setValue(data.signature)
+    this.fc.title.setValue(data.title)
+    this.fc.date.setValue(this.aps.formatDate(data.date))
   }
 
-  getAppealFormDetails() {
-    // this.claimId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.claimId = 2 
-    this.cas.getClaim(this.claimId)
+  getFormDetails() {
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
+    this.formId = 4
+    this.cas.getClaimAppeal(this.formId)
       .subscribe(
         (res) => {
           this.appealFormDetails = res;
-          this.appealFormSetValues(this.appealFormDetails)
+          this.setFormvalues(this.appealFormDetails)
         },
         (error) => {
           console.log('error caught in get claim details', error)
@@ -94,9 +110,15 @@ export class De4614AppealFormComponent implements OnInit {
       )
   }
 
-  saveAppealForm() {
-    if (this.de4614AppealInitiateForm.valid) { 
-      this.cas.updateClaim(this.de4614AppealInitiateForm.value)
+  saveForm() {
+    if (this.fvalid) { 
+
+      this.fv.lausdFaxDate = this.aps.formatDate(this.fv.lausdFaxDate)
+      this.fv.bybClaimDate = this.aps.formatDate(this.fv.bybClaimDate)
+      this.fv.formDate     = this.aps.formatDate(this.fv.formDate    )
+      this.fv.date         = this.aps.formatDate(this.fv.date        )
+
+      this.cas.updateClaimAppeal(this.fv)
       .subscribe(
         (res) => {
           this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
@@ -112,6 +134,7 @@ export class De4614AppealFormComponent implements OnInit {
   ngOnInit() {
     this.cs.tabincLimit = 2;
     this.de4614AppealFormInit()
+    this.getFormDetails()
   }
 
 
