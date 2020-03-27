@@ -92,7 +92,7 @@ export class De1101ResponseFormComponent implements OnInit {
     this.fc.phoneNumber.setValue(data.phoneNumber)
     this.fc.signature.setValue(data.signature)
     this.fc.title.setValue(data.title)
-    this.fc.date.setValue(data.date)
+    this.fc.date.setValue(this.aps.formatDate(data.date))
     this.fc.attachedDocument.setValue(data.attachedDocument)
   }
 

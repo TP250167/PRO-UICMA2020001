@@ -51,7 +51,7 @@ export class ResponseToEmployerComponent implements OnInit {
       claimantName         : ['', Validators.required],
       socialSecurityNumber : ['', Validators.required],
       dateMailed           : ['', Validators.required],
-      benefitYearBegan     : ['', Validators.required],
+      benefitYearBeganDate     : ['', Validators.required],
     });
   }
 
@@ -70,7 +70,7 @@ export class ResponseToEmployerComponent implements OnInit {
     this.fc.claimantName.setValue(data.claimantName)
     this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
     this.fc.dateMailed.setValue(this.aps.formatDate(data.dateMailed))
-    this.fc.benefitYearBegan.setValue(this.aps.formatDate(data.benefitYearBegan))
+    this.fc.benefitYearBeganDate.setValue(this.aps.formatDate(data.benefitYearBeganDate))
   }
 
   getFormDetails() {
@@ -89,8 +89,8 @@ export class ResponseToEmployerComponent implements OnInit {
   }
 
   saveForm() {
-    this.fv.dateMailed           = this.aps.formatDate(this.fv.dateMailed          )
-    this.fv.benefitYearBegan = this.aps.formatDate(this.fv.benefitYearBegan)
+    this.fv.dateMailed       = this.aps.formatDate(this.fv.dateMailed      )
+    this.fv.benefitYearBeganDate = this.aps.formatDate(this.fv.benefitYearBeganDate)
 
     console.log(this.fv)
     if (this.fvalid) {

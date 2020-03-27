@@ -79,7 +79,7 @@ export class DE1545AppealFormComponent implements OnInit {
     this.fc.fieldOfficeAddress.setValue(data.fieldOfficeAddress)
     this.fc.lausdFaxDate.setValue(this.aps.formatDate(data.lausdFaxDate))
     this.fc.lausdAccountNumber.setValue(data.lausdAccountNumber)
-    this.fc.bybClaimDate.setValue(data.bybClaimDate)
+    this.fc.bybClaimDate.setValue(this.aps.formatDate(data.bybClaimDate))
     this.fc.claimantName.setValue(data.claimantName)
     this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
     this.fc.lausdEligibilityInformation.setValue(data.lausdEligibilityInformation)
@@ -109,7 +109,11 @@ export class DE1545AppealFormComponent implements OnInit {
   saveForm() {
     console.log(this.fv)
     if (this.fvalid) {
-      console.log(this.fv,"test")
+
+      this.fv.lausdFaxDate = this.aps.formatDate(this.fv.lausdFaxDate)
+      this.fv.bybClaimDate = this.aps.formatDate(this.fv.bybClaimDate)
+      this.fv.date = this.aps.formatDate(this.fv.date)
+
       this.cas.updateWagesAppeal(this.fv)
         .subscribe(
           (res) => {

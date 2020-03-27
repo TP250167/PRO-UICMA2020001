@@ -43,16 +43,16 @@ export class AljDecisionComponent implements OnInit {
     this.aljdForm = this.fb.group({
       id                    : [''                     ],
       claimId               : [''                     ],
-      claimName             : ['', Validators.required],
+      claimantName          : ['', Validators.required],
       employerInfo          : ['', Validators.required],
       aljName               : ['', Validators.required],
       mailDate              : ['', Validators.required],
       caseNumber            : ['', Validators.required],
       formerlyCaseNumber    : ['', Validators.required],
       applicationReopenDate : ['', Validators.required],
-      hearingDate           : ['', Validators.required],
+      placeOfHearingDate    : ['', Validators.required],
       hearingPlace          : ['', Validators.required],
-      partiesAppering       : ['', Validators.required],
+      partiesAppearing      : ['', Validators.required],
       decision              : ['', Validators.required],
     });
   }
@@ -70,16 +70,16 @@ export class AljDecisionComponent implements OnInit {
   setFormvalues(data) {
     this.fc.id.setValue(data.id)
     this.fc.claimId.setValue(data.claimId)
-    this.fc.claimName.setValue(data.claimName)
+    this.fc.claimantName.setValue(data.claimantName)
     this.fc.employerInfo.setValue(data.employerInfo)
     this.fc.aljName.setValue(data.aljName)
     this.fc.mailDate.setValue(this.aps.formatDate(data.mailDate)) 
     this.fc.caseNumber.setValue(data.caseNumber)
     this.fc.formerlyCaseNumber.setValue(data.formerlyCaseNumber)
     this.fc.applicationReopenDate.setValue(this.aps.formatDate(data.applicationReopenDate))
-    this.fc.hearingDate.setValue(this.aps.formatDate(data.hearingDate))
+    this.fc.placeOfHearingDate.setValue(this.aps.formatDate(data.placeOfHearingDate))
     this.fc.hearingPlace.setValue(data.hearingPlace)
-    this.fc.partiesAppering.setValue(data.partiesAppering)
+    this.fc.partiesAppearing.setValue(data.partiesAppearing)
     this.fc.decision.setValue(data.decision)
   }
 
@@ -102,7 +102,7 @@ export class AljDecisionComponent implements OnInit {
     if (this.fvalid) {
  
       this.fv.mailDate    = this.aps.formatDate(this.fv.mailDate   )
-      this.fv.hearingDate = this.aps.formatDate(this.fv.hearingDate)
+      this.fv.placeOfHearingDate = this.aps.formatDate(this.fv.placeOfHearingDate)
 
       this.cas.updateALJDecision(this.aljdForm.value)
         .subscribe(
