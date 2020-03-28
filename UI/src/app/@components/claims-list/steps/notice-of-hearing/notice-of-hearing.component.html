@@ -74,7 +74,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="hearingDate">Hearing Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="hearingDate" name="hearingDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.hearingDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="hearingDate" name="hearingDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted && fc.hearingDate.errors }">
                                                         <div *ngIf="fc.hearingDate.touched && fc.hearingDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.hearingDate.errors">This field is required
                                                             </div>
@@ -83,7 +83,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="hearingTime">Hearing Time</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" formControlName="hearingTime" name="hearingTime" [ngClass]="{ 'is-invalid': formSubmitted && fc.hearingTime.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="hearingTime" name="hearingTime" [ngClass]="{ 'is-invalid': formSubmitted && fc.hearingTime.errors }">
                                                         <div *ngIf="fc.hearingTime.touched && fc.hearingTime.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.hearingTime.errors">This field is required
                                                             </div>

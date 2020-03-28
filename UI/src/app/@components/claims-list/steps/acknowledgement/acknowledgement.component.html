@@ -86,7 +86,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="dateMailed">Date Mailed</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="dateMailed" name="dateMailed" [ngClass]="{ 'is-invalid': formSubmitted && fc.dateMailed.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="dateMailed" name="dateMailed" [ngClass]="{ 'is-invalid': formSubmitted && fc.dateMailed.errors }">
                                                         <div *ngIf="fc.dateMailed.touched && fc.dateMailed.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.dateMailed.errors">This field is required
                                                             </div>

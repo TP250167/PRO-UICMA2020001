@@ -83,7 +83,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="lausdMailDate">LAUSD Mail Date</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="lausdMailDate" name="lausdMailDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted  && fc.lausdMailDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="lausdMailDate" name="lausdMailDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted  && fc.lausdMailDate.errors }">
                                                         <div *ngIf="fc.lausdMailDate.touched && fc.lausdMailDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.lausdMailDate.errors">This field is required
                                                             </div>
@@ -91,7 +91,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="bybClaimDate">Claim Date - BYB</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="bybClaimDate" name="bybClaimDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="bybClaimDate" name="bybClaimDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
                                                         <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.bybClaimDate.errors">This field is required
                                                             </div>
@@ -99,7 +99,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="effectiveDateOfClaim">Effective Date of Claim</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="effectiveDateOfClaim" name="effectiveDateOfClaim" [ngClass]="{ 'is-invalid': formSubmitted  && fc.effectiveDateOfClaim.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="effectiveDateOfClaim" name="effectiveDateOfClaim" [ngClass]="{ 'is-invalid': formSubmitted  && fc.effectiveDateOfClaim.errors }">
                                                         <div *ngIf="fc.effectiveDateOfClaim.touched && fc.effectiveDateOfClaim.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.effectiveDateOfClaim.errors">This field is required
                                                             </div>
@@ -107,7 +107,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="dueDate">1101 Mail Date/Due Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="dueDate" name="dueDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dueDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="dueDate" name="dueDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dueDate.errors }">
                                                         <div *ngIf="fc.dueDate.touched && fc.dueDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.dueDate.errors">This field is required
                                                             </div>
@@ -157,7 +157,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="date">Date</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted  && fc.date.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted  && fc.date.errors }">
                                                         <div *ngIf="fc.date.touched && fc.date.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.date.errors">This field is required
                                                             </div>

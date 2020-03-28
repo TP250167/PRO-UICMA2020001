@@ -77,7 +77,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="mailDate">Mail Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="mailDate" name="mailDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="mailDate" name="mailDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailDate.errors }">
                                                         <div *ngIf="fc.mailDate.touched && fc.mailDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.mailDate.errors">This field is required
                                                             </div>
@@ -104,7 +104,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="applicationReopenDate">Application to Reopen</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="applicationReopenDate" name="applicationReopenDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.applicationReopenDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="applicationReopenDate" name="applicationReopenDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.applicationReopenDate.errors }">
                                                         <div *ngIf="fc.applicationReopenDate.touched && fc.applicationReopenDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.applicationReopenDate.errors">This field is required
                                                             </div>
@@ -113,7 +113,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="placeOfHearingDate">Date of Hearing</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="placeOfHearingDate" name="placeOfHearingDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.placeOfHearingDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="placeOfHearingDate" name="placeOfHearingDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.placeOfHearingDate.errors }">
                                                         <div *ngIf="fc.placeOfHearingDate.touched && fc.placeOfHearingDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.placeOfHearingDate.errors">This field is required
                                                             </div>

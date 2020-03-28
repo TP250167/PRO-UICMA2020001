@@ -49,7 +49,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="mailingDate">Mailing Date</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="mailingDate" name="mailingDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailingDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="mailingDate" name="mailingDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted && fc.mailingDate.errors }">
                                                         <div *ngIf="fc.mailingDate.touched && fc.mailingDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.mailingDate.errors || formSubmitted">This field is required </div>
                                                         </div>
@@ -84,7 +84,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="deadLineDate">Deadline Date</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="deadLineDate" name="deadLineDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.deadLineDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="deadLineDate" name="deadLineDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted && fc.deadLineDate.errors }">
                                                         <div *ngIf="fc.deadLineDate.touched && fc.deadLineDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.deadLineDate.errors">This field is required
                                                             </div>

@@ -57,7 +57,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="lausdFaxDate">LAUSD Fax Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="lausdFaxDate" name="lausdFaxDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted && fc.lausdFaxDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="lausdFaxDate" name="lausdFaxDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted && fc.lausdFaxDate.errors }">
                                                         <div *ngIf="fc.lausdFaxDate.touched && fc.lausdFaxDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.lausdFaxDate.errors">This field is required
                                                             </div>
@@ -76,7 +76,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="bybClaimDate">Claim Date BYB</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" formControlName="bybClaimDate" name="bybClaimDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="bybClaimDate" name="bybClaimDate" [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
                                                         <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.bybClaimDate.errors">This field is required
                                                             </div>
@@ -155,7 +155,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="userDate">Date</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="userDate" name="userDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted  && fc.userDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="userDate" name="userDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted  && fc.userDate.errors }">
                                                         <div *ngIf="fc.userDate .touched && fc.userDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.userDate.errors">This field is required
                                                             </div>
@@ -164,7 +164,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="partyFilingAppeal">Party Filing Appeal</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker  formControlName="partyFilingAppeal" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" name="partyFilingAppeal" [ngClass]="{ 'is-invalid': formSubmitted  && fc.partyFilingAppeal.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker  formControlName="partyFilingAppeal" [bsConfig]="aps.ngxcalConfig" name="partyFilingAppeal" [ngClass]="{ 'is-invalid': formSubmitted  && fc.partyFilingAppeal.errors }">
                                                         <div *ngIf="fc.partyFilingAppeal.touched && fc.partyFilingAppeal.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.partyFilingAppeal.errors">This field is required
                                                             </div>

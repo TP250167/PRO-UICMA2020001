@@ -51,7 +51,7 @@
                                                         <label for="mailDate">Mail Date</label>
                                                         <input type="text" autocomplete="off"
                                                             class="form-control cc-datepicker" bsDatepicker
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             formControlName="mailDate" name="mailDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.mailDate.errors }">
                                                         <div *ngIf="fc.mailDate.touched && fc.mailDate.errors || formSubmitted"
@@ -91,7 +91,7 @@
                                                         <label for="claimEffectiveDate">Claim Effective Date</label>
                                                         <input type="text" autocomplete="off"
                                                             class="form-control cc-datepicker" bsDatepicker
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             formControlName="claimEffectiveDate"
                                                             name="claimEffectiveDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.claimEffectiveDate.errors }">

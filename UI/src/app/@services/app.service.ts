@@ -12,6 +12,8 @@ export class AppService {
 
   modalRef: BsModalRef;
 
+  ngxcalConfig:any = { containerClass: 'theme-blue', showWeekNumbers:false , dateInputFormat: 'MM-DD-YYYY'} 
+
   constructor(
     private modalService: BsModalService,
     private datePipe: DatePipe

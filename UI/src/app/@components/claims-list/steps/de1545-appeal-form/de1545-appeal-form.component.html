@@ -70,7 +70,7 @@
                                                         <input type="text" autocomplete="off"
                                                             class="form-control cc-datepicker" bsDatepicker
                                                             formControlName="lausdFaxDate" name="lausdFaxDate"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.lausdFaxDate.errors }">
                                                         <div *ngIf="fc.lausdFaxDate.touched && fc.lausdFaxDate.errors || formSubmitted"
                                                             class="invalid-feedback">
@@ -99,7 +99,7 @@
                                                         <input type="text" autocomplete="off"
                                                             class="form-control cc-datepicker" bsDatepicker
                                                             formControlName="bybClaimDate"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             name="bybClaimDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
                                                         <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted "
@@ -204,7 +204,7 @@
                                                         <input type="text" autocomplete="off"
                                                             class="form-control cc-datepicker" bsDatepicker
                                                             formControlName="date" name="date"
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted  && fc.date.errors }">
                                                         <div *ngIf="fc.date .touched && fc.date.errors || formSubmitted "
                                                             class="invalid-feedback">

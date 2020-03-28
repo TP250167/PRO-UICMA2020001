@@ -52,7 +52,7 @@
                                                         <label for="mailedDate">Date Mailed</label>
                                                         <input type="text" autocomplete="off" class="form-control cc-datepicker"
                                                             bsDatepicker formControlName="mailedDate" name="mailedDate "
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.mailedDate.errors }">
                                                         <div *ngIf=" fc.mailedDate.touched && fc.mailedDate.errors || formSubmitted"
                                                             class="invalid-feedback">
@@ -63,7 +63,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="benefitYearBegan">Benefit Year Began</label>
-                                                        <input type="text" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" class="form-control cc-datepicker" formControlName="benefitYearBegan"
+                                                        <input type="text" bsDatepicker [bsConfig]="aps.ngxcalConfig" class="form-control cc-datepicker" formControlName="benefitYearBegan"
                                                             name="benefitYearBegan"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.benefitYearBegan.errors }">
                                                         <div *ngIf="fc.benefitYearBegan.touched && fc.benefitYearBegan.errors || formSubmitted"

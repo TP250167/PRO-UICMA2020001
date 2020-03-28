@@ -64,7 +64,7 @@
                                                         <label for="issuedDate">Issued Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
                                                             bsDatepicker
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             formControlName="issuedDate" name="issuedDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.issuedDate.errors }">
                                                         <div *ngIf="fc.issuedDate.touched && fc.issuedDate.errors || formSubmitted"

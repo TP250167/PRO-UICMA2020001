@@ -66,7 +66,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="dateMailed">Date Mailed</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="dateMailed" name="dateMailed" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dateMailed.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="dateMailed" name="dateMailed" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dateMailed.errors }">
                                                         <div *ngIf="fc.dateMailed.touched && fc.dateMailed.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.dateMailed.errors">This field is required
                                                             </div>
@@ -75,7 +75,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="benefitYearBeganDate">Benefit Year Began</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="benefitYearBeganDate" name="benefitYearBeganDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }" [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitYearBeganDate.errors }">
+                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="benefitYearBeganDate" name="benefitYearBeganDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitYearBeganDate.errors }">
                                                         <div *ngIf="fc.benefitYearBeganDate.touched && fc.benefitYearBeganDate.errors || formSubmitted " class="invalid-feedback">
                                                             <div *ngIf="fc.benefitYearBeganDate.errors">This field is required
                                                             </div>

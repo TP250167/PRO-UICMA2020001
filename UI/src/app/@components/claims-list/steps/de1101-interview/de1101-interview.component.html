@@ -91,7 +91,7 @@
                                                         <input type="text" class="form-control cc-datepicker"
                                                             formControlName="bybClaimDate" name="bybClaimDate"
                                                             autocomplete="off" bsDatepicker
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
                                                         <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted "
                                                             class="invalid-feedback">
@@ -106,7 +106,7 @@
                                                         <input type="text" class="form-control cc-datepicker"
                                                             formControlName="effectiveDate" name="effectiveDate"
                                                             autocomplete="off" bsDatepicker
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted  && fc.effectiveDate.errors }">
                                                         <div *ngIf="fc.effectiveDate.touched && fc.effectiveDate.errors || formSubmitted "
                                                             class="invalid-feedback">
@@ -120,7 +120,7 @@
                                                         <input type="text" class="form-control cc-datepicker"
                                                             formControlName="lausdFaxDate" name="lausdFaxDate"
                                                             autocomplete="off" bsDatepicker
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false }"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.lausdFaxDate.errors }">
                                                         <div *ngIf="fc.lausdFaxDate.touched && fc.lausdFaxDate.errors || formSubmitted"
                                                             class="invalid-feedback">
@@ -254,7 +254,7 @@
                                                         <input type="text" class="form-control cc-datepicker"
                                                             formControlName="date" name="date" autocomplete="off"
                                                             bsDatepicker
-                                                            [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}"
+                                                            [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted  && fc.date.errors }">
                                                         <div *ngIf="fc.date.touched && fc.date.errors || formSubmitted "
                                                             class="invalid-feedback">

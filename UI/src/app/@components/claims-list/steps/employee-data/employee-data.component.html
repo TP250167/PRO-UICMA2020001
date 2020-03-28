@@ -48,7 +48,7 @@
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <label for="date">Date</label>
-                                                        <input type="text"  autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.date.errors }">
+                                                        <input type="text"  autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="date" name="date" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted && fc.date.errors }">
                                                         <div *ngIf="fc.date.touched && fc.date.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.date.errors">This field is required </div>
                                                         </div>
@@ -56,7 +56,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="bybClaimDate">BYB</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="bybClaimDate" name="bybClaimDate" [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" [ngClass]="{ 'is-invalid': formSubmitted && fc.bybClaimDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker formControlName="bybClaimDate" name="bybClaimDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted && fc.bybClaimDate.errors }">
                                                         <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.bybClaimDate.errors || formSubmitted">This field is required </div>
                                                         </div>
@@ -91,7 +91,7 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="userCompletedDate">Date Completed</label>
-                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="{ containerClass: 'theme-blue', showWeekNumbers:false}" formControlName="userCompletedDate" name="userCompletedDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.userCompletedDate.errors }">
+                                                        <input type="text" class="form-control cc-datepicker" bsDatepicker [bsConfig]="aps.ngxcalConfig" formControlName="userCompletedDate" name="userCompletedDate" [ngClass]="{ 'is-invalid': formSubmitted && fc.userCompletedDate.errors }">
                                                         <div *ngIf="fc.userCompletedDate.touched && fc.userCompletedDate.errors || formSubmitted" class="invalid-feedback">
                                                             <div *ngIf="fc.userCompletedDate.errors">This field is required
                                                             </div>
