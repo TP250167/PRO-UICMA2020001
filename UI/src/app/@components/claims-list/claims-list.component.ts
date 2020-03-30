@@ -18,7 +18,7 @@ export class ClaimsListComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private acs: ClaimsApiService
-  ) {}
+  ) { }
 
   getClaimsDetails() {
     this.dtOptions = {
@@ -26,28 +26,16 @@ export class ClaimsListComponent implements OnInit {
       pageLength: 5
     };
 
-    this.acs.getClaimsList(2020, "Active").subscribe(
-      res => {
-        this.claims = res;
-        this.claims = this.claims.newClaims;
-        console.log(this.claims);
-      },
-      error => {
-        console.log("error caught in claim list component", error);
-      }
-    );
+    this.acs.getClaimsList(2020, "Active").subscribe(res => {
+      this.claims = res;
+      this.claims = this.claims.newClaims;
+    });
 
-    this.acs.getClaimsExceptionList(2020, "Exception").subscribe(
-      res => {
-        this.claimsException = res;
-        this.claimsException = this.claimsException.newClaims;
-
-        console.log(this.claimsException);
-      },
-      error => {
-        console.log("error caught in claim list component", error);
-      }
-    );
+    this.acs.getClaimsExceptionList(2020, "Exception").subscribe(res => {
+      this.claimsException = res;
+      this.claimsException = this.claimsException.newClaims;
+    });
+    
   }
 
   gotoClaim(id) {

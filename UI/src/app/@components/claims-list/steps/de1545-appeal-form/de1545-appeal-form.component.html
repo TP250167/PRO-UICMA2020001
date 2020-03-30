@@ -98,8 +98,7 @@
                                                         <label for="bybClaimDate">Claim Date - BYB</label>
                                                         <input type="text" autocomplete="off"
                                                             class="form-control cc-datepicker" bsDatepicker
-                                                            formControlName="bybClaimDate"
-                                                            [bsConfig]="aps.ngxcalConfig"
+                                                            formControlName="bybClaimDate" [bsConfig]="aps.ngxcalConfig"
                                                             name="bybClaimDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted  && fc.bybClaimDate.errors }">
                                                         <div *ngIf="fc.bybClaimDate.touched && fc.bybClaimDate.errors || formSubmitted "
@@ -219,7 +218,8 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim
+                                                        Info</button>
                                                 </div>
 
                                             </form>

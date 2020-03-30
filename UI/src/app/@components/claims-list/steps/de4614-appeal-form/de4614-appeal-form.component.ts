@@ -8,9 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
-
 @Component({
   selector: 'app-de4614-appeal-form',
   templateUrl: './de4614-appeal-form.component.html',
@@ -20,50 +17,47 @@ export class De4614AppealFormComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   
-
-  public formId: number ;
-  public appealFormDetails : any = []
-
   // form setion var 
   public De4614AppealForm: FormGroup;
   public formSubmitted: boolean = false;
-
   
+  public appealFormDetails: any = []
+  public formId: number;
+
 
   constructor(
-    public aps: AppService,
-    public cs:  ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
-  ){
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
+  ) {
 
   }
 
 
-  itc() { this.cs.increaseTabCount(this.staticTabs) ; } 
+  itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
 
 
   // form section 
   de4614AppealFormInit() {
     this.De4614AppealForm = this.fb.group({
-      id                          : ['', Validators.required],
-      claimId                     : ['', Validators.required],
-      address                     : ['', Validators.required],
-      lausdFaxDate                : ['', Validators.required],
-      lausdAccountNumber          : ['', Validators.required],
-      bybClaimDate                : ['', Validators.required],
-      formDate                    : ['', Validators.required],
-      claimantName                : ['', Validators.required],
-      socialSecurityNumber        : ['', Validators.required],
-      lausdEligibilityInformation : ['', Validators.required],
-      printName                   : ['', Validators.required],
-      phoneNumber                 : ['', Validators.required],
-      signature                   : ['', Validators.required],
-      title                       : ['', Validators.required],
-      date                        : ['', Validators.required],
+      id                         : ['', Validators.required],
+      claimId                    : ['', Validators.required],
+      address                    : ['', Validators.required],
+      lausdFaxDate               : ['', Validators.required],
+      lausdAccountNumber         : ['', Validators.required],
+      bybClaimDate               : ['', Validators.required],
+      formDate                   : ['', Validators.required],
+      claimantName               : ['', Validators.required],
+      socialSecurityNumber       : ['', Validators.required],
+      lausdEligibilityInformation: ['', Validators.required],
+      printName                  : ['', Validators.required],
+      phoneNumber                : ['', Validators.required],
+      signature                  : ['', Validators.required],
+      title                      : ['', Validators.required],
+      date                       : ['', Validators.required],
     });
   }
 
@@ -99,36 +93,27 @@ export class De4614AppealFormComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
     this.formId = 4
     this.cas.getClaimAppeal(this.formId)
-      .subscribe(
-        (res) => {
-          this.appealFormDetails = res;
-          this.setFormvalues(this.appealFormDetails)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.appealFormDetails = res;
+        this.setFormvalues(this.appealFormDetails)
+      })
   }
 
   saveForm() {
-    if (this.fvalid) { 
+
+    if (this.fvalid) {
 
       this.fv.lausdFaxDate = this.aps.formatDate(this.fv.lausdFaxDate)
       this.fv.bybClaimDate = this.aps.formatDate(this.fv.bybClaimDate)
-      this.fv.formDate     = this.aps.formatDate(this.fv.formDate    )
-      this.fv.date         = this.aps.formatDate(this.fv.date        )
+      this.fv.formDate = this.aps.formatDate(this.fv.formDate)
+      this.fv.date = this.aps.formatDate(this.fv.date)
 
       this.cas.updateClaimAppeal(this.fv)
-      .subscribe(
-        (res) => {
-          this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-          console.log(res)
-        },
-        (error) => {
-          console.log('error caught in batch detail update', error)
-        }
-      )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+
   }
 
   ngOnInit() {

@@ -8,8 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService  } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-de1101-interview',
   templateUrl: './de1101-interview.component.html',
@@ -25,22 +23,18 @@ export class De1101InterviewComponent implements OnInit {
   public De1101ivFormDetail: any = []
   public formId: number;
 
-
   constructor(
-    public aps: AppService,
-    public cs:  ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
   ){
 
   }
 
-
   itc() { this.cs.increaseTabCount(this.staticTabs) ; } 
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
-
 
   // form section 
   de1101InterviewFormInit() {
@@ -101,20 +95,14 @@ export class De1101InterviewComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
     this.formId = 11
     this.cas.getClaimInterview(this.formId)
-      .subscribe(
-        (res) => {
-          this.De1101ivFormDetail = res;
-          console.log(this.De1101ivFormDetail)
-          this.setFormvalues(this.De1101ivFormDetail)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.De1101ivFormDetail = res;
+        this.setFormvalues(this.De1101ivFormDetail)
+      })
   }
 
-
   saveForm() {
+
     if (this.fvalid) {
 
       this.fv.lausdFaxDate = this.aps.formatDate(this.fv.lausdFaxDate)
@@ -123,16 +111,11 @@ export class De1101InterviewComponent implements OnInit {
       this.fv.date = this.aps.formatDate(this.fv.date)
 
       this.cas.updateClaimInterview(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+    
   }
 
   ngOnInit() {

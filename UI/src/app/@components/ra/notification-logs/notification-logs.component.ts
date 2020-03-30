@@ -22,8 +22,7 @@ export class NotificationLogsComponent implements OnInit {
   public dtOptions: DataTables.Settings = {};
   public loglist: any = [];
 
-  dtTrigger: Subject<any> = new Subject();
-
+  public dtTrigger: Subject<any> = new Subject();
 
   public batchVal: number;
   public batchList: any = [];
@@ -41,27 +40,17 @@ export class NotificationLogsComponent implements OnInit {
 
   getBatchList() {
     this.ras.getAllBatchList()
-      .subscribe(
-        (res) => {
-          this.batchList = res;
-        },
-        (error) => {
-          console.log('error caught in get batch list', error)
-        }
-      )
+      .subscribe((res) => {
+        this.batchList = res;
+      })
   }
 
   getBatcheInfo(id) {
     this.ras.getBatchDetails(id)
-      .subscribe(
-        (res) => {
-          this.batchInfo = res;
-          this.raNotificationList(this.batchInfo.id)
-        },
-        (error) => {
-          console.log('error caught in get batch details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.batchInfo = res;
+        this.raNotificationList(this.batchInfo.id)
+      })
   }
 
   raNotificationList(id) {
@@ -75,11 +64,7 @@ export class NotificationLogsComponent implements OnInit {
       .subscribe(
         (res) => {
           this.loglist = res;
-          console.log(this.loglist)
           this.dtTrigger.next();
-        },
-        (error) => {
-          console.log('error caught in batch creation', error)
         }
       )
   }
@@ -89,16 +74,10 @@ export class NotificationLogsComponent implements OnInit {
       .then((dtInstance: DataTables.Api) => {
         dtInstance.destroy();
         this.ras.getAllDeliverdRecipient(id)
-          .subscribe(
-            (res) => {
-              this.loglist = res;
-              this.dtTrigger.next();
-              console.log(res)
-            },
-            (error) => {
-              console.log('error caught in batch creation', error)
-            }
-          )
+          .subscribe((res) => {
+            this.loglist = res;
+            this.dtTrigger.next();
+          })
       });
   }
 
@@ -107,23 +86,16 @@ export class NotificationLogsComponent implements OnInit {
       .then((dtInstance: DataTables.Api) => {
         dtInstance.destroy();
         this.ras.getAllFailedRecipient(id)
-          .subscribe(
-            (res) => {
-              this.loglist = res;
-              this.dtTrigger.next();
-              console.log(res)
-            },
-            (error) => {
-              console.log('error caught in batch creation', error)
-            }
-          )
+          .subscribe((res) => {
+            this.loglist = res;
+            this.dtTrigger.next();
+          })
       });
   }
 
   rerenderDataTables(id): void {
     this.dtElement.dtInstance
       .then((dtInstance: DataTables.Api) => {
-        console.log(dtInstance)
         dtInstance.destroy();
         this.getBatcheInfo(id)
       });
@@ -131,17 +103,13 @@ export class NotificationLogsComponent implements OnInit {
 
   downloadCsv(id) {
     this.ras.getAllFailedRecipient(id)
-      .subscribe(
-        (res) => {
-          let csvData = res; 
-          if(Object.keys(csvData).length == 0) { 
-            csvData = [{"message":'No Data Available'}]
-          } 
-          console.log(csvData)
-          this.exs.downloadFile(csvData, 'failed_delivery.csv')
-        },
-        (error) => { console.log('error caught in download csv creation', error) }
-      )
+      .subscribe((res) => {
+        let csvData = res;
+        if (Object.keys(csvData).length == 0) {
+          csvData = [{ "message": 'No Data Available' }]
+        }
+        this.exs.downloadFile(csvData, 'failed_delivery.csv')
+      })
   }
 
   ngOnInit() {
@@ -152,7 +120,6 @@ export class NotificationLogsComponent implements OnInit {
     this.getBatcheInfo(batchId)
 
     this.batchVal = parseInt(batchId);
-
   }
 
   ngOnDestroy(): void {

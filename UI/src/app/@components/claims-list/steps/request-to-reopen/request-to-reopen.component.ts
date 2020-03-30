@@ -8,9 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
-
 @Component({
   selector: 'app-request-to-reopen',
   templateUrl: './request-to-reopen.component.html',
@@ -33,7 +30,6 @@ export class RequestToReopenComponent implements OnInit {
     public cs: ClaimsService,
     private fb: FormBuilder,
     private cas: ClaimsApiService,
-    private tort: ToastrService,
     private route: ActivatedRoute,
   ) {
 
@@ -92,15 +88,10 @@ export class RequestToReopenComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
     this.formId = 1
     this.cas.getRequestToReopen(this.formId)
-      .subscribe(
-        (res) => {
-          this.reopenFormDetail = res;
-          this.setFormvalues(this.reopenFormDetail)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.reopenFormDetail = res;
+        this.setFormvalues(this.reopenFormDetail)
+      })
   }
 
 
@@ -108,20 +99,14 @@ export class RequestToReopenComponent implements OnInit {
 
     if (this.fvalid) {
 
-      this.fv.mailDate    = this.aps.formatDate(this.fv.mailDate   )
+      this.fv.mailDate = this.aps.formatDate(this.fv.mailDate)
       this.fv.hearingDate = this.aps.formatDate(this.fv.hearingDate)
       this.fv.hearingTime = this.aps.formatDate(this.fv.hearingTime)
 
       this.cas.updateRequestToReopen(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('reopenFrom', 'reopenForm successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
 
     }
 

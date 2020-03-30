@@ -4,14 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
-
 import { AppService       } from 'app/@services/app.service'
 import { ClaimsService    } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
-
-import { ToastrService } from 'ngx-toastr';
-
-
 
 @Component({
   selector: 'app-de1101-response-form',
@@ -30,12 +25,11 @@ export class De1101ResponseFormComponent implements OnInit {
   public responseFormDetails: any = []
 
   constructor(
-    public aps: AppService,
-    public cs: ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
   ) {
 
   }
@@ -104,50 +98,38 @@ export class De1101ResponseFormComponent implements OnInit {
 
   getFormDetails() {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
-    this.formId = 2
+    this.formId = 2;
     this.cas.getClaimResponse(this.formId)
-      .subscribe(
-        (res) => {
-          this.responseFormDetails = res;
-          this.setFormvalues(this.responseFormDetails)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.responseFormDetails = res;
+        this.setFormvalues(this.responseFormDetails);
+      })
   }
 
   saveForm() {
 
-    this.fv.lausdMailDate        = this.aps.formatDate(this.fv.lausdMailDate        )
-    this.fv.bybClaimDate         = this.aps.formatDate(this.fv.bybClaimDate         )
-    this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim )
-    this.fv.dueDate              = this.aps.formatDate(this.fv.dueDate              )
-    this.fv.date                 = this.aps.formatDate(this.fv.date                 )
-
-
-    console.log(this.fv)
     
     if (this.fvalid) {
-      this.cas.updateClaimResponse(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
+      
+      this.fv.lausdMailDate        = this.aps.formatDate(this.fv.lausdMailDate        );
+      this.fv.bybClaimDate         = this.aps.formatDate(this.fv.bybClaimDate         );
+      this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim );
+      this.fv.dueDate              = this.aps.formatDate(this.fv.dueDate              );
+      this.fv.date                 = this.aps.formatDate(this.fv.date                 );
 
+      this.cas.updateClaimResponse(this.fv)
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+
   }
 
   ngOnInit() {
-    this.cs.tabincLimit = 2
-    this.de1101ResponseFormInit()
-    this.getFormDetails()
-    this.formFeildDisable()
+    this.cs.tabincLimit = 2;
+    this.de1101ResponseFormInit();
+    this.getFormDetails();
+    this.formFeildDisable();
   }
 
 

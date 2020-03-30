@@ -8,9 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
-
 @Component({
   selector: 'app-response-to-employer',
   templateUrl: './response-to-employer.component.html',
@@ -20,12 +17,13 @@ export class ResponseToEmployerComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
+  
+  // form setion var 
+  public De4614Form: FormGroup;
+  public formSubmitted: boolean = false;
+
   public rteDetails: any = []
   public claimId: number;
-
-  // form setion var 
-  De4614Form: FormGroup;
-  formSubmitted: boolean = false;
 
 
   constructor(
@@ -33,7 +31,6 @@ export class ResponseToEmployerComponent implements OnInit {
     public cs: ClaimsService,
     private fb: FormBuilder,
     private cas: ClaimsApiService,
-    private tort: ToastrService,
     private route: ActivatedRoute,
   ) {
 
@@ -42,16 +39,15 @@ export class ResponseToEmployerComponent implements OnInit {
   itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
 
-
   // form section 
   ResponseFormInit() {
     this.De4614Form = this.fb.group({
-      id                   : [''                     ],
-      claimId              : [''                     ],
-      claimantName         : ['', Validators.required],
-      socialSecurityNumber : ['', Validators.required],
-      dateMailed           : ['', Validators.required],
-      benefitYearBeganDate     : ['', Validators.required],
+      id                  : [''                     ],
+      claimId             : [''                     ],
+      claimantName        : ['', Validators.required],
+      socialSecurityNumber: ['', Validators.required],
+      dateMailed          : ['', Validators.required],
+      benefitYearBeganDate: ['', Validators.required],
     });
   }
 
@@ -65,50 +61,42 @@ export class ResponseToEmployerComponent implements OnInit {
   }
 
   setFormvalues(data) {
-    this.fc.id.setValue(data.id)
-    this.fc.claimId.setValue(data.claimId)
-    this.fc.claimantName.setValue(data.claimantName)
-    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
-    this.fc.dateMailed.setValue(this.aps.formatDate(data.dateMailed))
-    this.fc.benefitYearBeganDate.setValue(this.aps.formatDate(data.benefitYearBeganDate))
+    this.fc.id.setValue(data.id);
+    this.fc.claimId.setValue(data.claimId);
+    this.fc.claimantName.setValue(data.claimantName);
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber);
+    this.fc.dateMailed.setValue(this.aps.formatDate(data.dateMailed));
+    this.fc.benefitYearBeganDate.setValue(this.aps.formatDate(data.benefitYearBeganDate));
   }
 
   getFormDetails() {
     // this.claimId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.claimId = 1
+    this.claimId = 1;
     this.cas.getResponsetoEmployer(this.claimId)
-      .subscribe(
-        (res) => {
-          this.rteDetails = res;
-          this.setFormvalues(this.rteDetails)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.rteDetails = res;
+        this.setFormvalues(this.rteDetails);
+      })
   }
 
   saveForm() {
-    this.fv.dateMailed       = this.aps.formatDate(this.fv.dateMailed      )
-    this.fv.benefitYearBeganDate = this.aps.formatDate(this.fv.benefitYearBeganDate)
 
-    console.log(this.fv)
     if (this.fvalid) {
+
+      this.fv.dateMailed           = this.aps.formatDate(this.fv.dateMailed          );
+      this.fv.benefitYearBeganDate = this.aps.formatDate(this.fv.benefitYearBeganDate);
+
       this.cas.updateResponsetoEmployer(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+    
   }
 
   ngOnInit() {
     this.cs.tabincLimit = 2;
-    this.ResponseFormInit()
-    this.getFormDetails()
+    this.ResponseFormInit();
+    this.getFormDetails();
   }
 }

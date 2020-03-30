@@ -51,8 +51,8 @@
                                                         <label for="mailDate">Mail Date</label>
                                                         <input type="text" autocomplete="off"
                                                             class="form-control cc-datepicker" bsDatepicker
-                                                            [bsConfig]="aps.ngxcalConfig"
-                                                            formControlName="mailDate" name="mailDate"
+                                                            [bsConfig]="aps.ngxcalConfig" formControlName="mailDate"
+                                                            name="mailDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.mailDate.errors }">
                                                         <div *ngIf="fc.mailDate.touched && fc.mailDate.errors || formSubmitted"
                                                             class="invalid-feedback">

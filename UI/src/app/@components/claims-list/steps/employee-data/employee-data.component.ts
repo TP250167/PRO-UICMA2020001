@@ -1,14 +1,12 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
-import { ClaimsService  } from 'app/@services/claims.service'
+import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
-
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-data',
@@ -18,43 +16,40 @@ import { ToastrService } from 'ngx-toastr';
 export class EmployeeDataComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-  
-  public employeeDetails : any = [];
-  public employeeId:number;
-
 
   // form setion var 
   public empDataForm: FormGroup;
   public formSubmitted: boolean = false;
 
+  public employeeDetails: any = [];
+  public employeeId: number;
 
   constructor(
-    public aps: AppService,
-    public cs:  ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private route: ActivatedRoute,
-    private tort: ToastrService
-  ){
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
+  ) {
 
   }
 
-  itc() { this.cs.increaseTabCount(this.staticTabs) ; } 
+  itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
 
   // form section 
   employeeFormInit() {
     this.empDataForm = this.fb.group({
-      id                   : [''                                                      ]  ,
-      claimId              : [''                                                      ]  ,
-      date                 : ['', Validators.required                                 ]  ,
-      bybClaimDate         : ['', Validators.required                                 ]  ,
-      claimantName         : ['', Validators.required                                 ]  ,
-      socialSecurityNumber : ['', [Validators.required,Validators.pattern("^[0-9]*$")]]  ,
-      userCompletedBy      : ['', Validators.required                                 ]  ,
-      userCompletedDate    : ['', Validators.required                                 ]  ,
-      userTitle            : ['', Validators.required                                 ]  ,
-      userTelephoneNumber  : ['', [Validators.required,Validators.pattern("^[0-9]*$")]]  ,  
+      id                  : [''                                                       ],
+      claimId             : [''                                                       ],
+      date                : ['', Validators.required                                  ],
+      bybClaimDate        : ['', Validators.required                                  ],
+      claimantName        : ['', Validators.required                                  ],
+      socialSecurityNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      userCompletedBy     : ['', Validators.required                                  ],
+      userCompletedDate   : ['', Validators.required                                  ],
+      userTitle           : ['', Validators.required                                  ],
+      userTelephoneNumber : ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
     });
   }
 
@@ -66,7 +61,6 @@ export class EmployeeDataComponent implements OnInit {
     this.formSubmitted = true;
     if (this.empDataForm.invalid) { return; }
   }
-
 
   setFormvalues(data) {
     this.fc.id.setValue(data.id)
@@ -85,37 +79,24 @@ export class EmployeeDataComponent implements OnInit {
     // this.employeeId = parseInt(this.route.snapshot.paramMap.get('id')) 
     this.employeeId = 1
     this.cas.getRequestForEmpData(this.employeeId)
-      .subscribe(
-        (res) => {
-          this.employeeDetails = res;
-          this.setFormvalues(this.employeeDetails)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.employeeDetails = res;
+        this.setFormvalues(this.employeeDetails)
+      })
   }
-
 
   saveForm() {
 
     if (this.fvalid) {
 
-      this.fv.date  = this.aps.formatDate(this.fv.date)
+      this.fv.date = this.aps.formatDate(this.fv.date)
 
       this.cas.updateRequestForEmpData(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
-
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
-
+    
   }
 
   ngOnInit() {
@@ -123,6 +104,5 @@ export class EmployeeDataComponent implements OnInit {
     this.employeeFormInit()
     this.getFormDetails()
   }
-
 
 }

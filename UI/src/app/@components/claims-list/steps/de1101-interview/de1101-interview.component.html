@@ -253,8 +253,7 @@
                                                         <label for="date">Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
                                                             formControlName="date" name="date" autocomplete="off"
-                                                            bsDatepicker
-                                                            [bsConfig]="aps.ngxcalConfig"
+                                                            bsDatepicker [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted  && fc.date.errors }">
                                                         <div *ngIf="fc.date.touched && fc.date.errors || formSubmitted "
                                                             class="invalid-feedback">
@@ -266,7 +265,8 @@
                                                 </div>
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim
+                                                        Info</button>
                                                 </div>
 
                                             </form>

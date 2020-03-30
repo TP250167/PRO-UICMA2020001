@@ -1,14 +1,12 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
-import { ClaimsService  } from 'app/@services/claims.service'
+import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
-
-import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-additional-info',
@@ -19,13 +17,12 @@ export class AdditionalInfoComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
-  public additionalInfoDetail :any = [];
-  public additionalId:number;
-  
   // form setion var 
   public aiForm: FormGroup;
   public formSubmitted: boolean = false;
-
+  
+  public additionalInfoDetail: any = [];
+  public formId: number;
 
   constructor(
     public  aps  : AppService      ,
@@ -33,26 +30,25 @@ export class AdditionalInfoComponent implements OnInit {
     private fb   : FormBuilder     ,
     public  cas  : ClaimsApiService,
     public  route: ActivatedRoute  ,
-    public  tort : ToastrService   ,
-  ){
+  ) {
 
   }
 
 
-  itc() { this.cs.increaseTabCount(this.staticTabs) ; } 
+  itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
 
 
   // form section 
   additionalFormInit() {
     this.aiForm = this.fb.group({
-      id                   : [''                     ],
-      claimId              : [''                     ],
-      mailDate             : ['', Validators.required],
-      claimantName         : ['', Validators.required],
-      socialSecurityNumber : ['', Validators.required],
-      claimEffectiveDate   : ['', Validators.required],
-      controlNumber        : ['', Validators.required],  
+      id                  : [''                     ],
+      claimId             : [''                     ],
+      mailDate            : ['', Validators.required],
+      claimantName        : ['', Validators.required],
+      socialSecurityNumber: ['', Validators.required],
+      claimEffectiveDate  : ['', Validators.required],
+      controlNumber       : ['', Validators.required],
     });
   }
 
@@ -68,7 +64,7 @@ export class AdditionalInfoComponent implements OnInit {
   setFormvalues(data) {
     this.fc.id.setValue(data.id)
     this.fc.claimId.setValue(data.claimId)
-    this.fc.mailDate.setValue(this.aps.formatDate(data.mailDate)) 
+    this.fc.mailDate.setValue(this.aps.formatDate(data.mailDate))
     this.fc.claimantName.setValue(data.claimantName)
     this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
     this.fc.claimEffectiveDate.setValue(this.aps.formatDate(data.claimEffectiveDate))
@@ -76,40 +72,27 @@ export class AdditionalInfoComponent implements OnInit {
   }
 
   getFormDetails() {
-    // this.additionalId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.additionalId = 1 
-    this.cas.getAdditionalInfo(this.additionalId)
-      .subscribe(
-        (res) => {
-          this.additionalInfoDetail = res;
-          this.setFormvalues(this.additionalInfoDetail)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
+    this.formId = 1
+    this.cas.getAdditionalInfo(this.formId)
+      .subscribe((res) => {
+        this.additionalInfoDetail = res;
+        this.setFormvalues(this.additionalInfoDetail)
+      })
   }
-
 
   saveForm() {
 
     if (this.fvalid) {
 
-      this.fv.mailDate  = this.aps.formatDate(this.fv.mailDate)
+      this.fv.mailDate = this.aps.formatDate(this.fv.mailDate)
 
       this.cas.updateAdditionalInfo(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
-
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
-
+    
   }
 
   ngOnInit() {
@@ -117,7 +100,5 @@ export class AdditionalInfoComponent implements OnInit {
     this.additionalFormInit()
     this.getFormDetails()
   }
-
-
 
 }

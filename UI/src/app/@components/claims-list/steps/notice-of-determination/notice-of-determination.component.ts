@@ -8,8 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-notice-of-determination',
   templateUrl: './notice-of-determination.component.html',
@@ -19,20 +17,20 @@ export class NoticeOfDeterminationComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
-  public formId: number;
-  public nodDetails : any = []
-
+  
   // form section var 
-  nodForm: FormGroup;
-  formSubmitted: boolean = false;
+  public nodForm: FormGroup;
+  public formSubmitted: boolean = false;
+  
+  public formId: number;
+  public nodDetails: any = []
 
   constructor(
-    public aps: AppService,
-    public cs: ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
   ) { }
 
   itc() { this.cs.increaseTabCount(this.staticTabs); }
@@ -41,8 +39,8 @@ export class NoticeOfDeterminationComponent implements OnInit {
   //form section
   nodFormInit() {
     this.nodForm = this.fb.group({
-      id                  : [''],
-      claimId             : [''],
+      id                  : [''                     ],
+      claimId             : [''                     ],
       mailedDate          : ['', Validators.required],
       benefitYearBegan    : ['', Validators.required],
       socialSecurityNumber: ['', Validators.required],
@@ -72,36 +70,27 @@ export class NoticeOfDeterminationComponent implements OnInit {
 
   getFormDetails() {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.formId = 1; 
+    this.formId = 1;
     this.cas.getClaimDetermination(this.formId)
-      .subscribe(
-        (res) => {
-          this.nodDetails = res;
-          this.setFormvalues(this.nodDetails)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.nodDetails = res;
+        this.setFormvalues(this.nodDetails)
+      })
   }
 
   saveForm() {
+
     if (this.fvalid) {
-      this.fv.mailedDate       = this.aps.formatDate(this.fv.mailedDate       )
-      this.fv.benefitYearBegan = this.aps.formatDate(this.fv.benefitYearBegan )
-      
-      console.log(this.fv)
+
+      this.fv.mailedDate = this.aps.formatDate(this.fv.mailedDate)
+      this.fv.benefitYearBegan = this.aps.formatDate(this.fv.benefitYearBegan)
+
       this.cas.updateClaimDetermination(this.nodForm.value)
-        .subscribe(
-          (res) => {
-            this.tort.success('updated', 'successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+    
   }
 
   ngOnInit() {

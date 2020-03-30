@@ -43,8 +43,7 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="bfcForm"
-                                                (ngSubmit)="submitBfcForm()">
+                                            <form appFormInputFocus [formGroup]="bfcForm" (ngSubmit)="submitBfcForm()">
 
                                                 <div class="form-row">
 
@@ -63,8 +62,7 @@
                                                     <div class="form-group col-md-6">
                                                         <label for="issuedDate">Issued Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker
-                                                            [bsConfig]="aps.ngxcalConfig"
+                                                            bsDatepicker [bsConfig]="aps.ngxcalConfig"
                                                             formControlName="issuedDate" name="issuedDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.issuedDate.errors }">
                                                         <div *ngIf="fc.issuedDate.touched && fc.issuedDate.errors || formSubmitted"
@@ -102,7 +100,8 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim
+                                                        Info</button>
                                                 </div>
 
                                             </form>

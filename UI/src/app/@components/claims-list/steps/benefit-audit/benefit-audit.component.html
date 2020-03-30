@@ -76,8 +76,7 @@
                                                     <div class="form-group col-md-6">
                                                         <label for="mailDate">Mail Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
-                                                            bsDatepicker
-                                                            [bsConfig]="aps.ngxcalConfig"
+                                                            bsDatepicker [bsConfig]="aps.ngxcalConfig"
                                                             formControlName="mailDate" name="mailDate"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.mailDate.errors }">
                                                         <div *ngIf="fc.mailDate.touched && fc.mailDate.errors || formSubmitted"

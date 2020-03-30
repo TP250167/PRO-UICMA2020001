@@ -5,10 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
-import { ClaimsService  } from 'app/@services/claims.service'
+import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
-
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-request-for-wages',
@@ -18,44 +16,41 @@ import { ToastrService } from 'ngx-toastr';
 export class RequestForWagesComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-  
+
   // form setion var 
   public rfwForm: FormGroup;
   public formSubmitted: boolean = false;
-  
-  public formId: number ;
-  public rfwFormDetails : any = [] ;
 
+  public formId: number;
+  public rfwFormDetails: any = [];
 
   constructor(
     public  aps  : AppService      ,
     public  cs   : ClaimsService   ,
     private fb   : FormBuilder     ,
     private cas  : ClaimsApiService,
-    private tort : ToastrService   ,
     private route: ActivatedRoute  ,
-  ){
+  ) {
 
   }
 
 
-  itc() { this.cs.increaseTabCount(this.staticTabs) ; } 
+  itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
-
 
   // form section 
   wagesFormInit() {
     this.rfwForm = this.fb.group({
-      id                   : ['', Validators.required],
-      claimId              : ['', Validators.required],
-      mailingDate          : ['', Validators.required],
-      caseNumber           : ['', Validators.required],
-      claimantName         : ['', Validators.required],
-      socialSecurityNumber : ['', Validators.required],
-      deadLineDate         : ['', Validators.required],
-      preparerName         : ['', Validators.required],
-      telephoneNumber      : ['', Validators.required],
-      faxNumber            : ['', Validators.required],
+      id                  : ['', Validators.required],
+      claimId             : ['', Validators.required],
+      mailingDate         : ['', Validators.required],
+      caseNumber          : ['', Validators.required],
+      claimantName        : ['', Validators.required],
+      socialSecurityNumber: ['', Validators.required],
+      deadLineDate        : ['', Validators.required],
+      preparerName        : ['', Validators.required],
+      telephoneNumber     : ['', Validators.required],
+      faxNumber           : ['', Validators.required],
     });
   }
 
@@ -92,22 +87,18 @@ export class RequestForWagesComponent implements OnInit {
   }
 
   saveForm() {
-    if (this.fvalid) { 
 
-      this.fv.mailingDate  = this.aps.formatDate(this.fv.mailingDate );
+    if (this.fvalid) {
+
+      this.fv.mailingDate = this.aps.formatDate(this.fv.mailingDate);
       this.fv.deadLineDate = this.aps.formatDate(this.fv.deadLineDate);
 
       this.cas.updateWagesAfterAppeal(this.fv)
-      .subscribe(
-        (res) => {
-          this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-          console.log(res)
-        },
-        (error) => {
-          console.log('error caught in batch detail update', error);
-        }
-      )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+    
   }
 
   submitRfwForm() {

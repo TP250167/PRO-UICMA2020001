@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TabsetComponent } from 'ngx-bootstrap';
@@ -8,8 +7,6 @@ import { TabsetComponent } from 'ngx-bootstrap';
 import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
-
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-acknowledgement',
@@ -24,16 +21,15 @@ export class AcknowledgementComponent implements OnInit {
   public acknForm: FormGroup;
   public formSubmitted: boolean = false;
 
-  public formId: number;
   public acknFormDetails: any = [];
+  public formId: number;
 
   constructor(
-    public aps: AppService,
-    public cs: ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
   ) { }
 
   itc() { this.cs.increaseTabCount(this.staticTabs); }
@@ -42,13 +38,13 @@ export class AcknowledgementComponent implements OnInit {
   // form section 
   acknFormInit() {
     this.acknForm = this.fb.group({
-      id                : ['', Validators.required],
-      claimId           : ['', Validators.required],
-      claimantName      : ['', Validators.required],
-      abCaseNumber      : ['', Validators.required],
-      aljDecisionNumber : ['', Validators.required],
-      appellant         : ['', Validators.required],
-      dateMailed        : ['', Validators.required],
+      id               : ['', Validators.required],
+      claimId          : ['', Validators.required],
+      claimantName     : ['', Validators.required],
+      abCaseNumber     : ['', Validators.required],
+      aljDecisionNumber: ['', Validators.required],
+      appellant        : ['', Validators.required],
+      dateMailed       : ['', Validators.required],
     });
   }
 
@@ -75,35 +71,25 @@ export class AcknowledgementComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) ;
     this.formId = 1;
     this.cas.getAcknowledgement(this.formId)
-      .subscribe(
-        (res) => {
-          this.acknFormDetails = res;
-          this.setFormvalues(this.acknFormDetails);
-        },
-        (error) => {
-          console.log('error caught in get claim details', error);
-        }
-      )
+      .subscribe((res) => {
+        this.acknFormDetails = res;
+        this.setFormvalues(this.acknFormDetails);
+      })
   }
 
   saveForm() {
+
     if (this.fvalid) {
 
-      this.fv.dateMailed  = this.aps.formatDate(this.fv.dateMailed)
+      this.fv.dateMailed = this.aps.formatDate(this.fv.dateMailed)
 
       this.cas.updateAcknowledgement(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error);
-          }
-        )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
-  }
 
+  }
 
   ngOnInit() {
     this.cs.tabincLimit = 2;

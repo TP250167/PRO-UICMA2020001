@@ -43,15 +43,15 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="nodForm"
-                                                (ngSubmit)="submitnodForm()">
+                                            <form appFormInputFocus [formGroup]="nodForm" (ngSubmit)="submitnodForm()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="mailedDate">Date Mailed</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker"
-                                                            bsDatepicker formControlName="mailedDate" name="mailedDate "
+                                                        <input type="text" autocomplete="off"
+                                                            class="form-control cc-datepicker" bsDatepicker
+                                                            formControlName="mailedDate" name="mailedDate "
                                                             [bsConfig]="aps.ngxcalConfig"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.mailedDate.errors }">
                                                         <div *ngIf=" fc.mailedDate.touched && fc.mailedDate.errors || formSubmitted"
@@ -63,24 +63,28 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="benefitYearBegan">Benefit Year Began</label>
-                                                        <input type="text" bsDatepicker [bsConfig]="aps.ngxcalConfig" class="form-control cc-datepicker" formControlName="benefitYearBegan"
-                                                            name="benefitYearBegan"
+                                                        <input type="text" bsDatepicker [bsConfig]="aps.ngxcalConfig"
+                                                            class="form-control cc-datepicker"
+                                                            formControlName="benefitYearBegan" name="benefitYearBegan"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.benefitYearBegan.errors }">
                                                         <div *ngIf="fc.benefitYearBegan.touched && fc.benefitYearBegan.errors || formSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="fc.benefitYearBegan.errors">This field is required
+                                                            <div *ngIf="fc.benefitYearBegan.errors">This field is
+                                                                required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="socialSecurityNumber">Social Security Number</label>
-                                                        <input type="text" class="form-control" formControlName="socialSecurityNumber"
+                                                        <input type="text" class="form-control"
+                                                            formControlName="socialSecurityNumber"
                                                             name="socialSecurityNumber"
                                                             [ngClass]="{ 'is-invalid': formSubmitted && fc.socialSecurityNumber.errors }">
                                                         <div *ngIf="fc.socialSecurityNumber.touched && fc.socialSecurityNumber.errors || formSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="fc.socialSecurityNumber.errors">This field is required </div>
+                                                            <div *ngIf="fc.socialSecurityNumber.errors">This field is
+                                                                required </div>
                                                         </div>
                                                     </div>
 
@@ -110,7 +114,8 @@
 
                                                 </div>
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim
+                                                        Info</button>
                                                 </div>
 
                                             </form>

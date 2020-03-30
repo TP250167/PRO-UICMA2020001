@@ -8,8 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-notice-of-wages',
   templateUrl: './notice-of-wages.component.html',
@@ -20,39 +18,35 @@ export class NoticeOfWagesComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   // form setion var 
-  nofwForm: FormGroup;
-  formSubmitted: boolean = false;
+  public nofwForm: FormGroup;
+  public formSubmitted: boolean = false;
 
   public formId: number ;
   public nofwFormDetails : any = []
 
-
   constructor(
-    public aps: AppService,
-    public cs: ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
   ) {
 
   }
 
-
   itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
-
 
   // form section 
   NoticeOfWagesFormInit() {
     this.nofwForm = this.fb.group({
-      id                       : ['', Validators.required],
-      claimId                  : ['', Validators.required],
-      claimantName             : ['', Validators.required],
-      socialSecurityNumber     : ['', Validators.required],
-      totalWagesForEmployee    : ['', Validators.required],
-      totalWagesForAllEmployees: ['', Validators.required],
-      benefitChargeableReserveAccount           : ['', Validators.required],
+      id                              : ['', Validators.required],
+      claimId                         : ['', Validators.required],
+      claimantName                    : ['', Validators.required],
+      socialSecurityNumber            : ['', Validators.required],
+      totalWagesForEmployee           : ['', Validators.required],
+      totalWagesForAllEmployees       : ['', Validators.required],
+      benefitChargeableReserveAccount : ['', Validators.required],
     });
   }
 
@@ -79,30 +73,21 @@ export class NoticeOfWagesComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) ;
     this.formId = 1;
     this.cas.getWages(this.formId)
-      .subscribe(
-        (res) => {
-          this.nofwFormDetails = res;
-          this.setFormvalues(this.nofwFormDetails);
-        },
-        (error) => {
-          console.log('error caught in get claim details', error);
-        }
-      )
+      .subscribe((res) => {
+        this.nofwFormDetails = res;
+        this.setFormvalues(this.nofwFormDetails);
+      })
   }
 
   saveForm() {
+
     if (this.fvalid) { 
       this.cas.updateWages(this.fv)
-      .subscribe(
-        (res) => {
-          this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-          console.log(res)
-        },
-        (error) => {
-          console.log('error caught in batch detail update', error);
-        }
-      )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+
   }
 
   ngOnInit() {

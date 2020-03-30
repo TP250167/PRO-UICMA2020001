@@ -8,8 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-alj-decision',
   templateUrl: './alj-decision.component.html',
@@ -20,19 +18,19 @@ export class AljDecisionComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   // form setion var 
+  
   public aljdForm: FormGroup;
   public formSubmitted: boolean = false;
 
   public aljdDetail : any =[];
   public formId : number;
-
+  
   constructor(
-    public aps: AppService,
-    public cs: ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private route: ActivatedRoute,
-    private tort: ToastrService,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
   ) { }
 
   itc() { this.cs.increaseTabCount(this.staticTabs); }
@@ -87,35 +85,25 @@ export class AljDecisionComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
     this.formId = 1 ; 
     this.cas.getALJDecision(this.formId)
-      .subscribe(
-        (res) => {
-          this.aljdDetail = res;
-          this.setFormvalues(this.aljdDetail)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.aljdDetail = res;
+        this.setFormvalues(this.aljdDetail)
+      })
   }
 
   saveForm() {
+
     if (this.fvalid) {
  
       this.fv.mailDate    = this.aps.formatDate(this.fv.mailDate   )
       this.fv.placeOfHearingDate = this.aps.formatDate(this.fv.placeOfHearingDate)
 
       this.cas.updateALJDecision(this.aljdForm.value)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
-
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
+
   }
 
   ngOnInit() {

@@ -29,12 +29,12 @@ export class DE1545AppealFormComponent implements OnInit {
 
 
   constructor(
-    public aps: AppService,
-    public cs: ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private tort : ToastrService   ,
+    private route: ActivatedRoute  ,
   ) {
 
   }
@@ -47,8 +47,8 @@ export class DE1545AppealFormComponent implements OnInit {
   // form section 
   de1545AppealFormInit() {
     this.De1545AppealForm = this.fb.group({
-      id                         : [''],
-      claimId                    : [''],
+      id                         : [''                     ],
+      claimId                    : [''                     ],
       fieldOfficeAddress         : ['', Validators.required],
       lausdFaxDate               : ['', Validators.required],
       lausdAccountNumber         : ['', Validators.required],
@@ -94,46 +94,32 @@ export class DE1545AppealFormComponent implements OnInit {
     // this.claimId = parseInt(this.route.snapshot.paramMap.get('id')) 
     this.claimId = 1
     this.cas.getWagesAppeal(this.claimId)
-      .subscribe(
-        (res) => {
-          this.appealFormDetails = res;
-          console.log(this.appealFormDetails)
-          this.setFormvalues(this.appealFormDetails)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.appealFormDetails = res;
+        this.setFormvalues(this.appealFormDetails);
+      })
   }
 
   saveForm() {
-    console.log(this.fv)
+
     if (this.fvalid) {
 
-      this.fv.lausdFaxDate = this.aps.formatDate(this.fv.lausdFaxDate)
-      this.fv.bybClaimDate = this.aps.formatDate(this.fv.bybClaimDate)
-      this.fv.date = this.aps.formatDate(this.fv.date)
+      this.fv.lausdFaxDate = this.aps.formatDate(this.fv.lausdFaxDate);
+      this.fv.bybClaimDate = this.aps.formatDate(this.fv.bybClaimDate);
+      this.fv.date = this.aps.formatDate(this.fv.date);
 
       this.cas.updateWagesAppeal(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
-  }
 
+  }
 
   ngOnInit() {
-    this.cs.tabincLimit = 2
-    this.de1545AppealFormInit()
-    this.getFormDetails()
+    this.cs.tabincLimit = 2;
+    this.de1545AppealFormInit();
+    this.getFormDetails();
   }
-
-
 
 }

@@ -43,31 +43,46 @@
                                             </h3>
                                         </div>
                                         <div class="cc-form-section">
-                                            <form appFormInputFocus [formGroup]="De4614Form" (ngSubmit)="submitDe4614Form()">
+                                            <form appFormInputFocus [formGroup]="De4614Form"
+                                                (ngSubmit)="submitDe4614Form()">
 
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
                                                         <label for="claimantName">Claimant's Name</label>
-                                                        <input type="text" class="form-control" formControlName="claimantName" name="claimantName" [ngClass]="{ 'is-invalid': formSubmitted  && fc.claimantName.errors }">
-                                                        <div *ngIf="fc.claimantName.touched && fc.claimantName.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.claimantName.errors || formSubmitted ">This field is required </div>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="claimantName" name="claimantName"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.claimantName.errors }">
+                                                        <div *ngIf="fc.claimantName.touched && fc.claimantName.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.claimantName.errors || formSubmitted ">This
+                                                                field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="socialSecurityNumber">social Security Number</label>
-                                                        <input type="text" class="form-control" formControlName="socialSecurityNumber" name="socialSecurityNumber" [ngClass]="{ 'is-invalid': formSubmitted  && fc.socialSecurityNumber.errors }">
-                                                        <div *ngIf="fc.socialSecurityNumber.touched && fc.socialSecurityNumber.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.socialSecurityNumber.errors">This field is required
+                                                        <input type="text" class="form-control"
+                                                            formControlName="socialSecurityNumber"
+                                                            name="socialSecurityNumber"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.socialSecurityNumber.errors }">
+                                                        <div *ngIf="fc.socialSecurityNumber.touched && fc.socialSecurityNumber.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.socialSecurityNumber.errors">This field is
+                                                                required
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="dateMailed">Date Mailed</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="dateMailed" name="dateMailed" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted  && fc.dateMailed.errors }">
-                                                        <div *ngIf="fc.dateMailed.touched && fc.dateMailed.errors || formSubmitted " class="invalid-feedback">
+                                                        <input type="text" autocomplete="off"
+                                                            class="form-control cc-datepicker" bsDatepicker
+                                                            formControlName="dateMailed" name="dateMailed"
+                                                            [bsConfig]="aps.ngxcalConfig"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.dateMailed.errors }">
+                                                        <div *ngIf="fc.dateMailed.touched && fc.dateMailed.errors || formSubmitted "
+                                                            class="invalid-feedback">
                                                             <div *ngIf="fc.dateMailed.errors">This field is required
                                                             </div>
                                                         </div>
@@ -75,9 +90,15 @@
 
                                                     <div class="form-group col-md-6">
                                                         <label for="benefitYearBeganDate">Benefit Year Began</label>
-                                                        <input type="text" autocomplete="off" class="form-control cc-datepicker" bsDatepicker formControlName="benefitYearBeganDate" name="benefitYearBeganDate" [bsConfig]="aps.ngxcalConfig" [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitYearBeganDate.errors }">
-                                                        <div *ngIf="fc.benefitYearBeganDate.touched && fc.benefitYearBeganDate.errors || formSubmitted " class="invalid-feedback">
-                                                            <div *ngIf="fc.benefitYearBeganDate.errors">This field is required
+                                                        <input type="text" autocomplete="off"
+                                                            class="form-control cc-datepicker" bsDatepicker
+                                                            formControlName="benefitYearBeganDate"
+                                                            name="benefitYearBeganDate" [bsConfig]="aps.ngxcalConfig"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.benefitYearBeganDate.errors }">
+                                                        <div *ngIf="fc.benefitYearBeganDate.touched && fc.benefitYearBeganDate.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.benefitYearBeganDate.errors">This field is
+                                                                required
                                                             </div>
                                                         </div>
                                                     </div>
@@ -85,7 +106,8 @@
 
 
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary"  (click)="saveForm()">Save Claim Info</button>
+                                                    <button class="btn btn-primary" (click)="saveForm()">Save Claim
+                                                        Info</button>
                                                 </div>
 
                                             </form>
@@ -100,7 +122,8 @@
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
                                             <span class="badge badge-primary">List of Documents</span>
-                                            <button class="btn btn-success" (click)="aps.openModal(uploadAttachment)">Add
+                                            <button class="btn btn-success"
+                                                (click)="aps.openModal(uploadAttachment)">Add
                                                 Document</button>
                                         </h3>
                                     </div>
@@ -157,20 +180,24 @@
                                         <div class="doc-view">
                                             <div class="cc-slider-wrapper">
                                                 <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
+                                                            aria-hidden="true"></i>
                                                     </div>
                                                     <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
                                                         <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
+                                                            aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                                 <div class="cc-dov-view-tabs">
                                                     <tabset #staticTabs>
                                                         <tab class="active">
-                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
+                                                            <img
+                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
                                                         </tab>
                                                         <tab>
-                                                            <img src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
+                                                            <img
+                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
                                                         </tab>
                                                     </tabset>
                                                 </div>

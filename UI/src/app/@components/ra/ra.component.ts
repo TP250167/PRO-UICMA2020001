@@ -106,7 +106,6 @@ export class RaComponent implements OnInit {
 
 
   createBatch() {
-
     let recipientValue = "";
     if (this.batchInitiateForm.value.recipientSet.length > 0) {
       for (let i = 0; i < this.batchInitiateForm.value.recipientSet.length; i++) {
@@ -119,45 +118,38 @@ export class RaComponent implements OnInit {
 
     if (this.batchInitiateForm.value.isAnnual != 'custom') {
       data = {
-        "id": 0,
-        "batchName": this.batchInitiateForm.value.batchName,
+        "id"              : 0                                            ,
+        "batchName"       : this.batchInitiateForm.value.batchName       ,
         "batchDescription": this.batchInitiateForm.value.batchDescription,
-        "isAnnual": this.batchInitiateForm.value.isAnnual,
-        "TemplateID": this.batchInitiateForm.value.TemplateID,
-        "RAbatchRecRule": {
+        "isAnnual"        : this.batchInitiateForm.value.isAnnual        ,
+        "TemplateID"      : this.batchInitiateForm.value.TemplateID      ,
+        "RAbatchRecRule"  : {
           "RecipientRuleListId": recipientValue
         },
-        "RASchedule": {
-          "scheduleDate": this.datePipe.transform(this.batchInitiateForm.value.scheduleDate, 'MM-dd-yyyy'),
-          "status": "Active"
-        }
+        "RASchedule"      : {
+          "scheduleDate"  : this.datePipe.transform(this.batchInitiateForm.value.scheduleDate, 'MM-dd-yyyy'),
+          "status"        : "Active"
+          }
       }
     } else {
       data = {
-        "id": 0,
-        "batchName": this.batchInitiateForm.value.batchName,
+        "id"              : 0,
+        "batchName"       : this.batchInitiateForm.value.batchName,
         "batchDescription": this.batchInitiateForm.value.batchDescription,
-        "TemplateID": this.batchInitiateForm.value.TemplateID,
-        "isCustom": true,
-        "uploadExcel": this.filestring,
-        "filetype": "xlxs"
+        "TemplateID"      : this.batchInitiateForm.value.TemplateID,
+        "isCustom"        : true,
+        "uploadExcel"     : this.filestring,
+        "filetype"        : "xlxs"
       }
     }
 
-    console.log(this.batchInitiateForm.valid)
-
     if (!this.batchInitiateForm.invalid) {
       this.ras.createBatch(data)
-        .subscribe(
-          (res) => {
+        .subscribe((res) => {
             this.aps.closeModel()
             this.tort.success('Created', 'Batch Created Successfully!', { timeOut: 5000, });
             this.getBatches()
-          },
-          (error) => {
-            console.log('error caught in batch creation', error)
-          }
-        )
+          })
     } else {
       console.log("please fill the form first")
     }
@@ -166,55 +158,40 @@ export class RaComponent implements OnInit {
 
   getBatches() {
     this.ras.getAllBatch()
-      .subscribe(
-        (res) => {
-          this.schedulesList = res;
-          if(this.schedulesList.length > 0) {
-            this.getBatchesDetails(this.schedulesList[0].id)
-          }
-        },
-        (error) => {
-          console.log('error caught in get batch list', error)
+      .subscribe((res) => {
+        this.schedulesList = res;
+        if (this.schedulesList.length > 0) {
+          this.getBatchesDetails(this.schedulesList[0].id)
         }
-      )
+      })
   }
 
   getBatchesDetails(id) {
     this.ras.getBatchDetails(id)
-      .subscribe(
-        (res) => {
-          this.batchDetails = res;
-        },
-        (error) => {
-          console.log('error caught in get batch details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.batchDetails = res;
+      })
   }
 
   multiselectConfig(bval) {
 
     this.ras.getRecipient(bval)
-      .subscribe(
-        (res) => {
-          let resdata = res;
-          this.dropdownList = []
-          this.selectedItems = []
-          for (let i = 0; i < Object.keys(resdata).length; i++) {
-            this.dropdownList.push({ item_id: `${resdata[i].id}`, item_text: `${resdata[i].recipientRuleType}` });
-          }
-        },
-        (error) => {
-          console.log('error caught in get batch details', error)
+      .subscribe((res) => {
+        let resdata = res;
+        this.dropdownList = []
+        this.selectedItems = []
+        for (let i = 0; i < Object.keys(resdata).length; i++) {
+          this.dropdownList.push({ item_id: `${resdata[i].id}`, item_text: `${resdata[i].recipientRuleType}` });
         }
-      )
+      })
 
     this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
+      singleSelection  : false,
+      idField          : 'item_id',
+      textField        : 'item_text',
+      selectAllText    : 'Select All',
+      unSelectAllText  : 'UnSelect All',
+      itemsShowLimit   : 3,
       allowSearchFilter: true
     };
 
@@ -222,26 +199,16 @@ export class RaComponent implements OnInit {
 
   getTemplateId() {
     this.ras.getTemplateId()
-      .subscribe(
-        (res) => {
-          this.templateList = res;
-        },
-        (error) => {
-          console.log('error caught in template call', error)
-        }
-      )
+      .subscribe((res) => {
+        this.templateList = res;
+      })
   }
 
   getBiweeklyBatches() {
     this.ras.getRaWeeklyBatch()
-      .subscribe(
-        (res) => {
-          this.biWeeklyBatched = res;
-        },
-        (error) => {
-          console.log('error caught in template call', error)
-        }
-      )
+      .subscribe((res) => {
+        this.biWeeklyBatched = res;
+      })
   }
 
   showRecipientSection(val) {

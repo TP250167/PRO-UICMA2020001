@@ -8,8 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-benefit-audit',
   templateUrl: './benefit-audit.component.html',
@@ -18,8 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 export class BenefitAuditComponent implements OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-
-
   
   // form setion var 
   public baForm: FormGroup;
@@ -29,16 +25,14 @@ export class BenefitAuditComponent implements OnInit {
   public formId: number;
 
   constructor(
-    public aps: AppService,
-    public cs: ClaimsService,
-    private fb: FormBuilder,
-    private cas: ClaimsApiService,
-    private tort: ToastrService,
-    private route: ActivatedRoute,
+    public  aps  : AppService      ,
+    public  cs   : ClaimsService   ,
+    private fb   : FormBuilder     ,
+    private cas  : ClaimsApiService,
+    private route: ActivatedRoute  ,
   ) {
 
   }
-
 
   itc() { this.cs.increaseTabCount(this.staticTabs); }
   dtc() { this.cs.descreaseTabCount(this.staticTabs); }
@@ -46,11 +40,11 @@ export class BenefitAuditComponent implements OnInit {
   // form section 
   benefitAuditFormInit() {
     this.baForm = this.fb.group({
-      id         : [''                     ],
-      claimId    : [''                     ],
-      claimantName  : ['', Validators.required],
-      socialSecurityNumber: ['', Validators.required],
-      mailDate   : ['', Validators.required],
+      id                   : [''                     ],
+      claimId              : [''                     ],
+      claimantName         : ['', Validators.required],
+      socialSecurityNumber : ['', Validators.required],
+      mailDate             : ['', Validators.required],
     });
   }
 
@@ -76,15 +70,10 @@ export class BenefitAuditComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
     this.formId = 1
     this.cas.getBenefitAudit(this.formId)
-      .subscribe(
-        (res) => {
-          this.benefitAuditDetail = res;
-          this.setFormvalues(this.benefitAuditDetail)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.benefitAuditDetail = res;
+        this.setFormvalues(this.benefitAuditDetail)
+      })
   }
 
 
@@ -95,16 +84,9 @@ export class BenefitAuditComponent implements OnInit {
       this.fv.mailDate = this.aps.formatDate(this.fv.mailDate)
 
       this.cas.updateBenefitAudit(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
-
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
 
   }

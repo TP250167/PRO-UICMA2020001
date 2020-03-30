@@ -8,8 +8,6 @@ import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
 import { ClaimsApiService } from 'app/@services/claims-api.service'
 
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-appeal-form',
   templateUrl: './appeal-form.component.html',
@@ -26,13 +24,11 @@ export class AppealFormComponent implements OnInit {
   public formId: number;
   public appealFormDetails: any = []
 
-
   constructor(
     public aps: AppService,
     public cs: ClaimsService,
     private fb: FormBuilder,
     private cas: ClaimsApiService,
-    private tort: ToastrService,
     private route: ActivatedRoute,
   ) {
 
@@ -99,15 +95,10 @@ export class AppealFormComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
     this.formId = 1
     this.cas.getDeterminationAppeal(this.formId)
-      .subscribe(
-        (res) => {
-          this.appealFormDetails = res;
-          this.setFormvalues(this.appealFormDetails)
-        },
-        (error) => {
-          console.log('error caught in get claim details', error)
-        }
-      )
+      .subscribe((res) => {
+        this.appealFormDetails = res;
+        this.setFormvalues(this.appealFormDetails)
+      })
   }
 
   saveForm() {
@@ -116,15 +107,9 @@ export class AppealFormComponent implements OnInit {
       this.fv.formDate = this.aps.formatDate(this.fv.formDate)
 
       this.cas.updateDeterminationAppeal(this.fv)
-        .subscribe(
-          (res) => {
-            this.tort.success('claim', 'claim successfully updated', { timeOut: 5000, });
-            console.log(res)
-          },
-          (error) => {
-            console.log('error caught in batch detail update', error)
-          }
-        )
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
     }
   }
 
