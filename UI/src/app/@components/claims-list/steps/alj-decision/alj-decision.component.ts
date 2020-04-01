@@ -86,8 +86,10 @@ export class AljDecisionComponent implements OnInit {
     this.formId = 1 ; 
     this.cas.getALJDecision(this.formId)
       .subscribe((res) => {
-        this.aljdDetail = res;
-        this.setFormvalues(this.aljdDetail)
+        if(res != null) {
+          this.aljdDetail = res;
+          this.setFormvalues(this.aljdDetail)
+        }
       })
   }
 

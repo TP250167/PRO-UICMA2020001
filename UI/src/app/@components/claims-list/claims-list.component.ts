@@ -27,13 +27,17 @@ export class ClaimsListComponent implements OnInit {
     };
 
     this.acs.getClaimsList(2020, "Active").subscribe(res => {
-      this.claims = res;
-      this.claims = this.claims.newClaims;
+      if(res != null) {
+        this.claims = res;
+        this.claims = this.claims.newClaims;
+      }
     });
 
     this.acs.getClaimsExceptionList(2020, "Exception").subscribe(res => {
-      this.claimsException = res;
-      this.claimsException = this.claimsException.newClaims;
+      if(res != null) {
+        this.claimsException = res;
+        this.claimsException = this.claimsException.newClaims;
+      }
     });
     
   }

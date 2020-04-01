@@ -90,8 +90,10 @@ export class NoticeOfHearingComponent implements OnInit {
     this.formId = 1
     this.cas.getHearingNotification(this.formId)
       .subscribe((res) => {
-        this.hearingDetail = res;
-        this.setFormvalues(this.hearingDetail)
+        if(res != null) {
+          this.hearingDetail = res;
+          this.setFormvalues(this.hearingDetail)
+        }
       })
   }
 

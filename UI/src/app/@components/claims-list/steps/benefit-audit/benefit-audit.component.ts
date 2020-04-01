@@ -71,8 +71,10 @@ export class BenefitAuditComponent implements OnInit {
     this.formId = 1
     this.cas.getBenefitAudit(this.formId)
       .subscribe((res) => {
-        this.benefitAuditDetail = res;
-        this.setFormvalues(this.benefitAuditDetail)
+        if(res != null) {
+          this.benefitAuditDetail = res;
+          this.setFormvalues(this.benefitAuditDetail)
+        }
       })
   }
 

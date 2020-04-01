@@ -95,8 +95,10 @@ export class DE1545AppealFormComponent implements OnInit {
     this.claimId = 1
     this.cas.getWagesAppeal(this.claimId)
       .subscribe((res) => {
-        this.appealFormDetails = res;
-        this.setFormvalues(this.appealFormDetails);
+        if(res != null) {
+          this.appealFormDetails = res;
+          this.setFormvalues(this.appealFormDetails);
+        }
       })
   }
 

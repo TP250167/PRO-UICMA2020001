@@ -96,8 +96,10 @@ export class AppealFormComponent implements OnInit {
     this.formId = 1
     this.cas.getDeterminationAppeal(this.formId)
       .subscribe((res) => {
-        this.appealFormDetails = res;
-        this.setFormvalues(this.appealFormDetails)
+        if(res != null) {
+          this.appealFormDetails = res;
+          this.setFormvalues(this.appealFormDetails)
+        }
       })
   }
 

@@ -75,15 +75,12 @@ export class RequestForWagesComponent implements OnInit {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) ;
     this.formId = 1;
     this.cas.getWagesAfterAppeal(this.formId)
-      .subscribe(
-        (res) => {
+      .subscribe((res) => {
+        if(res != null) {
           this.rfwFormDetails = res;
           this.setFormvalues(this.rfwFormDetails);
-        },
-        (error) => {
-          console.log('error caught in get claim details', error);
         }
-      )
+      })
   }
 
   saveForm() {

@@ -76,8 +76,10 @@ export class AdditionalInfoComponent implements OnInit {
     this.formId = 1
     this.cas.getAdditionalInfo(this.formId)
       .subscribe((res) => {
-        this.additionalInfoDetail = res;
-        this.setFormvalues(this.additionalInfoDetail)
+        if(res != null) {
+          this.additionalInfoDetail = res;
+          this.setFormvalues(this.additionalInfoDetail)
+        }
       })
   }
 

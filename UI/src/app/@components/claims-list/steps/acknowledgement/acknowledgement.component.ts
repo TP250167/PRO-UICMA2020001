@@ -72,8 +72,10 @@ export class AcknowledgementComponent implements OnInit {
     this.formId = 1;
     this.cas.getAcknowledgement(this.formId)
       .subscribe((res) => {
-        this.acknFormDetails = res;
-        this.setFormvalues(this.acknFormDetails);
+        if(res != null) {
+          this.acknFormDetails = res;
+          this.setFormvalues(this.acknFormDetails);
+        }
       })
   }
 

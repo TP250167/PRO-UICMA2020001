@@ -96,8 +96,10 @@ export class De1101InterviewComponent implements OnInit {
     this.formId = 11
     this.cas.getClaimInterview(this.formId)
       .subscribe((res) => {
-        this.De1101ivFormDetail = res;
-        this.setFormvalues(this.De1101ivFormDetail)
+        if(res != null) {
+          this.De1101ivFormDetail = res;
+          this.setFormvalues(this.De1101ivFormDetail)
+        }
       })
   }
 

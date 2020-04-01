@@ -89,8 +89,10 @@ export class RequestToReopenComponent implements OnInit {
     this.formId = 1
     this.cas.getRequestToReopen(this.formId)
       .subscribe((res) => {
-        this.reopenFormDetail = res;
-        this.setFormvalues(this.reopenFormDetail)
+        if(res != null) {
+          this.reopenFormDetail = res;
+          this.setFormvalues(this.reopenFormDetail)
+        }
       })
   }
 

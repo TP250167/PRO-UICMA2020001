@@ -73,8 +73,10 @@ export class NoticeOfDeterminationComponent implements OnInit {
     this.formId = 1;
     this.cas.getClaimDetermination(this.formId)
       .subscribe((res) => {
-        this.nodDetails = res;
-        this.setFormvalues(this.nodDetails)
+        if(res != null) {
+          this.nodDetails = res;
+          this.setFormvalues(this.nodDetails)
+        }
       })
   }
 

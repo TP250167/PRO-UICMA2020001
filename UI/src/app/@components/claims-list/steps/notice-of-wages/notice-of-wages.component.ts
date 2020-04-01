@@ -74,8 +74,10 @@ export class NoticeOfWagesComponent implements OnInit {
     this.formId = 1;
     this.cas.getWages(this.formId)
       .subscribe((res) => {
-        this.nofwFormDetails = res;
-        this.setFormvalues(this.nofwFormDetails);
+        if(res != null) {
+          this.nofwFormDetails = res;
+          this.setFormvalues(this.nofwFormDetails);
+        }
       })
   }
 

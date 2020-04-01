@@ -74,8 +74,10 @@ export class ResponseToEmployerComponent implements OnInit {
     this.claimId = 1;
     this.cas.getResponsetoEmployer(this.claimId)
       .subscribe((res) => {
-        this.rteDetails = res;
-        this.setFormvalues(this.rteDetails);
+        if(res != null) {
+          this.rteDetails = res;
+          this.setFormvalues(this.rteDetails);
+        }
       })
   }
 

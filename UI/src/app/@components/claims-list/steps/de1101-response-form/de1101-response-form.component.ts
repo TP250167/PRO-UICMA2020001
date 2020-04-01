@@ -101,13 +101,14 @@ export class De1101ResponseFormComponent implements OnInit {
     this.formId = 2;
     this.cas.getClaimResponse(this.formId)
       .subscribe((res) => {
-        this.responseFormDetails = res;
-        this.setFormvalues(this.responseFormDetails);
+        if(res != null) {
+          this.responseFormDetails = res;
+          this.setFormvalues(this.responseFormDetails);
+        }
       })
   }
 
   saveForm() {
-
     
     if (this.fvalid) {
       

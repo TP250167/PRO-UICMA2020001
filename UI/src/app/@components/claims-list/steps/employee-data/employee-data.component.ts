@@ -80,8 +80,10 @@ export class EmployeeDataComponent implements OnInit {
     this.employeeId = 1
     this.cas.getRequestForEmpData(this.employeeId)
       .subscribe((res) => {
-        this.employeeDetails = res;
-        this.setFormvalues(this.employeeDetails)
+        if(res != null) {
+          this.employeeDetails = res;
+          this.setFormvalues(this.employeeDetails)
+        }
       })
   }
 

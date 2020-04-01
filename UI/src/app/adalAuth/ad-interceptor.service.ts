@@ -39,7 +39,7 @@ export class AdInterceptorService implements HttpInterceptor {
                     statusCode : event.status,
                     data : event.body
                   }
-                    console.log('sucessData--->>>',sucessData);
+                    console.log('successData--->>>',sucessData);
                 }
                 return event;
             }),

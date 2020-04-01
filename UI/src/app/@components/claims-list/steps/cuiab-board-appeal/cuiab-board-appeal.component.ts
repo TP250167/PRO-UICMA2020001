@@ -125,8 +125,10 @@ export class CuiabBoardAppealComponent implements OnInit {
     this.formId = 1;
     this.cas.getCUIABBoardAppeal(this.formId)
       .subscribe((res) => {
-        this.cuiabaFromDetails = res;
-        this.setFormvalues(this.cuiabaFromDetails);
+        if(res != null) {
+          this.cuiabaFromDetails = res;
+          this.setFormvalues(this.cuiabaFromDetails);
+        }
       })
   }
 

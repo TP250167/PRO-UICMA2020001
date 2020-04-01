@@ -74,8 +74,10 @@ export class BenefitChargeComponent implements OnInit {
     this.formId = 1
     this.cas.getBenefitCharge(this.formId)
       .subscribe((res) => {
-        this.benefitChargeDetail = res;
-        this.setFormvalues(this.benefitChargeDetail)
+        if(res != null) {
+          this.benefitChargeDetail = res;
+          this.setFormvalues(this.benefitChargeDetail)
+        }
       })
   }
 

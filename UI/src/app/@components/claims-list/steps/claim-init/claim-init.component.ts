@@ -96,8 +96,10 @@ export class ClaimInitComponent implements OnInit {
     this.formId = 1542
     this.cas.getClaim(this.formId)
       .subscribe((res) => {
-        this.claimDetail = res;
-        this.claimFormSetValues(this.claimDetail)
+        if(res != null) {
+          this.claimDetail = res;
+          this.claimFormSetValues(this.claimDetail)
+        }
       })
   }
 
