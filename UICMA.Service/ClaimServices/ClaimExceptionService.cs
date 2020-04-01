@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UICMA.Domain.Entities;
 using UICMA.Domain.Entities.ClaimExceptions;
 using UICMA.Repository.ClaimRepository;
 
@@ -58,6 +59,28 @@ namespace UICMA.Service.ClaimServices
 
         }
 
+        public ViewClaimException GetClaimException(int Year)
+        {
+
+            ViewClaimException viewNewClaims = new ViewClaimException();
+
+
+            viewNewClaims.NewClaimsException = _ClaimException.GetClaimsByYear(Year);
+            viewNewClaims.Draw = 1;
+            viewNewClaims.RecordsTotal = viewNewClaims.NewClaimsException.Count;
+
+            return viewNewClaims;
+
+
+
+        }
+
+        //public Claim GetReqNumClaims(string RequestNumber)
+        //{
+
+        //    return _newClaim.GetReqNumClaims(RequestNumber);
+
+        //}
 
 
 

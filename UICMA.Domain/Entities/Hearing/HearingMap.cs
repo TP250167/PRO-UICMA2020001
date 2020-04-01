@@ -31,6 +31,13 @@ namespace UICMA.Domain.Entities.HearingMap
             builder.Property(s => s.EDDOffice).HasColumnName("EDD_OFFICE");
             builder.Property(s => s.IssuesList).HasColumnName("ISSUES_LIST");
             builder.Property(s => s.FormCode).HasColumnName("FORM_CODE");
+
+            builder.Property(s => s.EmployerInfo).HasColumnName("EMPLOYER_INFO");
+            builder.Property(s => s.IssueCode).HasColumnName("ISSUE_CODE");
+            builder.Property(s => s.IssueContext).HasColumnName("ISSUE_CONTEXT");
+            builder.Property(s => s.ClaimantAppellant).HasColumnName("CLAIMANT_APPELLANT");
+            builder.Property(s => s.LAUSDAppelant).HasColumnName("LAUSD_APPELLANT");
+
             builder.Property(s => s.ClaimId).HasColumnName("CLAIM_ID");
             builder.Property(s => s.MailDate).HasColumnName("MAIL_DATE");
 

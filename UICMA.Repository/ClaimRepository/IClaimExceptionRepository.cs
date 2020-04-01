@@ -7,5 +7,8 @@ namespace UICMA.Repository.ClaimRepository
 {
    public interface IClaimExceptionRepository: IEntityBaseRepository<ClaimException>
     {
+
+        List<ClaimException> GetClaimsByYear(int Year);
+
     }
 }

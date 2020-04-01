@@ -16,6 +16,7 @@ namespace UICMA.Domain.Entities.Claim_Appeal
         public DateTime? LAUSDFaxDate { get; set; }
         public DateTime? BYBClaimDate { get; set; }
         public DateTime? FormDate { get; set; }
+        public string PrintName { get; set; }
         public string LAUSDAccountNumber { get; set; }
         public string SocialSecurityNumber { get; set; }
         public string ClaimantName { get; set; }

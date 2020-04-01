@@ -15,6 +15,7 @@ namespace UICMA.Domain.Entities.Request_To_Reopen
         public string HearingTime { get; set; }
         public string Signature { get; set; }
         public string Employer { get; set; }
+        public string RequestReason { get; set; }
         public string AppealOfficeAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }

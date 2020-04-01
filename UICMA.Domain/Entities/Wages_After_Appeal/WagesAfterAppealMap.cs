@@ -19,6 +19,8 @@ namespace UICMA.Domain.Entities.Wages_After_AppealMap
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY");
             builder.Property(s => s.MailingDate ).HasColumnName("MAILING_DATE");
+            builder.Property(s => s.PrintName).HasColumnName("PRINT_NAME");
+            builder.Property(s => s.Title).HasColumnName("TITLE");
             builder.Property(s => s.SocialSecurityNumber).HasColumnName("SOCIAL_SECURITY_NUMBER");
             builder.Property(s => s.ClaimantName).HasColumnName("CLAIMANT_NAME");
             builder.Property(s => s.CaseNumber).HasColumnName("CASE_NUMBER");

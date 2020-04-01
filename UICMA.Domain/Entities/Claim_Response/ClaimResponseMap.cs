@@ -31,6 +31,7 @@ namespace UICMA.Domain.Entities.Claim_ResponseMap
             builder.Property(s => s.PhoneNumber).HasColumnName("PHONE_NUMBER");
             builder.Property(s => s.Signature).HasColumnName("SIGNATURE");
             builder.Property(s => s.Title).HasColumnName("TITLE");
+            builder.Property(s => s.PrintName).HasColumnName("PRINT_NAME");
             builder.Property(s => s.Date).HasColumnName("DATE");
             builder.Property(s => s.IssuesList).HasColumnName("ISSUES_LIST");
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");

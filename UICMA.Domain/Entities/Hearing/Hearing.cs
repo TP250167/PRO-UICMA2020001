@@ -26,6 +26,13 @@ namespace UICMA.Domain.Entities.Hearings
         public string ModifiedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
+
+        public string EmployerInfo { get; set; }
+        public string IssueCode { get; set; }
+        public string IssueContext { get; set; }
+        public string ClaimantAppellant { get; set; }
+
+        public string LAUSDAppelant { get; set; }
         public Int64 ClaimId { get; set; }
         public Claim claim { get; set; }
     }

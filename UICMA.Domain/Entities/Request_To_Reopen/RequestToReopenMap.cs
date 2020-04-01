@@ -24,6 +24,8 @@ namespace UICMA.Domain.Entities.Request_To_ReopenMap
             builder.Property(s => s.Zipcode).HasColumnName("ZIPCODE");
             builder.Property(s => s.HearingTime).HasColumnName("HEARING_TIME");
             builder.Property(s => s.AppealOfficeAddress).HasColumnName("APPEAL_OFFICE_ADDRESS");
+            builder.Property(s => s.RequestReason).HasColumnName("REQUEST_REASON");
+            
             builder.Property(s => s.HearingDate).HasColumnName("HEARING_DATE");
             builder.Property(s => s.ClaimantName).HasColumnName("CLAIMANT_NAME");
             builder.Property(s => s.Employer).HasColumnName("EMPLOYER");

@@ -26,7 +26,8 @@ namespace UICMA.Domain.Entities.Claim_AppealMap
             builder.Property(s => s.SocialSecurityNumber).HasColumnName("SOCIAL_SECURITY_NUMBER");
             builder.Property(s => s.CreatedBy).HasColumnName("CREATED_BY");
             builder.Property(s => s.ModifiedBy).HasColumnName("MODIFIED_BY");
-            builder.Property(s => s.BYBClaimDate).HasColumnName("BYB_CLAIM_DATE"); 
+            builder.Property(s => s.BYBClaimDate).HasColumnName("BYB_CLAIM_DATE");
+            builder.Property(s => s.PrintName).HasColumnName("PRINT_NAME");
             builder.Property(s => s.FormDate).HasColumnName("FORM_DATE");
             builder.Property(s => s.LAUSDAccountNumber).HasColumnName("LAUSD_ACCOUNT_NUMBER"); 
             builder.Property(s => s.LAUSDEligibilityInformation).HasColumnName("LAUSD_ELIGIBILITY_INFORMATION");

@@ -17,6 +17,7 @@ namespace UICMA.Domain.Entities.Claim_Response
         public DateTime? BYBClaimDate { get; set; }
         public DateTime? EffectiveDateOfClaim { get; set; }
         public DateTime? DueDate { get; set; }
+        public string PrintName { get; set; }
         public string ClaimantName { get; set; }
         public string SocialSecurityNumber { get; set; }
         public string LAUSDResponse { get; set; }

@@ -21,6 +21,7 @@ namespace UICMA.Domain.Entities.ALJ_Decision
         public DateTime? PlaceOfHearingDate { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
+        public string PlaceOfHearing { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public Int64 ClaimId { get; set; }

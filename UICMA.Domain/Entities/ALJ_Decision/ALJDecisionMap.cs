@@ -27,6 +27,7 @@ namespace UICMA.Domain.Entities.ALJ_DecisionMap
             builder.Property(s => s.EmployerInfo).HasColumnName("EMPLOYER_INFO");
             builder.Property(s => s.ALJName).HasColumnName("ALJ_NAME");
             builder.Property(s => s.PlaceOfHearingDate).HasColumnName("PLACE_OF_HEARING_DATE");
+            builder.Property(s => s.PlaceOfHearing).HasColumnName("PLACE_OF_HEARING");
             builder.Property(s => s.FormPath).HasColumnName("FORM_PATH");
             builder.Property(s => s.FormCode).HasColumnName("FORM_CODE");
             builder.Property(s => s.Decision).HasColumnName("DECISION");

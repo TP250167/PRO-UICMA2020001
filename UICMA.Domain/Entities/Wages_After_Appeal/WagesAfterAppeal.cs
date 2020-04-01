@@ -15,6 +15,9 @@ namespace UICMA.Domain.Entities.Wages_After_Appeal
         public DateTime? DeadLineDate { get; set; }
         public string PreparerName { get; set; }
         public string TelephoneNumber { get; set; }
+
+        public string PrintName { get; set; }
+        public string Title { get; set; }
         public string FaxNumber { get; set; }
         //public string AccountID { get; set; }
         //public DateTime? FirstDayWorked { get; set; }

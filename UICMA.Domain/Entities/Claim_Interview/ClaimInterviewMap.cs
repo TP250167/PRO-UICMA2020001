@@ -36,6 +36,7 @@ namespace UICMA.Domain.Entities.Claim_InterviewMap
             builder.Property(s => s.PhoneNumber).HasColumnName("PHONE_NUMBER");
             builder.Property(s => s.Signature).HasColumnName("SIGNATURE");
             builder.Property(s => s.Title).HasColumnName("TITLE");
+            builder.Property(s => s.PrintName).HasColumnName("PRINT_NAME");
             builder.Property(s => s.RepresentativeDate).HasColumnName("REPRESENTATIVE_DATE");
             builder.Property(s => s.IssuesList).HasColumnName("ISSUES_LIST");
             builder.Property(s => s.FormCode).HasColumnName("FORM_CODE");

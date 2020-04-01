@@ -22,6 +22,7 @@ namespace UICMA.Domain.Entities.Benefit_ChargeMap
             builder.Property(s => s.Notes).HasColumnName("NOTES");
             builder.Property(s => s.AccountId).HasColumnName("ACCOUNT_ID");
             builder.Property(s => s.IssuedDate).HasColumnName("ISSUED_DATE");
+            builder.Property(s => s.SocialSecurityNumber).HasColumnName("SOCIAL_SECURITY_NUMBER");
             builder.Property(s => s.AmountPaidByFiscalYear).HasColumnName("AMOUNT_PAID_BY_FISCAL_YEAR");
             builder.Property(s => s.AmountPaidByBYB).HasColumnName("AMOUNT_PAID_BY_BYB");
             builder.Property(s => s.ActualAmountPaid).HasColumnName("ACTUAL_AMOUNT_PAID");

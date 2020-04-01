@@ -15,6 +15,7 @@ namespace UICMA.Domain.Entities.Benefit_Charge
         public DateTime? IssuedDate { get; set; }
         public string AmountPaidByFiscalYear { get; set; }
         public string AccountId { get; set; }
+        public string SocialSecurityNumber { get; set; }
         public string Notes { get; set; }
         public Int64? LetterId { get; set; }
         public string FormCode { get; set; }

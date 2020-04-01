@@ -27,6 +27,7 @@ namespace UICMA.Domain.Entities.Claim_Interview
         public string PhoneNumber { get; set; }
         public string Signature { get; set; }
         public string Title { get; set; }
+        public string PrintName { get; set; }
         public DateTime? RepresentativeDate { get; set; }
         public Int64? IssuesList { get; set; }
         public string FormCode { get; set; }
