@@ -1,10 +1,11 @@
-export class ClaimDeterminationModel {
+export class ResponseToEmployer {
     id                  : number;
-    decision            : string;
-    mailedDate          : string;
-    benefitYearBegan    : string;
-    socialSecurityNumber: string;
-    fieldOffice         : string;
+    claimantName        : string;
+    socialSecurityNumber: number;
+    dateMailed          : string;
+    benefitYearBeganDate: string;
+    seperationDate      : string;
+    postmarkDate        : string;
     formCode            : string;
     createdBy           : string;
     modifiedBy          : string;

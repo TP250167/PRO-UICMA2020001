@@ -5,6 +5,25 @@ import { ConfigsLoaderService } from "../configs-loader.service";
 
 // models
 import { ClaimModel } from "app/@models/claims/claim.model";
+import { ClaimDeterminationModel} from "app/@models/claims/claim-determination.model";
+import { ResponseToEmployer } from "app/@models/claims/response-to-employer.model";
+import { Wages } from "app/@models/claims/wages.model";
+import { WagesAppeal } from "app/@models/claims/wages-appeal.model";
+import { DeterminationAppeal } from "app/@models/claims/determination-appeal.model";
+import { NoticeOfHearing } from "app/@models/claims/notice-of-hearing.model";
+import { ALJDecision } from "app/@models/claims/aljdecision.model";
+import { ClaimResponseModel } from "app/@models/claims/claim-response.model";
+import { ClaimInterviewModel } from "app/@models/claims/claim-interview.model";
+import { Additionalinfo } from "app/@models/claims/additionalinfo.model";
+import { CUIABBoardAppeal } from "app/@models/claims/cuiabboard-appeal.model";
+import { CUIABAcknowledgement } from "app/@models/claims/cuiabacknowledgement.model";
+import { RequestForEmpData } from "app/@models/claims/request-for-emp-data.model";
+import { WagesAfterAppeal } from "app/@models/claims/wages-after-appeal.model";
+import { RequestToReopen } from "app/@models/claims/request-to-reopen.model";
+import { BenefitCharge } from "app/@models/claims/benefit-charge.model";
+import { BenefitAudit } from "app/@models/claims/benefit-audit.model";
+import { ClaimAppeal } from "app/@models/claims/claim-appeal.model";
+
 
 @Injectable({
   providedIn: "root"

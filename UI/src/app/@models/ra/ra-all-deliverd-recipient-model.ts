@@ -1,5 +1,4 @@
-export class RaAllDeliverdRecipientModel
-{
+export class RaAllDeliverdRecipientModel {
     recipient_Id     : number;
     id               : number;
     first_Name       : string;

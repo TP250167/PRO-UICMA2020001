@@ -1,15 +1,13 @@
-export class ClaimDeterminationModel {
+export class BenefitAudit {
     id                  : number;
-    decision            : string;
-    mailedDate          : string;
-    benefitYearBegan    : string;
+    claimantName        : string;
     socialSecurityNumber: string;
-    fieldOffice         : string;
+    mailDate            : string;
+    notes               : string;
     formCode            : string;
     createdBy           : string;
     modifiedBy          : string;
     createdOn           : string;
     modifiedOn          : string;
-    formPath            : string;
     claimId             : number;
 }

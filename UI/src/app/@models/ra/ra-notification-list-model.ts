@@ -1,5 +1,4 @@
-export class RaNotificationListModel
-{
+export class RaNotificationListModel {
     recipient_Id         : number;
     id                   : number;
     employee_Number      : number;

@@ -1,10 +1,9 @@
-export class RaTemplateIdModel
-{
+export class RaTemplateIdModel {
     id                           : number;
-    createdBy                    : number;
-    modifiedBy                   : number;
-    createdOn                    : number;
-    modifiedOn                   : number;
+    createdBy                    : string;
+    modifiedBy                   : string;
+    createdOn                    : string;
+    modifiedOn                   : string;
     templateName                 : string;
     templateCategory             : string;
     templateStatus               : string;

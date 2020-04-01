@@ -1,0 +1,35 @@
+export class DeterminationAppeal {
+    id                          : number ;
+    claimantName                : string ;
+    socialSecurityNumber        : string ;
+    translatorLanguage          : string ;
+    needTranslator              : boolean;
+    eddOfficeAddress            : string ;
+    appellantAddress            : string ;
+    appellantEmail              : string ;
+    appellantFaxNo              : string ;
+    appellantTelephoneNo        : string ;
+    appellantCellNo             : string ;
+    authorizeToSendEmail        : boolean;
+    authorizeToSendText         : boolean;
+    employerAccountNumber       : string ;
+    agentName                   : string ;
+    agentAddress                : string ;
+    agentCity                   : string ;
+    appellantCity               : string ;
+    agentState                  : string ;
+    agentZipcode                : string ;
+    appellantState              : string ;
+    appellantZipcode            : string ;
+    formDate                    : string ;
+    notes                       : string ;
+    signature                   : string ;
+    appellantStatementNoticeDate: string ;
+    appellantStatementComments  : string ;
+    formCode                    : string ;
+    createdBy                   : string ;
+    modifiedBy                  : string ;
+    createdOn                   : string ;
+    modifiedOn                  : string ;
+    claimId                     : number ;
+}

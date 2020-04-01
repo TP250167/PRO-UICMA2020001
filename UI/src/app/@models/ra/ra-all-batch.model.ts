@@ -1,5 +1,4 @@
-export class RaAllBatchModel
-{
+export class RaAllBatchModel {
     id                      : number;
     batchName               : string;
     batchDescription        : string;

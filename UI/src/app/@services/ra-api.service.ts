@@ -3,6 +3,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigsLoaderService } from '../configs-loader.service'
 
+//models
+import { RaAllBatchModel } from "app/@models/ra/ra-all-batch.model";
+import { RaAllBatchListModel } from "app/@models/ra/ra-all-batchlist.model";
+import { RaAllDeliverdRecipientModel } from "app/@models/ra/ra-all-deliverd-recipient-model";
+import { RaAllFailedRecipientModel } from "app/@models/ra/ra-all-failed-recipient-model";
+import { RaBatchDetailsModel } from "app/@models/ra/ra-batch-details-model";
+import { RaNotificationListModel } from "app/@models/ra/ra-notification-list-model";
+import { RaRecipientModel } from "app/@models/ra/ra-recipient-model";
+import { RaTemplateIdModel } from "app/@models/ra/ra-templateId-model";
+import { RaWeeklyBatchModel } from "app/@models/ra/ra-weekly-batch-model";
+
 
 @Injectable({
   providedIn: 'root'
