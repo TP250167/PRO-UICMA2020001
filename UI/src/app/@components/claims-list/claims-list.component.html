@@ -9,7 +9,7 @@
                 <h3>Claims & Appeal Request</h3>
             </div>
             <div class="cc-table-wrapper">
-                <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                <table datatable [dtTrigger]="dtTriggerClaim" [dtOptions]="dtOptions" class="row-border hover">
                     <thead>
                         <tr>
                             <th>Type</th>
@@ -52,26 +52,26 @@
                 <h3>Scan / Email Exceptions</h3>
             </div>
             <div class="cc-table-wrapper">
-                <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                <table datatable [dtTrigger]="dtTriggerClaimExaption" [dtOptions]="dtOptions" class="row-border hover">
                     <thead>
                         <tr>
-                            <th>Type</th>
-                            <th>Request Number</th>
-                            <th>Request Title</th>
-                            <th>Initiated On</th>
-                            <th>Name</th>
-                            <th>Current Stage</th>
+                            <th>Id</th>
+                            <th>Document Id</th>
+                            <th>Exception Reason</th>
+                            <th>Exception Date</th>
+                            <th>BYB</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody *ngIf="claimsException?.length != 0">
                         <tr *ngFor="let item of claimsException">
-                            <td>{{ item.type }}</td>
-                            <td>{{ item.requestNumber }}</td>
-                            <td>{{ item.requestTitle }}</td>
-                            <td>{{ item.initiatedOn }}</td>
-                            <td>{{ item.Name }}</td>
-                            <td>{{ item.CurrentStage }}</td>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.documentId }}</td>
+                            <td>{{ item.exceptionReason }}</td>
+                            <td>{{ item.exceptionDate | date: 'MM/dd/yyyy' }}</td>
+                            <td>{{ item.benefitYearBeginning }}</td>
+                            <td>{{ item.status }}</td>
                             <td class="cc-dbt-action">
                                 <div class="cc-dbt-wrapper">
                                     <i (click)="gotoClaim(item.id)" class="fa fa-edit"></i>

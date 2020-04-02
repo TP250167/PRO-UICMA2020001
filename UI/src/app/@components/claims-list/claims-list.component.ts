@@ -4,13 +4,19 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { ClaimsApiService } from "@services/claims-api.service";
 
+import { Subject } from 'rxjs';
+
 @Component({
   selector: "app-claims-list",
   templateUrl: "./claims-list.component.html",
   styleUrls: ["./claims-list.component.scss"]
 })
 export class ClaimsListComponent implements OnInit {
-  public dtOptions: any;
+
+  public dtOptions: DataTables.Settings = {};
+  public dtTriggerClaim: Subject<any> = new Subject();
+  public dtTriggerClaimExaption: Subject<any> = new Subject();
+
   public claims: any;
   public claimsException: any;
 
@@ -30,13 +36,15 @@ export class ClaimsListComponent implements OnInit {
       if(res != null) {
         this.claims = res;
         this.claims = this.claims.newClaims;
+        this.dtTriggerClaim.next();
       }
     });
 
-    this.acs.getClaimsExceptionList(2020, "Exception").subscribe(res => {
+    this.acs.getClaimsExceptionList(2020).subscribe(res => {
       if(res != null) {
         this.claimsException = res;
-        this.claimsException = this.claimsException.newClaims;
+        this.claimsException = this.claimsException.newClaimsException;
+        this.dtTriggerClaimExaption.next();
       }
     });
     
@@ -49,4 +57,10 @@ export class ClaimsListComponent implements OnInit {
   ngOnInit() {
     this.getClaimsDetails();
   }
+
+  ngOnDestroy(): void {
+    this.dtTriggerClaim.unsubscribe();
+    this.dtTriggerClaimExaption.unsubscribe();
+  }
+
 }

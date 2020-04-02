@@ -85,7 +85,7 @@ export class ClaimInitComponent implements OnInit {
 
   getClaimDetail() {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.formId = 1542
+    this.formId = 1
     this.cas.getClaim(this.formId)
       .subscribe((res) => {
         if(res != null) {

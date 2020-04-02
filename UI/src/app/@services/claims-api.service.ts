@@ -37,17 +37,22 @@ export class ClaimsApiService {
     return this.http.get(`${this.cls.ApiUrl}api/NewClaim/GetActivesClaims/2020/Active`);
   }
 
-  getClaimsExceptionList(year, status) {
-    return this.http.get(`${this.cls.ApiUrl}api/NewClaim/GetActivesClaims/2020/Exception`);
+  getClaimsExceptionList(year) {
+    return this.http.get(`${this.cls.ApiUrl}api/ClaimException/GetClaimException/2020`);
   }
+
+  // claim list end
+
+
+  // claim start
   getClaim(id) {
-    return this.http.get<ClaimModel>(`${this.cls.ApiUrl}api/NewClaim/GetReqNumClaims/${id}`);
+    return this.http.get<ClaimModel>(`${this.cls.ApiUrl}api/NewClaim/GetNewclaimbyID/${id}`);
   }
 
   updateClaim(payloadData) {
     return this.http.post<ClaimModel>(`${this.cls.ApiUrl}api/NewClaim/AddandUpdateNewClaim`, payloadData);
   }
-  // claim list end
+  // claim end
 
 
 
