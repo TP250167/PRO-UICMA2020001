@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
+import { AppService } from 'app/@services/app.service'
+
 import { ClaimsService } from 'app/@services/claims.service'
 
 @Component({
@@ -9,7 +12,10 @@ import { ClaimsService } from 'app/@services/claims.service'
 
 export class ClaimComponent implements OnInit {
 
-  constructor(public cs: ClaimsService) {
+  constructor(
+    public  aps  : AppService,
+    public cs: ClaimsService
+    ) {
 
   }
 

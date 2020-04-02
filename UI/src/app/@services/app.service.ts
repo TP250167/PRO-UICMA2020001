@@ -34,7 +34,6 @@ export class AppService {
    return this.datePipe.transform(val,'MM/dd/yyyy');
   }
 
-
   toastSaved() {
     return this.tort.success('Data successfully Saved', 'Saved',  { timeOut: this.toastTime });
   }

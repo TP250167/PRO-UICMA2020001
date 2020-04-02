@@ -1,60 +1,102 @@
 <div [ngSwitch]="cs.formStepPosition">
     <div *ngSwitchCase="'claim'">
-        <app-claim-init></app-claim-init>
+        <app-claim-init [uavalue]="uploadAttachment" ></app-claim-init>
     </div>
     <div *ngSwitchCase="'noticeOfDetermination'">
-        <app-notice-of-determination></app-notice-of-determination>
+        <app-notice-of-determination ></app-notice-of-determination>
     </div>
     <div *ngSwitchCase="'responseToEmployer'">
-        <app-response-to-employer></app-response-to-employer>
+        <app-response-to-employer ></app-response-to-employer>
     </div>
     <div *ngSwitchCase="'noticeOfWages'">
-        <app-notice-of-wages></app-notice-of-wages>
+        <app-notice-of-wages ></app-notice-of-wages>
     </div>
     <div *ngSwitchCase="'appealForm'">
-        <app-appeal-form></app-appeal-form>
+        <app-appeal-form ></app-appeal-form>
     </div>
     <div *ngSwitchCase="'aljDecision'">
-        <app-alj-decision></app-alj-decision>
+        <app-alj-decision ></app-alj-decision>
     </div>
     <div *ngSwitchCase="'aljAcknowledgement'">
-        <app-acknowledgement></app-acknowledgement>
+        <app-acknowledgement ></app-acknowledgement>
     </div>
     <div *ngSwitchCase="'noticeOfHearing'">
-        <app-notice-of-hearing></app-notice-of-hearing>
+        <app-notice-of-hearing ></app-notice-of-hearing>
     </div>
     <div *ngSwitchCase="'additionalInfo'">
-        <app-additional-info></app-additional-info>
+        <app-additional-info ></app-additional-info>
     </div>
     <div *ngSwitchCase="'EmployeeData'">
-        <app-employee-data></app-employee-data>
+        <app-employee-data ></app-employee-data>
     </div>
     <div *ngSwitchCase="'RequestForWages'">
-        <app-request-for-wages></app-request-for-wages>
+        <app-request-for-wages ></app-request-for-wages>
     </div>
     <div *ngSwitchCase="'BenefitAudit'">
-        <app-benefit-audit></app-benefit-audit>
+        <app-benefit-audit ></app-benefit-audit>
     </div>
     <div *ngSwitchCase="'BenefitCharges'">
-        <app-benefit-charge></app-benefit-charge>
+        <app-benefit-charge ></app-benefit-charge>
     </div>
     <div *ngSwitchCase="'de1101ResponseForm'">
-        <app-de1101-response-form></app-de1101-response-form>
+        <app-de1101-response-form ></app-de1101-response-form>
     </div>
     <div *ngSwitchCase="'de1545AppealForm'">
-        <app-de1545-appeal-form></app-de1545-appeal-form>
+        <app-de1545-appeal-form ></app-de1545-appeal-form>
     </div>
     <div *ngSwitchCase="'de1101Interview'">
-        <app-de1101-interview></app-de1101-interview>
+        <app-de1101-interview ></app-de1101-interview>
     </div>
     <div *ngSwitchCase="'de4614AppealForm'">
-        <app-de4614-appeal-form></app-de4614-appeal-form>
+        <app-de4614-appeal-form ></app-de4614-appeal-form>
     </div>
     <div *ngSwitchCase="'RequestToReopen'">
-        <app-request-to-reopen></app-request-to-reopen>
+        <app-request-to-reopen ></app-request-to-reopen>
     </div>
     <div *ngSwitchCase="'cuiabBoardAppeal'">
-        <app-cuiab-board-appeal></app-cuiab-board-appeal>
+        <app-cuiab-board-appeal ></app-cuiab-board-appeal>
     </div>
     <h1 *ngSwitchDefault>default</h1>
 </div>
+
+
+<!-- modal popups start -->
+
+<ng-template #uploadAttachment>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Documents</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.closeModel()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="cc-form-section">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Document Type</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12 cc-file-upload">
+                        <input type="file" appCustomUpload class="form-control">
+                        <div class="cc-fu-wrapper">
+                            <div class="cc-file-upload-filed">
+                                <span class="cc-fuf-text"></span>
+                            </div>
+                            <div class="cc-file-upload-button">Choose File</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="aps.closeModel()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="aps.closeModel()">Ok</button>
+    </div>
+
+</ng-template>

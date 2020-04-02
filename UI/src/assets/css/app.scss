@@ -29,7 +29,7 @@ html , body { background-color: $bgcolor; font-family: 'Roboto', sans-serif; col
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { line-height: 1.5; color: #5e5e5e; }
 h3, .h3 { font-size: 18px; }
 p { font-size: 14px; font-weight: 300; line-height: 1.7; } 
-::-webkit-scrollbar { width: 6px; background-color: lightgrey; }
+::-webkit-scrollbar { width: 6px; background-color: lightgrey; height: 6px; border-radius: 200px; }
 ::-webkit-scrollbar-thumb { background-color:$primary; border-radius: 420px; }
 
 // ::-webkit-scrollbar-track { }
@@ -930,7 +930,7 @@ table.dataTable thead th, table.dataTable tfoot th , .table thead td, .table the
     justify-content: flex-end;
     font-size: 18px;
     >div {
-        margin: 5px 10px;
+        padding: 5px 10px;
         i{
             cursor: pointer;
         }
@@ -1109,6 +1109,72 @@ tr:first-child>td>.fc-day-grid-event{margin-top:2px;}
 
 
 // calendar style end
+
+// pdf viwer style start
+
+.cc-set-document {
+    margin-bottom: 15px;
+}
+
+html body .cc-pdf-viewer-wrapper {
+
+    pdf-viewer {
+        display: block;
+        cursor: grab !important;
+    }
+
+    .ng2-pdf-viewer-container {
+        overflow-x: visible;
+    }
+
+    .cc-pdf-viewer-controll {
+        display: flex;
+        justify-content: space-between;
+        .cc-zoom-cont {
+            display: flex;
+            .zoomin , .zoomout {
+                font-size: 22px;
+                height: 35px;
+                width: 35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                img {
+                    height: 25px;
+                    width: 25px;
+                }
+            }
+        }
+    }
+
+    .cc-pv-left , .cc-pv-right{
+        cursor: pointer;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 27px;
+        border-radius: 4px;
+        &:hover {
+            background-color: $primary;
+            color: #fff;
+        }
+    }
+
+   .pdfViewer  {
+        position: relative;
+        // top: -45px;
+   }
+
+}
+
+drag-scroll {
+    cursor: grab;
+}
+
+// pdf viwer style end
 
 // toaster 
 

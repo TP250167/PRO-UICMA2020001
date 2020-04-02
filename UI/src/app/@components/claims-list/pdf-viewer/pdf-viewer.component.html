@@ -1,0 +1,45 @@
+<h3 class="card-title mb-3">
+    <span class="badge badge-primary">Associated Documents</span>
+</h3>
+
+<select class="form-control cc-set-document" [(ngModel)]="docSelection" (change)="setDocument(docSelection)">
+    <option *ngFor="let item of docList" [value]="item.id">{{item.docName}}</option>
+</select>
+
+<div class="cc-pdf-viewer-wrapper">
+
+    <div class="cc-pdf-viewer-controll" *ngIf="sourceType == 'pdf'">
+        <div class="cc-zoom-cont">
+            <div class="zoomout" (click)="zoomOut()">
+                <img src="../../../../assets/img/zoom-out.png" alt="zoomout">
+            </div>
+            <div class="zoomin" (click)="zoomIn()">
+                <img src="../../../../assets/img/zoom-in.png" alt="zoomin">
+            </div>
+        </div>
+
+        <div class="cc-slider-cont">
+            <div class="cc-pv-left" (click)="pdfviewPreviousPage()"> <i class="fa fa-angle-left"></i> </div>
+            <div>
+                <span>{{pageIndex}}</span>
+                <span>/</span>
+                <span>{{totalPage}}</span>
+            </div>
+            <div class="cc-pv-right" (click)="pdfviewNextPage()"> <i class="fa fa-angle-right"></i> </div>
+        </div>
+    </div>
+
+    <div class="cc-pdf-viewer">
+        <drag-scroll style="height: 1000px;" >
+            <div class="cc-pdfimg-wrapper">
+                <pdf-viewer *ngIf="(sourceType == 'pdf');else imgViewer" [src]="sourceSrc" [original-size]="false" [autoresize]="true"
+                    [show-all]="false" [page]="pageIndex" [zoom]="zoom" [render-text]="false" (after-load-complete)="afterLoadComplete($event)">
+                </pdf-viewer>
+                <ng-template #imgViewer>
+                    <div class="cc-imgViewer" > <img [src]="sourceSrc" alt="image"> </div>
+                </ng-template>
+            </div>
+        </drag-scroll>
+    </div>
+    
+</div>

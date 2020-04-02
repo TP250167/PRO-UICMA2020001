@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NgxModule } from './ngx.module'
+import { NgxModule } from './ngx.module';
 import { RouterModule, Routes } from '@angular/router';
-import { SidebarModule } from './sidebar.module'
+import { SidebarModule } from './sidebar.module';
+
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 import { ClaimComponent } from 'app/@components/claims-list/claim/claim.component'
 import { SidebarProcessStepsComponent } from 'app/@components/sidebar-process-steps/sidebar-process-steps.component'
@@ -32,6 +35,7 @@ import { De1101InterviewComponent } from 'app/@components/claims-list/steps/de11
 import { De1101ResponseFormComponent } from 'app/@components/claims-list/steps/de1101-response-form/de1101-response-form.component';
 
 
+import { PdfViewerComponent } from 'app/@components/claims-list/pdf-viewer/pdf-viewer.component'
 
 const routes: Routes = [
   { path: "", component: ClaimComponent },
@@ -59,12 +63,16 @@ const routes: Routes = [
     DE1545AppealFormComponent,
     De4614AppealFormComponent,
     De1101InterviewComponent,
-    De1101ResponseFormComponent
+    De1101ResponseFormComponent,
+
+    PdfViewerComponent
   ],
   imports: [
     NgxModule,
     RouterModule.forChild(routes),
     SidebarModule,
+    PdfViewerModule,
+    DragScrollModule,
   ],
   exports: [
     ClaimComponent,
@@ -88,6 +96,8 @@ const routes: Routes = [
     De4614AppealFormComponent,
     De1101InterviewComponent,
     De1101ResponseFormComponent,
+
+    PdfViewerComponent
   ]
 })
 export class ClaimModule { }
