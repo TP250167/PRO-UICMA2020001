@@ -39,13 +39,15 @@ export class ClaimInitComponent implements OnInit {
       id                  : [''                                                       ],
       claimId             : [''                                                       ],
       claimantName        : ['', Validators.required                                  ],
+      employeeNumber      : ['', Validators.required                                  ],
+      gender              : ['', Validators.required                                  ],
       address             : ['', Validators.required                                  ],
       city                : ['', Validators.required                                  ],
       state               : ['', Validators.required                                  ],
       zipcode             : ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       mailDate            : ['', Validators.required                                  ],
       additionalClaim     : ['', Validators.required                                  ],
-      receiveDate         : ['', Validators.required                                  ],
+      receivedDate        : ['', Validators.required                                  ],
       socialSecurityNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       effectiveDateOfClaim: ['', Validators.required                                  ],
       lastDateWorked      : ['', Validators.required                                  ],
@@ -68,13 +70,15 @@ export class ClaimInitComponent implements OnInit {
     this.fc.id.setValue(data.id)
     this.fc.claimId.setValue(data.claimId)
     this.fc.claimantName.setValue(data.claimantName)
+    this.fc.employeeNumber.setValue(data.employeeNumber)
+    this.fc.gender.setValue(data.gender)
     this.fc.address.setValue(data.address)
     this.fc.city.setValue(data.city)
     this.fc.state.setValue(data.state)
     this.fc.zipcode.setValue(data.zipcode)
     this.fc.mailDate.setValue(this.aps.formatDate(data.mailDate))
     this.fc.additionalClaim.setValue(data.additionalClaim)
-    this.fc.receiveDate.setValue(this.aps.formatDate(data.receiveDate))
+    this.fc.receivedDate.setValue(this.aps.formatDate(data.receivedDate))
     this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
     this.fc.effectiveDateOfClaim.setValue(this.aps.formatDate(data.effectiveDateOfClaim))
     this.fc.lastDateWorked.setValue(this.aps.formatDate(data.lastDateWorked))
@@ -84,8 +88,8 @@ export class ClaimInitComponent implements OnInit {
   }
 
   getClaimDetail() {
-    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.formId = 1
+    this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
+    // this.formId = 1
     this.cas.getClaim(this.formId)
       .subscribe((res) => {
         if(res != null) {
@@ -101,7 +105,7 @@ export class ClaimInitComponent implements OnInit {
 
       this.fv.claimantStatus = 'Active'
       this.fv.mailDate = this.aps.formatDate(this.fv.mailDate)
-      this.fv.receiveDate = this.aps.formatDate(this.fv.receiveDate)
+      this.fv.receivedDate = this.aps.formatDate(this.fv.receivedDate)
       this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim)
       this.fv.lastDateWorked = this.aps.formatDate(this.fv.lastDateWorked)
       this.fv.dateMailedToEDD = this.aps.formatDate(this.fv.dateMailedToEDD)

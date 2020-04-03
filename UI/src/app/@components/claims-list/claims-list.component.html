@@ -24,14 +24,14 @@
                     <tbody *ngIf="claims?.length != 0">
                         <tr *ngFor="let item of claims">
                             <td>{{ item.type }}</td>
-                            <td (click)="gotoClaim(item.requestNumber)">{{ item.requestNumber }}</td>
-                            <td (click)="gotoClaim(item.requestNumber)">{{ item.requestTitle }}</td>
+                            <td>{{ item.requestNumber }}</td>
+                            <td>{{ item.requestTitle }}</td>
                             <td>{{ item.initiatedOn }}</td>
-                            <td>{{ item.Name }}</td>
+                            <td>{{ item.claimantName }}</td>
                             <td>{{ item.CurrentStage }}</td>
                             <td class="cc-dbt-action">
                                 <div class="cc-dbt-wrapper">
-                                    <i class="fa fa-edit"></i>
+                                    <i (click)="gotoClaim(item.id)" class="fa fa-edit"></i>
                                     <i class="fa fa-trash-o"></i>
                                 </div>
                             </td>
@@ -55,8 +55,6 @@
                 <table datatable [dtTrigger]="dtTriggerClaimExaption" [dtOptions]="dtOptions" class="row-border hover">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Document Id</th>
                             <th>Exception Reason</th>
                             <th>Exception Date</th>
                             <th>BYB</th>
@@ -66,8 +64,6 @@
                     </thead>
                     <tbody *ngIf="claimsException?.length != 0">
                         <tr *ngFor="let item of claimsException">
-                            <td>{{ item.id }}</td>
-                            <td>{{ item.documentId }}</td>
                             <td>{{ item.exceptionReason }}</td>
                             <td>{{ item.exceptionDate | date: 'MM/dd/yyyy' }}</td>
                             <td>{{ item.benefitYearBeginning }}</td>

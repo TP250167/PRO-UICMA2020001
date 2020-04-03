@@ -20,7 +20,7 @@
             <div class="col-md-4">
                 <div class="cc-page-info-box">
                     <h3>Initiated On</h3>
-                    <h5>{{claimDetail.createdOn}}</h5>
+                    <h5>{{claimDetail.createdOn | date:'MM/dd/yyyy'}}</h5>
                 </div>
             </div>
         </div>
@@ -61,16 +61,25 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="empNo">Emp No.</label>
-                                                        <div>
-                                                            <span class="cc-inputborder">0000452134</span>
+                                                        <label for="employeeNumber">Emp No.</label>
+                                                        <input type="text" class="form-control" formControlName="employeeNumber" name="employeeNumber"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted && fc.employeeNumber.errors }">
+                                                        <div *ngIf="fc.employeeNumber.touched && fc.employeeNumber.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.employeeNumber.errors || formSubmitted">This
+                                                                field is required </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="gender">Gender</label>
-                                                        <div>
-                                                            <span class="cc-inputborder">Male</span>
+                                                        <select id="inputState" class="form-control" formControlName="gender" name="gender"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted && fc.gender.errors }">
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                        <div *ngIf="fc.gender.touched && fc.gender.errors || formSubmitted" class="invalid-feedback">
+                                                            <div *ngIf="fc.gender.errors">This field is
+                                                                required </div>
                                                         </div>
                                                     </div>
 
@@ -195,15 +204,15 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="receiveDate">Receive Date</label>
+                                                        <label for="receivedDate">Receive Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
                                                             autocomplete="off" bsDatepicker
-                                                            formControlName="receiveDate" name="receiveDate"
+                                                            formControlName="receivedDate" name="receivedDate"
                                                             [bsConfig]="aps.ngxcalConfig"
-                                                            [ngClass]="{ 'is-invalid': formSubmitted && fc.receiveDate.errors }">
-                                                        <div *ngIf="fc.receiveDate.touched && fc.receiveDate.errors || formSubmitted"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted && fc.receivedDate.errors }">
+                                                        <div *ngIf="fc.receivedDate.touched && fc.receivedDate.errors || formSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="fc.receiveDate.errors">This field is required
+                                                            <div *ngIf="fc.receivedDate.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
