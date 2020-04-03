@@ -6,6 +6,7 @@ export class BenefitCharge {
     issuedDate                 : string;
     amountPaidByFiscalYear     : string;
     accountId                  : string;
+    socialSecurityNumber       : string;
     notes                      : string;
     letterId                   : string;
     formCode                   : string;

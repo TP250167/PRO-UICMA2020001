@@ -5,18 +5,23 @@ export class NoticeOfHearing {
     caseNumber            : string ;
     mailDate              : string ;
     hearingTime           : string ;
-    hearingPlace          :string  ;
+    hearingPlace          : string  ;
     appellantType         : boolean;
     appellantName         : string ;
     notes                 : string ;
     administrativeLawJudge: string ;
-    eddOffice             :string  ;
+    eddOffice             : string  ;
     hearingDate           : string ;
-    issuesList            :string  ;
+    issuesList            : string  ;
     formCode              : string ;
     createdBy             : string ;
     modifiedBy            : string ;
     createdOn             : string ;
     modifiedOn            : string ;
+    employerInfo          : string ;
+    issueCode             : string ;
+    issueContext          : string ;
+    claimantAppellant     : string ;
+    lausdAppelant         : string ;
     claimId               : number ;
 }

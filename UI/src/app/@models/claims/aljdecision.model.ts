@@ -13,6 +13,7 @@ export class ALJDecision {
     placeOfHearingDate        : string;
     createdBy                 : string;
     modifiedBy                : string;
+    placeOfHearing            : string;
     createdOn                 : string;
     modifiedOn                : string;
     claimId                   : number;

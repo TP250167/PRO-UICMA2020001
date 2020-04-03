@@ -18,6 +18,7 @@ export class ClaimInterviewModel {
     phoneNumber           : string;
     signature             : string;
     title                 : string;
+    printName             : string;
     representativeDate    : string;
     issuesList            : number;
     formCode              : string;

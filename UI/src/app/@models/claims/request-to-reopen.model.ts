@@ -7,6 +7,7 @@ export class RequestToReopen {
     hearingTime                 : string;
     signature                   : string;
     employer                    : string;
+    requestReason               : string;
     appealOfficeAddress         : string;
     city                        : string;
     state                       : string;

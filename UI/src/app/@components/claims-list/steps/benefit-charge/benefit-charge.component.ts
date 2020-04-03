@@ -36,12 +36,12 @@ export class BenefitChargeComponent implements OnInit {
   // form section 
   benefitChargeFormInit() {
     this.bfcForm = this.fb.group({
-      id         : ['', Validators.required],
-      claimId    : ['', Validators.required],
-      letterId   : ['', Validators.required],
-      issuedDate : ['', Validators.required],
-      accountId  : ['', Validators.required],
-      claimantSSN: ['', Validators.required],
+      id                   : ['', Validators.required],
+      claimId              : ['', Validators.required],
+      letterId             : ['', Validators.required],
+      issuedDate           : ['', Validators.required],
+      accountId            : ['', Validators.required],
+      socialSecurityNumber : ['', Validators.required],
     });
   }
 
@@ -60,7 +60,7 @@ export class BenefitChargeComponent implements OnInit {
     this.fc.letterId.setValue(data.letterId)
     this.fc.issuedDate.setValue(this.aps.formatDate(data.issuedDate))
     this.fc.accountId.setValue(data.accountId)
-    this.fc.claimantSSN.setValue(data.claimantSSN)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
   }
 
   getFormDetails() {

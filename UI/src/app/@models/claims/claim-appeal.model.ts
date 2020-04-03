@@ -8,6 +8,7 @@ export class ClaimAppeal {
     lausdFaxDate                      : string;
     bybClaimDate                      : string;
     formDate                          : string;
+    printName                         : string;
     lausdAccountNumber                : string;
     socialSecurityNumber              : string;
     claimantName                      : string;

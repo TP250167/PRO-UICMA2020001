@@ -85,13 +85,13 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="claimantSSN">Claimant SSN</label>
+                                                        <label for="socialSecurityNumber">Claimant SSN</label>
                                                         <input type="text" class="form-control"
-                                                            formControlName="claimantSSN" name="claimantSSN"
-                                                            [ngClass]="{ 'is-invalid': formSubmitted && fc.claimantSSN.errors }">
-                                                        <div *ngIf="fc.claimantSSN.touched && fc.claimantSSN.errors || formSubmitted"
+                                                            formControlName="socialSecurityNumber" name="socialSecurityNumber"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted && fc.socialSecurityNumber.errors }">
+                                                        <div *ngIf="fc.socialSecurityNumber.touched && fc.socialSecurityNumber.errors || formSubmitted"
                                                             class="invalid-feedback">
-                                                            <div *ngIf="fc.claimantSSN.errors">This field is required
+                                                            <div *ngIf="fc.socialSecurityNumber.errors">This field is required
                                                             </div>
                                                         </div>
                                                     </div>
