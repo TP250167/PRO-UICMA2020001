@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-
-import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
@@ -15,7 +13,7 @@ import { ClaimsApiService } from 'app/@services/claims-api.service'
 })
 export class EmployeeDataComponent implements OnInit {
 
-  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+  @Input() uavalue: any;
 
   // form setion var 
   public empDataForm: FormGroup;
@@ -34,14 +32,11 @@ export class EmployeeDataComponent implements OnInit {
 
   }
 
-  itc() { this.cs.increaseTabCount(this.staticTabs); }
-  dtc() { this.cs.descreaseTabCount(this.staticTabs); }
-
   // form section 
   employeeFormInit() {
     this.empDataForm = this.fb.group({
-      id                  : [''                                                       ],
-      claimId             : [''                                                       ],
+      id                  : ['', Validators.required                                  ],
+      claimId             : ['', Validators.required                                  ],
       date                : ['', Validators.required                                  ],
       bybClaimDate        : ['', Validators.required                                  ],
       claimantName        : ['', Validators.required                                  ],
@@ -102,7 +97,6 @@ export class EmployeeDataComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cs.tabincLimit = 2;
     this.employeeFormInit()
     this.getFormDetails()
   }

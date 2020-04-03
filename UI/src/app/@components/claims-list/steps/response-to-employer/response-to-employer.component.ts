@@ -1,8 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-
-import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
@@ -15,7 +13,7 @@ import { ClaimsApiService } from 'app/@services/claims-api.service'
 })
 export class ResponseToEmployerComponent implements OnInit {
 
-  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+  @Input() uavalue: any;
 
   
   // form setion var 
@@ -36,14 +34,12 @@ export class ResponseToEmployerComponent implements OnInit {
 
   }
 
-  itc() { this.cs.increaseTabCount(this.staticTabs); }
-  dtc() { this.cs.descreaseTabCount(this.staticTabs); }
 
   // form section 
   ResponseFormInit() {
     this.De4614Form = this.fb.group({
-      id                  : [''                     ],
-      claimId             : [''                     ],
+      id                  : ['', Validators.required],
+      claimId             : ['', Validators.required],
       claimantName        : ['', Validators.required],
       socialSecurityNumber: ['', Validators.required],
       dateMailed          : ['', Validators.required],
@@ -97,7 +93,6 @@ export class ResponseToEmployerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cs.tabincLimit = 2;
     this.ResponseFormInit();
     this.getFormDetails();
   }

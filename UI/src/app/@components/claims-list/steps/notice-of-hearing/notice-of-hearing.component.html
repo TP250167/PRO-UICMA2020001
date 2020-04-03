@@ -200,7 +200,7 @@
                                         <h3 class="card-title mb-3">
                                             <span class="badge badge-primary">List Of Documents</span>
                                             <button class="btn btn-success"
-                                                (click)="aps.openModal(uploadAttachment)">Add
+                                                (click)="aps.openModal(uavalue)">Add
                                                 Document</button>
                                         </h3>
                                     </div>
@@ -238,96 +238,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="cc-wbg">
-                    <div class="cc-docview">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3 class="card-title mb-3">
-                                        <span class="badge badge-primary">Associated Documents</span>
-                                    </h3>
-
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-
-                                    <div class="cc-doc-view-wrapper">
-                                        <div class="doc-view">
-                                            <div class="cc-slider-wrapper">
-                                                <div class="cc-slider-cont">
-                                                    <div (click)="dtc()"> <i class="fa fa-angle-left"
-                                                            aria-hidden="true"></i>
-                                                    </div>
-                                                    <div> <span>{{cs.tabIncDec + 1}}</span> <span>/</span>
-                                                        <span>{{cs.tabincLimit}}</span> </div>
-                                                    <div (click)="itc()"> <i class="fa fa-angle-right"
-                                                            aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="cc-dov-view-tabs">
-                                                    <tabset #staticTabs>
-                                                        <tab class="active">
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-1.jpg">
-                                                        </tab>
-                                                        <tab>
-                                                            <img
-                                                                src="../../../../assets/img/forms/1_DE-1101 Notice of UI Claim Filed-2.jpg">
-                                                        </tab>
-                                                    </tabset>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-pdf-viewer></app-pdf-viewer>
         </div>
     </div>
 </div>
 
-<ng-template #uploadAttachment>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Add Documents</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.closeModel()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div class="cc-form-section">
-            <form>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Document Type</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-12 cc-file-upload">
-                        <input type="file" appCustomUpload class="form-control">
-                        <div class="cc-fu-wrapper">
-                            <div class="cc-file-upload-filed">
-                                <span class="cc-fuf-text"></span>
-                            </div>
-                            <div class="cc-file-upload-button">Choose File</div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="aps.closeModel()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="aps.closeModel()">Ok</button>
-    </div>
-
-
-</ng-template>

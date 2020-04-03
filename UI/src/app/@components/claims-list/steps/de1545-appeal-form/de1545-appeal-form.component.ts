@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-
-import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService } from 'app/@services/app.service'
 import { ClaimsService } from 'app/@services/claims.service'
@@ -18,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DE1545AppealFormComponent implements OnInit {
 
-  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+  @Input() uavalue: any;
 
   public appealFormDetails: any = []
   public claimId: number;
@@ -39,16 +37,11 @@ export class DE1545AppealFormComponent implements OnInit {
 
   }
 
-
-  itc() { this.cs.increaseTabCount(this.staticTabs); }
-  dtc() { this.cs.descreaseTabCount(this.staticTabs); }
-
-
   // form section 
   de1545AppealFormInit() {
     this.De1545AppealForm = this.fb.group({
-      id                         : [''                     ],
-      claimId                    : [''                     ],
+      id                         : ['', Validators.required],
+      claimId                    : ['', Validators.required],
       fieldOfficeAddress         : ['', Validators.required],
       lausdFaxDate               : ['', Validators.required],
       lausdAccountNumber         : ['', Validators.required],
@@ -119,7 +112,6 @@ export class DE1545AppealFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cs.tabincLimit = 2;
     this.de1545AppealFormInit();
     this.getFormDetails();
   }

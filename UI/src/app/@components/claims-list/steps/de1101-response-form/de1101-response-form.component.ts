@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { TabsetComponent } from 'ngx-bootstrap';
 
 import { AppService       } from 'app/@services/app.service'
 import { ClaimsService    } from 'app/@services/claims.service'
@@ -15,7 +14,7 @@ import { ClaimsApiService } from 'app/@services/claims-api.service'
 })
 export class De1101ResponseFormComponent implements OnInit {
 
-  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+  @Input() uavalue: any;
 
   // form setion var 
   public De1101Form: FormGroup;
@@ -34,15 +33,11 @@ export class De1101ResponseFormComponent implements OnInit {
 
   }
 
-  itc() { this.cs.increaseTabCount(this.staticTabs); }
-  dtc() { this.cs.descreaseTabCount(this.staticTabs); }
-
-
   // form section 
   de1101ResponseFormInit() {
     this.De1101Form = this.fb.group({
-      id                  : [''                     ],
-      claimId             : [''                     ],
+      id                  : ['', Validators.required],
+      claimId             : ['', Validators.required],
       address             : ['', Validators.required],
       lausdMailDate       : ['', Validators.required],
       bybClaimDate        : ['', Validators.required],
@@ -90,12 +85,6 @@ export class De1101ResponseFormComponent implements OnInit {
     this.fc.attachedDocument.setValue(data.attachedDocument)
   }
 
-  formFeildDisable() {
-    // this.fc.claimantName.disable();
-    // this.fc.socialSecurityNumber.disable();
-    // this.fc.phoneNumber.disable();
-  }
-
   getFormDetails() {
     // this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
     this.formId = 2;
@@ -127,10 +116,8 @@ export class De1101ResponseFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cs.tabincLimit = 2;
     this.de1101ResponseFormInit();
     this.getFormDetails();
-    this.formFeildDisable();
   }
 
 
