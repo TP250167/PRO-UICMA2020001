@@ -105,10 +105,12 @@ export class ClaimInitComponent implements OnInit {
 
       this.fv.claimantStatus = 'Active'
       this.fv.mailDate = this.aps.formatDate(this.fv.mailDate)
-      this.fv.receivedDate = this.aps.formatDate(this.fv.receivedDate)
+      this.fv.receivedDate= this.aps.formatDate(this.fv.receivedDate)
       this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim)
       this.fv.lastDateWorked = this.aps.formatDate(this.fv.lastDateWorked)
       this.fv.dateMailedToEDD = this.aps.formatDate(this.fv.dateMailedToEDD)
+
+      if(this.fv.id =='' || this.fv.id == null || this.fv.id == undefined) { this.fv.id = 0; }
 
       this.cas.updateClaim(this.fv)
         .subscribe(

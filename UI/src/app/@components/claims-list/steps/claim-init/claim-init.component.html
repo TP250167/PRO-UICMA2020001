@@ -20,7 +20,7 @@
             <div class="col-md-4">
                 <div class="cc-page-info-box">
                     <h3>Initiated On</h3>
-                    <h5>{{claimDetail.createdOn | date:'MM/dd/yyyy'}}</h5>
+                    <h5>{{claimDetail.createdOn}}</h5>
                 </div>
             </div>
         </div>
@@ -78,8 +78,7 @@
                                                             <option value="Female">Female</option>
                                                         </select>
                                                         <div *ngIf="fc.gender.touched && fc.gender.errors || formSubmitted" class="invalid-feedback">
-                                                            <div *ngIf="fc.gender.errors">This field is
-                                                                required </div>
+                                                            <div *ngIf="fc.gender.errors">This field is required </div>
                                                         </div>
                                                     </div>
 

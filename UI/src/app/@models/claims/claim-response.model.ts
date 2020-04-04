@@ -9,6 +9,7 @@ export class ClaimResponseModel {
     bybClaimDate        : string ;
     effectiveDateOfClaim: string ;
     dueDate             : string ;
+    printName           : string ;
     claimantName        : string ;
     socialSecurityNumber: string ;
     lausdResponse       : string ;

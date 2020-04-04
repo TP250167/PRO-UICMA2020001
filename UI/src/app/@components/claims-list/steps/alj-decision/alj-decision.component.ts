@@ -44,7 +44,7 @@ export class AljDecisionComponent implements OnInit {
       formerlyCaseNumber    : ['', Validators.required],
       applicationReopenDate : ['', Validators.required],
       placeOfHearingDate    : ['', Validators.required],
-      hearingPlace          : ['', Validators.required],
+      placeOfHearing        : ['', Validators.required],
       partiesAppearing      : ['', Validators.required],
       decision              : ['', Validators.required],
     });
@@ -71,7 +71,7 @@ export class AljDecisionComponent implements OnInit {
     this.fc.formerlyCaseNumber.setValue(data.formerlyCaseNumber)
     this.fc.applicationReopenDate.setValue(this.aps.formatDate(data.applicationReopenDate))
     this.fc.placeOfHearingDate.setValue(this.aps.formatDate(data.placeOfHearingDate))
-    this.fc.hearingPlace.setValue(data.hearingPlace)
+    this.fc.placeOfHearing.setValue(data.placeOfHearing)
     this.fc.partiesAppearing.setValue(data.partiesAppearing)
     this.fc.decision.setValue(data.decision)
   }
