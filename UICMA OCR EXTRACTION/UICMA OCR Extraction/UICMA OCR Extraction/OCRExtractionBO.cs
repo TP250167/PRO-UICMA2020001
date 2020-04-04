@@ -127,6 +127,7 @@ namespace UICMA_OCR_Extraction
             public DateTime? CreatedOn { get; set; }
             public DateTime? ModifiedOn { get; set; }
             public string FormPath { get; set; }
+            public Int64 ClaimId { get; set; }
         }
         public class ClaimDetermination
         {
