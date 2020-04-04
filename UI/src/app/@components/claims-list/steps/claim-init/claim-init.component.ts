@@ -39,6 +39,8 @@ export class ClaimInitComponent implements OnInit {
       id                  : [''                                                       ],
       claimId             : [''                                                       ],
       claimantName        : ['', Validators.required                                  ],
+      employeeNumber      : ['', Validators.required                                  ],
+      gender              : ['', Validators.required                                  ],
       address             : ['', Validators.required                                  ],
       city                : ['', Validators.required                                  ],
       state               : ['', Validators.required                                  ],
@@ -68,6 +70,8 @@ export class ClaimInitComponent implements OnInit {
     this.fc.id.setValue(data.id)
     this.fc.claimId.setValue(data.claimId)
     this.fc.claimantName.setValue(data.claimantName)
+    this.fc.employeeNumber.setValue(data.employeeNumber)
+    this.fc.gender.setValue(data.gender)
     this.fc.address.setValue(data.address)
     this.fc.city.setValue(data.city)
     this.fc.state.setValue(data.state)
@@ -84,8 +88,8 @@ export class ClaimInitComponent implements OnInit {
   }
 
   getClaimDetail() {
-    // this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
-    this.formId = 1
+    this.formId = parseInt(this.route.snapshot.paramMap.get('id')) 
+    // this.formId = 1
     this.cas.getClaim(this.formId)
       .subscribe((res) => {
         if(res != null) {
@@ -105,6 +109,8 @@ export class ClaimInitComponent implements OnInit {
       this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim)
       this.fv.lastDateWorked = this.aps.formatDate(this.fv.lastDateWorked)
       this.fv.dateMailedToEDD = this.aps.formatDate(this.fv.dateMailedToEDD)
+
+      if(this.fv.id =='' || this.fv.id == null || this.fv.id == undefined) { this.fv.id = 0; }
 
       this.cas.updateClaim(this.fv)
         .subscribe(
