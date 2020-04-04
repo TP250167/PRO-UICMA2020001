@@ -24,6 +24,9 @@ namespace UICMA.Domain.Entities.Form_Document
         public string Stage { get; set; }
         public bool IsSharepointPushed { get; set; }
 
+        public string SaveFileGUID { get; set; }
+        
+
         public Claim claim { get; set; }
     }
 }
