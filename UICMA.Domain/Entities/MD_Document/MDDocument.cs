@@ -8,7 +8,7 @@ using UICMA.Domain.Entities.MD_Form;
 
 namespace UICMA.Domain.Entities.MD_Document
 {
-   public class MDDocument
+   public class MDDocument:IBaseEntity
     {
         public Int64 Id { get; set; }
         public string DocumentName { get; set; }
