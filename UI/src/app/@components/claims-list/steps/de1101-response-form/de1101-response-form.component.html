@@ -47,6 +47,7 @@
                                                 (ngSubmit)="submitDe1101Form()">
 
                                                 <div class="form-row cc-pcbg">
+
                                                     <div class="form-group col-md-6">
                                                         <label for="claimantName">Claimant Name</label>
                                                         <input type="text" class="form-control"
@@ -58,6 +59,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="socialSecurityNumber">Claimant SSN</label>
                                                         <input type="text" class="form-control"
@@ -70,6 +72,19 @@
                                                                 required </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="AccountNumber">Account No</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="AccountNumber" name="AccountNumber"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.AccountNumber.errors }">
+                                                        <div *ngIf="fc.AccountNumber.touched && fc.AccountNumber.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.AccountNumber.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="phoneNumber">Phone No</label>
                                                         <input type="text" class="form-control"
@@ -81,22 +96,70 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="printName">Print Name</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="printName" name="printName"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.printName.errors }">
+                                                        <div *ngIf="fc.printName.touched && fc.printName.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.printName.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="title">Title</label>
+                                                        <input type="text" class="form-control" formControlName="title"
+                                                            name="title"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.title.errors }">
+                                                        <div *ngIf="fc.title.touched && fc.title.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.title.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="signature">Signature</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="signature" name="signature"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.signature.errors }">
+                                                        <div *ngIf="fc.signature.touched && fc.signature.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.signature.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
-                                                        <label for="address ">EDD Field Office Address</label>
-                                                        <select id="inputState" class="form-control"
-                                                            formControlName="address" name="address"
-                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.address.errors }">
-                                                            <option selected>Choose...</option>
-                                                            <option>...</option>
+                                                        <label for="eddFieldOfficeAddress ">EDD Field Office
+                                                            Address</label>
+                                                        <select class="form-control"
+                                                            formControlName="eddFieldOfficeAddress"
+                                                            name="eddFieldOfficeAddress"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.eddFieldOfficeAddress.errors }">
+                                                            <option>UI Center Buena Park - 180 <br> PO Box 5007 <br>
+                                                                Buena Park, CA 90622 </option>
+                                                            <option>UI Center inglewood - 006 <br> PO Box 80008 <br> Los
+                                                                Angeles, CA 90009</option>
+                                                            <option>UI Center San Bemardino - 041 <br> PO Box 641 <br>
+                                                                San Bernardino, CA 92402</option>
                                                         </select>
-                                                        <div *ngIf="fc.address.touched && fc.address.errors || formSubmitted "
+                                                        <div *ngIf="fc.eddFieldOfficeAddress.touched && fc.eddFieldOfficeAddress.errors || formSubmitted "
                                                             class="invalid-feedback">
-                                                            <div *ngIf="fc.address.errors || formSubmitted ">This field
+                                                            <div
+                                                                *ngIf="fc.eddFieldOfficeAddress.errors || formSubmitted ">
+                                                                This field
                                                                 is required </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="lausdMailDate">LAUSD Mail Date</label>
                                                         <input type="text" autocomplete="off"
@@ -110,6 +173,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="bybClaimDate">Claim Date - BYB</label>
                                                         <input type="text" autocomplete="off"
@@ -123,6 +187,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="effectiveDateOfClaim">Effective Date of
                                                             Claim</label>
@@ -139,6 +204,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="dueDate">1101 Mail Date/Due Date</label>
                                                         <input type="text" class="form-control cc-datepicker"
@@ -151,6 +217,20 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="eddMailDate">Date Mailed to EDD</label>
+                                                        <input type="text" class="form-control cc-datepicker"
+                                                            bsDatepicker [bsConfig]="aps.ngxcalConfig"
+                                                            formControlName="eddMailDate" name="eddMailDate"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.eddMailDate.errors }">
+                                                        <div *ngIf="fc.eddMailDate.touched && fc.eddMailDate.errors || formSubmitted "
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.eddMailDate.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="issuesList">Issues List</label>
                                                         <select id="issuesList" class="form-control"
@@ -166,6 +246,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="lausdResponse">LAUSD Reponse To 1101</label>
                                                         <input type="text" class="form-control"
@@ -177,39 +258,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="printName">Print Name</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="printName" name="printName"
-                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.printName.errors }">
-                                                        <div *ngIf="fc.printName.touched && fc.printName.errors || formSubmitted "
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="fc.printName.errors">This field is required
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="signature">Signature</label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="signature" name="signature"
-                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.signature.errors }">
-                                                        <div *ngIf="fc.signature.touched && fc.signature.errors || formSubmitted "
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="fc.signature.errors">This field is required
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="title">Title</label>
-                                                        <input type="text" class="form-control" formControlName="title"
-                                                            name="title"
-                                                            [ngClass]="{ 'is-invalid': formSubmitted  && fc.title.errors }">
-                                                        <div *ngIf="fc.title.touched && fc.title.errors || formSubmitted "
-                                                            class="invalid-feedback">
-                                                            <div *ngIf="fc.title.errors">This field is required
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="form-group col-md-6">
                                                         <label for="date">Date</label>
                                                         <input type="text" autocomplete="off"
@@ -223,7 +272,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="form-group col-md-12">
+
+                                                    <div class="form-group col-md-12">
                                                         <label for="attachedDocument">Attached Documents</label>
                                                         <div class="row">
                                                             <div class="col-md-3">
@@ -262,8 +312,23 @@
                                                                 class="invalid-checkbox">This field is required
                                                             </div>
                                                         </div>
-                                                    </div> -->
+                                                    </div> 
+
                                                 </div>
+
+                                                <div class="form-row cc-pcbg">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="claimResNotes">Notes</label>
+                                                        <textarea class="form-control cc-formNotes" formControlName="claimResNotes" name="claimResNotes"
+                                                            [ngClass]="{ 'is-invalid': formSubmitted && fc.claimResNotes.errors }"></textarea>
+                                                        <div *ngIf="fc.claimResNotes.touched && fc.claimResNotes.errors || formSubmitted"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="fc.claimResNotes.errors">This field is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="text-right">
                                                     <button class="btn btn-primary" (click)="saveForm()">Save Claim
                                                         Info</button>
@@ -280,42 +345,56 @@
                                     <div class="col-md-12 cc-at-title">
                                         <h3 class="card-title mb-3">
                                             <span class="badge badge-primary">List of Documents</span>
-                                            <button class="btn btn-success"
-                                                (click)="aps.openModal(uavalue)">Add
+                                            <button class="btn btn-success" (click)="aps.openModal(De1001OutboundPackages)">Add
                                                 Document</button>
                                         </h3>
                                     </div>
-                                    <div class="col-md-12 cc-at-doc">
-                                        <table class="table table-striped cc-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Doc#</th>
-                                                    <th>Document Name</th>
-                                                    <th>Doc Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th>DE-1011c2</th>
-                                                    <td>testdocument.pdf</td>
-                                                    <td>2/27/2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>DE-1011c2</th>
-                                                    <td>testdocument.pdf</td>
-                                                    <td>2/27/2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>DE-1011c2</th>
-                                                    <td>testdocument.pdf</td>
-                                                    <td>2/27/2020</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+
+                                    <div class="cc-scroll-table">
+                                        <div class="col-md-12 cc-at-doc cc-scroll-table-header">
+                                            <table class="table table-striped cc-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Document Number</th>
+                                                        <th>Document Name</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+    
+                                        <div class="col-md-12 cc-at-doc cc-scroll-table-body">
+                                            <table class="table table-striped cc-table">
+                                                <tbody>
+                                                    <tr *ngFor="let item of showPdList">
+                                                        <td>{{item.docNumber}}</td>
+                                                        <td>{{item.docName}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="createPackage" id="createPackage">
+                                            <label class="custom-control-label" for="createPackage">Create package and store in repository</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cc-submit-step">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button class="btn btn-primary" (click)="aps.openModal(submitDE1101Response)">Complete Step</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -326,3 +405,53 @@
     </div>
 </div>
 
+
+
+<!-- modal popups start -->
+
+<ng-template #De1001OutboundPackages>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Documents Here</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.closeModel()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="cc-form-section">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <ng-multiselect-dropdown  name="outboundPackage"
+                        [placeholder]="'Select Documents'" [data]="dropdownList" [(ngModel)]="selectedItems"
+                        [settings]="dropdownSettings" >
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="aps.closeModel()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="filterPackageTable()">Ok</button>
+    </div>
+
+</ng-template>
+
+
+<ng-template #submitDE1101Response>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">DE1101 Response Form Confirmation !</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="aps.closeModel()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h4>Are you sure want to submit the form.</h4>
+        <p>(If once you submit the form you can't edit the form details)</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" type="button" (click)="aps.closeModel()">Cancel</button>
+        <button class="btn btn-primary" type="button">Ok</button>
+    </div>
+</ng-template>

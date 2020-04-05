@@ -55,4 +55,16 @@ export class AppService {
   }
 
 
+  filterAo(aArr,fArr) {
+    var filtered = aArr.filter(function(i){
+      return fArr.some(function(j){
+          return !Object.keys(j).some(function(prop){
+              return i[prop] != j[prop];
+          });
+      });
+    });
+  
+  return filtered;
+  }
+
 }

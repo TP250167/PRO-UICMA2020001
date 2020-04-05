@@ -2,8 +2,11 @@
     <div *ngSwitchCase="'claim'">
         <app-claim-init></app-claim-init>
     </div>
+    <div *ngSwitchCase="'de1101ResponseForm'">
+        <app-de1101-response-form></app-de1101-response-form>
+    </div>
     <div *ngSwitchCase="'noticeOfDetermination'">
-        <app-notice-of-determination [uavalue]="uploadAttachment"></app-notice-of-determination>
+        <app-notice-of-determination></app-notice-of-determination>
     </div>
     <div *ngSwitchCase="'responseToEmployer'">
         <app-response-to-employer [uavalue]="uploadAttachment"></app-response-to-employer>
@@ -37,9 +40,6 @@
     </div>
     <div *ngSwitchCase="'BenefitCharges'">
         <app-benefit-charge [uavalue]="uploadAttachment"></app-benefit-charge>
-    </div>
-    <div *ngSwitchCase="'de1101ResponseForm'">
-        <app-de1101-response-form [uavalue]="uploadAttachment"></app-de1101-response-form>
     </div>
     <div *ngSwitchCase="'de1545AppealForm'">
         <app-de1545-appeal-form [uavalue]="uploadAttachment"></app-de1545-appeal-form>
