@@ -24,14 +24,12 @@ namespace UICMA_OCR_Extraction
     public class OCRExtraction
     {
 
-
-        private static string _SqlConnString = string.Empty;
+ private static string _SqlConnString = string.Empty;
         private static string _errMsg = string.Empty;
 
         public OCRExtraction(string SqlConnString)
         {
             _SqlConnString = SqlConnString;
-             Main();
         }
 
         private const string ApplicationId = @"eb67f6ff-55b2-4f09-a47c-f61071476786";
@@ -70,9 +68,9 @@ namespace UICMA_OCR_Extraction
 
                 // Get list of finished tasks
                 var finishedTasks = await GetFinishedTasksAsync(ocrClient);
-                //  foreach (var finishedTask in finishedTasks.Tasks)
-                //     Console.WriteLine(finishedTask.TaskId);
-
+               //  foreach (var finishedTask in finishedTasks.Tasks)
+               //     Console.WriteLine(finishedTask.TaskId);
+               
                 DisposeServices();
             }
         }
@@ -190,9 +188,7 @@ namespace UICMA_OCR_Extraction
                     ExportFormats = new[] { ExportFormat.Docx, ExportFormat.Txt, },
                     Language = "English,French",
                 };
-               
 
-            //         var textFromFile = (new WebClient()).DownloadString(taskInfo.ResultUrls[1]);
                 if (files.Extension == ".txt" || files.Extension == ".pdf" || files.Extension == ".jpeg" || files.Extension == ".jpg" || files.Extension == ".png")
                 {
                      using (var fileStream = new FileStream(files.FullName, FileMode.Open))
@@ -204,6 +200,7 @@ namespace UICMA_OCR_Extraction
                         waitTaskFinished: true);
                         
                     var textFromFile = (new WebClient()).DownloadString(taskInfo.ResultUrls[1]);//File.ReadAllText(files.FullName);
+               
                     var formName = StartOCRProcess(textFromFile);
 
                     if (formName.Contains("ExceptionForm"))
@@ -220,13 +217,23 @@ namespace UICMA_OCR_Extraction
                         var splitClaimId = formName.Split("_");
                         int claimID = Convert.ToInt32(splitClaimId[0]);
                         var documentCode = splitClaimId[1];
+                        if(documentCode !="DatasIncorrect")
+                        { 
                         Guid guid = Guid.NewGuid();
                         var file = System.IO.Path.Combine(saveRootPath, guid + ".pdf");
-                        System.IO.File.WriteAllText(file, textFromFile);
+                        System.IO.File.WriteAllText(file, textFromFile);                       
                         SaveDocumentMapping(claimID, documentCode, guid);
+                        }
+                        else
+                        {
+                            Guid guid = Guid.NewGuid();
+                            var file = System.IO.Path.Combine(ConfigurationManager.AppSettings["ExceptionPath"].ToString(), guid + ".pdf");
+                            System.IO.File.WriteAllText(file, textFromFile);    
+                        }
 
                     }
                     File.Delete(files.FullName);
+                    taskin=taskInfo;
                 }
                 }
                 else
@@ -235,7 +242,6 @@ namespace UICMA_OCR_Extraction
                 }
                 
             }
-          
             return taskin.ResultUrls;
         }
 
@@ -304,22 +310,57 @@ namespace UICMA_OCR_Extraction
             if (text.Contains("DE 1101CZ"))
             {
                 getId = NoticeOfUIClaim(text);
-                result = getId + "_DE 1101CZ";
+                // if(getId==0)
+                // {
+                //   SaveException("The Claim field values are Incorrect, Please check the values");
+                //   result = getId + "DatasIncorrect";  
+                // }
+                // else
+                // {
+                    result = getId + "_DE 1101CZ";
+                // }
             }
             else if (text.Contains("DE 4614"))
             {
                 getId = ResponseEmployeeComm(text);
-                result = getId + "_DE 4614";
+                // if(getId==0)
+                // {
+                //   SaveException("The Response Employee field values are Incorrect, Please check the values");
+                //   result = getId + "DatasIncorrect";  
+                // }
+                // else
+                // {
+                     result = getId + "_DE 4614";
+                // }
+                
             }
             else if (text.Contains("DE 1080 EZ") || text.Contains("NOTICE OF DETERMINATION") || text.Contains("NOTICE OF REDETERMINATION"))
             {
                 getId = NoticeOfDetermination(text);
-                result = getId + "_DE 1080 EZ";
+                //  if(getId==0)
+                // {
+                //   SaveException("The Response Employee field values are Incorrect, Please check the values");
+                //   result = getId + "DatasIncorrect";  
+                // }
+                // else
+                // {
+                   result = getId + "_DE 1080 EZ";
+                // }
+                
             }
             else if (text.Contains("DE 1326ER"))
             {
                 getId = RequestForAdditionalInformation(text);
-                result = getId + "_DE 1326ER";
+                
+                if(getId==0)
+                {
+                  SaveException("The Request for Additional Information field values are Incorrect, Please check the values");
+                  result = getId + "DatasIncorrect";  
+                }
+                else
+                {
+                   result = getId + "_DE 1326ER";
+                }
             }
 
             //else if (text.Contains("DE 1545R"))
@@ -336,12 +377,30 @@ namespace UICMA_OCR_Extraction
             else if (text.Contains("NOTICE OF HEARING"))
             {
                 getId = NoticeOfHearing(text);
-                result = getId + "_NOTICE OF HEARING";
+               
+                if(getId==0)
+                {
+                  SaveException("The Notice of Hearing field values are Incorrect, Please check the values");
+                  result = getId + "DatasIncorrect";  
+                }
+                else
+                {
+                    result = getId + "_NOTICE OF HEARING";
+                }
             }
             else if (text.Contains("DECISION"))
             {
                 getId =  ALJDecision(text);
-                result = getId + "_DECISION";
+               
+                if(getId==0)
+                {
+                  SaveException("The Decision field values are Incorrect, Please check the values");
+                  result = getId + "DatasIncorrect";  
+                }
+                else
+                {
+                    result = getId + "_DECISION";
+                }
             }
             //else if (text.Contains("DE 1430"))
             //{
@@ -355,33 +414,78 @@ namespace UICMA_OCR_Extraction
             else if (text.Contains("DE6363"))
             {
                 getId = RequestForEmployeeData(text);
-                result = getId + "_DE6363";
+                
+                // if(getId==0)
+                // {
+                //   SaveException("The Request for Employee Data field values are Incorrect, Please check the values");
+                //   result = getId + "DatasIncorrect";  
+                // }
+                // else
+                // {
+                    result = getId + "_DE6363";
+                // }
             }
             else if (text.Contains("DE 6586") || text.Contains("DE 6566"))
             {
                 getId = WagesAfterAppeal(text);
-                result = getId + "_DE 6586";
+               
+                if(getId==0)
+                {
+                  SaveException("The Wages After Appeal field values are Incorrect, Please check the values");
+                  result = getId + "DatasIncorrect";  
+                }
+                else
+                {
+                    result = getId + "_DE 6586";
+                }
             }
             else if (text.Contains("DE 1919"))
             {
-                getId = 1;//  RequestForWages(text);
-                result = getId + "_RequestForWages";
+                getId = RequestForWages(text);
+                result = getId + "_DE 1919";
             }
             else if (text.Contains("DE 1296B"))
             {
                 getId = BenefitAudit(text);
-                result = getId + "_DE 1296B";
+               
+                if(getId==0)
+                {
+                  SaveException("The Benefit Audit field values are Incorrect, Please check the values");
+                  result = getId + "DatasIncorrect";  
+                }
+                else
+                {
+                     result = getId + "_DE 1296B";
+                }
             }
             else if (text.Contains("DE1S4SR") || text.Contains("DE1545R"))
             {
 
                 getId =  NoticeOfWages(text);
-                result = getId + "_DE1545R";
+               
+                if(getId==0)
+                {
+                  SaveException("The Notice of Wages field values are Incorrect, Please check the values");
+                  result = getId + "DatasIncorrect";  
+                }
+                else
+                {
+                     result = getId + "_DE1545R";
+                }
             }
             else if (text.Contains("ACKNOWLEDGEMENT LETTER"))
             {
                 getId = Acknowledgement(text);
-                result = getId + "_ACKNOWLEDGEMENT";
+               
+                if(getId==0)
+                {
+                  SaveException("The Acknowledgement field values are Incorrect, Please check the values");
+                  result = getId + "DatasIncorrect";  
+                }
+                else
+                {
+                    result = getId + "_ACKNOWLEDGEMENT";
+                }
             }
 
             else
@@ -437,6 +541,245 @@ namespace UICMA_OCR_Extraction
                 }
             }
             return claim.Id;
+
+        }
+        public static long GetAdditionalInformationBySSN(string ssn)
+        {
+            AdditionalInformation additionalInfor = new AdditionalInformation();
+            if (_SqlConnString != string.Empty)
+                _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+
+            if (_SqlConnString != string.Empty)
+            {
+                SqlConnection oraCon = null;
+                try
+                {
+                    using (oraCon = new SqlConnection(_SqlConnString))
+                    {
+                        oraCon.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = oraCon;
+                        cmd.CommandText = "Select * from ADDITIONAL_INFORMATION_TBL where SOCIAL_SECURITY_NUMBER='" + ssn + "'";
+                        cmd.CommandType = CommandType.Text;
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                additionalInfor = (new AdditionalInformation
+                                {
+                                    Id = dr["Id"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Id"]),
+                                    ClaimId = dr["CLAIM_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["CLAIM_ID"]),
+                                   
+                                    SocialSecurityNumber = dr["SOCIAL_SECURITY_NUMBER"] == DBNull.Value ? string.Empty : Convert.ToString(dr["SOCIAL_SECURITY_NUMBER"])
+                                });
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _errMsg = ex.Message;
+                }
+                finally
+                {
+                    if (oraCon != null)
+                        oraCon.Dispose();
+                }
+            }
+            return additionalInfor.ClaimId;
+
+        }
+        public static long GetWagesBySSN(string ssn)
+        {
+            Wages wages = new Wages();
+            if (_SqlConnString != string.Empty)
+                _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+
+            if (_SqlConnString != string.Empty)
+            {
+                SqlConnection oraCon = null;
+                try
+                {
+                    using (oraCon = new SqlConnection(_SqlConnString))
+                    {
+                        oraCon.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = oraCon;
+                        cmd.CommandText = "Select * from WAGES_TBL where SOCIAL_SECURITY_NUMBER='" + ssn + "'";
+                        cmd.CommandType = CommandType.Text;
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                wages = (new Wages
+                                {
+                                    Id = dr["Id"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Id"]),
+                                   
+                                    ClaimId = dr["CLAIM_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["CLAIM_ID"]),
+                                    SocialSecurityNumber = dr["SOCIAL_SECURITY_NUMBER"] == DBNull.Value ? string.Empty : Convert.ToString(dr["SOCIAL_SECURITY_NUMBER"])
+                                });
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _errMsg = ex.Message;
+                }
+                finally
+                {
+                    if (oraCon != null)
+                        oraCon.Dispose();
+                }
+            }
+            return wages.ClaimId;
+
+        }
+        public static long GetWagesAfterAppealBySSN(string ssn)
+        {
+            WagesAfterAppeal wagesAfterApp = new WagesAfterAppeal();
+            if (_SqlConnString != string.Empty)
+                _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+
+            if (_SqlConnString != string.Empty)
+            {
+                SqlConnection oraCon = null;
+                try
+                {
+                    using (oraCon = new SqlConnection(_SqlConnString))
+                    {
+                        oraCon.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = oraCon;
+                        cmd.CommandText = "Select * from WAGES_APPEAL_TBL where SOCIAL_SECURITY_NUMBER='" + ssn + "'";
+                        cmd.CommandType = CommandType.Text;
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                wagesAfterApp = (new WagesAfterAppeal
+                                {
+                                    Id = dr["Id"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Id"]),
+                                   
+                                    ClaimId = dr["CLAIM_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["CLAIM_ID"]),
+                                    SocialSecurityNumber = dr["SOCIAL_SECURITY_NUMBER"] == DBNull.Value ? string.Empty : Convert.ToString(dr["SOCIAL_SECURITY_NUMBER"])
+                                });
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _errMsg = ex.Message;
+                }
+                finally
+                {
+                    if (oraCon != null)
+                        oraCon.Dispose();
+                }
+            }
+            return wagesAfterApp.ClaimId;
+
+        }
+        public static long GetResponseToEmployerCommBySSN(string ssn)
+        {
+            ResponseToEmployer responseToEmployer = new ResponseToEmployer();
+            if (_SqlConnString != string.Empty)
+                _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+
+            if (_SqlConnString != string.Empty)
+            {
+                SqlConnection oraCon = null;
+                try
+                {
+                    using (oraCon = new SqlConnection(_SqlConnString))
+                    {
+                        oraCon.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = oraCon;
+                        cmd.CommandText = "Select * from RESPONSE_TO_EMPLOYER_TBL where SOCIAL_SECURITY_NUMBER='" + ssn + "'";
+                        cmd.CommandType = CommandType.Text;
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                responseToEmployer = (new ResponseToEmployer
+                                {
+                                    Id = dr["Id"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Id"]),
+                                    ClaimId = dr["CLAIM_ID"] ==  DBNull.Value ? 0 : Convert.ToInt32(dr["CLAIM_ID"]),
+                
+                                    SocialSecurityNumber = dr["SOCIAL_SECURITY_NUMBER"] == DBNull.Value ? string.Empty : Convert.ToString(dr["SOCIAL_SECURITY_NUMBER"])
+                                });
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _errMsg = ex.Message;
+                }
+                finally
+                {
+                    if (oraCon != null)
+                        oraCon.Dispose();
+                }
+            }
+            return responseToEmployer.ClaimId;
+
+        }
+        public static long GetNoticeOfDeterminationBySSN(string ssn)
+        {
+            ClaimDetermination claimDeter = new ClaimDetermination();
+            if (_SqlConnString != string.Empty)
+                _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+
+            if (_SqlConnString != string.Empty)
+            {
+                SqlConnection oraCon = null;
+                try
+                {
+                    using (oraCon = new SqlConnection(_SqlConnString))
+                    {
+                        oraCon.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = oraCon;
+                        cmd.CommandText = "Select * from CLAIM_DETERMINATION_TBL where SOCIAL_SECURITY_NUMBER='" + ssn + "'";
+                        cmd.CommandType = CommandType.Text;
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                claimDeter = (new ClaimDetermination
+                                {
+                                    Id = dr["Id"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Id"]),
+                                    ClaimId = dr["CLAIM_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["CLAIM_ID"]),
+                                    SocialSecurityNumber = dr["SOCIAL_SECURITY_NUMBER"] == DBNull.Value ? string.Empty : Convert.ToString(dr["SOCIAL_SECURITY_NUMBER"])
+                                });
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _errMsg = ex.Message;
+                }
+                finally
+                {
+                    if (oraCon != null)
+                        oraCon.Dispose();
+                }
+            }
+            return claimDeter.ClaimId;
 
         }
         public static int NoticeOfUIClaim(string text)
@@ -599,6 +942,7 @@ namespace UICMA_OCR_Extraction
                 ResponseToEmployer response = new ResponseToEmployer();
                 response.ClaimantName = climantDetails[0].Trim();
                 response.SocialSecurityNumber = ssn;
+                response.ClaimId=checkSSN;
                 response.DateMailed = Convert.ToDateTime(dateDetails[0]);
                 response.BenefitYearBeganDate = Convert.ToDateTime(dateDetails[1]);
 
@@ -665,6 +1009,7 @@ namespace UICMA_OCR_Extraction
                 RequestForEmployeeData requestForEmployeeData = new RequestForEmployeeData();
                 requestForEmployeeData.ClaimantName = claimantname;
                 requestForEmployeeData.SocialSecurityNumber = ssn;
+                requestForEmployeeData.ClaimId=checkSSN;
                 requestForEmployeeData.Date = Convert.ToDateTime(mailDate);
                 requestForEmployeeData.UserTitle = title;
                 requestForEmployeeData.UserTelephoneNumber = telephonenumber;
@@ -744,6 +1089,7 @@ namespace UICMA_OCR_Extraction
                 ClaimDetermination claimDetemination = new ClaimDetermination();
                 claimDetemination.FieldOffice = address[0] + "," + state[0] + "," + zipcode[0];
                 claimDetemination.SocialSecurityNumber = ssn;
+                claimDetemination.ClaimId=checkSSN;
                 claimDetemination.MailedDate = Convert.ToDateTime(date);
                 claimDetemination.BenefitYearBegan = Convert.ToDateTime(benefitYearBegan);
                 SaveCalimDetermination(claimDetemination);
@@ -793,6 +1139,7 @@ namespace UICMA_OCR_Extraction
                 AdditionalInformation additionalInformation = new AdditionalInformation();
                 additionalInformation.ClaimantName = claimantName;
                 additionalInformation.SocialSecurityNumber = ssn;
+                additionalInformation.ClaimId=checkSSN;
                 additionalInformation.MailDate = Convert.ToDateTime(date);
                 additionalInformation.ClaimEffectiveDate = Convert.ToDateTime(claimEffectiveDate);
                 additionalInformation.ControlNumber = "test";//controlNumber;
@@ -814,8 +1161,8 @@ namespace UICMA_OCR_Extraction
             var caseNumber = "";
             var formerlyCaseNumber = "";
             var claimantName = "";
-            var employerInfo = "";
-            var applicationReopenDate = "";
+          //  var employerInfo = "";
+          //  var applicationReopenDate = "";
             var bYBClaimDate = "";
             var hearingDate = "";
             var hearingPlace = "";
@@ -1147,7 +1494,6 @@ namespace UICMA_OCR_Extraction
 
                 }
 
-
             }
 
 
@@ -1260,8 +1606,6 @@ namespace UICMA_OCR_Extraction
             hearing.AppellantName = appellant;
              SaveHearing(hearing);
 
-            string one = "";
-            string two = "";
             //long checkSSN = GetClaimBySSN(ssn);
             //if (checkSSN != 0)
             //{
@@ -1350,6 +1694,7 @@ namespace UICMA_OCR_Extraction
             {
                 WagesAfterAppeal wagesAppeal = new WagesAfterAppeal();
                 wagesAppeal.SocialSecurityNumber = ssn;
+                wagesAppeal.ClaimId=checkSSN;
                 wagesAppeal.MailingDate = Convert.ToDateTime(issueDate);
                 wagesAppeal.FaxNumber = faxNumber;
                 wagesAppeal.ClaimantName = claimantname;
@@ -1386,6 +1731,7 @@ namespace UICMA_OCR_Extraction
                 BenefitAudit benefitAudit = new BenefitAudit();
                 benefitAudit.MailDate = Convert.ToDateTime(BYB);
                 benefitAudit.SocialSecurityNumber = SSN;
+                benefitAudit.ClaimId=checkSSN;
                 benefitAudit.ClaimantName = employeename;
                 SaveBenefitAudit(benefitAudit);
             }
@@ -1424,6 +1770,7 @@ namespace UICMA_OCR_Extraction
                 Wages wages = new Wages();
                 wages.ClaimantName = claimantName;
                 wages.SocialSecurityNumber = ssn;
+                wages.ClaimId=checkSSN;
                 wages.TotalWagesForAllEmployees = totalwages.Trim();
                 wages.BenefitChargeableReserveAccount = reservedAmmount.Trim();
                 SaveNoticeOfWages(wages);
@@ -1434,7 +1781,7 @@ namespace UICMA_OCR_Extraction
             }
             return Convert.ToInt32(checkSSN);
         }
-        public static void RequestForWages(string text)
+        public static int RequestForWages(string text)
         {
             List<string> listOfValues = text.Split("\r\n").ToList();
             var listWithoutWhiteSpace = listOfValues.Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
@@ -1465,16 +1812,28 @@ namespace UICMA_OCR_Extraction
             int deadlinedate2 = text.IndexOf("If this form");
             var deadlinedate = text.Substring(deadlinedate1, deadlinedate2 - deadlinedate1).Trim();
 
+             long checkSSN = GetClaimBySSN(ssn);
+            if (checkSSN != 0)
+            {
+
             WagesAfterAppeal wagesAfterAppeal = new WagesAfterAppeal();
             wagesAfterAppeal.ClaimantName = claimantName;
             wagesAfterAppeal.SocialSecurityNumber = ssn;
             wagesAfterAppeal.MailingDate = Convert.ToDateTime(mailDate);
             wagesAfterAppeal.CaseNumber = caseNumber;
+            wagesAfterAppeal.ClaimId=checkSSN;
             wagesAfterAppeal.PreparerName = preparerName;
             wagesAfterAppeal.TelephoneNumber = telephoneNumber;
             wagesAfterAppeal.FaxNumber = faxnumber;
             wagesAfterAppeal.DeadLineDate = Convert.ToDateTime(deadlinedate);
             SaveRequestForWages(wagesAfterAppeal);
+
+            }
+            else
+            {
+                SaveException("This SSN is not available in Claim table");
+            }
+            return Convert.ToInt32(checkSSN);
         }
         public static int SaveClaim(Claim claim)
         {
@@ -1610,7 +1969,10 @@ namespace UICMA_OCR_Extraction
 
         public static void SaveWagesAfterAppeal(WagesAfterAppeal wagesappeal)
         {
-            long claimId = GetClaimBySSN(wagesappeal.SocialSecurityNumber);
+            long claimId = GetWagesAfterAppealBySSN(wagesappeal.SocialSecurityNumber);
+            if(wagesappeal.ClaimId != claimId)
+            {
+
             try
             {
                 SqlConnection oraCon = null;
@@ -1628,7 +1990,7 @@ namespace UICMA_OCR_Extraction
                         oraCon.Open();
                         sqlCmd.CommandType = CommandType.Text;
                         sqlCmd.Parameters.Add(new SqlParameter("MailDate", wagesappeal.MailingDate));
-                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", claimId == 0 ? 2 : claimId));
+                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", wagesappeal.ClaimId));
                         sqlCmd.Parameters.Add(new SqlParameter("SocialSecurityNumber", wagesappeal.SocialSecurityNumber));
                         sqlCmd.Parameters.Add(new SqlParameter("ClaimantName", wagesappeal.ClaimantName));
                         sqlCmd.Parameters.Add(new SqlParameter("TelephoneNumber", wagesappeal.TelephoneNumber));                       
@@ -1644,6 +2006,11 @@ namespace UICMA_OCR_Extraction
                 _errMsg = ex.Message;
             }
 
+            }
+            else
+            {
+                SaveException("This form is already exists in current Claim");
+            }
         }
         public static void SaveALJDecision(ALJDecision decision)
         {
@@ -1724,7 +2091,10 @@ namespace UICMA_OCR_Extraction
         }
         public static void SaveAdditionalInformation(AdditionalInformation additionalInformation)
         {
-            long claimId = GetClaimBySSN(additionalInformation.SocialSecurityNumber);
+            long claimId = GetAdditionalInformationBySSN(additionalInformation.SocialSecurityNumber);
+if(additionalInformation.ClaimId != claimId)
+{
+
             try
             {
                 SqlConnection oraCon = null;
@@ -1742,7 +2112,7 @@ namespace UICMA_OCR_Extraction
                         oraCon.Open();
                         sqlCmd.CommandType = CommandType.Text;
                         sqlCmd.Parameters.Add(new SqlParameter("MailDate", additionalInformation.MailDate));
-                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", claimId == 0 ? 2 : claimId));
+                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", additionalInformation.ClaimId));
                         sqlCmd.Parameters.Add(new SqlParameter("SocialSecurityNumber", additionalInformation.SocialSecurityNumber));
                         sqlCmd.Parameters.Add(new SqlParameter("EffectiveDate", additionalInformation.ClaimEffectiveDate));
                         sqlCmd.Parameters.Add(new SqlParameter("ClaimantName", additionalInformation.ClaimantName));
@@ -1757,6 +2127,12 @@ namespace UICMA_OCR_Extraction
             {
                 _errMsg = ex.Message;
             }
+            
+}
+else
+{
+SaveException("This form is already exists in Current Claim");
+}
 
         }
 
@@ -1878,7 +2254,10 @@ namespace UICMA_OCR_Extraction
         }
         public static void SaveNoticeOfWages(Wages wages)
         {
-            long claimId = GetClaimBySSN(wages.SocialSecurityNumber);
+            long claimId = GetWagesBySSN(wages.SocialSecurityNumber);
+            if(wages.ClaimId !=claimId)
+            {
+
             try
             {
                 SqlConnection oraCon = null;
@@ -1896,7 +2275,7 @@ namespace UICMA_OCR_Extraction
                         oraCon.Open();
                         sqlCmd.CommandType = CommandType.Text;
                         sqlCmd.Parameters.Add(new SqlParameter("ReserveAccount", wages.BenefitChargeableReserveAccount));
-                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", claimId == 0 ? 2 : claimId));
+                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", wages.ClaimId));
                         sqlCmd.Parameters.Add(new SqlParameter("TotalWages", wages.TotalWagesForAllEmployees));
                         sqlCmd.Parameters.Add(new SqlParameter("SocialSecurityNumber", wages.SocialSecurityNumber));
                         sqlCmd.Parameters.Add(new SqlParameter("ClaimantName", wages.ClaimantName));
@@ -1910,11 +2289,19 @@ namespace UICMA_OCR_Extraction
             {
                 _errMsg = ex.Message;
             }
+            
+            }
+            else
+            {
+SaveException("This Form is already exists in Current claim");
+            }
 
         }
         public static void SaveResponseToEmployer(ResponseToEmployer response)
         {
-            long claimId = GetClaimBySSN(response.SocialSecurityNumber);
+            long claimId = GetResponseToEmployerCommBySSN(response.SocialSecurityNumber);
+           if(response.ClaimId !=claimId)
+           {
             try
             {
                 SqlConnection oraCon = null;
@@ -1932,7 +2319,7 @@ namespace UICMA_OCR_Extraction
                         oraCon.Open();
                         sqlCmd.CommandType = CommandType.Text;
                         sqlCmd.Parameters.Add(new SqlParameter("DateMailed", response.DateMailed));
-                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", claimId == 0 ? 2 : claimId));
+                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", response.ClaimId));
                         sqlCmd.Parameters.Add(new SqlParameter("BenefitYearBeganDate", response.BenefitYearBeganDate));
                         sqlCmd.Parameters.Add(new SqlParameter("ClaimantName", response.ClaimantName));
                         sqlCmd.Parameters.Add(new SqlParameter("SocialSecurityNumber", response.SocialSecurityNumber));
@@ -1947,6 +2334,12 @@ namespace UICMA_OCR_Extraction
             {
                 _errMsg = ex.Message;
             }
+            
+}
+else
+{
+SaveException("This form is already exists in Current Claim");
+}
         }
         public static void SaveRequestForEmployerData(RequestForEmployeeData requestForEmployeeData)
         {
@@ -1987,52 +2380,49 @@ namespace UICMA_OCR_Extraction
                 _errMsg = ex.Message;
             }
         }
-        public static int SaveCalimDetermination(ClaimDetermination determination)
+        public static void SaveCalimDetermination(ClaimDetermination determination)
         {
-            long claimId = GetClaimBySSN(determination.SocialSecurityNumber);
-            int rtn = 0;
-            try
-            {
-                SqlConnection oraCon = null;
-                using (oraCon = new SqlConnection(_SqlConnString))
+                long claimId = GetNoticeOfDeterminationBySSN(determination.SocialSecurityNumber);
+                if(determination.ClaimId != claimId)
                 {
-                    if (_SqlConnString != string.Empty)
-                        _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
-
-                    int num = 0;
-                    oraCon = new SqlConnection(_SqlConnString);
-                    string sSql1 = "insert into CLAIM_DETERMINATION_TBL (MAILED_DATE,CLAIM_ID,BENEFIT_YEAR_BEGAN,FIELD_OFFICE,SOCIAL_SECURITY_NUMBER,CREATED_ON) " +
-                        "values (@DateMailed,@ClaimId,@BenefitYearBeganDate,@FieldOffice,@SocialSecurityNumber,@CreatedOn)";
-                    using (SqlCommand sqlCmd = new SqlCommand(sSql1, oraCon))
+                   try
+                   {
+                       SqlConnection oraCon = null;
+                       using (oraCon = new SqlConnection(_SqlConnString))
+                       {
+                           if (_SqlConnString != string.Empty)
+                               _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+       
+                           int num = 0;
+                           oraCon = new SqlConnection(_SqlConnString);
+                           string sSql1 = "insert into CLAIM_DETERMINATION_TBL (MAILED_DATE,CLAIM_ID,BENEFIT_YEAR_BEGAN,FIELD_OFFICE,SOCIAL_SECURITY_NUMBER,CREATED_ON) " +
+                               "values (@DateMailed,@ClaimId,@BenefitYearBeganDate,@FieldOffice,@SocialSecurityNumber,@CreatedOn)";
+                           using (SqlCommand sqlCmd = new SqlCommand(sSql1, oraCon))
+                           {
+                               oraCon.Open();
+                               sqlCmd.CommandType = CommandType.Text;
+                               sqlCmd.Parameters.Add(new SqlParameter("DateMailed", determination.MailedDate));
+                               sqlCmd.Parameters.Add(new SqlParameter("ClaimId", determination.ClaimId));
+                               sqlCmd.Parameters.Add(new SqlParameter("BenefitYearBeganDate", determination.BenefitYearBegan));
+                               sqlCmd.Parameters.Add(new SqlParameter("FieldOffice", determination.FieldOffice));
+                               sqlCmd.Parameters.Add(new SqlParameter("SocialSecurityNumber", determination.SocialSecurityNumber));
+                               sqlCmd.Parameters.Add(new SqlParameter("CreatedOn", DateTime.Now));
+                               num = sqlCmd.ExecuteNonQuery();                        
+                               oraCon.Close();
+                           }
+                       }
+       
+                    }
+        
+                    catch (Exception ex)
                     {
-                        oraCon.Open();
-                        sqlCmd.CommandType = CommandType.Text;
-                        sqlCmd.Parameters.Add(new SqlParameter("DateMailed", determination.MailedDate));
-                        sqlCmd.Parameters.Add(new SqlParameter("ClaimId", claimId == 0 ? 2 : claimId));
-                        sqlCmd.Parameters.Add(new SqlParameter("BenefitYearBeganDate", determination.BenefitYearBegan));
-                        sqlCmd.Parameters.Add(new SqlParameter("FieldOffice", determination.FieldOffice));
-                        sqlCmd.Parameters.Add(new SqlParameter("SocialSecurityNumber", determination.SocialSecurityNumber));
-                        sqlCmd.Parameters.Add(new SqlParameter("CreatedOn", DateTime.Now));
-                        // num = sqlCmd.ExecuteNonQuery();
-                        SqlDataReader reader = sqlCmd.ExecuteReader();
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                rtn = (reader[0] == DBNull.Value ? 0 : Convert.ToInt32(reader[0]));
-                            }
-                        }
-
-                        oraCon.Close();
+                        _errMsg = ex.Message;
                     }
                 }
-
-            }
-            catch (Exception ex)
-            {
-                _errMsg = ex.Message;
-            }
-            return rtn;
+                else
+                {
+                    SaveException("This document is already exists for this Claim");
+                }
         }
         public static void SaveException(string reason)
         {
@@ -2303,7 +2693,7 @@ namespace UICMA_OCR_Extraction
                     if (_SqlConnString != string.Empty)
                         _SqlConnString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
 
-                    int num = 0;
+                  //  int num = 0;
                     oraCon = new SqlConnection(_SqlConnString);
                     string sSql1 = "insert into SAP_TBL (SOCIAL_SECURITY_NUMBER) " +
                         "values (@ssnnumber)";
@@ -2321,50 +2711,60 @@ namespace UICMA_OCR_Extraction
                 _errMsg = ex.Message;
             }
         }
-        public string OCRExtractionJob()
+        public  void OCRExtractionJob()
         {
-            DirectoryInfo directory = new DirectoryInfo(ConfigurationManager.AppSettings["InboundPath"].ToString());
-            FileInfo[] allFiles = directory.GetFiles();
-            var listOfAllFiles = allFiles.ToList();
-            //  var listOfCurrentDayFiles = listOfAllFiles.Where(x => (x.CreationTime.Date.ToString("dd/MM/yyyy") == DateTime.Today.Date.ToString("dd/MM/yyyy")) || (x.LastWriteTime.Date.ToString("dd/MM/yyyy") == DateTime.Today.Date.ToString("dd/MM/yyyy"))).ToList();           
-            foreach (var files in listOfAllFiles)
-            {
-                if (files.Extension == ".txt" || files.Extension == ".pdf" || files.Extension == ".jpeg" || files.Extension == ".jpg" || files.Extension == ".png")
-                {
-                    var textFromFile = File.ReadAllText(files.FullName);
-                    var formName = StartOCRProcess(textFromFile);
+            // DirectoryInfo directory = new DirectoryInfo(ConfigurationManager.AppSettings["InboundPath"].ToString());
+            // FileInfo[] allFiles = directory.GetFiles();
+            // var listOfAllFiles = allFiles.ToList();
+            // //  var listOfCurrentDayFiles = listOfAllFiles.Where(x => (x.CreationTime.Date.ToString("dd/MM/yyyy") == DateTime.Today.Date.ToString("dd/MM/yyyy")) || (x.LastWriteTime.Date.ToString("dd/MM/yyyy") == DateTime.Today.Date.ToString("dd/MM/yyyy"))).ToList();           
+            // foreach (var files in listOfAllFiles)
+            // {
+            //     if (files.Extension == ".txt" || files.Extension == ".pdf" || files.Extension == ".jpeg" || files.Extension == ".jpg" || files.Extension == ".png")
+            //     {
+            //         var textFromFile = File.ReadAllText(files.FullName);
+            //         var formName = StartOCRProcess(textFromFile);
 
-                    if (formName.Contains("ExceptionForm"))
-                    {
-                        var saveRootPath = ConfigurationManager.AppSettings["ExceptionPath"].ToString();
-                        Guid guid = Guid.NewGuid();
-                        var file = System.IO.Path.Combine(saveRootPath, guid + ".pdf");
-                        System.IO.File.WriteAllText(file, textFromFile);
-                        SaveException("The form code is not matching");
-                    }
-                    else
-                    {
-                        var saveRootPath = ConfigurationManager.AppSettings["ProcessPath"].ToString();
-                        var splitClaimId = formName.Split("_");
-                        int claimID = Convert.ToInt32(splitClaimId[0]);
-                        var documentCode = splitClaimId[1];
-                        Guid guid = Guid.NewGuid();
-                        var file = System.IO.Path.Combine(saveRootPath, guid + ".pdf");
-                        System.IO.File.WriteAllText(file, textFromFile);
-                        SaveDocumentMapping(claimID, documentCode, guid);
+            //         if (formName.Contains("ExceptionForm"))
+            //         {
+            //             var saveRootPath = ConfigurationManager.AppSettings["ExceptionPath"].ToString();
+            //             Guid guid = Guid.NewGuid();
+            //             var file = System.IO.Path.Combine(saveRootPath, guid + ".pdf");
+            //             System.IO.File.WriteAllText(file, textFromFile);
+            //             SaveException("The form code is not matching");
+            //         }
+            //         else
+            //         {
+            //             var saveRootPath = ConfigurationManager.AppSettings["ProcessPath"].ToString();
+            //             var splitClaimId = formName.Split("_");
+            //             int claimID = Convert.ToInt32(splitClaimId[0]);
+            //             var documentCode = splitClaimId[1];
+            //             if(documentCode !="DatasIncorrect")
+            //             { 
+            //             Guid guid = Guid.NewGuid();
+            //             var file = System.IO.Path.Combine(saveRootPath, guid + ".pdf");
+            //             System.IO.File.WriteAllText(file, textFromFile);                       
+            //             SaveDocumentMapping(claimID, documentCode, guid);
+            //             }
+            //             else
+            //             {
+            //                 Guid guid = Guid.NewGuid();
+            //                 var file = System.IO.Path.Combine(ConfigurationManager.AppSettings["ExceptionPath"].ToString(), guid + ".pdf");
+            //                 System.IO.File.WriteAllText(file, textFromFile);    
+            //             }
+            //         }
+            //         File.Delete(files.FullName);
+            //     }
+            //     else
+            //     {
+            //         SaveException("The file type is not valid");
+            //     }
 
-                    }
-                    File.Delete(files.FullName);
-                }
-                else
-                {
-                    SaveException("The file type is not valid");
-                }
+            // }
 
-            }
-            return "Ok";
+          Main();
         }
       
+
     }
 }
 
