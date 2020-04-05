@@ -11,7 +11,8 @@ export class AppService {
 
   modalRef: BsModalRef;
 
-  ngxcalConfig:any = { containerClass: 'theme-blue', showWeekNumbers:false , dateInputFormat: 'MM-DD-YYYY'} 
+  ngxcalConfig:any  = { containerClass: 'theme-blue', showWeekNumbers:false , dateInputFormat: 'MM-DD-YYYY'} 
+  ngxcalyConfig:any = { containerClass: 'theme-blue', showWeekNumbers:false , dateInputFormat: 'YYYY'} 
 
   toastTime =  3000;
 
@@ -20,6 +21,14 @@ export class AppService {
     private datePipe: DatePipe,
     private tort: ToastrService,
   ) { }
+
+
+  onOpenYearCalendar(container) {
+    container.monthSelectHandler = (event: any): void => {
+      container._store.dispatch(container._actions.select(event.date));
+    };     
+    container.setViewMode('year');
+  }
 
 
   openModal(modalpopup: TemplateRef<any>) {

@@ -100,12 +100,13 @@ ng-multiselect-dropdown.is-invalid .dropdown-btn {
     box-shadow: 0 0 0 0.2rem rgba(253, 57, 122, .3);
 }
 
-.form-row>.col, .form-row>[class*=col-] { padding-right: 8px; padding-left: 8px; }
+.form-row>.col, .form-row>[class*=col-] { padding-right: 10px; padding-left: 10px; }
 .form-group { 
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 
     >label {
-        font-weight: 400;
+        font-weight: 500;
+        font-size: 14px;
     }
 }
 
@@ -136,6 +137,13 @@ select.form-control , .cc-datepicker , .dataTables_length select {
     background-color: rgba(236, 238, 247, 0.75);
 }
 
+textarea.cc-formNotes {
+    height: 120px;
+}
+
+.cc-submit-step {
+    margin: 20px 0;
+}
 
 // app layout style start 
 

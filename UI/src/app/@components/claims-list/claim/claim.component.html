@@ -1,6 +1,6 @@
 <div [ngSwitch]="cs.formStepPosition">
     <div *ngSwitchCase="'claim'">
-        <app-claim-init [uavalue]="uploadAttachment"></app-claim-init>
+        <app-claim-init></app-claim-init>
     </div>
     <div *ngSwitchCase="'noticeOfDetermination'">
         <app-notice-of-determination [uavalue]="uploadAttachment"></app-notice-of-determination>
