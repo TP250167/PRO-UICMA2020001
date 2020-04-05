@@ -39,6 +39,7 @@ using UICMA.Domain.Entities.ExtractingIndexValueMap;
 using UICMA.Domain.Entities.ExtractingIndexValues;
 using UICMA.Domain.Entities.Form_Document;
 using UICMA.Domain.Entities.Form_Document_Map;
+using UICMA.Domain.Entities.FormIndex;
 using UICMA.Domain.Entities.HearingMap;
 using UICMA.Domain.Entities.Hearings;
 using UICMA.Domain.Entities.Issues_List;
@@ -79,6 +80,7 @@ using UICMA.Domain.Entities.Request_To_Reopen;
 using UICMA.Domain.Entities.Request_To_ReopenMap;
 using UICMA.Domain.Entities.Response_to_Employer;
 using UICMA.Domain.Entities.Response_to_EmployerMap;
+using UICMA.Domain.Entities.SAP;
 using UICMA.Domain.Entities.TemplateMap;
 using UICMA.Domain.Entities.Templates;
 using UICMA.Domain.Entities.Wages_After_Appeal;
@@ -113,6 +115,7 @@ namespace UICMA.Repository
         public DbSet<AdditionalInformation> AdditionalInformations { get; set; }
         public DbSet<Template> Templates { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+
         public DbSet<RABatchRecipientRule> RABatchRecipientRules { get; set; }
         public DbSet<FormDocument> FormDocument { get; set; }
         public DbSet<ClaimException> ClaimExceptions { get; set; }
@@ -200,6 +203,9 @@ namespace UICMA.Repository
             new CUIABBoardAppealMap(modelBuilder.Entity<CUIABBoardAppeal>());
             new ExtractingIndexValueMap(modelBuilder.Entity<ExtractingIndexValue>());
             new BoardDecisionMap(modelBuilder.Entity<BoardDecision>());
+
+            new SAPMap(modelBuilder.Entity<SAP>());
+            new FormIndexMap(modelBuilder.Entity<FormIndex>());
         }
        
     }

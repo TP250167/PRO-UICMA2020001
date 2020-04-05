@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators ,FormArray ,FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -14,14 +14,31 @@ import { ClaimsApiService } from 'app/@services/claims-api.service'
 })
 export class De1101ResponseFormComponent implements OnInit {
 
-  @Input() uavalue: any;
-
   // form setion var 
   public De1101Form: FormGroup;
   public formSubmitted: boolean = false;
 
   public formId: number;
   public responseFormDetails: any = []
+
+  public dropdownList: any = [];
+  public selectedItems: any = [];
+  public dropdownSettings: any = {};
+
+  public packageDocumentList = [
+    {"id":1,"docName":'RA Letter' , "docNumber":1234},
+    {"id":2,"docName":'Time/Wage Report', "docNumber":1452},
+    {"id":3,"docName":'Summary of Work', "docNumber":2548},
+    {"id":4,"docName":'Protest Page', "docNumber":3658},
+    {"id":5,"docName":'Claimant Information Report', "docNumber":7858},
+    {"id":6,"docName":'Statement of Charges', "docNumber":1245},
+    {"id":7,"docName":'Warning Letters', "docNumber":3541},
+    {"id":8,"docName":'EE Contract', "docNumber":7548},
+    {"id":9,"docName":'Offer Letter', "docNumber":8252},
+    {"id":10,"docName":'dismissal charges', "docNumber":4252},
+  ]
+
+  public showPdList : any = []
 
   constructor(
     public  aps  : AppService      ,
@@ -36,23 +53,26 @@ export class De1101ResponseFormComponent implements OnInit {
   // form section 
   de1101ResponseFormInit() {
     this.De1101Form = this.fb.group({
-      id                  : ['', Validators.required],
-      claimId             : ['', Validators.required],
-      address             : ['', Validators.required],
-      lausdMailDate       : ['', Validators.required],
-      bybClaimDate        : ['', Validators.required],
-      effectiveDateOfClaim: ['', Validators.required],
-      dueDate             : ['', Validators.required],
-      claimantName        : ['', Validators.required],
-      socialSecurityNumber: ['', Validators.required],
-      lausdResponse       : ['', Validators.required],
-      issuesList          : ['', Validators.required],
-      printName           : ['', Validators.required],
-      phoneNumber         : ['', Validators.required],
-      signature           : ['', Validators.required],
-      title               : ['', Validators.required],
-      date                : ['', Validators.required],
-      attachedDocument    : ['', Validators.required],
+      id                   : ['', Validators.required],
+      claimId              : ['', Validators.required],
+      claimantName         : ['', Validators.required],
+      socialSecurityNumber : ['', Validators.required],
+      AccountNumber        : ['', Validators.required],
+      phoneNumber          : ['', Validators.required],
+      printName            : ['', Validators.required],
+      title                : ['', Validators.required],
+      signature            : ['', Validators.required],
+      eddFieldOfficeAddress: ['', Validators.required],
+      lausdMailDate        : ['', Validators.required],
+      bybClaimDate         : ['', Validators.required],
+      effectiveDateOfClaim : ['', Validators.required],
+      dueDate              : ['', Validators.required],
+      lausdResponse        : ['', Validators.required],
+      eddMailDate          : ['', Validators.required],
+      issuesList           : ['', Validators.required],
+      date                 : ['', Validators.required],
+      attachedDocument     : this.fb.array([], [Validators.required]),
+      claimResNotes        : ['', Validators.required],
     });
   }
 
@@ -68,26 +88,29 @@ export class De1101ResponseFormComponent implements OnInit {
   setFormvalues(data) {
     this.fc.id.setValue(data.id)
     this.fc.claimId.setValue(data.claimId)
-    this.fc.address.setValue(data.address)
+    this.fc.claimantName.setValue(data.claimantName)
+    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
+    this.fc.AccountNumber.setValue(data.AccountNumber)
+    this.fc.phoneNumber.setValue(data.phoneNumber)
+    this.fc.printName.setValue(data.printName)
+    this.fc.title.setValue(data.title)
+    this.fc.signature.setValue(data.signature)
+    this.fc.eddFieldOfficeAddress.setValue(data.address)
     this.fc.lausdMailDate.setValue(this.aps.formatDate(data.lausdMailDate))
     this.fc.bybClaimDate.setValue(this.aps.formatDate(data.bybClaimDate))
     this.fc.effectiveDateOfClaim.setValue(this.aps.formatDate(data.effectiveDateOfClaim))
     this.fc.dueDate.setValue(this.aps.formatDate(data.dueDate))
-    this.fc.claimantName.setValue(data.claimantName)
-    this.fc.socialSecurityNumber.setValue(data.socialSecurityNumber)
     this.fc.lausdResponse.setValue(data.lausdResponse)
+    this.fc.eddMailDate.setValue(data.eddMailDate)
     this.fc.issuesList.setValue(data.issuesList)
-    this.fc.printName.setValue(data.printName)
-    this.fc.phoneNumber.setValue(data.phoneNumber)
-    this.fc.signature.setValue(data.signature)
-    this.fc.title.setValue(data.title)
     this.fc.date.setValue(this.aps.formatDate(data.date))
-    this.fc.attachedDocument.setValue(data.attachedDocument)
+    // this.fc.attachedDocument.setValue(data.attachedDocument)
+    this.fc.claimResNotes.setValue(data.claimResNotes)
   }
 
   getFormDetails() {
-    // this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
-    this.formId = 2;
+    this.formId = parseInt(this.route.snapshot.paramMap.get('id'))
+    // this.formId = 2;
     this.cas.getClaimResponse(this.formId)
       .subscribe((res) => {
         if(res != null) {
@@ -96,6 +119,56 @@ export class De1101ResponseFormComponent implements OnInit {
         }
       })
   }
+
+  multiselectConfig() {
+    
+    this.dropdownSettings = {
+      singleSelection  : false,
+      idField          : 'id',
+      textField        : 'docName',
+      selectAllText    : 'Select All',
+      unSelectAllText  : 'UnSelect All',
+      itemsShowLimit   : 3,
+      allowSearchFilter: true
+    };
+
+    this.dropdownList  = this.packageDocumentList ;
+
+    this.selectedItems = [
+      {"id":1,"docName":'RA Letter'},
+      {"id":2,"docName":'Time/Wage Report'},
+      {"id":3,"docName":'Summary of Work'},
+      {"id":4,"docName":'Protest Page'},
+      {"id":5,"docName":'Claimant Information Report'},
+    ]
+
+    this.showPdList = this.aps.filterAo(this.packageDocumentList,this.selectedItems)
+  }
+
+  filterPackageTable() {
+    this.showPdList = this.aps.filterAo(this.packageDocumentList,this.selectedItems)
+    this.aps.closeModel()
+  }
+
+
+  onCheckboxChange(e) {
+
+    const checkArray: FormArray = this.De1101Form.get('attachedDocument') as FormArray;
+  
+    if (e.target.checked) {
+      checkArray.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+  }
+
 
   saveForm() {
     
@@ -118,6 +191,7 @@ export class De1101ResponseFormComponent implements OnInit {
   ngOnInit() {
     this.de1101ResponseFormInit();
     this.getFormDetails();
+    this.multiselectConfig();
   }
 
 

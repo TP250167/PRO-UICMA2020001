@@ -18,7 +18,7 @@ namespace UICMA_OCR_Extraction
                 Console.WriteLine("OCR Extraction Console Application: " + DateTime.Now);
                 writeToConsole("------------------------------------------------------------------");
 
-              //  ProcessOCRExtraction();
+                ProcessOCRExtraction();
                 GC.Collect();
                 isProcess = false;
             }
@@ -52,10 +52,11 @@ namespace UICMA_OCR_Extraction
             }
             Console.WriteLine();
         }
-        static private void ProcessOCRExtraction()
+     static  private  void ProcessOCRExtraction()
         {
+            
             OCRExtraction ocrExtraction =new OCRExtraction(ConfigurationManager.AppSettings["ConnectionString"].ToString());
-          //  ocrExtraction.OCRExtractionJob();
+            ocrExtraction.OCRExtractionJob();
             writeToConsole("OCR Extraction End: " + DateTime.Now);
         }
     }

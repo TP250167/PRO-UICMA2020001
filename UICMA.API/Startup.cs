@@ -26,6 +26,7 @@ using UICMA.Repository.ClaimRepository;
 using UICMA.Repository.RARepository;
 using UICMA.Service;
 using UICMA.Service.ClaimServices;
+using UICMA.Service.MasterData;
 using UICMA.Service.RAService;
 
 namespace UICMA.API
@@ -233,6 +234,12 @@ namespace UICMA.API
 
             builder.RegisterType<WritService>().As<IWritService>();
             builder.RegisterType<WritRepository>().As<IWritRepository>();
+
+            builder.RegisterType<MDDocumentService>().As<IMDDocumentService>();
+            builder.RegisterType<MDDocumentRepository>().As<IMDDocumentRepository>();
+
+            builder.RegisterType<MDFormService>().As<IMDFormService>();
+            builder.RegisterType<MDFormRepository>().As<IMDFormRepository>();
 
 
 

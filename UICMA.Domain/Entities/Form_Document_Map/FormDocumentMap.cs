@@ -28,6 +28,9 @@ namespace UICMA.Domain.Entities.Form_Document_Map
             builder.Property(s => s.DocumentName).HasColumnName("DOCUMENT_NAME");
             builder.Property(s => s.Stage).HasColumnName("STAGE");
             builder.Property(s => s.IsSharepointPushed).HasColumnName("IS_SHAREPOINT_PUSHED").HasDefaultValue(false);
+           
+            builder.Property(s => s.Stage).HasColumnName("SAVE_FILE_GUID");
+           
 
             //builder.HasOne(t => t.MDDocument).WithMany(s => s.FormDocuments).HasForeignKey(t => t.DocumentId);
             //builder.HasOne(t => t.MDForm).WithMany(s => s.FormDocuments).HasForeignKey(t => t.FormId);
