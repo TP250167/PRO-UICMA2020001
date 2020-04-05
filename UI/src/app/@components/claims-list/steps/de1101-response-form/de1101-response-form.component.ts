@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators ,FormArray ,FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -71,7 +71,7 @@ export class De1101ResponseFormComponent implements OnInit {
       eddMailDate          : ['', Validators.required],
       issuesList           : ['', Validators.required],
       date                 : ['', Validators.required],
-      attachedDocument     : ['', Validators.required],
+      attachedDocument     : this.fb.array([], [Validators.required]),
       claimResNotes        : ['', Validators.required],
     });
   }
@@ -104,7 +104,7 @@ export class De1101ResponseFormComponent implements OnInit {
     this.fc.eddMailDate.setValue(data.eddMailDate)
     this.fc.issuesList.setValue(data.issuesList)
     this.fc.date.setValue(this.aps.formatDate(data.date))
-    this.fc.attachedDocument.setValue(data.attachedDocument)
+    // this.fc.attachedDocument.setValue(data.attachedDocument)
     this.fc.claimResNotes.setValue(data.claimResNotes)
   }
 
@@ -118,24 +118,6 @@ export class De1101ResponseFormComponent implements OnInit {
           this.setFormvalues(this.responseFormDetails);
         }
       })
-  }
-
-  saveForm() {
-    
-    if (this.fvalid) {
-      
-      this.fv.lausdMailDate        = this.aps.formatDate(this.fv.lausdMailDate        );
-      this.fv.bybClaimDate         = this.aps.formatDate(this.fv.bybClaimDate         );
-      this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim );
-      this.fv.dueDate              = this.aps.formatDate(this.fv.dueDate              );
-      this.fv.date                 = this.aps.formatDate(this.fv.date                 );
-
-      this.cas.updateClaimResponse(this.fv)
-        .subscribe((res) => {
-          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
-        })
-    }
-
   }
 
   multiselectConfig() {
@@ -168,6 +150,43 @@ export class De1101ResponseFormComponent implements OnInit {
     this.aps.closeModel()
   }
 
+
+  onCheckboxChange(e) {
+
+    const checkArray: FormArray = this.De1101Form.get('attachedDocument') as FormArray;
+  
+    if (e.target.checked) {
+      checkArray.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+  }
+
+
+  saveForm() {
+    
+    if (this.fvalid) {
+      
+      this.fv.lausdMailDate        = this.aps.formatDate(this.fv.lausdMailDate        );
+      this.fv.bybClaimDate         = this.aps.formatDate(this.fv.bybClaimDate         );
+      this.fv.effectiveDateOfClaim = this.aps.formatDate(this.fv.effectiveDateOfClaim );
+      this.fv.dueDate              = this.aps.formatDate(this.fv.dueDate              );
+      this.fv.date                 = this.aps.formatDate(this.fv.date                 );
+
+      this.cas.updateClaimResponse(this.fv)
+        .subscribe((res) => {
+          (this.fv.id == 0) ? this.aps.toastSaved() : this.aps.toastUpdated();
+        })
+    }
+
+  }
 
   ngOnInit() {
     this.de1101ResponseFormInit();
