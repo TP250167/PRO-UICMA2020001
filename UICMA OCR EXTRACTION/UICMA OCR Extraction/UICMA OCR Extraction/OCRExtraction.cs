@@ -62,14 +62,14 @@ namespace UICMA_OCR_Extraction
                 // You could also call ProcessDocumentAsync or any other processing method declared below
                 var resultUrls = await ProcessImageAsync(ocrClient);
 
-                 if(resultUrls==null)
-                 {
+                if(resultUrls==null)
+                {
                      Console.WriteLine("OCR Extraction End: " + DateTime.Now);
-                 }
-                 else
-                 {
-                 Console.WriteLine(resultUrls[0]);
-                 }
+                }
+                else
+                {
+                Console.WriteLine(resultUrls[0]);
+                }
                 // Get results
                // foreach (var resultUrl in resultUrls)
                //     Console.WriteLine(resultUrl);
