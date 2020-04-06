@@ -57,7 +57,7 @@ namespace UICMA_OCR_Extraction
             
             OCRExtraction ocrExtraction =new OCRExtraction(ConfigurationManager.AppSettings["ConnectionString"].ToString());
             ocrExtraction.OCRExtractionJob();
-            writeToConsole("OCR Extraction End: " + DateTime.Now);
+           // writeToConsole("OCR Extraction End: " + DateTime.Now);
         }
     }
 }
