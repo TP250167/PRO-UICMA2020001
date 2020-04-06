@@ -52,6 +52,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UICMA.Domain\UICMA.Domain.csproj" />
     <ProjectReference Include="..\UICMA.Service\UICMA.Service.csproj" />
+    <ProjectReference Include="..\UICMA.Utilities\UICMA.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

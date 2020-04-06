@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
@@ -12,14 +10,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -29,11 +24,9 @@ using UICMA.API.ViewModels.Mappings;
 using UICMA.Repository;
 using UICMA.Repository.ClaimRepository;
 using UICMA.Repository.RARepository;
-using UICMA.Repository.RARepository;
 using UICMA.Service;
 using UICMA.Service.ClaimServices;
 using UICMA.Service.MasterData;
-using UICMA.Service.RAService;
 using UICMA.Service.RAService;
 
 namespace UICMA.API

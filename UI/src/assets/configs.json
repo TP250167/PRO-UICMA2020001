@@ -1,13 +1,13 @@
 {
     "isTest": true,
-    "apiURL": "https://uicmadev.kotest.in/uicma-api/",
+    "apiURL": "https://localhost:44396/",
     "adalConfig": {
         "tenant": "26befc41-8e24-4cfb-ab7f-16f6019d1e10",
         "clientId": "3f6720bc-c4ae-4dc3-bcfa-9c24524ad951",
         "cacheLocation": "localStorage",
         "postLogoutRedirectUri": "http://localhost:4200/",
         "endpoints": {
-            "https://uicmadev.kotest.in/uicma-api/": "3f6720bc-c4ae-4dc3-bcfa-9c24524ad951"
+            "https://localhost:44396/": "3f6720bc-c4ae-4dc3-bcfa-9c24524ad951"
         }
     }
 }
