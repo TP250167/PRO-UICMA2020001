@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using UICMA.Utilities;
 namespace UICMA.API.Controllers
 {
@@ -11,26 +12,23 @@ namespace UICMA.API.Controllers
     [ApiController]
     public class DocumentController : ControllerBase
     {
-        DocumentController()
+        private readonly IConfiguration configuration;       
+        public DocumentController(IConfiguration configuration)
         {
-           
+            this.configuration = configuration;
         }
-       
+
         // GET: api/Document
-        [HttpGet("{ReqId}", Name = "Get")]
-        public IEnumerable<DocRepositoryBO> Get(int ReqId)
+        [HttpGet("GetDocument/{reqId:int}")]
+        public IEnumerable<DocRepositoryBO> GetDocuments(int reqId)
         {
-            SPOLDocUtility objUtil = new SPOLDocUtility();
+            SPOLDocUtility objUtil = new SPOLDocUtility(this.configuration);
             List<DocRepositoryBO> objDocs = new List<DocRepositoryBO>();
-            SPAuthBO objAuth = new SPAuthBO();
-            objAuth.UserName = "gb-itadmin@kosoft.co";
-            objAuth.UserPassword = "";
-            objAuth.Domain = "https://kosoftsolutions.sharepoint.com/";
-            objAuth.SiteURL = "https://kosoftsolutions.sharepoint.com/";
+           
             try
             {
 
-                objDocs = objUtil.GetDocuments(objAuth,"TestLibrary",1);
+                objDocs = objUtil.GetDocuments("TestLibrary",reqId);
             }
             catch (Exception)
             {
@@ -39,19 +37,19 @@ namespace UICMA.API.Controllers
             }
             return objDocs;
         }
-        public IEnumerable<DocRepositoryBO> Get(int ReqId,string docType)
+
+        // GET: api/Document
+
+        [HttpGet("GetDocumentByType/{reqId:int}/{docType}/")]
+        public IEnumerable<DocRepositoryBO> GetDocuments(int reqId, string docType)
         {
-            SPOLDocUtility objUtil = new SPOLDocUtility();
+            SPOLDocUtility objUtil = new SPOLDocUtility(this.configuration);
             List<DocRepositoryBO> objDocs = new List<DocRepositoryBO>();
-            SPAuthBO objAuth = new SPAuthBO();
-            objAuth.UserName = "gb-itadmin@kosoft.co";
-            objAuth.UserPassword = "";
-            objAuth.Domain = "https://kosoftsolutions.sharepoint.com/";
-            objAuth.SiteURL = "https://kosoftsolutions.sharepoint.com/";
+            
             try
             {
 
-                objDocs = objUtil.GetDocuments(objAuth, "TestLibrary", 1, docType);
+                objDocs = objUtil.GetDocuments( "TestLibrary", reqId, docType);
             }
             catch (Exception)
             {

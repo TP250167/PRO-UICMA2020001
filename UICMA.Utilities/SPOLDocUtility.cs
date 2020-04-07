@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Security;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using Microsoft.SharePoint.Client;
 //using Microsoft.SharePoint.Client.NetCore.Runtime;
 
@@ -13,8 +14,20 @@ namespace UICMA.Utilities
 
     public class SPOLDocUtility
     {
-        private string _errMsg;          
-        //static NetworkCredential credential;
+        private string _errMsg;
+        private SPAuthBO objAuth;
+       
+        public SPOLDocUtility(IConfiguration configuration)
+        {
+            this.objAuth = new SPAuthBO();
+
+
+            //this.configuration = configuration;
+            this.objAuth.UserName = configuration["SPOLConfig:SPUserName"];
+            this.objAuth.UserPassword = configuration["SPOLConfig:SPPassword"]; 
+            this.objAuth.SiteURL = configuration["SPOLConfig:SiteURL"]; 
+            this.objAuth.Domain = configuration["SPOLConfig:Domain"]; 
+        }
 
         private SharePointOnlineCredentials GetO365Credentials(string userName, string passWord)
         {
@@ -25,7 +38,7 @@ namespace UICMA.Utilities
         }
 
         #region Document Upload, Reterive and Update
-        public string AddDocument(SPAuthBO objAuth, DocRepositoryBO objDocRepo)
+        public string AddDocument( DocRepositoryBO objDocRepo)
         {
             int DocItemID = 0;
             try
@@ -34,9 +47,9 @@ namespace UICMA.Utilities
 
                 if (objDocRepo != null)
                 {
-                    ClientContext ctx = new ClientContext(objAuth.SiteURL);
+                    ClientContext ctx = new ClientContext(this.objAuth.SiteURL);
                     ctx.RequestTimeout = 50000;  //1000000;
-                    ctx.Credentials = GetO365Credentials(objAuth.UserName, objAuth.UserPassword);
+                    ctx.Credentials = GetO365Credentials(this.objAuth.UserName, this.objAuth.UserPassword);
                     Web web = ctx.Web;
 
 
@@ -76,20 +89,20 @@ namespace UICMA.Utilities
 
             return DocItemID.ToString();
         }       
-        public List<DocRepositoryBO> GetDocuments(SPAuthBO objAuth, string docLibName,int reqId)
+        public List<DocRepositoryBO> GetDocuments(string docLibName,int reqId)
         {
            
 
-            string ContextSiteURL = objAuth.SiteURL;
+            string ContextSiteURL = this.objAuth.SiteURL;
             List<DocRepositoryBO> objDoc = new List<DocRepositoryBO>();
             try
             {
                 
 
-                using (ClientContext ctx = new ClientContext(objAuth.SiteURL))
+                using (ClientContext ctx = new ClientContext(this.objAuth.SiteURL))
                 {
                     ctx.RequestTimeout = 50000;  //1000000;
-                    ctx.Credentials = GetO365Credentials(objAuth.UserName, objAuth.UserPassword);
+                    ctx.Credentials = GetO365Credentials(this.objAuth.UserName, this.objAuth.UserPassword);
                     //List oList = ctx.Web.Lists.GetByTitle(DocRepName);
                     Microsoft.SharePoint.Client.List oList = ctx.Web.Lists.GetByTitle(docLibName);
                     CamlQuery camlQuery = new CamlQuery();
@@ -139,7 +152,7 @@ namespace UICMA.Utilities
                             FilePath = listItems[idx].FieldValues["FileRef"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["FileRef"]),
                             //DocVersion = listItems[idx].FieldValues["VersionNo"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["VersionNo"]),
                             ReqID = listItems[idx].FieldValues["ReqId"] == DBNull.Value ? 0 : Convert.ToInt32(listItems[idx].FieldValues["ReqId"]),
-                            SPFilePath = objAuth.Domain + (listItems[idx].FieldValues["FileRef"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["FileRef"]))
+                            SPFilePath = this.objAuth.Domain + (listItems[idx].FieldValues["FileRef"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["FileRef"]))
                             
                         });
                     }
@@ -151,20 +164,20 @@ namespace UICMA.Utilities
             }
             return objDoc;
         }
-        public List<DocRepositoryBO> GetDocuments(SPAuthBO objAuth, string docLibName, int reqId,string documentType)
+        public List<DocRepositoryBO> GetDocuments( string docLibName, int reqId,string documentType)
         {
 
 
-            string ContextSiteURL = objAuth.SiteURL;
+            string ContextSiteURL = this.objAuth.SiteURL;
             List<DocRepositoryBO> objDoc = new List<DocRepositoryBO>();
             try
             {
 
 
-                using (ClientContext ctx = new ClientContext(objAuth.SiteURL))
+                using (ClientContext ctx = new ClientContext(this.objAuth.SiteURL))
                 {
                     ctx.RequestTimeout = 50000;  //1000000;
-                    ctx.Credentials = GetO365Credentials(objAuth.UserName, objAuth.UserPassword);
+                    ctx.Credentials = GetO365Credentials(this.objAuth.UserName, this.objAuth.UserPassword);
                     //List oList = ctx.Web.Lists.GetByTitle(DocRepName);
                     Microsoft.SharePoint.Client.List oList = ctx.Web.Lists.GetByTitle(docLibName);
                     CamlQuery camlQuery = new CamlQuery();
@@ -220,7 +233,7 @@ namespace UICMA.Utilities
                             FilePath = listItems[idx].FieldValues["FileRef"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["FileRef"]),
                             //DocVersion = listItems[idx].FieldValues["VersionNo"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["VersionNo"]),
                             ReqID = listItems[idx].FieldValues["ReqId"] == DBNull.Value ? 0 : Convert.ToInt32(listItems[idx].FieldValues["ReqId"]),
-                            SPFilePath = objAuth.Domain + (listItems[idx].FieldValues["FileRef"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["FileRef"]))
+                            SPFilePath = this.objAuth.Domain + (listItems[idx].FieldValues["FileRef"] == DBNull.Value ? string.Empty : Convert.ToString(listItems[idx].FieldValues["FileRef"]))
 
                         });
                     }
@@ -232,16 +245,16 @@ namespace UICMA.Utilities
             }
             return objDoc;
         }
-        public string UpdateDocument(SPAuthBO objAuth, DocRepositoryBO objDocRepo)
+        public string UpdateDocument( DocRepositoryBO objDocRepo)
         {
             int DocItemID = 0;
             try
             {
                 #region Document/file upload
 
-                ClientContext ctx = new ClientContext(objAuth.SiteURL);
+                ClientContext ctx = new ClientContext(this.objAuth.SiteURL);
                 ctx.RequestTimeout = 50000;  //1000000;
-                ctx.Credentials = GetO365Credentials(objAuth.UserName, objAuth.UserPassword);
+                ctx.Credentials = GetO365Credentials(this.objAuth.UserName, this.objAuth.UserPassword);
                 Web web = ctx.Web;
 
                 Microsoft.SharePoint.Client.File uploadFile = web.GetFileByServerRelativeUrl(objDocRepo.FilePath);
@@ -287,16 +300,16 @@ namespace UICMA.Utilities
 
             return DocItemID.ToString();
         }
-        public string DeleteDocument(SPAuthBO objAuth, string RepoName,string DocId)
+        public string DeleteDocument( string RepoName,string DocId)
         {
             string msg = string.Empty;
             try
             {
               
                        
-                        ClientContext ctx = new ClientContext(objAuth.SiteURL);
+                        ClientContext ctx = new ClientContext(this.objAuth.SiteURL);
                         ctx.RequestTimeout = 50000;
-                        ctx.Credentials = this.GetO365Credentials(objAuth.UserName, objAuth.UserPassword);
+                        ctx.Credentials = this.GetO365Credentials(this.objAuth.UserName, this.objAuth.UserPassword);
                         Web web = ctx.Web;
                         Microsoft.SharePoint.Client.List oList = web.Lists.GetByTitle(RepoName);                   
                        

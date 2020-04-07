@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,7 +62,7 @@ namespace UICMA.API
             Configuration = builder.Build();
         }
 
-        private static IHttpContextAccessor HttpContextAccessor;
+       // private static IHttpContextAccessor HttpContextAccessor;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -97,14 +98,15 @@ namespace UICMA.API
                    };
                    options.Events = new JwtBearerEvents
                    {
-                       OnTokenValidated = async ctx =>
+                        OnTokenValidated = async (ctx) =>
                        {
+                         
                            var claims = new List<Claim>
                            {
                                 new Claim("BasicClaim", "UserInfo")
                            };
 
-                           ctx.Principal.AddIdentity(new ClaimsIdentity(claims));
+                            ctx.Principal.AddIdentity(new ClaimsIdentity(claims));
                        }
                    };
                });
@@ -282,11 +284,11 @@ namespace UICMA.API
             builder.RegisterType<NotificationService>().As<INotificationService>();
             builder.RegisterType<NotificationRepository>().As<INotificationRepository>();
 
-                                                                        
+
             ////////////////
 
 
-
+            services.AddSingleton<IConfiguration>(Configuration);
 
             builder.Populate(services);
             var container = builder.Build();
@@ -320,7 +322,9 @@ namespace UICMA.API
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Values}/{action=Get}/{id?}");
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { Controller = "Values", action = "Get" },
+                    constraints: new { id = new IntRouteConstraint() });
 
                 // Uncomment the following line to add a route for porting Web API 2 controllers.
                 //routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
