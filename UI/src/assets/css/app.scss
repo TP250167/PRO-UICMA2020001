@@ -1239,6 +1239,8 @@ drag-scroll {
 
 .app-ftm {
 
+    position: relative;
+
     padding: 15px 25px;
 
     .angular-editor-textarea {
@@ -1256,6 +1258,9 @@ drag-scroll {
     
     ae-select {
         margin-right: 4px;
+        &:hover {
+            background-color: inherit !important;
+        }
     }
 
     .angular-editor-button {
@@ -1279,6 +1284,13 @@ drag-scroll {
         border-radius: 4px;
         .fa { font-size: 14px; color: #48465b; }
         .color-label.background { background-color: unset !important; }
+    }
+
+    .cc-print-btn {
+        position: absolute;
+        right: 2%;
+        z-index: 333;
+        top: 28px;
     }
 }
 
@@ -1418,10 +1430,56 @@ select::-ms-expand {
 
 
 
+.cc-ftm-img-wrapper {
+    display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    img {
+        width: 130px;
+        height: auto;
+        margin-right: 20px;
+    }
+}
 
+html body .angular-editor-wrapper .cc-ftm-header ,
+html body .angular-editor-wrapper .cc-ftm-footer {
+    border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; padding: 0 15px;
+}
 
+html body .angular-editor-wrapper .cc-ftm-footer { border-bottom: 1px solid #e8e8e8; }
 
+.cc-wwtest-list {
+    list-style: circle;
+    line-height: 38px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 
+    li {
+        width: 33.3%;
+    }
+}
+
+@media print {
+
+    body p {
+        font-size: 18.5px;
+        line-height: 26px;
+    }
+    
+    .angular-editor-placeholder {
+        display: none;
+    }
+
+    html body .angular-editor-wrapper .cc-ftm-header , 
+    html body .angular-editor-wrapper .cc-ftm-footer {
+        border: 0;
+        padding: 0;
+    }
+    
+
+}
 
 
 

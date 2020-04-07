@@ -4,6 +4,9 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 import { AppService } from 'app/@services/app.service'
 
+declare var $: any;
+
+
 @Component({
   selector: 'app-form-template-management',
   templateUrl: './form-template-management.component.html',
@@ -63,9 +66,9 @@ export class FormTemplateManagementComponent implements OnInit {
   fixedHeaderFooterEditor() {
 
     let headerContent = `
-        <div class='cc-ftm-header' style="border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; padding: 0 15px;">
-          <div>
-            <img />
+        <div class='cc-ftm-header'>
+          <div class="cc-ftm-img-wrapper">
+            <img src="http://localhost:4200/assets/img/Capture.PNG" />
             <div>
               <h3 style="font-size: 22px; font-family: 'Arial'; font-weight: bold; font-style: oblique; margin: 0;color: #2d2d2d;">Los Angeles Unified School District</h3>
               <h4 style="font-size: 16px; font-family: 'Arial'; font-weight: 600; margin: 0;color: #2d2d2d;">OFFICE OF BUSINESS SUPPORT</h4>
@@ -77,7 +80,7 @@ export class FormTemplateManagementComponent implements OnInit {
         </div>
      `
     let footerContent = `
-    <div class="cc-ftm-footer" style="border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; padding: 0 15px;">
+    <div class="cc-ftm-footer">
       <div>
       <p>By signing below, I certify that i am an authorized representative and the imformation provided in reponse to this notice is
       true and correct. I understand that any false statement, false representation, or failure to report a material fact may result in
@@ -99,6 +102,34 @@ export class FormTemplateManagementComponent implements OnInit {
     let ele = document.querySelector('.angular-editor-textarea');
     ele.insertAdjacentHTML('beforebegin', headerContent)
     ele.insertAdjacentHTML('afterend', footerContent)
+
+  }
+
+  printPdf() {
+
+    $(".angular-editor-wrapper").printThis({
+      debug: false,               // show the iframe for debugging
+      importCSS: true,            // import parent page css
+      importStyle: true,         // import style tags
+      printContainer: false,       // print outer container/$.selector
+      loadCSS: "",                // path to additional css file - use an array [] for multiple
+      pageTitle: "DE1101 response",  // add title to print page
+      removeInline: false,        // remove inline styles from print elements
+      removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+      printDelay: 333,            // variable print delay
+      header: null,               // prefix to html
+      footer: null,               // postfix to html
+      base: false,                // preserve the BASE tag or accept a string for the URL
+      formValues: true,           // preserve input/form values
+      canvas: false,              // copy canvas content
+      doctypeString: '...',       // enter a different doctype for older markup
+      removeScripts: false,       // remove script tags from print content
+      copyTagClasses: true,      // copy classes from the html & body tag
+      beforePrintEvent: null,     // function for printEvent in iframe
+      beforePrint: null,          // function called before iframe is filled
+      afterPrint: null            // function called before iframe is removed
+    });
+
 
   }
 
