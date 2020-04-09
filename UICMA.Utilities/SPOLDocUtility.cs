@@ -10,7 +10,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.SharePoint.Client;
 
-//using Microsoft.SharePoint.Client.NetCore.Runtime;
+
 
 namespace UICMA.Utilities
 {
