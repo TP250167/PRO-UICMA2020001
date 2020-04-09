@@ -20,28 +20,33 @@ namespace UICMA.API.Controllers
 
         // GET: api/Document
         [HttpGet("GetDocument/{reqId:int}")]
-        public IEnumerable<DocRepositoryBO> GetDocuments(int reqId)
+        public IActionResult GetDocuments(int reqId)
         {
             SPOLDocUtility objUtil = new SPOLDocUtility(this.configuration);
             List<DocRepositoryBO> objDocs = new List<DocRepositoryBO>();
-           
+
             try
             {
 
-                objDocs = objUtil.GetDocuments("TestLibrary",reqId);
+                objDocs = objUtil.GetDocuments("TestLibrary", reqId);
+                if (objDocs == null)
+                {
+                    return NotFound();
+                }
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                return BadRequest(ex.Message);
             }
-            return objDocs;
+            return Ok(objDocs);
         }
 
         // GET: api/Document
 
         [HttpGet("GetDocumentByType/{reqId:int}/{docType}/")]
-        public IEnumerable<DocRepositoryBO> GetDocuments(int reqId, string docType)
+        public  IActionResult GetDocuments(int reqId, string docType)
         {
             SPOLDocUtility objUtil = new SPOLDocUtility(this.configuration);
             List<DocRepositoryBO> objDocs = new List<DocRepositoryBO>();
@@ -50,38 +55,99 @@ namespace UICMA.API.Controllers
             {
 
                 objDocs = objUtil.GetDocuments( "TestLibrary", reqId, docType);
+                if (objDocs==null)
+                {
+                    return NotFound();
+                }
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                return BadRequest(ex.Message);
             }
-            return objDocs;
+            return Ok(objDocs);
         }
 
-        //// GET: api/Document/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+    
 
         // POST: api/Document
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] DocRepositoryBO document)
         {
+            SPOLDocUtility objUtil = new SPOLDocUtility(this.configuration);
+
+            string result;
+            try
+            {
+
+                result= objUtil.AddDocument(document);
+                if (result.Contains("Error:"))
+                {
+                    return BadRequest(result);
+                }
+
+
+               
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message) ;
+            }
+            return Ok(result);
         }
 
-        // PUT: api/Document/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT: api/Document
+        [HttpPut]
+        public IActionResult Put([FromBody] DocRepositoryBO document)
         {
-        }
+            SPOLDocUtility objUtil = new SPOLDocUtility(this.configuration);
+
+            string result;
+            try
+            {
+
+               result= objUtil.UpdateDocument(document);
+                if (result.Contains("Error:"))
+                {
+                    return BadRequest(result);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+            return Ok(result);
+        
+    }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{docId:int}")]
+        public IActionResult Delete(int docId)
         {
+
+            SPOLDocUtility objUtil = new SPOLDocUtility(this.configuration);
+
+            string result;
+            try
+            {
+
+              result = objUtil.DeleteDocument("TestLibrary",docId.ToString());
+                if (result.Contains("Error:"))
+                {
+                    return BadRequest(result);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+            return Ok(result);
         }
     }
 }

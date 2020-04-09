@@ -55,4 +55,10 @@
     <ProjectReference Include="..\UICMA.Utilities\UICMA.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime">
+      <HintPath>..\..\..\LS AWS\GateKeeper\LSGKSPOLConsole\LSGKSPOLConsole\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

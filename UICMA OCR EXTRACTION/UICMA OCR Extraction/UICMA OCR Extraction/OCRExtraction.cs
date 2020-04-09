@@ -2769,7 +2769,7 @@ SaveException("This form is already exists in Current Claim");
 
             // }
 
-          Main();
+           Main();
         }
       
 
